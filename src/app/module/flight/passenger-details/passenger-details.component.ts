@@ -622,13 +622,10 @@ export class PassengerDetailsComponent implements AfterViewInit {
         passControls?.controls['dateOfExpiry']?.updateValueAndValidity();
         passControls?.controls['passportNumber']?.updateValueAndValidity();
 
-        console.log(passControls);
       }
     );
 
     if (this.flightPassenger?.valid) {
-
-      console.log(this.flightPassenger);
 
       // this.passengerDetailsArrayControl!.controls?.forEach((element: any, index: number) => {
       //   if (this.passengerDetailsArray['at'](index)?.status === 'INVALID') {

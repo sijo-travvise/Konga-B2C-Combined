@@ -180,7 +180,6 @@ export class ItineraryDetailsComponent {
   }
   ngOnChanges(changes: SimpleChanges): void {
    if(changes['pnrRetrieveRes']?.currentValue !== null && changes['pnrRetrieveRes']?.currentValue !== undefined) {
-  console.log(  this.pnrRetrieveRes);
    }
    
   }

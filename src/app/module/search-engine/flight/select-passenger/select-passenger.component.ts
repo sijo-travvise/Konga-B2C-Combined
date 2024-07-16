@@ -48,7 +48,6 @@ export class SelectPassengerComponent implements OnInit{
         }
   
       })
-      console.log(this.searchFlightPassengerValue, this.totalLimit);   
       this._flightService.editPassengerCount(this.searchFlightPassengerValue);
       this.passengerList = this.searchFlightPassengerValue;
     }

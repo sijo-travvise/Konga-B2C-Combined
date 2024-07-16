@@ -117,7 +117,6 @@ export class MoreDealDetailsComponent {
     this.currentImageUrl = this.currentDealData.packageImages[this.currentImageIndex].filePath;
     setInterval(() => {
       this.currentImageIndex = (this.currentImageIndex + 1) % this.currentDealData.packageImages.length;
-      console.log(this.currentImageIndex);
 
       this.currentImageUrl = this.currentDealData.packageImages[this.currentImageIndex].filePath;
     }, 4000); // Change background image every 10 seconds

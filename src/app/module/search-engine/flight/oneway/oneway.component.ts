@@ -241,7 +241,6 @@ export class OnewayComponent implements OnInit {
             this.isLoading = false;
             var SupplierName = "";
             data.CombinedBound = (Object.keys(data?.CombinedBound).map(key => ({ amount: key, flights: data.CombinedBound[key], additionalMarkupAmount: 0 }))?.sort((a: any, b: any) => a.amount - b.amount));
-            console.log(data);
             data['totalFlights'] = 0;
           }
           this.searchResultObj.data = data;
@@ -323,8 +322,6 @@ export class OnewayComponent implements OnInit {
     this.amedeusReqModel.searchCriteria.flightFilters.cabinRestrictions[0].originDestinationIds.length = 0;
     this.searchResultObj.amedeusData = null;
     this.searchResultObj.data = null;
-
-    console.log(this.selectedPassengerListData);
     var passCount = 0
     this.selectedPassengerListData.forEach((passengerData: any, index: number) => {
 
@@ -621,17 +618,17 @@ export class OnewayComponent implements OnInit {
   }
 
   dateChange(event: any, index: number) {
-    // let previousValue = new Date();
-    // (this.multiCityArrayControl)?.controls?.forEach((cityControls: any, controlIndex: number) => {
-    //   if ((index < controlIndex && (cityControls?.value?.DepartedMultiDate < event))) {
-    //     cityControls?.controls?.DepartedMultiDate.patchValue(event);
-    //   }
-    //   if (index < controlIndex) {
-    //     cityControls?.controls?.currentMinDate.setValue(previousValue);
-    //   }
-    //   previousValue = cityControls?.controls?.DepartedMultiDate?.value;
+    let previousValue = new Date();
+    (this.multiCityArrayControl)?.controls?.forEach((cityControls: any, controlIndex: number) => {
+      if ((index < controlIndex && (cityControls?.value?.DepartedMultiDate < event))) {
+        cityControls?.controls?.DepartedMultiDate.patchValue(event);
+      }
+      if (index < controlIndex) {
+        cityControls?.controls?.currentMinDate.setValue(previousValue);
+      }
+      previousValue = cityControls?.controls?.DepartedMultiDate?.value;
 
-    // });
+    });
   }
 
 

@@ -45,7 +45,6 @@ export class SearchEngineComponent {
   }
 
   searchData(event){
-console.log(event);
     this.previousStateFormValue = event;
 
   }

@@ -83,7 +83,6 @@ export class HeaderComponent implements OnInit {
     window.location.reload();
   }
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes['currentLink']);
     let change = changes['currentLink'];
     if (this.currentLink == 'home' || this.currentLink == '') {
       this.breadCrumps = false;

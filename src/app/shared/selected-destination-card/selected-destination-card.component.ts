@@ -21,7 +21,7 @@ export class SelectedDestinationCardComponent {
 
   }
   ngOnInit() {
-    console.log(this.tripData[0]);
+
     
   }
   

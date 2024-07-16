@@ -163,8 +163,6 @@ export class FlightResultBodyComponent implements AfterViewInit {
       }
     }
     this.sortArraybyObjValue(this.commonResultModel, 'fare');
-    console.log(this.commonResultModel);
-
   }
 
   changeAirlineFilter(event: any) {

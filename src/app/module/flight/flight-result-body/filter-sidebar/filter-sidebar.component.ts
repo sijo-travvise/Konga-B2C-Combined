@@ -163,19 +163,16 @@ export class FilterSidebarComponent {
       let isLeastStop = false;
       // if (boundIndex < 2) {
       switch (type) {
-        case 'stops':
 
-          break;
         case 'airline':
 
           if (offerItem.supplier === '1A') {
             let alrlineCount = false;
             offerItem?.offer?.itineraries?.forEach((itineraries: any) => {
               itineraries?.segments?.forEach((segment: any) => {
-                alrlineCount = filterData.includes(segment?.carrierCode)
-                console.log(alrlineCount);
-
-
+                if( filterData.includes(segment?.carrierCode)){
+                  alrlineCount = true;
+                }
               });
             });
             offerItem.offer.isShowAirline = filterData?.length ? alrlineCount : true;
@@ -196,8 +193,8 @@ export class FilterSidebarComponent {
             });
           }
           // });
-
           break;
+
         case 'price':
           if (parseFloat(offerItem.fare) >= filterData.PriceRange[0] && parseFloat(offerItem.fare) <= filterData.PriceRange[1]) {
             offerItem.offer.isShowAirlinePriceCard = true;
@@ -208,11 +205,8 @@ export class FilterSidebarComponent {
 
           //  Stops filter starts here
 
-
           if (offerItem.supplier === '1A') {
-
             if (filterData !== null && (filterData?.HasOneStop || filterData.HasRefundable || filterData.HasMoreStops || filterData?.HasNonStop)) {
-
               for (let itineraries of offerItem?.offer?.itineraries) {
                 if (itineraries?.segments?.length === 1 && filterData?.HasNonStop) {
                   amOptionsCount = true;
@@ -222,7 +216,6 @@ export class FilterSidebarComponent {
                 }
                 else if (itineraries?.segments?.length > 2 && filterData?.HasMoreStops) {
                   amOptionsCount = true;
-
                 }
                 else if (filterData?.HasRefundable) {
                   amOptionsCount = true;
@@ -294,9 +287,6 @@ export class FilterSidebarComponent {
       // }
     });
 
-
-    console.log(this.commonResult);
-
   }
 
   onChangeAirlineValue(event: any): void {
@@ -309,7 +299,6 @@ export class FilterSidebarComponent {
       this.getCityNames();
 
     }
-    console.log(changes, this.flightPopularFilters);
 
     if ((changes['filteredFlightData']?.currentValue?.amedeusData !== null && changes['filteredFlightData']?.currentValue?.amedeusData !== undefined) || (changes['filteredFlightData']?.currentValue?.data !== null && changes['filteredFlightData']?.currentValue?.data !== undefined) && this.flightPopularFilters) {
       // console.log(this.filteredFlightData);

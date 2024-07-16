@@ -58,7 +58,6 @@ export class DealsSectionComponent {
       error: (error: any) => { this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to fetch data. Please try again' }); this.isLoading = false; },    // errorHandler 
       next: (response: any) => {
         if (response.statusCode == 200 ) {
-          console.log(response);
           this.packageModuleList = response.data;
         }
         else {

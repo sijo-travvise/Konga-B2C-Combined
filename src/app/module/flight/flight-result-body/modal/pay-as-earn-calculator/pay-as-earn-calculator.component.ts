@@ -111,8 +111,6 @@ export class PayAsEarnCalculatorComponent {
     }
     else {
       this.BookedFlightData.flightFareInstallementDetails = flightFareInstallementDetails;
-      console.log(this.BookedFlightData);
-      
       this.sharedService.setLocalStore("airPricePointSelected", this.BookedFlightData );
       this.router.navigateByUrl('/passenger-details');
     }

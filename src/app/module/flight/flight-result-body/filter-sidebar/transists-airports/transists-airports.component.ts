@@ -25,13 +25,11 @@ export class TransistsAirportsComponent {
 
   ngOnInit() {
      this.AirlineList = this.list;
-     this.AirlineFilterForm.valueChanges.subscribe((data:any) => {
-     })
+    //  this.AirlineFilterForm.valueChanges.subscribe((data:any) => {
+    //  })
   }
 
   private addCheckboxes() {
-console.log(this.list);
-
     for (const code in this.list) {
       if (this.list.hasOwnProperty(code)) {
         this.AirlineFilterForm.controls['AirlineList'] as FormArray  
@@ -52,13 +50,11 @@ console.log(this.list);
     verdorFilter: [],
     type:'airline'
   };
-  const selectedOrderIds = data.map((v, i) => v ?  Object.keys(this.AirlineList)[i]  : null)
+  const selectedOrderIds = data.map((v, i) => v ?  Object.keys(this.list)[i]  : null)
   .filter(v => v !== null);
   vendor.verdorFilter = selectedOrderIds;
   vendor.type = this.filterType;
-
   this.onChangeAirline.emit(vendor);
-
   }
 
   setFilterCount(length: number){

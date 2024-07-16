@@ -110,9 +110,7 @@ export class FlightDetailsComponent implements AfterViewInit {
 
 
   public flightUpsellReqData = FlightUpsellReqData;
-  ngOnInit() {
-    console.log(this.BookedFlightData);
-    
+  ngOnInit() {    
     if(this.sharedService.getLocalStore('affiliate_user')!='' && this.sharedService.getLocalStore('affiliate_user')!=undefined)
     {
       debugger

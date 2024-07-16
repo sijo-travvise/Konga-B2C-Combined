@@ -82,8 +82,6 @@ export class FlightAmadeusFareFamilyComponent {
 
   public flightUpsellReqData = FlightUpsellReqData;
   ngOnInit() {
-    console.log(this.BookedFlightData);
-    
     if(this.sharedService.getLocalStore('affiliate_user')!='' && this.sharedService.getLocalStore('affiliate_user')!=undefined)
     {
       debugger
@@ -615,15 +613,12 @@ export class FlightAmadeusFareFamilyComponent {
 
             itinerariesList['installmentAmount'] = this.sharedService.getInstallmentAmount(itinerariesList?.price?.grandTotal ?? 0, 20);
             itinerariesList['isInstallmentApplicable'] = this.sharedService.getInstallationDateDuration(itinerariesList?.itineraries[0].segments[0]?.departure.at) ?? false;
-            console.log(itinerariesList);
-            
+
             if(index === 0){
               this.selectedFare = itinerariesList;
             }
             itinerariesList['activeId'] = itinerariesList?.itineraries[0]?.segments[0]?.id;
           });
-          console.log( this.fare_PriceUpsell_Res);
-          
         }
         else {
           this.isLoading = false;
@@ -671,12 +666,10 @@ export class FlightAmadeusFareFamilyComponent {
 
   
   startDragging(event){
-    console.log(event);
   }
 
   getPassedData(data: any,fareData: any) {
     this.activeSlides = data;
-    console.log(this.activeSlides,data.slides[0]?.id);
     this.fareActiveFunction(fareData, data.slides[0]?.id)
   }
 
@@ -689,7 +682,5 @@ export class FlightAmadeusFareFamilyComponent {
 
   showCalculateDialog(fareList: any){
       this.emiInstallments.emit(fareList);
-      console.log(this.BookedFlightData);
-      
   }
 }

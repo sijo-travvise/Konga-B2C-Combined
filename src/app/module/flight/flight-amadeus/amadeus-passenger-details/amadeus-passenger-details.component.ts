@@ -116,7 +116,6 @@ export class AmadeusPassengerDetailsComponent {
     this.totalFareTotalPrice =  this.flightFareData?.price?.grandTotal ?? 0
     this.getCountryData();
     this.LoadPassengerDetails();
-    console.log(this.flightFareData, 'sdsds');
     this.flightPassenger = this.form.group({
       // passengerDetailsArray: this.form.array([this.createItem()])
       emailID: [
@@ -149,8 +148,6 @@ export class AmadeusPassengerDetailsComponent {
     passengers.forEach((passenger: any) => {
       this.addItem(passenger?.travelerType, passenger.travelerId);
     });
-
-    console.log(this.passengerDetailsArrayControl);
   }
 
   getCountryData() {
@@ -390,19 +387,8 @@ export class AmadeusPassengerDetailsComponent {
   }
 
   getTravellerData(passenger: any, associatedAdultId: number = 0) {
-    console.log(
-      passenger?.nationality !== '' &&
-        passenger?.nationality !== null &&
-        passenger.passportNumber !== '' &&
-        passenger.passportNumber !== null &&
-        passenger.dateOfExpiry !== '' &&
-        passenger.dateOfExpiry !== null &&
-        passenger?.countryOfIssue !== '' &&
-        passenger?.countryOfIssue !== null
-    );
-    const datepipe: DatePipe = new DatePipe('en-US');
-    console.log(this.flightPassenger);
 
+    const datepipe: DatePipe = new DatePipe('en-US');
     let passengerDetailsObj = {
       id: passenger?.paxId,
       dateOfBirth: datepipe.transform(passenger.dOB, 'yyyy-MM-dd'),
@@ -516,8 +502,6 @@ export class AmadeusPassengerDetailsComponent {
         passControls?.controls['countryOfIssue']?.updateValueAndValidity();
         passControls?.controls['dateOfExpiry']?.updateValueAndValidity();
         passControls?.controls['passportNumber']?.updateValueAndValidity();
-
-        console.log(passControls);
       }
     );
 
@@ -561,7 +545,6 @@ export class AmadeusPassengerDetailsComponent {
       });
       this.getOffersRequestModel.data.flightOffers.push(this.flightFareData);
       this.getOffersRequestModel.data.remarks = null;
-      console.log(this.getOffersRequestModel, ' this.getOffersRequestModel');
       let pricingAssociatedadultId = 0;
       this.getOffersRequestModel.data.flightOffers[0].travelerPricings.map(
         (travellers: any) => {
@@ -1033,8 +1016,6 @@ export class AmadeusPassengerDetailsComponent {
       this.flightPricingReq.data.flightOffers[0],
       this.flightFareData
     );
-    console.log(this.flightPricingReq, 'sonme gssgsg');
-
     this.isLoading = true;
     if (this.affiliated_user != undefined) {
       this.flightPricingReq.userid = String(this.affiliated_user.id);
@@ -1107,7 +1088,7 @@ export class AmadeusPassengerDetailsComponent {
   }
 
   changesPannel(event: any) {
-    console.log(event);
+   
   }
   showCalculateDialog(position: string) {
     this.position = position;

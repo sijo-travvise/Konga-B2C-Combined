@@ -79,11 +79,7 @@ export class AmadeusItineraryDetailsComponent implements OnInit {
            
             // this.getBaggageData(response?.data);
             this.isLoading = false;
-            this.flightIteneraryData = response?.data;
-
-            console.log( this.flightIteneraryData);
-            
-              
+            this.flightIteneraryData = response?.data;  
           }
           else{
             this.messageService.add({
