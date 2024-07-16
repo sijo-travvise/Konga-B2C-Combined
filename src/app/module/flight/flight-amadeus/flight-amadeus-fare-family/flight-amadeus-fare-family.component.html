@@ -1,0 +1,206 @@
+<div class="flight__onward">
+    <ng-container *ngFor="let flight of BookedFlightData?.itineraries; let flightIndex= index">
+        <div class="flight__sectrs d-flex justify-content-between align-items-center px-40 py-3">
+            <h2>{{flight?.segments[0]?.departure?.cityName}}<img
+                    src="../../../../assets/img/icons/icon-destinations.svg" alt="" class="px-2">
+                {{flight?.segments[flight?.segments?.length - 1]?.arrival?.cityName}}</h2>
+            <div class="flight__travel__duration text-left">
+                <span class="duration__label"> Total Duration : {{flight.duration}} </span>
+            </div>
+        </div>
+        <!-- fligh trip details starts here -->
+        <div class="flight__deatils__list px-40 pt-4">
+            <ul class="row_holder">
+                <li class="flight__deatils__list__row"
+                    *ngFor="let segmentData of flight?.segments; let segIndex = index; let isLast= last; let isEven = even">
+                    <!-- {{segmentData | json}} -->
+                    <div class="flight__deatils__row__outer">
+
+                        <div class="flight__direction__line">
+                            <span class="icon__flight_left" *ngIf="isEven">
+                                <img src="../../../../../assets/img/icons/icon-flight11.svg" alt="" />
+                            </span>
+                            <span class="icon__flight_bottom" *ngIf="!isEven || flight?.segments?.length==1">
+                                <img src="../../../../../assets/img/icons/icon-flight12.svg" alt="" />
+                            </span>
+                        </div>
+
+                        <div class="row pb-4">
+                            <div class="col-md-6">
+                                <h5 class="flight__time">{{segmentData?.departure?.at | date:'HH:mm'}}</h5>
+
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="flight__airport__name">{{segmentData?.departure.airPortName ??
+                                    segmentData?.departure?.cityName}}</h5>
+
+                            </div>
+                        </div>
+                        <div class="row pb-4 align-items-center">
+                            <div class="col-md-6 mob_mb_3">
+                                <h5 class="flight__travel__time">{{ segmentData?.duration }}</h5>
+                            </div>
+                            <div class="col-md-6  d-flex ">
+                                <div class="flight___details d-flex align-items-center gap-2 ">
+                                    <img src="assets/img/Airlogo/sm{{segmentData?.carrierCode}}.gif"
+                                        alt="{{segmentData?.carrierCode}}" class=" me-2" />
+
+                                    <ng-container *ngFor="let carrier of airlineList | keyvalue">
+                                        <div class="" *ngIf="carrier?.key === segmentData?.carrierCode">
+                                            <h5 class="flight__name"> {{ carrier.value }}</h5>
+                                            <span class="flight__number">{{ segmentData?.carrierCode+'
+                                                '+segmentData?.aircraft?.code}} {{segmentData?.number}} | Economy</span>
+                                        </div>
+
+                                    </ng-container>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <h5 class="flight__time">{{segmentData?.arrival?.at | date:'HH:mm'}}</h5>
+                            </div>
+                            <div class="col-md-6  d-flex ">
+                                <h5 class="flight__airport__name">{{segmentData?.arrival?.airPortName ??
+                                    segmentData?.arrival?.cityName}}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" position-relative py-4" *ngIf="!isLast && flight?.segments?.length > 1 ">
+                        <div class="flight__direction__dot__line">
+                            <span class="icon__user__walk">
+                                <img src="../../../../../../assets/img/icons/icon-user-walk.svg" alt="" />
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mob_mb_3">
+                                <h5 class="flight__travel__time">
+                                    {{sharedService.calculateLayoverTime(segmentData?.arrival?.at,
+                                    flight?.segments[segIndex + 1]?.departure?.at)}}</h5>
+                                <!-- {{sharedService.calculateLayoverTime(segmentData?.arrival?.at, flight?.segmentData[segIndex + 1].departure.at)}} -->
+                                <!-- <p class="flight__date">{{sharedService.GetDateFormat(flights?.flightInformation?.productDateTime?.dateOfArrival) | date:'d MMMM y'}}</p> -->
+                            </div>
+                            <div class="col-md-6 d-flex">
+                                <div class="flight___details ">
+                                    <h5 class="flight__airport__waiting d-flex align-items-center gap-1"> Transit in
+                                        {{segmentData?.arrival?.cityName}} <span class="flight__airport__code"> (
+                                            {{segmentData?.arrival?.iataCode}} )</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+</div>
+
+
+<div class="flight__cabin__section px-25 mb-5">
+    <div class=" row flight__cabin__section">
+        <div class="col-sm-4 mb-4 flight__cabin__item"
+            *ngFor="let fareList of fare_PriceUpsell_Res?.data; let i = index">
+            <div class="flight__cabin__card">
+                <!-- (dragging)="startDragging($event)" -->
+                <div class="flight__cabin__card">
+                    <ul class="ps-0 flight__card__header">
+                        <owl-carousel-o class="dateSelectionSlider " [options]="customOptions"
+                            (translated)="getPassedData($event, fareList)">
+                            <ng-container *ngFor="let itinerary of fareList?.itineraries; let itineraryIndex = index">
+                                <ng-template [id]="segments?.id" carouselSlide
+                                    *ngFor="let segments of itinerary?.segments; let segmentsIndex = index">
+                                    <li class="d-flex flex-column align-item-center  justify-content-center"
+                                        [ngClass]="{'konga-primary-color': segments?.id === fareList?.activeId}"
+                                        (click)="fareActiveFunction(fareList, segments?.id)">
+                                        <!-- <h2>{{fareInfo?.brand?.title[0]?.value}}</h2> -->
+                                        <ng-container
+                                            *ngFor="let fareInfo of fareList?.travelerPricings[0]?.fareDetailsBySegment;">
+                                            <div class=" px-4 pt-3 pb-1" *ngIf="fareInfo?.segmentId === segments?.id ">
+                                                <h5 class="flight__cabin__type">{{fareInfo?.brandedFare }}</h5>
+                                            </div>
+                                        </ng-container>
+                                        <div class="flightDest  text-center mb-2">
+                                            <h5>{{segments?.departure?.iataCode}}&nbsp; -
+                                                &nbsp;{{segments?.arrival?.iataCode}}</h5>
+                                        </div>
+                                    </li>
+                                </ng-template>
+                            </ng-container>
+                        </owl-carousel-o>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flight__package__included ">
+                <div class="flight__allowed__item">
+                    <ul class="flight__cabin__information"
+                        *ngFor="let fareInfo of fareList?.travelerPricings[0]?.fareDetailsBySegment;">
+                        <ng-container *ngIf="fareInfo?.segmentId === fareList?.activeId">
+                            <p class="flight__baggage d-flex align-items-center gap-2 mb-3"
+                                *ngIf="fareInfo?.includedCheckedBags?.quantity > 0">
+                                <span class="d-flex align-items-center">
+                                    <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M6.015 2C6.555 2 7 2.44 7 3V8.5C7 9.065 6.555 9.5 6.015 9.5C6.015 9.79 5.78 10 5.5 10C5.25 10 5 9.79 5 9.5H2C2 9.79 1.75 10 1.5 10C1.22 10 0.985 9.79 0.985 9.5C0.445 9.5 0 9.065 0 8.5V3C0 2.44 0.445 2 0.985 2H2V0.5C2 0.21 2.23 0 2.5 0H4.5C4.77 0 5 0.21 5 0.5V2H6.015ZM4.25 2V0.75H2.75V2H4.25ZM1.5 3.5V8H2.25V3.5H1.5ZM4.75 3.5V8H5.5V3.5H4.75ZM3.125 3.5V8H3.875V3.5H3.125Z"
+                                            fill="#E7057E" />
+                                    </svg>
+                                    {{fareInfo?.includedCheckedBags?.quantity}} Pcs
+                                </span>
+                                <!-- <span class="d-flex align-items-center">
+                                    <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.30769 1.59463H6.54664C6.46333 1.14829 6.2123 0.743523 5.83784 0.451761C5.46337 0.159999 4.98955 0 4.5 0C4.01045 0 3.53663 0.159999 3.16216 0.451761C2.7877 0.743523 2.53667 1.14829 2.45337 1.59463H0.692308C0.508696 1.59463 0.332605 1.66212 0.202772 1.78224C0.0729393 1.90236 0 2.06529 0 2.23517V7.35946C0 7.52934 0.0729393 7.69227 0.202772 7.81239C0.332605 7.93252 0.508696 8 0.692308 8H8.30769C8.4913 8 8.66739 7.93252 8.79723 7.81239C8.92706 7.69227 9 7.52934 9 7.35946V2.23517C9 2.06529 8.92706 1.90236 8.79723 1.78224C8.66739 1.66212 8.4913 1.59463 8.30769 1.59463ZM4.5 0.633826C4.80689 0.634368 5.10495 0.728937 5.34762 0.90276C5.59029 1.07658 5.76391 1.31987 5.84135 1.59463H3.15865C3.23609 1.31987 3.40971 1.07658 3.65238 0.90276C3.89505 0.728937 4.19311 0.634368 4.5 0.633826Z" fill="#E7057E"/>
+                                    </svg>
+                                        
+                                  7Kg
+                                </span> -->
+                            </p>
+                            <li class="flight__information__item" *ngFor="let amenities of fareInfo?.amenities">
+                                <span class="icon__tick"><i class="pi pi-check"></i></span>
+                                <h6 class="item__text">{{amenities?.description}} </h6>
+                            </li>
+
+                            <div class="flight__card__action ">
+                                <div class="flight__package_amount d-flex align-items-center justify-content-center" style="gap: 8px;">
+                                    <h5 class="flex">  {{'₦' }} {{fareList?.price?.grandTotal | number: '.2'}} </h5>
+                                    <p
+                                            *ngIf="fareList?.isInstallmentApplicable && fareList?.price?.grandTotal > 100000 "
+                                            class="calculate_link_url d-block" type="button"
+                                            (click)="showCalculateDialog(fareList)">
+                                            <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="#e7057e">
+                                                <path
+                                                    d="M5.5,8H6v.5a1,1,0,0,0,2,0V8h.5a1,1,0,0,0,0-2H8V5.5a1,1,0,0,0-2,0V6H5.5a1,1,0,0,0,0,2ZM4.88,19.12a1,1,0,0,0,1.41,0L7,18.41l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41L8.41,17l.71-.71a1,1,0,0,0-1.41-1.41L7,15.59l-.71-.71a1,1,0,0,0-1.41,1.41l.71.71-.71.71A1,1,0,0,0,4.88,19.12ZM20,1H4A3,3,0,0,0,1,4V20a3,3,0,0,0,3,3H20a3,3,0,0,0,3-3V4A3,3,0,0,0,20,1ZM11,21H4a1,1,0,0,1-1-1V13h8Zm0-10H3V4A1,1,0,0,1,4,3h7Zm10,9a1,1,0,0,1-1,1H13V13h8Zm0-9H13V3h7a1,1,0,0,1,1,1Zm-5.5,5.5h3a1,1,0,0,0,0-2h-3a1,1,0,0,0,0,2ZM18.5,6h-3a1,1,0,0,0,0,2h3a1,1,0,0,0,0-2Zm-3,13.5h3a1,1,0,0,0,0-2h-3a1,1,0,0,0,0,2Z" />
+                                            </svg>
+                                        </p>
+                                </div>
+                                <!-- [ngClass]="{'p-button-primary-active' : fareList?.id ===  selectedFare?.id }"   fareList?.id
+                            ===  selectedFare?.id ? 'selected' : ' -->
+                                <button
+                                    class=" p-ripple p-button-outlined p-button w-100  py-15 d-flex justify-content-center fw-800"
+                                    (click)="selectedFare= fareList; OnClickBookNow(fareList)">Book</button>
+
+                            </div>
+                        </ng-container>
+                    </ul>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="px-4 py-4 d-flex align-items-center justify-content-between price-footer" *ngIf="isBookingFooterConsole">
+
+    <h5> <b>{{'₦' }}&nbsp;{{BookedFlightData?.price?.grandTotal | number: '.2'}}</b>
+        <!-- {{fareList?.price?.total}} -->
+    </h5>
+    <button class="btn btn-primary border px-5 py-2" (click)="OnClickBookNow(BookedFlightData)">Book</button>
+</div>
+<!-- Select Cabin End-->
+<p-toast></p-toast>
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
+    [loderTitle]="'we are finding the best flights for you'"></app-pre-loader>

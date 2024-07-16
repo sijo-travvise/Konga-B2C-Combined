@@ -1,0 +1,78 @@
+@import '../../../../../../sass/all.scss';
+
+.filter__title{
+    font-size: rem(18);
+    font-weight: 800;
+}
+.filter__clear{
+    border: 0;
+    background: none;
+    padding: 0;
+    color: var(--primary-color);
+    font-weight: 700;
+    &:hover{
+        color: var(--primary-color-hover);
+    }
+}
+
+
+
+.flight__alliance__list{
+    ul{
+        margin: 0;
+        padding: 0;
+        li{
+            display: block;
+            border: 1px solid var(--text-secondary-color);
+            margin-bottom: rem(10);
+            border-radius: rem(3);
+            cursor: pointer;
+            padding: rem(0) rem(5);
+            .flight__alliance_title{
+                font-size: rem(14);
+                font-weight: 700;
+                color: var(--text-secondary-color);
+                margin-left: rem(7);
+            }
+            &:hover{
+                border: 1px solid var(--primary-color);
+                .flight__alliance_title{
+                    color: var(--primary-color);
+                }
+            }
+            &.activeIndex{
+                border: 1px solid var(--primary-color);
+                .flight__alliance_title{
+                    color: var(--primary-color);
+                }
+            }
+            .icon-outer{
+                width: rem(30);
+                height: rem(30);
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                svg{
+                    path{
+                        fill: var(--text-secondary-color) !important;
+                    }
+                }
+            }
+           
+            &.activeIndex{
+                border: 1px solid var(--primary-color);
+                .flight__alliance_title{
+                    color: var(--primary-color);
+                }
+                .icon-outer{
+                    svg{
+                        path{
+                            fill: var(--primary-color) !important;
+                        }
+                    }
+                }
+               
+            }
+        }
+    }
+}

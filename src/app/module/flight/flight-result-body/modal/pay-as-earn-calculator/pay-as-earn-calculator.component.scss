@@ -1,0 +1,96 @@
+@import "../../../../../../sass/all.scss";
+.pay__and__earn_box {
+  p {
+    font-size: rem(14);
+    font-weight: 600;
+  }
+  h3 {
+    font-size: rem(14);
+    font-weight: 800;
+    font-family: $montHeavy;
+    &.danger {
+      color: var(--text-danger-color);
+    }
+  }
+  .vertical-line {
+    border-left: 1px solid var(--bg-gray-color-100);
+    height: rem(40);
+  }
+  .horizontal-line {
+    border-bottom: 1px solid var(--bg-gray-color-100);
+    width: 5%;
+  }
+  .pay__important {
+    background-color: var(--bg-red-light);
+    padding: rem(10);
+    border-radius: rem(25);
+    text-align: center;
+    p {
+      color: var(--text-danger-color);
+      font-size: rem(14);
+      strong {
+        font-family: $montHeavy;
+      }
+    }
+  }
+  .total__fare__box {
+    background-color: var(--bg-light-red);
+    padding: rem(10);
+    border-radius: rem(5);
+    border: 1px solid var(--primary-color);
+    p {
+      font-size: rem(16);
+      color: var(--text-gray-200);
+    }
+    h4 {
+      color: var(--primary-color);
+      font-size: rem(24);
+      font-family: $montHeavy;
+    }
+  }
+  .minimum___due__text {
+    color: var(--primary-color);
+    margin: rem(5);
+  }
+  .left__section {
+    .flight_price {
+      font-family: $montHeavy;
+      color: var(--green-color);
+      font-size: rem(20);
+    }
+    p {
+      color: var(--text-gray-200);
+      margin-bottom: rem(5);
+      margin-top: rem(5);
+      span {
+        color: var(--primary-color);
+        &.danger {
+          color: var(--text-danger-color);
+          font-family: $montHeavy;
+        }
+      }
+    }
+    .left__section__line {
+      border-bottom: 1px solid var(--bg-gray-color-100);
+    }
+  }
+  .payment__table {
+    .box {
+      margin-top: rem(10);
+      margin-bottom: rem(10);
+      background-color: var(--bg-success-color-100);
+      border-radius: rem(5);
+      padding: rem(5);
+      p {
+        color: var(--text-gray-200);
+        text-align: center;
+        font-size: rem(14);
+      }
+    }
+    h4 {
+      color: var(--green-color);
+      font-size: rem(16);
+      text-align: center;
+    }
+  }
+}

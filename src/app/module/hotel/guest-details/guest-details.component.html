@@ -1,0 +1,60 @@
+<div class="container-fluid guest-details p-0 mt-3 mb-5">
+    <app-session-expire></app-session-expire>
+    <div class="container mt-4">
+        <div class="row mt-4">
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                <app-hotel-summary></app-hotel-summary>
+                <div class="hotel_gustDetails mt-4">
+                    <h2 class="mb-2">Guest Details</h2>
+                    <div class="card p-4">
+                        <div class="gustCardHeader d-flex align-items-center gap-2 mb-4">
+                            <h5>Guest 1</h5>
+                            <span class="gustType">Adult</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2 mb-3">
+                                <app-select-field [title]="'Title'"
+                                    [option]="SalutationTypeArray"></app-select-field>
+                            </div>
+                            <div class="col-lg-5 mb-3">
+                                <app-input-field [title]="'Given Name'" [isRequired]=false></app-input-field>
+                                <label class="placeHolder">Please ensure your name it as it appears on passport</label>
+                            </div>
+                            <div class="col-lg-5 mb-3">
+                                <app-input-field [title]="'Sur Name'" [isRequired]=false></app-input-field>
+                                <label class="placeHolder">Please ensure your name it as it appears on passport</label>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <app-date-picker [title]="'DOB'"></app-date-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel_gustDetails mt-4">
+                    <h2 class="mb-2">Contact Details</h2>
+                    <div class="card p-4 mb-4">
+                        <div class="row">
+                            <div class="col-lg-6 mb-3">
+                                <app-phone-number-filed [title]="'Mobile Number'"></app-phone-number-filed>
+                                <label class="placeHolder">e.g : +974 554656765</label>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <app-input-field [title]="'Email Id'" [isRequired]=false></app-input-field>
+                                <label class="placeHolder">e.g yourId@gmail.com</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-md-4">
+                            <button class="btn btn-primary w-100 py-2" [routerLink]="['/customer_profile']">Proceed to payment </button>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 pt-4">
+                <app-fare-details class="mt-2 d-inline-block w-100"></app-fare-details>
+            </div>
+        </div>
+    </div>
+</div>

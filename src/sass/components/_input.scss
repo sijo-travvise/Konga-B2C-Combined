@@ -1,0 +1,85 @@
+.trvInputGroup{
+    >label{
+        margin-bottom: rem(7);
+    }
+    .p-component{
+        height: rem(48);
+        width: 100%;
+        font-weight: 800;
+        color: var(--text-primary-color);
+        border-radius: rem(3);
+        
+    }
+   
+    
+}
+.trvSelectGroup .p-component, .trvSelectCountryGroup .p-component{
+    height: rem(48);
+    border-radius: rem(3);
+}
+.trvDatePickerGroup .p-inputtext{
+    height: rem(48);
+    border-radius: rem(3);
+}
+
+// .p-float-label .p-inputwrapper-focus ~ label{
+//     top: rem(18);
+//     font-size: rem(12);
+// }
+
+.p-float-label input:focus ~ label, .p-float-label input.p-filled ~ label, .p-float-label .p-inputwrapper-filled ~ label{
+    top: rem(18);
+    font-size: rem(12);
+}
+.disabled{
+    .p-float-label input:focus ~ label, .p-float-label input.p-filled ~ label, .p-float-label .p-inputwrapper-filled ~ label{
+        top: 0.5rem !important;
+        font-size: rem(12);
+    } 
+}
+
+.trvPhoneGroup>label{
+    margin-bottom: rem(7);
+}
+
+ngx-intl-tel-input{
+    input{
+        height: rem(42);
+        font-weight: 600;
+        color: var(--text-primary-color);
+        font-size: rem(16);
+        border-radius: rem(5);
+        border:1px solid #ced4da;
+        height: rem(48);
+        border-radius: rem(3);
+    }
+    .iti .selected-dial-code{
+        font-weight: 600;
+    }
+    .iti{
+        width: 100%;
+    }
+}
+.p-input-icon-right > i:last-of-type {
+    right: 0.75rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.p-inputtextarea{
+    height: inherit !important;
+}
+.pay__and__earn_box{
+    .trvInputGroup{
+        .p-component{
+            height: rem(48);
+            width: 100%;
+            font-weight: 800;
+            color: var(--primary-color);
+            border-radius: rem(3);
+            font-size: rem(20);
+            font-family: $montHeavy;
+            
+        }        
+    }
+}

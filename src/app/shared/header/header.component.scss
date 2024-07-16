@@ -1,0 +1,133 @@
+@import '../../../sass/all.scss';
+.header-bg{
+   // background: url(/assets/img/header-bg.svg) no-repeat;
+   // background-size: cover;
+   // background-position: center;
+   // margin-top: -1px;
+   #navbarText{
+      font-size: rem(18);
+      font-weight: 500;
+      ul{
+
+         li{
+            .nav-link{
+               color: var(--primary-color);
+               font-weight: 700;
+            }
+          
+         }
+      }
+   }
+   .brand{
+      img{
+            width: rem(137);
+      }
+   }
+}
+.topbar__menu{
+   .btn-user{
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      img{
+         width: rem(40);
+         border-radius: 50%;
+         overflow: hidden;
+      }
+      .pi-angle-down{
+         font-size: rem(22);
+         color: var(--primary-color);
+      }
+   }
+
+}
+
+.profile__header{
+   border-bottom: rem(1) solid #E8E8E8;
+   .user{
+      h5{
+         font-size: rem(18);
+         color: var(--primary-color);
+         font-family: $montBold;
+         margin-bottom: rem(3);
+      }
+      p{
+         font-size: rem(14);
+         color: var(--text-primary-color);
+         font-family: $montSemiBold;
+         margin: 0;
+      }
+   }
+
+}
+.usr__nav{
+   padding: rem(10);
+   ul{
+      margin: 0;
+      padding: 0 rem(10);
+      li{
+        a{
+         display: flex;
+         gap: rem(20);
+         padding: rem(12) 0;
+         color: #B3B3B3;
+         &:hover{
+            color: var(--primary-color);
+         }
+        }
+      }
+   }
+}
+.card__profile{
+   width: rem(300);
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: rem(-20);
+   margin-left: rem(-20);
+}
+
+
+.login_signup{
+   color: var(--primary-color);
+   a{
+      color: var(--primary-color);
+      font-size: rem(18);
+      font-weight: 800;
+      cursor: pointer;
+      &:hover{
+         text-decoration: underline;
+      }
+   }
+}
+.innerPageBanner{
+   background: url(/assets/img/landingpage/banner.jpg) no-repeat;
+   background-size: cover;
+   background-position: center;
+   padding: rem(20) 0px;
+   h2{
+       color: var(--primary-color);
+       span{
+           color: var(--text-gray-200);
+       }
+   }
+}
+.breadCrump{
+   background: var(--bg-gray-color-100);
+   .custom-bread-crumb {
+      padding: 10px 0px;
+      list-style: none;
+  }
+}
+.show{
+   display: none;
+}
+.hide{
+   display: block;
+}
+.link__Affiliates{
+   font-weight: 700;
+   &:hover{
+      background: var(--primary-color);
+      color: var(--text-white-color);
+   }
+}

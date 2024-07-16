@@ -1,0 +1,124 @@
+<h2 class="mb-4"> {{isLogin? "LOGIN TO YOUR" : "JOIN OUR"}} <b>AFFILATE PROGRAM</b></h2>
+
+<!-- <button (click)=ss()> ssss</button> -->
+
+<hr />
+
+<!-- <h2 class="mb-4">JOIN OUR <b>AFFILATE PROGRAM</b></h2>
+
+    <hr class="mb-5" /> -->
+<div class="affliateCard" *ngIf="isLogin; else register">
+
+    <form [formGroup]="loginForm" (ngSubmit)="loginAffiliate()">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <app-input-field [title]="'Email'" [isRequired]=true [formControls]="user_email"></app-input-field>
+            </div>
+            <div class="col-md-6 mb-4">
+                <app-input-field [title]="'Password'" type="password" [isRequired]=true
+                    [formControls]="password"></app-input-field>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-md-6  align-self-end">
+                <button
+                    class="p-button-primary p-button w-100 py-3 text-center d-flex justify-content-center mb-4">Login</button>
+
+                <p class="p__forgot">Forgot Password ? <a href="#">Click here to reset</a></p>
+            </div>
+        </div>
+        <div class="row py-5 mx-0">
+            <p class="line"><span>Or</span></p>
+        </div>
+
+        <h2 class="mb-4">BE A PART OF <b>US</b></h2>
+        <div class="d-flex justify-content-center ">
+            <button class="p-button-primary p-button px-5 py-3 text-center d-flex justify-content-center mb-4  "
+                (click)="this.isLogin = !this.isLogin;">Register</button>
+        </div>
+
+
+    </form>
+</div>
+<!-- JOIN OUR AFFILATE PROGRAM -->
+<ng-template #register>
+    <ng-container *ngIf="isRegisterd==false; else registrationSuccess">
+        <div class="affliateCard">
+            <!-- {{affiliateRegForm.value | json}} -->
+            <form [formGroup]="affiliateRegForm" (ngSubmit)="registerAffiliate()">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <app-input-field [title]="'Business Name'" [isRequired]=true
+                            [formControls]="businessname"></app-input-field>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <app-input-field [title]="'Lead User First Name'" [isRequired]=true
+                            [formControls]="userfname"></app-input-field>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <app-input-field [title]="'Lead User Last Name'" [isRequired]=true
+                            [formControls]="userlname"></app-input-field>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <app-input-field [title]="'Email'" [isRequired]=true [formControls]="email"></app-input-field>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <!-- <app-select-field [title]="'Select Your Country'" [option]="country"></app-select-field> -->
+                        <app-country-with-state [title]="'Select Your Country'" [isRequired]="false"
+                            [formControls]="country" [optionList]="countryOptionList"></app-country-with-state>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <!-- <app-select-field [title]="'Select Your State'"></app-select-field> -->
+                        <app-state-selection [title]="'Select Your State'" [isRequired]="false" [formControls]="state"
+                            [optionList]="stateOptionList"></app-state-selection>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <app-input-field [title]="'Office Address'" [isRequired]=true
+                            [formControls]="office_addr"></app-input-field>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <app-phone-number-filed [title]="'Code'" [isRequired]=true
+                            [formControls]="phonenumber"></app-phone-number-filed>
+                    </div>
+
+                </div>
+                <div class="row justify-content-end mb-4">
+                    <!-- (click)="this.isRegisterd = !this.isRegisterd;" -->
+                    <div class="col-md-5  align-self-end">
+                        <button type="submit"
+                            class="p-button-primary p-button w-100 py-3 text-center d-flex justify-content-center mb-4">Submit</button>
+                        <button type="button"
+                            class="p-button-outlined p-button w-100 py-3 text-center d-flex justify-content-center mb-4"
+                            (click)="isLogin=true;">Click Here To Login</button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </ng-container>
+
+    <!-- Success Message-->
+    <ng-template #registrationSuccess>
+        <div class="d-flex align-items-center ht-40" style="display: none !important;">
+            <div class="affliateCardSucessMessage d-flex gap-3 align-items-center">
+                <div class="iconSuccess">
+                    <img src="../../../assets/img/icons/icon-success.svg" alt="icon-success">
+                </div>
+                <div class="contentArea">
+                    <h4>SUCCESSFULL</h4>
+                    <p>Your Registration Request Has Been Sent Successfully.</p>
+                </div>
+                <div class="col-md-5  align-self-end">
+                    <button type="button"
+                        class="p-button-outlined p-button w-100 py-3 text-center d-flex justify-content-center mb-4"
+                        (click)="isLogin=true;">Click Here To Login</button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+
+</ng-template>
+<p-toast [appendTo]="'body'"></p-toast>
+<!-- <app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading [loderTitle]="'Loading'"></app-pre-loader> -->

@@ -1,0 +1,17 @@
+@import '../../../sass/all.scss';
+.flight__mail__alert{
+    background: var(--bg-red-light);
+    border-radius: rem(5);
+    color: var(--primary-color);
+    padding: rem(15);
+    gap: rem(10);
+    p{
+        font-size: rem(16);
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+    span{
+        padding-left: rem(20);
+        font-size: rem(14);
+    }
+}

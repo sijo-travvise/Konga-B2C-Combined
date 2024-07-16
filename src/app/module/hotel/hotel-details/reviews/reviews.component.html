@@ -1,0 +1,156 @@
+<div class="main-sections-tab-content">
+    <h2>Reviews</h2>
+    <div class="row mt-5">
+        <div class="col-md-2 d-flex align-items-top gap-3">
+            <div class="triangle-down">9.0</div>
+            <div class="excelentReivew">
+                <h5>Excellent</h5>
+                <p>12 Reviews</p>
+            </div>
+
+        </div>
+        <div class="col-md-6 px-4">
+            <div class="reviewProgress px-4">
+                <!--Row Start-->
+                <div class="row mx-0 align-items-center mb-4">
+                    <div class="hotel__rating col-2">
+                        <div class="d-flex align-items-center justify-content-center py-1 px-2 gap-1">
+                            <h6>5</h6>
+                            <img src="assets/img/icons/star1.png" alt="" style="width: 12px;">
+                        </div>
+                        <p>( 35 )</p>
+                    </div>
+                    <div class="col-10 ps-4">
+                        <p-progressBar [value]="80"></p-progressBar>
+                    </div>
+                </div>
+                <!-- Row End -->
+                <!--Row Start-->
+                <div class="row mx-0 align-items-center mb-4">
+                    <div class="hotel__rating col-2">
+                        <div class="d-flex align-items-center justify-content-center py-1 px-2 gap-1">
+                            <h6>4</h6>
+                            <img src="assets/img/icons/star1.png" alt="" style="width: 12px;">
+                        </div>
+                        <p>( 35 )</p>
+                    </div>
+                    <div class="col-10 ps-4">
+                        <p-progressBar [value]="50"></p-progressBar>
+                    </div>
+                </div>
+                <!-- Row End -->
+                <!--Row Start-->
+                <div class="row mx-0 align-items-center mb-4">
+                    <div class="hotel__rating col-2">
+                        <div class="d-flex align-items-center justify-content-center py-1 px-2 gap-1">
+                            <h6>3</h6>
+                            <img src="assets/img/icons/star1.png" alt="" style="width: 12px;">
+                        </div>
+                        <p>( 35 )</p>
+                    </div>
+                    <div class="col-10 ps-4">
+                        <p-progressBar [value]="20"></p-progressBar>
+                    </div>
+                </div>
+                <!-- Row End -->
+                <!--Row Start-->
+                <div class="row mx-0 align-items-center mb-4">
+                    <div class="hotel__rating col-2">
+                        <div class="d-flex align-items-center justify-content-center py-1 px-2 gap-1">
+                            <h6>2</h6>
+                            <img src="assets/img/icons/star1.png" alt="" style="width: 12px;">
+                        </div>
+                        <p>( 35 )</p>
+                    </div>
+                    <div class="col-10 ps-4">
+                        <p-progressBar [value]="15"></p-progressBar>
+                    </div>
+                </div>
+                <!-- Row End -->
+                <!--Row Start-->
+                <div class="row mx-0 align-items-center mb-4">
+                    <div class="hotel__rating col-2">
+                        <div class="d-flex align-items-center justify-content-center py-1 px-2 gap-1">
+                            <h6>1</h6>
+                            <img src="assets/img/icons/star1.png" alt="" style="width: 12px;">
+                        </div>
+                        <p>( 35 )</p>
+                    </div>
+                    <div class="col-10 ps-4">
+                        <p-progressBar [value]="5"></p-progressBar>
+                    </div>
+                </div>
+                <!-- Row End -->
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- Pinned Review Start-->
+            <div class="reviewSection text-center">
+                <button class="pinnedButton d-flex align-items-center gap-2 m-auto"><img src="assets/img/icons/icon-pin.svg" alt="" > Pinned Review</button>
+                <div class="card py-4 ps-5 pe-4 text-left p-relative">
+                    <img class="usrImg" src="assets/img/user-2.png" alt="" >
+                    <h4>Great !</h4>
+                    <p>Lovely location. But not a hotel. More of a serviced apartment. Nice and accommodating staffs all throughout my stay. The room is spacious enough for me and my friends. It is clean and well kept upon arriving. The rate of the room is adequate to its own amenities.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <div class="reviewDate text-start">
+                                <h6>Reviewed on </h6>
+                                <span class="rvDate">12 Oct ‘ 23</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8 d-flex align-items-top gap-3 justify-content-end">
+                            <div class="triangle-down">9.0</div>
+                            <div class="excelentReivew text-start">
+                                <h5>Monica , D Souza</h5>
+                                <p>Lagos , Nigeria</p>
+                            </div>
+                
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <button class="btn-link-review d-flex align-items-center gap-2 " (click)="showDialog()" icon="pi pi-external-link" label="Show"><i class="pi pi-plus"></i> Write a review</button>
+                </div>
+            </div>
+            <!-- Pinned Review end -->
+        </div>
+      <!-- Rivew item start-->
+        <div class="col-md-12 my-5">
+            <div class="reviewSection text-center">
+                <div class="card py-4 ps-5 pe-4 text-left p-relative">
+                    <img class="usrImg" src="assets/img/user-2.png" alt="" >
+                    <h4>Great !</h4>
+                    <p>Lovely location. But not a hotel. More of a serviced apartment. Nice and accommodating staffs all throughout my stay. The room is spacious enough for me and my friends. It is clean and well kept upon arriving. The rate of the room is adequate to its own amenities.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <div class="reviewDate text-start">
+                                <h6>Reviewed on </h6>
+                                <span class="rvDate">12 Oct ‘ 23</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8 d-flex align-items-top gap-3 justify-content-end">
+                            <div class="triangle-down">9.0</div>
+                            <div class="excelentReivew text-start">
+                                <h5>Monica , D Souza</h5>
+                                <p>Lagos , Nigeria</p>
+                            </div>
+                
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- Rivew item End-->
+    </div>
+
+    <p-dialog class="postReviewComponent" class="modal__widget" header="Write a review" [(visible)]="visible" [modal]="true" [style]="{ width: '750px' }" [draggable]="false" [resizable]="true">
+        <div class=" p-5 ">
+            <app-review-post></app-review-post>
+        </div>
+    </p-dialog>
+
+
+
+</div>

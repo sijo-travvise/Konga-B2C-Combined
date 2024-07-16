@@ -1,0 +1,27 @@
+
+<form [formGroup]="AirlineFilterForm" >
+
+    <!-- Transit Airports Start-->
+    <div class="flight__filter__outer mb-4">
+       <div class="flight__filter__header d-flex justify-content-between mb-3">
+           <h4 class="filter__title">{{title}}</h4>
+           <button type="button" class="filter__clear" (click)="resetForm()">Clear</button>
+       </div>
+       <div class="flight__checkbox_group" *ngIf="list !== null && list !== undefined; else NoData">
+           <div class="col-12 px-0 chkboxGroup">
+               <div class="form-check mb-2" formArrayName="AirlineList" *ngFor="let order of airlineControl().controls | slice:0: showCount ; let i = index;">
+                   <label for={{i}} class="form-check-label text-capitalize">    {{ list[getCarrierItem(i)]}}</label>
+                   <input type="checkbox" id={{i}}  [formControlName]="i" class="form-check-input "  (change)="changeCheckBox($event)">
+               </div>
+           </div>
+
+           <div class="flight__card_actions" *ngIf="airlineControl()?.controls?.length >= showCount">
+               <a type="button"  class="flight_link_url" (click)="setFilterCount(airlineControl()?.controls?.length ?? 0)"> {{airlineControl()?.controls?.length === showCount ? 'Show Less' : 'Show More' }}</a>
+           </div>
+       </div>
+       <ng-template #NoData>
+        <p><strong class="text-primary"> No results found </strong> </p>
+       </ng-template>
+   </div>
+   <!-- Transit Airports end-->
+ </form>

@@ -1,0 +1,307 @@
+@import '../../../../../../sass/all.scss';
+.flight__summary__card{
+    .card__header{
+        background: var(--bg-white);
+        padding: rem(15) rem(0);
+        p{
+            font-size: rem(16);
+            color: var(--text-primary);
+            font-family: $montSemiBold;
+        }
+        i{
+            background: var(--green-color);
+            width: rem(34);
+            height: rem(34);
+            border-radius: 50%;
+            color: var(--text-white-color);
+            text-align: center;
+            line-height: rem(34);
+        }
+        .border-left-1{
+            border-left: rem(1) solid var(--bg-gray-color-100);
+        }
+    }
+}
+.paymentStatus, .ticketStatus{
+    .pending{
+        background: #ff8400;
+        font-size: 12px;
+        color: #fff !important;
+        border-radius: 3px;
+    }
+    .failed{
+        background:red;
+        font-size: 12px;
+        color: #fff !important;
+        border-radius: 3px;
+    }
+}
+.itenaryTitle{
+    font-size: rem(20);
+    color: var(--primary-color);
+    font-family: $montSemiBold;
+    margin-bottom: rem(5);
+}
+.invoice_headers{
+    p{
+        font-size: rem(12);
+        color: var(--text-gray-200);
+        font-family: $montRegular;
+    }
+    h4{
+        font-size: rem(16);
+        color: var(--text-primary);
+        font-family: $montSemiBold;
+    }
+}
+
+.flight__sectrs{
+    h2{
+        font-size: rem(20);
+        color: var(--text-primary);
+        font-family: $montBold;
+    }
+}
+.duration__label{
+    border-left: rem(1) solid var(--bg-gray-color-100);
+    font-size: rem(12);
+    color: var(--text-gray-200);
+    font-family: $montSemiBold;
+}
+.flight__Itinerary__contentArea{
+    border: rem(1) solid var(--bg-gray-color-100);
+    .border-left-1{
+        border-left: rem(1) solid var(--bg-gray-color-100);
+    }
+    .flight__img{
+        width: rem(50);
+    }
+    h4{
+        font-size: rem(18);
+        font-family: $montBold;
+        margin-bottom: rem(5);
+    }
+    p{
+        font-size: rem(14);
+        font-family: $montSemiBold;
+        color: var(--text-primary-color);
+        line-height: rem(14);
+    }
+    .totalHour{
+        font-size: rem(12);
+        font-family: $montBold;
+        color: var(--primary-color);
+    }
+    .flightNo{
+        color: var(--text-gray-200);
+    }
+    .status{
+        border-radius: rem(5);
+    }
+    .icon__flight_left{
+        text-align: center;
+        width: rem(45);
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            top: rem(20);
+            left: 0;
+            width: 100%;
+            height: rem(3);
+            background: var(--primary-color);
+        }
+       }
+    .icon__flight_right{
+        text-align: center;
+        width: rem(45);
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            top: rem(20);
+            left: 0;
+            width: 100%;
+            height: rem(3);
+            background: var(--primary-color);
+        }
+    }
+    .flightTicketDetails{
+        padding: rem(20) 0;
+        label{
+            font-size: rem(12);
+            font-family: $montSemiBold;
+            color:  var(--text-gray-200);
+            display: block;
+            margin-bottom: rem(3);
+        }
+        span{
+            display: block;
+            font-size: rem(12);
+            font-family: $montBold;
+            color:  var(--text---primary-color);
+            margin-bottom: rem(7);
+        }
+        .flightStop{
+            color: var(--primary-color);
+        }
+    }
+      
+}
+
+
+
+
+
+.flight__itinerary__status{
+    border-left: rem(1) solid var(--bg-gray-color-100);
+    h6{
+        font-size: rem(14);
+        font-weight: 600;
+    }
+    .statusLabel{
+        font-size: rem(12);
+        font-weight: 500;
+        margin-bottom: rem(3);
+        color: var(--text-gray-200);
+    }
+    .stop{
+        font-size: rem(12);
+        font-weight: 600;
+        color: var(--text-danger-color);
+    }
+    
+}
+
+.flight__Itinerary__tableOuter{
+    border: rem(1) solid var(--bg-gray-color-100);
+    padding: rem(10) rem(15);
+    
+    th{
+        background: var(--bg-gray-color-300);
+        padding: rem(13);
+        font-size: rem(14);
+        font-weight: 800;
+    }
+    td{
+        padding: rem(13);
+        h6{
+            font-size: rem(14);
+            font-weight: 600;
+            margin-bottom: rem(5);
+        }
+        span{
+            font-weight: 400;
+        }
+    }
+}
+.segmentStatus{
+    gap: 10px;  
+    margin-bottom: 15px;
+    h6{
+        margin-bottom: 0;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 14px;
+        color: var(--text-gray-200);
+    }
+    span{
+        background: #FDE8EA;
+        color: #ee3535;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        padding: 3px 15px;
+        border-radius: 3px;
+    }
+    span.success{
+        background: #DDF5DF;
+        color:#31ec41;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        padding: 3px 15px;
+    }
+    span.orange{
+        background: #f5efdd;
+        color: orange;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        padding: 3px 15px;
+    }
+
+}
+
+
+@media (max-width: #{$tablet-width - 1px}) {
+
+.flight__Itinerary__contentArea {
+    .icon__flight_left, .icon__flight_right{
+        display: block;
+        margin: 0 auto 19px;
+    }
+    .cl{
+        text-align: center;
+        margin: rem(15) 0;
+    }
+    .flightTicketDetails{
+        text-align: center !important;
+    }
+   
+}
+
+.flight__Itinerary__tableOuter{
+    width: 100%;
+    overflow: auto;
+    .table{
+        width: 1200px;
+        th{
+            font-size: rem(18);
+        }
+        td{
+            font-size: rem(18);
+        }
+    }
+}
+
+}
+
+@media (max-width: 480px) {
+    .invoice_headers{
+        p{
+            font-size: rem(18);
+        }
+        h4{
+            font-size: rem(22);
+        }
+    }
+    .flight__sectrs {
+        .duration__label{
+            font-size: rem(18);
+        }
+    }
+    .flight__Itinerary__contentArea {
+        .flight__img{
+            width: rem(70);
+        }
+        h4 {
+            font-size: rem(32);
+        }
+        p {
+            font-size: rem(18);
+        }
+        .totalHour{
+            font-size: rem(18);
+        }
+        .flightTicketDetails{
+            label{
+                font-size: rem(18); 
+            }
+            span{
+                font-size: rem(22); 
+                margin-bottom: rem(10);
+            }
+        }
+    }
+}

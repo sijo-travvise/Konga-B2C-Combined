@@ -1,0 +1,150 @@
+@import "../../../sass/all.scss";
+.section__deals {
+  padding-top: rem(180);
+  // padding-bottom: rem(200);
+  h1 {
+    font-size: rem(30);
+    font-weight: 700;
+    color: var(--primary-color);
+    span {
+      font-weight: 400;
+      display: block;
+    }
+  }
+  h2 {
+    font-size: rem(30);
+    font-weight: 400;
+    color: var(--primary-color);
+    padding-bottom: rem(15);
+    span {
+      font-family: "Mont-Light";
+    }
+  }
+  p {
+    font-size: rem(15);
+    font-weight: 500;
+    color: var(--text-secondary-color);
+  }
+}
+.package__section {
+  padding-top: rem(50);
+  padding-bottom: rem(50);
+  h2 {
+    font-size: rem(30);
+    font-weight: 400;
+    color: var(--primary-color);
+    span {
+      font-family: "Mont-Light";
+    }
+  }
+  p {
+    font-size: rem(15);
+    font-weight: 500;
+    color: var(--text-gray-200);
+  }
+  .slides4 {
+    .background {
+      background-size: cover;
+      width: 100%;
+      height: rem(250);
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: rem(5);
+      }
+      .text-container {
+        text-align: center;
+        position: absolute;
+        p {
+          color: var(--text-white-color);
+          font-size: rem(16);
+          font-family: "Mont-Light";
+        }
+        h3 {
+          color: var(--text-white-color);
+          font-size: rem(26);
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          line-height: 31px;
+          text-transform: uppercase;
+        }
+      }
+      .text-bottom {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        text-align: right;
+        padding: 10px;
+
+        h3 {
+          color: var(--text-white-color);
+          font-size: rem(26);
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          span {
+            font-family: "Mont-Light";
+            font-weight: 400;
+          }
+        }
+        p {
+          color: var(--text-white-color);
+          font-size: rem(16);
+          font-family: "Mont-Light";
+          font-weight: 500;
+        }
+      }
+      &:hover{
+        transform: translateY(-8px);
+      }
+    }
+
+  }
+  .empty-state {
+    &__content {
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .empty-state__message {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-top: 0.85rem;
+      }
+    }
+  }
+}
+@media (max-width: #{$tablet-width - 1px}) {
+  .section__deals {
+    padding-top: rem(10);
+    padding-bottom: rem(50);
+  }
+  .package__section {
+    padding-top: rem(10);
+    padding-bottom: rem(30);
+  }
+  .section__deals {
+    h1 {
+      font-size: rem(50);
+    }
+    p {
+      font-size: rem(22);
+    }
+  }
+}
+
+.no-data-text{
+  font-weight: 500;
+  color: var(--text-gray-200);
+}

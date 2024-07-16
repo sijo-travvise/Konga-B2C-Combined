@@ -1,0 +1,166 @@
+@import "../../../../../sass/all.scss";
+
+.hotel-image-gallery {
+  padding-top: rem(10);
+  padding-bottom: rem(10);
+  .overview {
+    .image-style {
+      width: 100% !important;
+      height: rem(250) !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      position: relative;
+      border-radius: rem(5);
+    }
+    .image-style1 {
+      width: 100% !important;
+      height: rem(250) !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      position: relative;
+      border-radius: rem(5);
+    }
+    .image-style2 {
+      width: 100% !important;
+      height: rem(175) !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      position: relative;
+      border-radius: rem(5);
+    }
+    .more_images {
+      color: var(--color-white);
+      border: none;
+      border-radius: rem(1);
+      font-size: rem(12);
+      line-height: rem(14);
+      bottom: rem(0);
+      right: 35%;
+      top: 0%;
+      position: absolute;
+      font-weight: 600;
+      font-size: rem(18);
+      text-decoration: underline;
+    }
+  }
+  .overview_room {
+    p {
+      font-weight: 400;
+      font-size: rem(14);
+      line-height: rem(17);
+      color: var(--black-color);
+      span {
+        font-weight: 400;
+        font-size: rem(12);
+        line-height: rem(14);
+        color: var(--text-secondary-color);
+      }
+    }
+    h3 {
+      font-weight: 700;
+      font-size: rem(30);
+      line-height: rem(23);
+      letter-spacing: 0.0102em;
+      color: var(--primary-color);
+    }
+    h4 {
+      font-weight: 700;
+      font-size: rem(20);
+      line-height: rem(24);
+      color: var(--black-color);
+      padding-top: rem(15);
+    }
+    ul {
+      list-style-type: disc;
+      color: var(--black-color);
+      li {
+        font-weight: 400;
+        font-size: rem(14);
+        line-height: rem(17);
+        color: var(--black-color);
+        line-height: rem(20);
+      }
+    }
+    .info_box {
+      display: flex;
+      background-color: var(--bg-red-light);
+      padding: rem(10);
+      border-radius: rem(5);
+      gap: rem(10);
+      h4 {
+        font-weight: 700;
+        font-size: rem(18);
+        line-height: rem(22);
+        color: var(--primary-color);
+        line-height: rem(20);
+        padding-top: rem(0);
+      }
+      p {
+        font-size: rem(16) !important;
+        font-weight: 400 !important;
+        color: var(--primary-color) !important;
+      }
+      i {
+        color: var(--primary-color) !important;
+        padding-top: rem(14);
+      }
+    }
+    .fare_details{
+      border: rem(1) solid var(--bg-gray-color-100);
+      border-radius: rem(5);
+      padding: rem(10);
+      h3{
+        font-size: rem(25);
+        line-height: rem(19);
+        color: var(--black-color);
+        line-height: rem(20);
+        font-weight: 700;
+        span{
+          padding-top: rem(0);
+          font-size: rem(14);
+          line-height: rem(17);
+          color: var(--text-secondary-color);
+          font-weight: 400;
+        }
+      }
+      h4{
+        padding-top: rem(0);
+        font-size: rem(16);
+        line-height: rem(19);
+        color: var(--black-color);
+        font-weight: 700;
+      }
+      h5{
+        padding-top: rem(0);
+        font-size: rem(16);
+        line-height: rem(19);
+        color: var(--black-color);
+        font-weight: 700;
+        span{
+          font-weight: 400;
+        }
+      }
+      h6{
+        padding-top: rem(0);
+        font-size: rem(26);
+        line-height: rem(31);
+        color: var(--black-color);
+        font-weight: 700;
+        span{
+          font-weight: 400;
+        }
+      }
+      .border-bottom{
+        margin-bottom: rem(10);
+        margin-top: rem(10);
+        border-bottom: rem(1) solid var(--primary-color) !important;
+      }
+    }
+    .overview_room_more {
+      border-left: rem(2) solid var(--primary-color);
+    }
+  }
+}

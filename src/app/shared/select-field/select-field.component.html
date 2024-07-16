@@ -1,0 +1,5 @@
+<div class="flex flex-column gap-2 trvSelectGroup">
+    <label for="float-input">{{title}} &nbsp; <span class="label__optional" *ngIf="isOptional">( Optional )</span></label>
+    <p-dropdown [options]="option" [formControl]="formControls" optionLabel="name" [showClear]="false" placeholder="Select" (onChange)="changed($event)" [optionValue]="optionValue"></p-dropdown>
+</div>
+

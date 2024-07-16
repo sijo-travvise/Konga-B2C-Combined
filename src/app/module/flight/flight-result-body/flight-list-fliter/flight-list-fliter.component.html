@@ -1,0 +1,52 @@
+<div class="flight__PriceSelection mb-4 d-flex">
+
+    <div class="flight__stopType">
+      <button type="button" class="p-button-outlined p-button filter__clear d-block m-auto px-3 py-2"
+        (click)="clearFareFilter()">clear <i class="pi pi-refresh"></i> </button>
+      <table class="table table-bordered mt-3">
+        <tr>
+          <td>Non - Stop</td>
+        </tr>
+        <tr>
+          <td>1 Stop</td>
+        </tr>
+        <tr>
+          <td>1+ Stop</td>
+        </tr>
+      </table>
+    </div>
+    <div class="flight__listing">
+      <table class="table table-bordered" style="width: 1200px;">
+        <thead>
+          <tr>
+            <th class="text-center" *ngFor="let item of airlineTopFilterCopy">
+           
+              <!-- <p *ngFor="let dict of filteredFlightData?.result?.dictionaries | keyvalue">
+                <span *ngIf="dict.key=='carriers'"> -->
+                  <!-- <span *ngFor="let carrier of dict.value | keyvalue"> -->
+                    <span style="font-size: 10px;font-weight: bold;">
+                      <img src="assets/img/Airlogo/sm{{item?.airlineCode}}.gif" alt="{{item?.ValidatingAirline}}"
+                        title="{{item?.ValidatingAirline}}" />
+                      <span class="d-block">{{item.ValidatingAirline}}</span>
+                    </span>
+                  <!-- </span> -->
+                <!-- </span>
+              </p> -->
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- *ngFor="let airline of airlineTopFilterCopy" (click)="selectedFlight(airline) "[ngClass]="{'selected': airline.isSelected && airline?.flightSegmentsLength ===  item }" -->
+
+          <tr *ngFor="let item of ['nonStop','oneStop','twoStop']">
+            <td *ngFor="let airline of airlineTopFilterCopy" class="text-nowrap" [ngClass]="{'selected': airline[item]?.isSelected && airline[item]?.PriceTotal  }">
+              <p  *ngIf="airline[item]?.PriceTotal"  (click)="selectedFlight(airline, airline[item])"> ₦ {{ (airline[item]?.PriceTotal ?? 0) | number: '.2' }}</p>
+            </td>
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+
+  </div>

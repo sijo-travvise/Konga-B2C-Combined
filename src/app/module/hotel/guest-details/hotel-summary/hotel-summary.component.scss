@@ -1,0 +1,89 @@
+@import "../../../../../sass/all.scss";
+.fare_details {
+    h2 {
+        font-family: $montBold;
+        font-size: rem(22);
+        line-height: rem(23);
+        color: var(--black-color);
+      }
+  .card {
+    .card-title{
+      font-size: rem(20);
+      color: var(--black-color);
+      font-family: $montBold;
+      margin-bottom: rem(5);
+    }
+    .locationDetails{
+      p{
+        font-size: rem(16);
+        color: var(--text-secondary-color);
+        font-family: $montRegular;
+      }
+      span{
+        font-size: rem(12);
+        color: var(--text-secondary-color);
+        font-family: $montRegular;
+      }
+    }
+    
+    .hotel_fecilities_block {
+      //   margin-top: rem(10);
+      .hotel__rating{
+        border: rem(1) solid var(--bg-gray-color-100);
+        border-radius: rem(3);
+        padding: rem(6) rem(10);
+      }
+      .hotel_comment{
+        font-family: $montBold;
+        font-size: rem(14);
+        color: var(--primary-color);
+        border-left: rem(1) solid var(--bg-gray-color-100);
+        height: 100%;
+      }
+      .Hotel_review{
+        font-family: $montRegular;
+        font-size: rem(14);
+        color: var(--text-secondary-color);
+        border-left: rem(1) solid var(--bg-gray-color-100);
+        height: 100%;
+      }
+
+
+      }
+
+
+  }
+
+  .hotel__image{
+    width: 100%;
+    height: 100%;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+  }
+  .hotel__roomFacilities{
+    h4{
+      font-family: $montBold;
+      font-size: rem(16);
+      color: var(--black-color);
+    }
+    h5{
+      font-family: $montSemiBold;
+      font-size: rem(12);
+      color: var(--black-color);
+    }
+    h6{
+      font-family: $montBold;
+      font-size: rem(10);
+      color: var(--primary-color);
+    }
+    p{
+      font-family: $montRegular;
+      font-size: rem(10);
+      color: var(--text-gray-200);
+      letter-spacing: rem(1);
+    }
+  }
+
+
+}

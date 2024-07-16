@@ -1,0 +1,185 @@
+<form [formGroup]="flightSearchForm" class="mob__device__top_50">
+    <ng-container *ngIf=" searchType === 'oneWay' ||  searchType === 'roundTrip'; else isMulticity">
+        <div class="row px-1">
+            <div class="col-md-6 ">
+                <div class="row">
+                    <div class="col-md-6 px-2 position-relative mb-3">
+                        <div class="p-float-label">
+                            <p-autoComplete [formControl]="selectedFromCity" [showEmptyMessage]="true"
+                                [suggestions]="filteredCities" (completeMethod)="airLineCity($event)" (onSelect)="selectEvent($event)" field="CityCode"
+                                [minLength]="1">
+                                <ng-template let-city pTemplate="item">
+                                    <div class="country-item">
+                                        <div>{{ city.CityName }}</div>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                            <label>Depart From ?</label>
+                            <p class="airportName"> {{ selectedFromCity.value?.CityName}}</p>
+                        </div>
+                        <span class="icon-swap" (click)="swapCity()" [ngClass]="rotate ? 'iconRotate' : '' ">
+                            <img src="assets/img/icons/icon-swap.svg" alt="icon swap">
+                        </span>
+                    </div>
+                    <div class="col-md-6 px-2 mb-3">
+                        <div class="p-float-label">
+                            <p-autoComplete [formControl]="selectedToCity" [showEmptyMessage]="true" 
+                                [suggestions]="filteredCities" (completeMethod)="airLineCity($event)" (onSelect)="selectEvent($event)" field="CityCode"
+                                [minLength]="1">
+                                <ng-template let-city pTemplate="item">
+                                    <div class="country-item">
+                                        <div>{{ city.CityName }}</div>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                            <label for="float-input">To Where ?</label>
+                            <p class="airportName"> {{ selectedToCity.value?.CityName}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class=" px-2 mb-3 " [ngClass]="searchType === 'roundTrip'?'col-md-4':'col-md-3'">
+
+                <ng-container *ngIf="searchType === 'oneWay'; else roundTrip">
+                    <!-- <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar> -->
+                    <div class="p-float-label">
+                        <p-calendar inputId="basic" dateFormat="dd-M-yy" [formControl]="DepartedDate"
+                            [minDate]="minimumDate"></p-calendar>
+                        <label for="basic">Depart Date</label>
+                    </div>
+                </ng-container>
+                <ng-template #roundTrip>
+                    <div class="d-flex jusify-content-start gap-3">
+                        <div class="p-float-label">
+                            <p-calendar inputId="basic" dateFormat="dd-M-yy" [formControl]="DepartedDate"
+                                [minDate]="minimumDate"
+                                (onSelect)="onSelect($event);"></p-calendar>
+                            <label for="basic">Depart Date</label>
+                        </div>
+                        <div class="p-float-label">
+                            <p-calendar inputId="basic" dateFormat="dd-M-yy" [formControl]="ReturnDate"
+                            [minDate]="DepartedDate?.value" (onSelect)="onSelect($event)"></p-calendar>
+                            <label for="basic">Return Date</label>
+                        </div>
+                    </div>
+                    <!-- <div class="p-float-label">
+                        <p-calendar selectionMode="range" dateFormat="dd-M-yy" inputId="range"
+                            [formControl]="DepartedDate" [minDate]="minimumDate" [minDate]="minimumDate"
+                            (onSelect)="onSelect($event)"></p-calendar>
+                        <label for="basic">Depart Date</label>
+                    </div> -->
+                </ng-template>
+            </div>
+            <div class=" px-2 mb-3" [ngClass]="searchType === 'roundTrip'?'col-md-2':'col-md-3'">
+                <button class="btn btn-primary w-100 h-100" type="button" (click)="searchResult()">Search <i
+                        class="pi pi-search" style="font-size: rem(12)"></i></button>
+            </div>
+        </div>
+
+        <div class="row  mb-4">
+            <div class="col-md-12 d-flex align-item-center mob__flex__wrapp">
+                <div class="p-field-checkbox me-4 mb-3">
+                    <p-checkbox value="true" [formControl]="DirectFlights" inputId="direct"></p-checkbox>
+                    <label for="direct">Direct flights only </label>
+                </div>
+                <div class="p-field-checkbox me-4 mb-3">
+                    <p-checkbox value="true" [formControl]="FlexibleDate" inputId="flexDate"></p-checkbox>
+                    <label for="flexDate">Flexible Date ± 3 days </label>
+                </div>
+                <div class="p-field-checkbox mb-3">
+                    <p-checkbox value="true" [formControl]="NearbyAirports" inputId="nearAirport"></p-checkbox>
+                    <label for="nearAirport">Add Nearby Airports</label>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #isMulticity>
+
+        <div class="row px-1">
+            <div class="col-md-9 " formArrayName="multiCityArray">
+                <ng-container *ngFor="let  item of multiCityArrayControl.controls; let i = index">
+                    <div class="row mb-3" [formGroupName]="i">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-6 px-2 position-relative mb-3">
+                                    <div class="p-float-label">
+                                        <!-- <p-autoComplete  [showEmptyMessage]="true" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [minLength]="1"></p-autoComplete>
+                                    <label>Depart From ?</label>
+                                    <p class="airportName">[DOH] Hamad International Airport</p> -->
+                                        <p-autoComplete formControlName="selectedMultiFromCity"
+                                            placeholder="Depart From" [showEmptyMessage]="true"
+                                            [suggestions]="filteredCities" [showEmptyMessage]="true"
+                                            (completeMethod)="airLineCity($event)" field="CityCode" [minLength]="1">
+                                            <ng-template let-city pTemplate="item">
+                                                <div class="country-item">
+                                                    <div>{{ city.CityName }}</div>
+                                                </div>
+                                            </ng-template>
+                                        </p-autoComplete>
+                                        <label>Depart From ?</label>
+                                        <p class="airportName">
+                                            {{multiCitySearch(i,'selectedMultiFromCity')?.value?.CityName}}</p>
+                                    </div>
+                                    <span class="icon-swap" (click)="swapCity('multicity', i)"
+                                        [ngClass]="{'iconRotate' :multiCitySearch(i,'swapCity')?.value }">
+                                        <img src="assets/img/icons/icon-swap.svg" alt="icon swap">
+                                    </span>
+                                </div>
+                                <div class="col-md-6 px-2 mb-3">
+                                    <div class="p-float-label">
+                                        <!-- <p-autoComplete  [showEmptyMessage]="true" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [minLength]="1"></p-autoComplete>
+                                    <label for="float-input">To Where ?</label>
+                                    <p class="airportName">[DOH] Hamad International Airport</p> -->
+                                        <p-autoComplete formControlName="selectedMultiToCity" placeholder="Arrival To"
+                                            [showEmptyMessage]="true" [suggestions]="filteredCities"
+                                            (completeMethod)="airLineCity($event)" field="CityCode" [minLength]="1">
+                                            <ng-template let-city pTemplate="item">
+                                                <div class="country-item">
+                                                    <div>{{ city.CityName }}</div>
+                                                </div>
+                                            </ng-template>
+                                        </p-autoComplete>
+                                        <label for="float-input">To Where ?</label>
+                                        <p class="airportName">
+                                            {{multiCitySearch(i,'selectedMultiToCity')?.value?.CityName}}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 px-2 position-relative mb-3">
+                            <!-- <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar> -->
+                            <div class="p-float-label">
+                                <p-calendar inputId="basic" dateFormat="dd-M-yy" formControlName="DepartedMultiDate"
+                                    [minDate]="multiCitySearch(i,'currentMinDate')?.value"
+                                    (onSelect)="dateChange($event, i)"></p-calendar>
+                                <label for="basic">Depart Date</label>
+
+                            </div>
+                            <button class="btn-close" (click)="deleteRow(i)" *ngIf="i > 1"><i
+                                    class="pi pi-times"></i></button>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
+
+            <div class="col-md-3 px-2">
+                <button class="btn btn-primary w-100 h-64" (click)="searchResult('multicity')">Search <i
+                        class="pi pi-search" style="font-size: rem(12)"></i></button>
+                <button class="p-button p-button-outlined btn-add mt-3"
+                    (click)="addItem(multiCityArrayControl?.controls?.length ?? 0)"
+                    *ngIf="(multiCityArrayControl?.controls?.length ?? 0) < 6">Add Another City</button>
+
+
+            </div>
+
+        </div>
+    </ng-template>
+</form>
+<!-- {{flightSearchForm?.value | json}} -->
+<p-toast></p-toast>
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
+    [loderTitle]="'we are finding the best flights for you'"></app-pre-loader>

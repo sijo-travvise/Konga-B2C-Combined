@@ -1,0 +1,33 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $montSemiBold;
+  background: rgba(242, 242, 242, 0.56);;
+}
+
+
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #dbdbdb;
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.card{
+  border: 1px solid #E8E8E8;
+}
+
+input[type="password"] {
+  font-size: 22px;
+}
+
+

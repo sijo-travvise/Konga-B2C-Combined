@@ -1,0 +1,28 @@
+@import "../../../../sass/all.scss";
+.payment_details {
+  padding-top: rem(25);
+  h2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: rem(22);
+    line-height: rem(23);
+    color: var(--primary-color);
+    padding-bottom: rem(10);
+  }
+  h3{
+    font-style: normal;
+    font-weight: 700;
+    font-size: rem(16);
+    line-height: rem(19);
+    color: var(--black-color);
+    padding-bottom: rem(10);
+    cursor: pointer;
+  }
+  p {
+    font-weight: 400;
+    font-size: rem(16);
+    color: var(--text-secondary-color);
+    padding-bottom: rem(10);
+  }
+  
+}

@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+
+/* Importing Project Sass File */
+
+@import 'sass/all.scss';
+
+
+
+.p-component.ng-dirty.ng-invalid,
+.p-component.ng-touched.ng-invalid,
+p-dropdown.ng-touched.ng-invalid > .p-dropdown,
+p-calendar.ng-touched.ng-invalid input,
+ngx-intl-tel-input.ng-touched.ng-invalid input,
+p-autocomplete.p-element.p-inputwrapper.ng-invalid.ng-touched input {
+  border-color: #f44336;
+  box-shadow: none;
+  outline: none;
+ 
+}

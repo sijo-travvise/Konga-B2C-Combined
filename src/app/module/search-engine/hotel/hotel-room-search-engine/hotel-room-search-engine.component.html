@@ -1,0 +1,38 @@
+<form>
+    <div class="row px-1">
+        <div class="col-md-3 px-2">
+            <div class="p-float-label">
+                <p-calendar  selectionMode="range" [readonlyInput]="true"
+                    inputId="range" dateFormat="dd-M-yy"></p-calendar>
+                <label for="basic">Check In / Check Out</label>
+            </div>
+        </div>
+        <div class="col-md-3 px-2 form-text-custom" ngbDropdown #myDrop1="ngbDropdown">
+            <div class="d-inline-block disabled" ngbDropdown #myDrop="ngbDropdown" style="width: 100%;">
+                <button type="button" class="btn p-0" id="dropdownManual" ngbDropdownAnchor
+                    (focus)="myDrop.open()" style="width: 100%;">
+                    <!-- Toggle dropdown -->
+                    <div class="p-float-label ">
+                        <input id="float-input" type="text" pInputText value="1 Room / 3 Guests / 2 Nights" disabled>
+                        <label>Room / Guest / Nights</label>
+                    </div>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownManual" class="passengerCard">
+                   <app-select-room-traveller></app-select-room-traveller>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 px-2 form-text-custom" >
+            <div class="d-inline-block disabled"  style="width: 100%;">
+                    <div class="p-float-label" style="width: 100%;">
+                        <input id="float-input" type="text" pInputText value="1" disabled>
+                        <label>Night(s)</label>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3 px-2">
+            <button class="btn btn-primary w-100 h-100" (click)="resultPage()">Search <i class="pi pi-search"
+                    style="font-size: rem(12)"></i></button>
+        </div>
+    </div>
+</form>

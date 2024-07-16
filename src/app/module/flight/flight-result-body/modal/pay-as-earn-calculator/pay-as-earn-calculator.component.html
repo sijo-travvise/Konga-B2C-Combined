@@ -1,0 +1,77 @@
+<div class="container px-1 pay__and__earn_box">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <div>
+            <p>Date of departure</p>
+            <h3>
+                {{_microService?.getFormatedFlightDate(BookedFlightData?.Trips[0]?.FlightSegments[0]?.DepartureDate) | date:'dd MMMM yyyy'}} </h3>
+                <!-- {{BookedFlightData?.Ttineraries[0]?.segments[0]?.departure?.at }}</h3> -->
+        </div>
+        <div class="vertical-line"></div>
+        <div>
+            <p>Payment Deadline</p>
+            <h3 class="danger"> {{getDeadlineDate(_microService?.getFormatedFlightDate(BookedFlightData?.Trips[0]?.FlightSegments[0]?.DepartureDate)) | date:'dd MMMM yyyy' }} </h3>
+        </div>
+    </div>
+    <div class="pay__important mb-3">
+        <p class="d-flex align-items-center gap-2 justify-content-center"> <span> <img
+                    src="/assets/img/icons/red-info.svg" alt=""> </span> All the remaining due must be paid before the
+            deadline </p>
+    </div>
+    <div class="total__fare__box mt-2 text-center mb-3">
+        <p>Your Total Fare</p>
+        <h4>₦ {{BookedFlightData?.PriceSummary?.SubTotal | number:'0.1-2'}}</h4>
+    </div>
+    <div class="row align-items-center mb-3">
+        <div class="col-lg-4">
+            <app-input-field [initialValue]="20" [formControls]="payPercentage" (onChangeEvent)="inputValueChanges($event)" [isSuffix] = true></app-input-field>
+            <p class="d-flex align-items-center gap-2  minimum___due__text" [ngClass]="{'text-danger': payPercentage.invalid }"> <span> <img src="/assets/img/icons/pink-info.svg" alt="" *ngIf="payPercentage.valid"> <i class="pi pi-exclamation-triangle" style="color:red" *ngIf="payPercentage.invalid"></i> </span> Minimum 20 % down payment </p>
+        </div>
+        <div class="col-lg-4  d-flex justify-content-center align-items-center">
+            <div class="horizontal-line"></div>
+        </div>
+        <div class="left__section col-lg-4">
+            <div class="left__section__line">
+                <h2 class="flight_price mb-2">
+                    <b> ₦ {{installmentAmount | number:'0.1-2' }}</b>
+                </h2>
+                <p>Your initial down payment</p>
+            </div>
+            <!-- <p>Remaining: <span class="danger">₦ 163,398.00</span></p> -->
+        </div>
+    </div>
+    <div class="row align-items-center mb-3">
+        <div class="col-lg-4">
+            <p>Split the balance</p>
+            <app-select-field  [option]="splitType" [formControls]="PayBySplitType" (onChangeItem)="onChangeItem($event)"></app-select-field>
+            <p class="d-flex align-items-center gap-2  minimum___due__text"> <span> <img src="/assets/img/icons/pink-info.svg" alt=""> </span> Maximum 6  </p>
+        </div>
+        <div class="col-lg-4  d-flex justify-content-center align-items-center">
+            <div class="horizontal-line"></div>
+        </div>
+        <div class="left__section col-lg-4">
+            <!-- <div class="left__section__line">
+                <h2 class="flight_price mb-2">
+                    <b> ₦ 23,860</b>
+                </h2>
+                <p>your next time payment </p>
+            </div>
+            <p>Remaining: <span class="danger">₦ 119,305</span></p> -->
+
+            <button type="button" class="btn btn-primary w-max pt-3 pb-2 w-100" (click)="payAsYouAmount(isPassengerDetailsPage)" >{{isPassengerDetailsPage ? 'Apply' : 'Book'}} </button>
+        </div>
+    </div>
+    <div class="row align-items-center mb-3 payment__table">
+        <p>Payment Table </p>
+        <div class="col-lg-2" *ngFor="let item of installmentArray; let index= index">
+            <div class="box">
+                <p>{{item.title}}</p>
+            </div>
+            <h4>₦ {{item.amount}}</h4>
+        </div>
+
+    </div>
+    <div class="pay__important mb-3">
+        <p class="d-flex align-items-center gap-2 justify-content-center"> <span> <img
+                    src="/assets/img/icons/red-info.svg" alt=""> </span> <strong>5%</strong> service charge on each installment</p>
+    </div>
+</div>

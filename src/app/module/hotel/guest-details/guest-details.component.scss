@@ -1,0 +1,33 @@
+@import "../../../../sass/all.scss";
+.guest-details {
+  padding-top: rem(25);
+  h2 {
+    font-family: $montBold;
+    font-size: rem(22);
+    line-height: rem(23);
+    color: var(--black-color);
+  }
+  .gustCardHeader{
+    h5 {
+      font-size: rem(14);
+      color: var(--black-color);
+      font-family: $montBold;
+    }
+    .gustType {
+      font-size: rem(14);
+      color: var(--text-gray-200);
+      font-family: $montBold;
+      border-left: rem(1) solid var(--text-gray-200);
+      padding-left: rem(10);
+    }
+    
+  }
+  .hotel_gustDetails{
+    .placeHolder{
+      font-size: rem(10);
+      color: var(--text-gray-200);
+      font-family: $montRegular;
+    }
+  }
+ 
+}

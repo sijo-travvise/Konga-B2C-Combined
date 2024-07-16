@@ -1,0 +1,48 @@
+<div class="row mb-5">
+    <div class="col-md-8">
+        <div class="card p-4 pb-0">
+            <p-galleria [value]="img" 
+            [containerStyle]="{'max-width': '100%'}" 
+            [autoPlay]="false" 
+            [numVisible]="5"
+            [showItemNavigators]="true"
+            [transitionInterval]="2000">
+          
+                <ng-template pTemplate="item" let-img>
+                    <img [src]="img.URL" 
+                        style="width: 100%; display: block;" />
+                </ng-template>
+            
+                <ng-template pTemplate="thumbnail" let-img>
+                    <img [src]="img.URL" 
+                        style="width: 95%; display: block;" />
+                </ng-template>
+            </p-galleria>
+        </div>
+       
+    </div>
+    <div class="col-md-4">
+        <div class="review-selection-section p-4 py-5">
+            <h3>Movenpick Hotel Doha</h3>
+            <p>Ikeja GRA, Lagos</p>
+            <p>4.8 km from LOS-Murtala Muhammed Intl</p>
+            <div class="hotel_fecilities_block pt-3 d-flex align-items-center mb-4">
+                <div class="hotel__rating d-flex align-items-center py-1 px-2 gap-1 me-3">
+                    <h6>5</h6>  <img style="width: 12px;" src="assets/img/icons/star1.png" alt="">
+                </div>
+                <span class="hotel_comment py-2 ps-3 me-3">Excellent</span>
+                <span class="Hotel_review  py-2 ps-3">12 Reviews</span>
+            </div>
+            <p class="hotel_description">In the heart of Lagos, Sheraton Lagos Hotel is close to Ikeja Golf Club and Computer Village. This 4-star hotel is within close proximity of Kalakuta Museum and Lagos State Government Secretariat.</p>
+        </div>
+
+         <!--Fare Details Start-->
+         <div class="hotel__fare__details mt-4 mb-4">
+            <h3>QAR <b>  10,310.00 </b></h3>
+            <p> Total Amount</p>
+            
+        </div>
+        <button class="p-button-outlined p-button mb-2 w-100 px-4 justify-content-center py-3" [routerLink]="['/guest-details']"> Select Room</button>
+        <!--Fare Details End-->
+    </div>
+</div>

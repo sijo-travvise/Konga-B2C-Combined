@@ -1,0 +1,281 @@
+.modal__widget .p-dialog {
+  background: var(--bg-white);
+  border-radius: 0px !important;
+  min-height: 100vh;
+}
+.p-dialog-right .p-dialog {
+  margin: 0 !important;
+}
+
+.modal__widget {
+  .p-dialog .p-dialog-header {
+    background: #fade9d;
+    padding: rem(15) rem(40);
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    .p-dialog-title {
+      font-size: rem(30);
+      font-weight: 800;
+      color: var(--yellow-dark);
+      font-family: $montSemiBold;
+      text-transform: uppercase;
+    }
+    .p-dialog-header-icons {
+      display: flex;
+      align-items: center;
+      // position: absolute;
+      // left: rem(-61);
+      background: var(--primary-color);
+      padding: 0;
+      border-radius: rem(25);
+      // border-bottom-left-radius: rem(10);
+      .p-dialog-header-close-icon {
+        font-size: rem(18);
+        color: var(--text-white-color);
+      }
+    }
+    .p-dialog-header-icon:enabled:hover {
+      background: transparent;
+      color: var(--text-white-color);
+    }
+    .p-dialog-header-icon {
+      width: 100%;
+      height: 100%;
+      padding: rem(8) rem(8);
+    }
+    .p-dialog-header-icon:focus {
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0 0rem #bfdbfe;
+    }
+  }
+
+  .p-dialog {
+    max-height: 100vh !important;
+    .p-dialog-content {
+      padding: 0;
+      min-height: calc(100vh - rem(100));
+    }
+  }
+}
+.calculator__modal__widget {
+  .p-dialog .p-dialog-header {
+    .p-dialog-title {
+      font-size: rem(20);
+      font-weight: 800;
+      color: var(--text-primary-color);
+      font-family: $montHeavy;
+    }
+    .p-dialog-header-icons {
+      display: flex;
+      align-items: center;
+      color: var(--text-primary-color);
+      padding: 0;
+      .p-dialog-header-close-icon {
+        font-size: rem(18);
+        color: var(--text-primary-color);
+        font-weight: 800;
+      }
+    }
+    .p-dialog-header-icon:enabled:hover {
+      opacity: 0.7;
+    }
+    .p-dialog-header-icon {
+      width: 100%;
+      height: 100%;
+      padding: rem(8) rem(8);
+    }
+    .p-dialog-header-icon:focus {
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0 0rem #bfdbfe;
+    }
+  }
+  // .p-dialog {
+  //   max-height: 100vh !important;
+  //   .p-dialog-content {
+  //     padding: 0;
+  //     min-height: calc(100vh - rem(450));
+  //   }
+  // }
+}
+
+.section__card__modal {
+  .p-dialog {
+    max-height: inherit !important;
+    .p-dialog-content {
+      padding: 0;
+      min-height: rem(300);
+    }
+  }
+  .p-dialog .p-dialog-header {
+    padding: rem(15) rem(20);
+    .p-dialog-header-icons {
+      position: static;
+      border-radius: rem(25) !important;
+      .p-dialog-header-icon {
+        padding: rem(10);
+      }
+      .p-dialog-header-close-icon {
+        font-size: rem(16);
+      }
+    }
+  }
+  // .p-dialog-content{
+  //     padding: rem(15) rem(20) !important;
+  // }
+}
+
+.postReviewComponent {
+  .p-dialog-content {
+    min-height: auto !important;
+  }
+}
+
+.section__card__modal.sec_expaire {
+  .p-dialog {
+    .p-dialog-header {
+      display: none;
+    }
+    .p-dialog-content {
+      border-top-right-radius: 6px;
+      border-top-left-radius: 6px;
+    }
+    .p-dialog-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: #{$tablet-width - 1px}) {
+  .modal__widget .p-dialog {
+    width: 100% !important;
+  }
+}
+
+.affliatePageModal {
+  .p-dialog {
+    width: 40% !important;
+    .p-dialog-header {
+      background: var(--bg-white);
+      border-top-left-radius: rem(8);
+      border-top-right-radius: rem(8);
+      .p-dialog-header-icons {
+        position: absolute;
+        right: -13px;
+        top: -10px;
+      }
+    }
+  }
+  .p-dialog .p-dialog-content {
+    min-height: auto;
+  }
+  .p-dialog-header-icons {
+    display: flex;
+    align-items: center;
+    // position: absolute;
+    // left: rem(-61);
+    background: var(--primary-color);
+    padding: 0;
+    border-radius: rem(25);
+    // border-bottom-left-radius: rem(10);
+    .p-dialog-header-close-icon {
+      font-size: rem(18);
+      color: var(--text-white-color);
+    }
+  }
+  .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
+    background: var(--primary-color) !important;
+  }
+}
+.loginPageModal,
+.forgotPageModal {
+  .p-dialog {
+    max-width: 450px !important;
+    width: 100% !important;
+    .p-dialog-header {
+      background: var(--bg-white);
+      border-top-left-radius: rem(8);
+      border-top-right-radius: rem(8);
+      .p-dialog-header-icons {
+        position: absolute;
+        right: -13px;
+        top: -10px;
+      }
+    }
+  }
+
+  .p-dialog-header-icons {
+    display: flex;
+    align-items: center;
+    // position: absolute;
+    // left: rem(-61);
+    background: var(--primary-color);
+    padding: 0;
+    border-radius: rem(25);
+    // border-bottom-left-radius: rem(10);
+    .p-dialog-header-close-icon {
+      font-size: rem(18);
+      color: var(--text-white-color);
+    }
+  }
+  .p-dialog .p-dialog-content {
+    min-height: auto;
+  }
+  .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
+    background: var(--primary-color) !important;
+  }
+}
+
+.forgotPageModal {
+  &.p-dialog {
+    max-width: 400px !important;
+    width: 100% !important;
+  }
+  .p-dialog-content {
+    padding: 0;
+  }
+  .p-dialog-header {
+    display: none;
+    .p-dialog-header-icon:enabled:hover {
+      background: var(--primary-color) !important;
+    }
+  }
+  .p-dialog-header-icons {
+    position: absolute !important;
+    right: -13px !important;
+    top: -10px !important;
+  }
+}
+.p-overlaypanel-content {
+
+
+  .custom-list-group {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 5px;
+      font-size: rem(12);
+      span {
+        color: var(--primary-color);
+      }
+      &::before {
+        content: "";
+        background-image: url("/assets/img/icons/tick.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 20px; 
+        height: 20px;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

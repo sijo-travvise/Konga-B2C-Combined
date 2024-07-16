@@ -1,0 +1,57 @@
+<footer>
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-between mx-0">
+            <div class="col-xl-2 col-lg-2 col-md-12   v mt-2 p-0 mb-4" >
+                <img src="assets/img/logo.svg" alt="LOGO" class="img-fluid " >
+            </div>
+         
+            <div class="col-xl-3 col-lg-3 col-md-6 p-0 mb-4">
+                <div class="">
+                    <h4>More Info</h4>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let footerLink of footerLinks">
+                            <a href="#">{{footerLink.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 p-0 mb-4">
+                <div>
+                    <h4>Our Services</h4>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let service of services">
+                            <a href="#">{{service.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 p-0">
+                    <h4>Payment Methods</h4>
+                    <p>Join our newsletter to stay up to date on features and releases.</p>
+                    <div class="mail__subscription my-3">
+                        <input type="text" class="input_subscription" placeholder="Enter your email" />
+                        <button class="p-button rounded-0 py-2 px-4 p-button-outlined h-100"> Subscribe</button>
+                    </div>
+                   <p class="content"><a href="#">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</a></p>
+            </div>
+        </div>
+        <div class="copyright mt-5 pt-4 d-flex justify-content-between px-0">
+            <div class="d-flex align-items-center gap-3 mob__copyRight">
+                <p>2023 Konga. All right reserved.</p>
+                <ul class="gap-3 ">
+                    <li><a href="">Privacy Policy</a></li>
+                    <li><a href="">Terms of Service</a></li>
+                    <li><a href="">Cookies Settings</a></li>
+                </ul>
+            </div>
+            <div class="socialIcons mob__socialIcon">
+                <ul>
+                    <li class="hvr-float"><a href=""><i class="pi pi-facebook"></i></a></li>
+                    <li class="hvr-float"><a href=""><i class="pi pi-instagram"></i></a></li>
+                    <li class="hvr-float"><a href=""><i class="pi pi-twitter"></i></a></li>
+                    <li class="hvr-float"><a href=""><i class="pi pi-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

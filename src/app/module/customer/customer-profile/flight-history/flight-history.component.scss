@@ -1,0 +1,197 @@
+@import '../../../../../sass/all.scss';
+.user__profile__card{
+    // box-shadow: 0px 16px 25px #F0F0F0;
+    border-radius: 5px;
+}
+.itemRow{
+    background: var(--color-white);
+}
+.pointer {
+   
+    .flight__depart{
+        h6{
+            font-family: $montBold;
+            font-size: rem(14);
+            line-height: rem(17);
+            color: var(--bg-dark-teal-color);
+            margin-bottom: rem(5);
+           
+        }
+        .flight__trip__type{
+            font-family: $montBold;
+            font-size: rem(14);
+            color: var(--primary-color);
+        }
+        .ticketStatus{
+            border-radius: rem(5);
+            font-size: rem(12);
+            display: inline-block;
+        }
+    }
+  }
+  .history__icon{
+    background: var(--primary-color);
+    border-top-left-radius: rem(5);
+    border-bottom-left-radius: rem(5);
+  }
+
+  .resultCardItinerary__SectorWrapper{
+    .flight__card{
+        background: transparent !important;
+        box-shadow: none;
+    }
+    .flight-card__stop-info{
+        width: calc(100% - rem(130));
+    }
+    .flight__from__to{
+        position: relative;
+        padding: 0 rem(30);
+        .layoverTime{
+            .icon__flight_left, .icon__flight_right{
+                top: rem(-9);
+              }
+
+        }
+     
+
+        .w-130{
+            width: rem(130);
+        }
+        .bg-light-gray{
+            background: var(--bg-gray-color-400);
+            position: relative;
+        }
+        h5{
+            font-size: rem(20);
+            text-transform: uppercase;
+            color: var(--text-primary-color);
+            font-family: $montBold;
+        }
+        h6{
+            font-size: rem(14);
+            color: var(--text-primary-color);
+            font-family: $montSemiBold;
+        }
+        .airport{
+            font-size: rem(14);
+            font-weight: 500;
+            color: var(--text-secondary-color);
+        }
+        .flight__layover__time{
+            font-size: rem(12);
+            font-weight: 500;
+            color: var(--text-primary-color);
+            margin-top: rem(10);
+            label{
+                color: var(--text-secondary-color);
+            }
+        }
+        .stop__badge{
+            font-size: rem(11);
+            font-weight: 700;
+            color: var(--text-danger-color);
+            margin-top: rem(15);
+        }
+        .flight__layover__location{
+            font-size: rem(12);
+            font-weight: 500;
+            color: var(--text-secondary-color);
+            margin-top: rem(5);
+        }
+    }
+  }
+  
+  .resultCardItinerary__SectorStatus{
+  
+    .flight__SectorLabel{
+        font-size: rem(12);
+        font-weight: 500;
+        color: var(--text-secondary-color);
+        margin-bottom: rem(5);
+    }
+    .booking__ref__no, .booking__date{
+        font-size: rem(16);
+        font-weight: 800;
+        color: var(--text-primary-color);
+        margin-bottom: rem(5);
+        text-transform: uppercase;
+    }
+  }
+  .resultCardItinerary__PaymentWrapper{
+    width: rem(200);
+    background: var(--bg-light-red);
+    border: rem(3) solid var(--primary-color);
+    border-top-right-radius: rem(5);
+    border-bottom-right-radius: rem(5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    h4{
+        font-size: rem(26);
+        font-family: $montBold;
+        color: var(--primary-color);
+        
+    }
+    p{
+        font-size: rem(16);
+        font-family: $montBold;
+        color: var(--primary-color);
+        
+    }
+    .btn-downArrow{
+        width: rem(55);
+        height: rem(55);
+
+        position: absolute;
+        bottom: rem(-20);
+        color: var(--primary-color);
+        background: var(--color-white);
+        box-shadow: 0 0 15px #dddddd;
+        border-radius: 50%;
+        i{
+            font-size: rem(28);
+            line-height: rem(45);
+        }
+        &:active{
+            color: var(--color-white) !important;
+        }
+    }
+  }
+
+  .booking__details__tab{
+    margin-top: rem(20);
+    background: var(--color-white);
+    .booking__deatails__listing{
+        margin: 0;
+        padding: 0;
+        li{
+            margin: 0 rem(30);
+            cursor: pointer;
+            font-weight: 800;
+           i{
+            margin-right: rem(10);
+           }
+           
+           &.currentTabActive, &:hover{
+                color: var(--primary-color  );
+                
+                i{
+                    color: var(--primary-color  );
+                }
+           }
+        }
+    }
+
+    .booking__details__tab__contentArea{
+        .booking__details__tabView{
+            display: none;
+            padding: rem(0) rem(40) rem(20);
+            &.currentTabActive{
+                display: block;
+            }
+        }
+        
+    }
+
+  }

@@ -1,0 +1,26 @@
+.currancySelect, .languageSelect{
+    .p-dropdown{
+       background: transparent !important;
+       border: 0;
+       
+    }
+    .p-dropdown-label{
+        color: var(--text-white-color);
+        font-weight: 500;
+        font-family: $montSemiBold;
+        padding-right: 0;
+       }
+       .pi-chevron-down:before{
+        color: var(--color-white);
+       }
+       .p-dropdown:not(.p-disabled).p-focus {
+         outline: 0 none;
+         outline-offset: 0;
+         box-shadow: 0 0 0 0rem #BFDBFE;
+         border-color: transparent;
+       }
+    
+ }
+
+
+ 

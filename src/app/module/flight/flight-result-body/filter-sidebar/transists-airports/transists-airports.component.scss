@@ -1,0 +1,36 @@
+@import '../../../../../../sass/all.scss';
+
+.filter__title{
+    font-size: rem(18);
+    font-weight: 800;
+}
+.filter__clear{
+    border: 0;
+    background: none;
+    padding: 0;
+    color: var(--primary-color);
+    font-weight: 700;
+    &:hover{
+        color: var(--primary-color-hover);
+    }
+}
+
+.flight__checkbox_group{
+    .chkboxGroup .form-check {
+        padding-left: 0;
+        label {
+          font-size: rem(14);
+          font-weight: 700;
+        }
+      }
+      .chkboxGroup .form-check-input[type="checkbox"] {
+        float: right;
+      }
+      .form-check-input:checked {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+      .form-check-input:focus {
+          box-shadow: 0 0 0 0rem rgb(13 110 253 / 25%);
+      }
+}

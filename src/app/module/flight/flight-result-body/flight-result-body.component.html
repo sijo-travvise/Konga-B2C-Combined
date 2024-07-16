@@ -1,0 +1,92 @@
+<div class="container mt-3">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="searchEngineOuter cardShadow pb-2">
+                <div class="tripDisition">
+                    <p-tabView (onChange)="onChangeTab($event)"
+                        [activeIndex]="flightResultData?.tripType === 'oneWay'? 0 : flightResultData?.tripType === 'roundTrip' ? 1 : flightResultData?.tripType === 'multiCity' ? 2 : 0">
+
+                        <p-tabPanel header="One Way">
+                            <ng-container *ngIf="tripType === 'oneWay'">
+                                <app-oneway [searchFlightFormValue]="flightResultData?.formData" [searchType]="tripType"
+                                    [cities]="cities" (changedFlightData)="changedFlightDataEvent($event)"></app-oneway>
+                                <div class="sectionRight d-flex  align-items-center mob__device__passenger">
+                                    <app-select-passenger
+                                        [searchFlightPassengerValue]="flightResultData?.formData?.PassengerList"></app-select-passenger>
+                                    <app-select-cabin
+                                        [searchFlightCabinValue]="flightResultData?.formData?.CabinList"></app-select-cabin>
+                                </div>
+                            </ng-container>
+                        </p-tabPanel>
+                        <p-tabPanel header="Round Trip">
+                            <ng-container *ngIf="tripType === 'roundTrip'">
+
+                                <app-oneway [searchFlightFormValue]="flightResultData?.formData" [searchType]="tripType"
+                                    [cities]="cities" (changedFlightData)="changedFlightDataEvent($event)"></app-oneway>
+                                <div class="sectionRight d-flex  align-items-center mob__device__passenger">
+                                    <app-select-passenger
+                                        [searchFlightPassengerValue]="flightResultData?.formData?.PassengerList"></app-select-passenger>
+                                    <app-select-cabin
+                                        [searchFlightCabinValue]="flightResultData?.formData?.CabinList"></app-select-cabin>
+                                </div>
+                            </ng-container>
+                        </p-tabPanel>
+                        <p-tabPanel header="Multi City">
+                            <ng-container *ngIf="tripType === 'multiCity'">
+
+                                <app-oneway [searchFlightFormValue]="flightResultData?.formData" [searchType]="tripType"
+                                    [cities]="cities" (changedFlightData)="changedFlightDataEvent($event)"></app-oneway>
+                                <div class="sectionRight d-flex  align-items-center mob__device__passenger">
+                                    <app-select-passenger></app-select-passenger>
+                                    <app-select-cabin></app-select-cabin>
+                                </div>
+                            </ng-container>
+                        </p-tabPanel>
+                    </p-tabView>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <app-selected-destination-card flightDirectionIcon="../../../assets/img/icons/icon_flight_direction.svg"
+            [flightTripType]="flightResultData?.tripType === 'roundTrip' ? 'Round Trip' : flightResultData?.tripType === 'oneWay' ? 'One Way' : 'Multi City'"
+            flightDirection="../../../assets/img/icons/iocn_flight_direction2.svg"
+            destinationCountry="{{destinationArri}}" destinationDate="21 Jan ‘ 23" destinationDay="Wedneday"
+            [tripData]="commonResultModel"></app-selected-destination-card>
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-12 col-lg-3">
+            <app-filter-sidebar [filteredFlightData]="flightResultData"
+                [filteredFlightFormData]="flightResultData?.formData" [searchType]="flightResultData?.tripType"
+                [commonResult]="commonResultModel"></app-filter-sidebar>
+        </div>
+        <div class="col-md-12 col-lg-9">
+            <ng-container *ngIf="commonResultModel?.length">
+                <app-flight-list-fliter [commonResult]="commonResultModel"
+                    [airlineList]='flightResultData?.amedeusData?.result?.dictionaries?.carriers' (selectedFlightLowestFIlter)="changeAirlineFilter($event)">
+                </app-flight-list-fliter>
+            </ng-container>
+
+            
+            <ng-container *ngFor="let item of commonResultModel; let i = index">
+                <app-flight-amadeus-result-body *ngIf="item.supplier=='1A'"
+                    [flightsearch_res_amadeus]="flightResultData.amedeusData" [recomm]="item.offer"
+                    [supplier]="item.supplier"
+                    [searchType]="flightResultData?.tripType"></app-flight-amadeus-result-body>
+
+                <app-one-way-trip *ngIf="item.supplier=='Verteil'" [flightsearch_res]="flightResultData.data"
+                    [recomm]="item.offer" [supplier]="item.supplier"
+                    [searchType]="flightResultData?.tripType"></app-one-way-trip>
+
+
+            </ng-container>
+            
+            <div *ngIf="!noDataFound(commonResultModel) || commonResultModel?.length === 0  ">
+                <h2 class="text-center py-5"><strong class="text-primary ">No Results Found</strong> </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading [loderTitle]="'we are finding the best flights for you'"></app-pre-loader>

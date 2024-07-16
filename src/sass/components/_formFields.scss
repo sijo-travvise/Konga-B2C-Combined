@@ -1,0 +1,89 @@
+//forms
+.form_details {
+  .p-float-label {
+    display: inline !important;
+    position: relative;
+  }
+  .p-float-label input:focus ~ label,
+  .p-float-label input.p-filled ~ label,
+  .p-float-label textarea:focus ~ label,
+  .p-float-label textarea.p-filled ~ label,
+  .p-float-label .p-inputwrapper-focus ~ label,
+  .p-float-label .p-inputwrapper-filled ~ label {
+    top: -0.4rem !important;
+    font-size: 12px !important;
+  }
+  .p-float-label > label {
+    left: 1rem;
+    font-size: 12px;
+    color: var(--text-secondary-color);
+    transition-duration: 0.2s;
+    top: 0.50rem !important;
+  }
+  .p-dropdown {
+    width: 100%;
+    .pi-chevron-down:before {
+      color: var(--text-secondary-color) !important;
+    }
+  }
+  .p-dropdown .p-dropdown-trigger {
+    color: var(--text-secondary-color);
+    width: 1rem;
+  }
+  .p-dropdown-label {
+    display: inline-block;
+    margin: 0 0px 0px 0 !important;
+    color: var(--black-color) !important;
+    font-weight: 700 !important;
+    font-size: rem(18) !important;
+    line-height: 21px;
+    cursor: pointer;
+    width: 100%;
+  }
+  .p-dropdown:not(.p-disabled).p-focus {
+    box-shadow: 0 0 0 0;
+    border: 1px solid var(--black-color);
+    outline-width: 0;
+    transition: All 0.5s ease-in;
+    -webkit-transition: All 0.5s ease-in;
+    -moz-transition: All 0.5s ease-in;
+    -o-transition: All 0.5s ease-in;
+  }
+  .p-dropdown:not(.p-disabled):hover {
+    border: 1px solid var(--primary-color);
+  }
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    color: var(--primary-color);
+    background: #eff6ff;
+
+    text-align: center;
+  }
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    color: var(--text-secondary-color);
+    text-align: center;
+  }
+
+  .p-inputtext {
+    padding: 15px;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: rem(18);
+    font-weight: 800;
+    color: var(--black-color);
+    border-radius: 4px;
+   
+  }
+  .p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0rem #bfdbfe;
+    border-color: var(--black-color);
+  }
+  p-inputtext:enabled:hover {
+    border-color: var(--black-color);
+  }
+  .p-float-label textarea ~ label {
+    top: 2rem;
+  }
+}

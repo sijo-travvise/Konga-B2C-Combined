@@ -1,0 +1,24 @@
+.card__form__tab{
+    .p-inputtext{
+        ::-webkit-input-placeholder { /* Edge */
+            font-weight: 400;
+          }
+          
+          :-ms-input-placeholder { /* Internet Explorer */
+            font-weight: 400;
+          }
+          
+          ::placeholder {
+            font-weight: 400;
+          }
+    }
+    
+  }
+  .pi-info-circle{
+    position: absolute;
+    top: 28px;
+    right: 10px;
+  }
+  .hint{
+    font-size: 10px;
+  }

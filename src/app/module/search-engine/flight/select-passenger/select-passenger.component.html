@@ -1,0 +1,37 @@
+
+
+<div class="selectPassenger d-flex align-items-center">
+    <div class="me-3">
+
+        <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+            <button
+                type="button"
+                class="d-flex align-items-center btn-select-passenger"
+                id="dropdownManual"
+                ngbDropdownAnchor
+                (focus)="myDrop.open()"
+            >
+            <i class="icon-user me-2"></i>    <span *ngIf="totalLimit>=0" class="flight__passenger__count">{{totalLimit + passengerList[2]?.count }} Passenger</span> <i class=" pi pi-chevron-down ms-2"></i> 
+            </button> 
+            <div class="passengerCard" ngbDropdownMenu aria-labelledby="dropdownManual">
+                <h4 class="mb-3"><b>Add Passengers</b></h4>
+                <ul>
+                    <li *ngFor="let passenger of passengerList; let i= index;">
+                        <div>
+                            <h6>{{passenger.passengerType}}</h6>
+                            <p> {{passenger.passengerAgeLimit}}</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button class="p-button-outlined p-button" (click)="passengerCount('decrement',passenger.passengerType,$event,i)" (mousedown)="stopEventProp($event)"><i class="pi pi-minus"></i></button>
+                            <span class="count mx-3">{{passenger.count}}</span>
+                            <button class="p-button-outlined p-button" (click)="passengerCount('increment',passenger.passengerType,$event, i )" (mousedown)="stopEventProp($event)"><i class="pi pi-plus"></i></button>
+                        </div>
+                    </li>
+                    
+                </ul>
+                <button class="p-button p-button-primary btn-add mt-3 text-center" (click)="addPassenger($event)" ngbDropdownItem >Add Passengers</button>
+            </div>
+        </div>
+    
+    </div>
+</div>

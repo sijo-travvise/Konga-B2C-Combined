@@ -1,0 +1,53 @@
+<form>
+    <div class="row px-1">
+        <div class="col-md-6 ">
+            <div class="row">
+                <div class="col-md-6 px-2 position-relative">
+                    <div class="p-float-label">
+                        <p-autoComplete [showEmptyMessage]="true" [suggestions]="filteredCountries"
+                            (completeMethod)="filterCountry($event)" field="name" [minLength]="1"></p-autoComplete>
+                        <label>Location</label>
+
+                    </div>
+                </div>
+                <div class="col-md-6 px-2">
+                    <div class="p-float-label">
+                        <p-calendar  selectionMode="range" [readonlyInput]="true"
+                            inputId="range" dateFormat="dd-M-yy"></p-calendar>
+                        <label for="basic">Check In / Check Out</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3 px-2 form-text-custom" ngbDropdown #myDrop1="ngbDropdown">
+            <!-- <div class="p-float-label form-text-custom">
+                <input id="float-input" type="text" pInputText value="1 Room / 3 Guests / 2 Nights" disabled  id="dropdownManual"
+                ngbDropdownAnchor
+                (focus)="myDrop1.open()"> 
+                <label>Room / Guest / Nights</label>
+            </div>
+            <div  ngbDropdownMenu aria-labelledby="dropdownManual">
+               <p>panel</p>
+            </div> -->
+            <div class="d-inline-block disabled" ngbDropdown #myDrop="ngbDropdown" style="width: 100%;">
+                <button type="button" class="btn p-0" id="dropdownManual" ngbDropdownAnchor
+                    (focus)="myDrop.open()" style="width: 100%;">
+                    <!-- Toggle dropdown -->
+                    <div class="p-float-label ">
+                        <input id="float-input" type="text" pInputText value="1 Room / 3 Guests / 2 Nights" disabled>
+                        <label>Room / Guest / Nights</label>
+                    </div>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownManual" class="passengerCard">
+                   <app-select-room-traveller></app-select-room-traveller>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 px-2">
+            <button class="btn btn-primary w-100 h-100" (click)="resultPage()">Modify </button>
+            <!-- <i class="pi pi-search"
+                    style="font-size: rem(12)"></i> -->
+        </div>
+    </div>
+</form>

@@ -1,0 +1,6 @@
+@import '../../../sass/all.scss';
+.card_details_wrapper{
+    border-radius: rem(5);
+    border: 2px solid var(--primary-color);
+    padding: rem(20);
+}

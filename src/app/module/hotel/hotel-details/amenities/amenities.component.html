@@ -1,0 +1,17 @@
+<div class="row main-sections-tab-content">
+    <h2 class="mb-4">Amenities</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            <ul class="amenitiesList">
+                <li *ngFor="let amenities of amenitiesList">
+                    <div class="d-flex align-items-center gap-3 ">
+                        <img src="{{amenities.icon}}" />
+                        <span>{{amenities.title}}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</div>

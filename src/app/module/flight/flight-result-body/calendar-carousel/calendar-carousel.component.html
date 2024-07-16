@@ -1,0 +1,34 @@
+<div class="row mx-0 mb-2">
+    <span class="cheapest">Cheapest</span>
+</div>
+<div class="mb-3">
+  
+    <owl-carousel-o class="dateSelectionSlider " [options]="customOptions">
+
+        <ng-container>
+            <ng-template carouselSlide *ngFor="let slide of slides; let i = index" [class.activeIndex]="activeIndex === i" (click)="activeIndex = i">
+                <div class="card">
+                    <div class="cardHeader  px-3 py-2 d-flex justify-content-between">
+                        <div class="date text-center ">
+                            <h5>{{slide.date}}</h5>
+                            <h6>{{slide.month}}</h6>
+                        </div>
+                        <div class="flight__logo">
+                            <img [src]="slide.img" />
+                        </div>
+                        <div class="date text-center ">
+                            <h5>{{slide.date}}</h5>
+                            <h6>{{slide.month}}</h6>
+                        </div>
+                    </div>
+                    <div class="cardFooter text-center">
+                        <h4><b>₦{{slide.amount}}</b></h4>
+                    </div>
+                </div>
+            </ng-template>
+            
+        </ng-container>
+    
+    </owl-carousel-o>
+</div>
+

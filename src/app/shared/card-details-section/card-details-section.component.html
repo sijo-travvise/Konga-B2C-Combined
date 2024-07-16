@@ -1,0 +1,24 @@
+<div class="card_details_wrapper mt-4 mb-4">
+    <div class="row">
+        <div class="col-lg-6">
+            <app-input-field [title]="'Card Holder’s Name'"
+            [isRequired]=false></app-input-field>
+        </div>
+        <div class="col-lg-6">
+            <app-input-field [title]="'Card Number'"
+            [isRequired]=false type="number"></app-input-field>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-lg-4">
+            <app-month-year-picker [title]="'Expiration Date : Month / Year'" ></app-month-year-picker>
+        </div>
+        <div class="col-lg-3">
+            <app-input-field [title]="'Card Number'"
+            [isRequired]=false type="number"></app-input-field>
+        </div>
+    </div>
+</div>
+<div class="checkbox_special_request">
+    <app-checkbox [checkBoxOptions]="saveCarddetails" ></app-checkbox>
+</div>

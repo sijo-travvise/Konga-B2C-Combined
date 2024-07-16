@@ -1,0 +1,11 @@
+<div class="flex flex-column gap-2 trvInputGroup position-relative">
+    <label for="float-input">{{title}} &nbsp; <span class="label__optional" *ngIf="isOptional">( Optional )</span></label>
+    <ng-container  *ngIf="!isSuffix; else suffix">
+    <input id="float-input" type="text" pInputText [type]="showPassword ? 'text' : type" [formControl] ="formControls" [required]="isRequired" [placeholder]="placeholder"> 
+</ng-container>
+    <ng-template #suffix>
+        <p-inputNumber [formControl]="formControls" inputId="mile" suffix="{{suffixValue}}"  (onInput)="changeField($event)"> </p-inputNumber>
+    </ng-template>
+    <span class="hint" *ngIf="isHint">{{isHintText}}</span>
+    <span class=" pi pi-info-circle" *ngIf="isHintIcon"></span>
+</div>

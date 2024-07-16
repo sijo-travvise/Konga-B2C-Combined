@@ -1,0 +1,159 @@
+@import "../../../../../sass/all.scss";
+.main-sections-tab-content {
+  h2 {
+    font-weight: 700;
+    font-size: rem(25);
+    line-height: rem(36);
+    color: var(--black-color);
+  }
+  
+
+
+  .triangle-down {
+    width: rem(90);
+    height: rem(50);
+    position: relative;
+    background: var(--primary-color);
+    color: var(--color-white);
+    font-size: rem(25);
+    font-family: $montBold;
+    text-align: center;
+    line-height: rem(50);
+
+   &::after{
+      position: absolute;
+      bottom: -45px;
+      left: 0;
+      content: "";
+      border-left: rem(45) solid transparent;
+      border-right: rem(45) solid transparent;
+      border-top: rem(48) solid  var(--primary-color);
+    }
+
+  }
+  .excelentReivew{
+    h5{
+      font-size: rem(20);
+      color: var(--primary-color);
+      font-family: $montSemiBold;
+    }
+    p{
+      font-size: rem(16);
+      color: var(--text-gray-200);
+      font-family: $montRegular;
+    }
+  }
+
+}
+.hotel__rating{
+  border: rem(1) solid var(--bg-gray-color-100);
+  border-radius: rem(3);
+  background: var(--bg-white);
+  padding: rem(5) rem(15) rem(8);
+  p{
+    font-size: rem(12);
+    color: var(--text-gray-200);
+    font-family: $montRegular;
+    text-align: center;
+  }
+}
+.pinnedButton{
+  background: transparent;
+  border: 0;
+  font-size: rem(18);
+  font-family: $montBold;
+  margin-bottom: rem(40) !important;
+  &:hover{
+    color: var(--primary-color);
+  }
+}
+.reviewSection{
+  .usrImg{
+    position: absolute;
+    top: rem(-20);
+    left: rem(-25);
+    width: rem(56);
+    border-radius: rem(50);
+  }
+  h4{
+    font-size: rem(22);
+    font-family: $montBold;
+    text-align: left;
+  }
+  p{
+    font-size: rem(12);
+    color: var(--text-gray-200);
+    font-family: $montRegular;
+    line-height: rem(25);
+    text-align: justify;
+
+  }
+
+  
+  .triangle-down {
+    width: rem(35);
+    height: rem(35);
+    position: relative;
+    background: var(--primary-color);
+    color: var(--color-white);
+    font-size: rem(16);
+    font-family: $montBold;
+    text-align: center;
+    line-height: rem(35);
+
+   &::after{
+      position: absolute;
+      bottom: -21px;
+      left: 0;
+      content: "";
+      border-left: rem(18) solid transparent;
+      border-right: rem(18) solid transparent;
+      border-top: rem(23) solid  var(--primary-color);
+    }
+
+  }
+  .excelentReivew{
+    h5{
+      font-size: rem(16);
+      color: var(--text-primary-color);
+      font-family: $montSemiBold;
+      margin-bottom: 0;
+    }
+    p{
+      font-size: rem(12);
+      color: var(--text-gray-200);
+      font-family: $montRegular;
+    }
+  }
+  .reviewDate{
+    h6{
+      font-size: rem(14);
+      color: var(--text-secondary-color);
+      font-family: $montSemiBold;
+      margin-bottom: 0;
+    }
+    .rvDate{
+      font-size: rem(14);
+      color: var(--primary-color);
+      font-family: $montSemiBold;
+    }
+  }
+
+  .btn-link-review{
+    background: transparent;
+    border: 0;
+    font-size: rem(16);
+    font-family: $montSemiBold;
+    color: var(--primary-color);
+    &:hover{
+      color: var(--text-primar-color);
+    }
+  }
+
+
+}
+
+
+.ratingSection{
+  
+}

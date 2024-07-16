@@ -1,0 +1,37 @@
+
+app-pre-loader{
+    background: rgb(255 255 255 / 89%);
+    display: inherit;
+    position: fixed;
+    // z-index: 111;
+    z-index: 1500;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    h2{
+        color: var(--text-primary-color);
+        font-size: rem(18);
+    }
+}
+.p-progressbar-label{
+    font-size: rem(9);
+    font-weight: 800;
+}
+.p-progressbar .p-progressbar-value{
+    // background-image:linear-gradient(90.43deg, #901918 -32.04%, #5241B8 116.27%);
+    background-image:linear-gradient(to right, #e7057e, #e7057e, #e705e6, #e705e6, #7005eb);
+    border-radius: rem(6);
+}
+.reviewProgress {
+    .p-progressbar{
+        height: rem(16);
+        .p-progressbar-value{
+            background: var(--yellow);
+        }
+        .p-progressbar-label{
+            display: none !important;
+        }
+    }
+   
+}

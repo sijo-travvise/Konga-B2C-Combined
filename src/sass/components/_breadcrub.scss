@@ -1,0 +1,98 @@
+// .p-breadcrumb-chevron{
+//     display: none;
+// }
+
+// .p-menuitem-link-active {
+//     width: 200px;
+//     height: 40px;
+//     position: relative;
+//     background: red;
+//     &:after {
+//         content: "";
+//         position: absolute;
+//         left: 0;
+//         bottom: 0;
+//         width: 0;
+//         height: 0;
+//         border-left: 20px solid white;
+//         border-top: 20px solid transparent;
+//         border-bottom: 20px solid transparent;
+//       }
+//       &:before {
+//         content: "";
+//         position: absolute;
+//         right: -20px;
+//         bottom: 0;
+//         width: 0;
+//         height: 0;
+//         border-left: 20px solid red;
+//         border-top: 20px solid transparent;
+//         border-bottom: 20px solid transparent;
+//       }
+//   }
+
+.custom-bread-crumb {
+  padding: 0 !important;
+  gap: 20px;
+  display: flex;
+  span {
+    // padding: 10px 0px !important;
+    display: flex;
+    li {
+        display: flex !important;
+        align-items: center;
+        a{
+            font-size: rem(14);
+        }
+      span {
+        background-color: var(--primary-color) !important;
+        // background-image: url('/assets/img/common/arrow.png');
+        position: relative;
+        text-align: center;
+        color: #fff;
+        padding: rem(12) rem(12) rem(12) rem(30) !important;
+        font-size: rem(14);
+        text-transform: capitalize;
+        &:after{
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: rem(15) solid rgb(217, 217, 217) !important;
+            border-top: rem(20) solid transparent;
+            border-bottom: rem(18) solid transparent;
+        }
+        &:before {
+            content: "";
+            position: absolute;
+            right: rem(-21);
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: rem(22) solid var(--primary-color);
+            border-top: rem(20) solid transparent;
+            border-bottom: rem(18) solid transparent;
+          }
+      }
+      span.line {
+        padding: 0 !important;
+        &::after, &::before{
+            border: 0;
+        }
+      }
+
+
+    //   :after {
+    //     content: "";
+    //     position: absolute;
+    //     right: -20px;
+    //     top: 0;
+    //     border-top: 20px solid transparent;
+    //     border-bottom: 20px solid transparent;
+    //     border-left: 20px solid var(--primary-color);
+    //   }
+    }
+  }
+}

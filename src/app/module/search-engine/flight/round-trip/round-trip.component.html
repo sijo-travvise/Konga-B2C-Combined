@@ -1,0 +1,52 @@
+<form>
+    <div class="row px-1">
+        <div class="col-md-6 ">
+            <div class="row">
+                <div class="col-md-6 px-2 position-relative">
+                    <div class="p-float-label">
+                        <p-autoComplete  [showEmptyMessage]="true" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [minLength]="1"></p-autoComplete>
+                        <label>Depart From ?</label>
+                        <p class="airportName">[DOH] Hamad International Airport</p>
+                    </div>
+                    <span class="icon-swap">
+                        <img src="assets/img/icons/icon-swap.svg" alt="icon swap">
+                    </span>
+                </div>
+                <div class="col-md-6 px-2">
+                    <div class="p-float-label">
+                        <p-autoComplete  [showEmptyMessage]="true" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [minLength]="1"></p-autoComplete>
+                        <label for="float-input">To Where ?</label>
+                        <p class="airportName">[DOH] Hamad International Airport</p>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+        <div class="col-md-3 px-2">
+            <div class="p-float-label">
+                <p-calendar  selectionMode="range" dateFormat="dd-M-yy"  inputId="range"></p-calendar>
+                <label for="basic">Depart Date</label>
+            </div>
+            
+        </div>
+        <div class="col-md-3 px-2">
+            <button class="btn btn-primary w-100 h-100">Search <i class="pi pi-search" style="font-size: rem(12)"></i></button>
+        </div>
+    </div>
+    <!-- <div class="row  mt-4">
+        <div class="col-md-12 d-flex align-item-center">
+            <div class="p-field-checkbox me-4">
+                <p-checkbox  value="Direct flights only "  inputId="direct"></p-checkbox>
+                <label for="direct">Direct flights only </label>
+            </div>
+            <div class="p-field-checkbox me-4">
+                <p-checkbox  value="Flexible Date  ± 3 days "  inputId="flexDate"></p-checkbox>
+                <label for="flexDate">Flexible Date  ± 3 days </label>
+            </div>
+            <div class="p-field-checkbox">
+                <p-checkbox  value="Add Nearby Airports"  inputId="nearAirport"></p-checkbox>
+                <label for="nearAirport">Add Nearby Airports</label>
+            </div>
+        </div>
+    </div> -->
+</form>

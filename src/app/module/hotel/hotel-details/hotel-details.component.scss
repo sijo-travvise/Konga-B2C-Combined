@@ -1,0 +1,185 @@
+@import "../../../../sass/all.scss";
+.searchEngineOuter {
+  padding: rem(30);
+}
+
+.hotel-image-gallery {
+  padding-top: rem(10);
+  padding-bottom: rem(10);
+  .overview {
+    p {
+      font-weight: 400;
+      font-size: rem(20);
+      line-height: rem(29);
+      letter-spacing: 0.0002em;
+      color: var(--black-color);
+    }
+    h2 {
+      font-weight: 700;
+      font-size: rem(20);
+      line-height: rem(23);
+      letter-spacing: 0.0102em;
+      color: var(--black-color);
+    }
+    .image-style {
+      width: 100% !important;
+      height: rem(300) !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      position: relative;
+    }
+    .image-style1 {
+      width: 100% !important;
+      height: rem(300) !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      position: relative;
+    }
+    .image-style2 {
+      width: 100% !important;
+      height: rem(195) !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      position: relative;
+    }
+    .more_images {
+      color: var(--color-white);
+      border: none;
+      border-radius: rem(1);
+      font-size: rem(12);
+      line-height: rem(14);
+      bottom: rem(0);
+      right: 35%;
+      top: 0%;
+      position: absolute;
+      font-weight: 600;
+      font-size: rem(18);
+      text-decoration: underline;
+    }
+  }
+}
+.top_recommendation_section {
+  h3 {
+    font-weight: 700;
+    font-size: 1.5625rem;
+    line-height: 2.25rem;
+    color: var(--black-color);
+  }
+  .card {
+    background: #ffffff;
+    box-shadow: rem(0) rem(16) rem(25) #f0f0f0;
+    border-radius: rem(3);
+    border: none;
+    h4 {
+      font-weight: 700;
+      font-size: rem(16);
+      line-height: rem(19);
+      color: var(--black-color);
+    }
+    h5{
+      font-weight: 700;
+      font-size: rem(20);
+      line-height: rem(24);
+      color: var(--black-color);
+    }
+    p {
+      font-weight: 400;
+      font-size: rem(12);
+      line-height: rem(14);
+      color: var(--black-color);
+    }
+    span {
+      font-weight: 700;
+      font-size: rem(12);
+      line-height: rem(14);
+      color: var(--text-secondary-color);
+    }
+    .background {
+      background-size: cover;
+      width: 100%;
+      height: rem(160);
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+    }
+    #flag {
+      width: rem(40);
+      height: rem(20);
+      box-sizing: content-box;
+      padding-top: rem(8);
+      position: relative;
+      background: var(--bg-dark-teal-color);
+      color: white;
+      font-size: rem(13);
+      text-align: center;
+      font-weight: 600;
+    }
+    h5 {
+      font-weight: 700;
+      font-size: rem(16);
+      line-height: rem(19);
+      color: var(--black-color);
+    }
+  }
+}
+
+
+
+.flight__fare__card{
+  background: var(--color-white);
+  border: rem(1) solid var(--bg-gray-color-100);
+  padding: rem(60) rem(20) rem(30);
+  border-bottom-left-radius: rem(5);
+  border-bottom-right-radius: rem(5);
+  position: relative;
+  .p-cercle-arrow{
+      width: rem(60);
+      height: rem(60);
+      border-radius: rem(50);
+      background: var(--bg-white);
+      box-shadow: 0 0 15px #ddd;
+      border: 0;
+      position:absolute;
+      left: 50%;
+      margin-left: rem(-30);
+      top: rem(-30);
+      i{
+          font-size: rem(22);
+      }
+  }
+  h6,h5{
+      font-size: rem(18);
+      font-family: $montBold;
+      color: var(--text-primary-color);
+  }
+}
+
+.tab-view-custom-hotel{
+  .sticky{
+      position: -webkit-sticky;
+      position: sticky;
+      top: rem(0);
+      // background-color: var(--bg-white);
+      // border: solid rem(1) var(--bg-gray-color-100);
+      // padding: rem(15) rem(20);
+      z-index: 111;
+      // padding-bottom: rem(40);
+    }
+    .btn-tab{
+      background: none;
+      border: 0;
+      font-size: rem(18);
+      font-family: $montSemiBold;
+      color: var(--text-primary-color);
+      &.currentTabActive{
+        color: var(--primary-color);
+      }
+    }
+}
+
+.hotel_tabView_contentarea{
+  padding-top: rem(60);
+  // padding-top: rem(60);
+}

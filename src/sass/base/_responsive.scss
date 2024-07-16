@@ -1,0 +1,38 @@
+@include mobile {
+  html {
+    font-size: 2.3vw;
+  }
+  .container {
+      padding-left: 15px;
+      padding-right: 15px;
+  }
+}
+
+@include tablet {
+  html {
+    font-size: 1.7vw;
+  }
+}
+@include desktop {
+  html {
+    font-size: 0.9vw;
+  }
+}
+
+@include widescreen {
+  html {
+    font-size: 0.8vw;
+  }
+}
+
+@include wxga-screen {
+  html {
+    font-size: 1vw;
+  }
+}
+
+@include hd-screen {
+  html {
+    font-size: 0.8vw;
+  }
+}

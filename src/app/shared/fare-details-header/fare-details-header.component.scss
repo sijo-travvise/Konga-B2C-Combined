@@ -1,0 +1,16 @@
+@import "../../../sass/all.scss";
+.fare_details {
+  .background {
+    background: var(--bg-light-yellow);
+    padding: rem(0) rem(10);
+    h3 {
+      font-weight: 700;
+      font-size: rem(30);
+      line-height: rem(42);
+      color: var(--yellow-dark);
+      text-transform: uppercase;
+      text-align: center;
+    }
+   
+  }
+}

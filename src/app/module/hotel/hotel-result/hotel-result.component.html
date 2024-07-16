@@ -1,0 +1,181 @@
+<div class="container mt-3">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="searchEngineOuter cardShadow">
+                <div class="tripDisition">
+                    <app-hotel-search-engine></app-hotel-search-engine>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="hotel__destination">
+        <app-selected-destination-card availablityTitle="120 Hotels" secondTitle="Available" destinationCity="Lagos " destinationCountry="Nigeria" destinationDate="21 Jan ‘ 23" destinationDay="Wedneday"></app-selected-destination-card>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-3">
+            <div class="flight__card border-0 filterContainer py-4 px-4 mb-3">
+                <h4 class="text-center"><img class="me-2" src="assets/img/icons/icon-filter-1.svg" alt="flight" />Filter by</h4>
+            </div>
+            <div class="sidebar-items">
+                
+                <div id="price mt-5 mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+                        <h6 class="mb-0">Price Range</h6><button type="button" class="btn-clear">Clear</button>
+                    </div>
+                    <div class="price-range">
+                        <h5><span>QAR</span> {{rangeValues[0] + ' - ' }} <span>QAR</span> {{ + rangeValues[1]}}</h5>
+                        <div class="mt-4 px-2">
+                            <p-slider [(ngModel)]="rangeValues" [range]="true" [step]="1" [min]="120" [max]="6000"></p-slider>
+                        </div>
+                    </div>
+                </div>
+                <div id="stop" class="mt-5 mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+                        <h6 class="mb-0">Property Type</h6><button type="button" class="btn-clear">Clear</button>
+                    </div>
+                    <div class="stop-filter">
+                        <div class="col-12 px-0 chkboxGroup">
+                            <div class="form-check mb-2">
+                                <label for="inlineCheckbox1" class="form-check-label">Hotels</label>
+                                <input type="checkbox" id="inlineCheckbox1" class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox2" class="form-check-label">Apartments</label>
+                                <input type="checkbox" id="inlineCheckbox2" value="option2"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox3" class="form-check-label">Guest House</label>
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="stop" class="mt-5 mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+                        <h6 class="mb-0">Star Rating</h6><button type="button" class="btn-clear">Clear</button>
+                    </div>
+                    <div class="stop-filter">
+                        <div class="col-12 px-0 ratingChkboxGroup">
+                            <div class="form-check mb-2 ps-0">
+                                <label for="inlineCheckbox5" class="form-check-label d-flex align-items-center">
+                                    <div class="d-block text-center w-100">
+                                        <span class="star_rating">5</span>   <img  style="width: 12px;" src="assets/img/icons/star1.png" alt=""> <span class="rate_count mt-2">( 35 )</span>
+                                        <input type="checkbox" id="inlineCheckbox5" class="form-check-input ng-valid ng-dirty ng-touched">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-check mb-2 ps-0">
+                                <label for="inlineCheckbox5" class="form-check-label d-flex align-items-center">
+                                    <div class="d-block text-center w-100">
+                                        <span class="star_rating">4</span>   <img  style="width: 12px;" src="assets/img/icons/star1.png" alt=""> <span class="rate_count mt-2">( 35 )</span>
+                                        <input type="checkbox" id="inlineCheckbox5" class="form-check-input ng-valid ng-dirty ng-touched">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-check mb-2 ps-0">
+                                <label for="inlineCheckbox5" class="form-check-label d-flex align-items-center">
+                                    <div class="d-block text-center w-100">
+                                        <span class="star_rating">3</span>   <img  style="width: 12px;" src="assets/img/icons/star1.png" alt=""> <span class="rate_count mt-2">( 35 )</span>
+                                        <input type="checkbox" id="inlineCheckbox5" class="form-check-input ng-valid ng-dirty ng-touched">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-check mb-2 ps-0">
+                                <label for="inlineCheckbox5" class="form-check-label d-flex align-items-center">
+                                    <div class="d-block text-center w-100">
+                                        <span class="star_rating">2</span>   <img  style="width: 12px;" src="assets/img/icons/star1.png" alt=""> <span class="rate_count mt-2">( 35 )</span>
+                                        <input type="checkbox" id="inlineCheckbox5" class="form-check-input ng-valid ng-dirty ng-touched">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-check mb-2 ps-0">
+                                <label for="inlineCheckbox5" class="form-check-label d-flex align-items-center">
+                                    <div class="d-block text-center w-100">
+                                        <span class="star_rating">1</span>   <img  style="width: 12px;" src="assets/img/icons/star1.png" alt=""> <span class="rate_count mt-2">( 35 )</span>
+                                        <input type="checkbox" id="inlineCheckbox5" class="form-check-input ng-valid ng-dirty ng-touched">
+                                    </div>
+                                </label>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                <div id="stop" class="mt-5 mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+                        <h6 class="mb-0">Facilities</h6><button type="button" class="btn-clear">Clear</button>
+                    </div>
+                    <div class="stop-filter">
+                        <div class="col-12 px-0 chkboxGroup">
+                            <div class="form-check mb-2">
+                                <label for="inlineCheckbox1" class="form-check-label">All</label>
+                                <input type="checkbox" id="inlineCheckbox1" class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox2" class="form-check-label">Parking</label>
+                                <input type="checkbox" id="inlineCheckbox2" value="option2"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox3" class="form-check-label">Restaurant</label>
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox3" class="form-check-label">Free Wifi</label>
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox3" class="form-check-label">Swimming Pool</label>
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox3" class="form-check-label">Airport
+                                    Shuttle</label>
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox3" class="form-check-label">Facilities for
+                                    disabled guests</label>
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox3" class="form-check-label">Parking</label>
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div id="stop" class="mt-5 mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+                        <h6 class="mb-0">Hotel Chains</h6><button type="button" class="btn-clear">Clear</button>
+                    </div>
+                    <div class="stop-filter">
+                        <div class="col-12 px-0 chkboxGroup">
+                            <div class="form-check mb-2">
+                                <label for="inlineCheckbox1" class="form-check-label">Starwood Hotels</label>
+                                <input type="checkbox" id="inlineCheckbox1" class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox2" class="form-check-label">IHG Hotels</label>
+                                <input type="checkbox" id="inlineCheckbox2" value="option2"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox3" class="form-check-label">Restaurant</label>
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="inlineCheckbox3" class="form-check-label">Accor Hotels</label>
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"
+                                    class="form-check-input ng-valid ng-dirty ng-touched">
+                            </div>
+                            <div class="form-check mb-2"><label for="viewmore" class="form-check-label" style="color:var(--primary-color)">View more</label>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="col-md-9">
+          <app-hotel-result-body></app-hotel-result-body>
+        </div>
+    </div>
+</div>

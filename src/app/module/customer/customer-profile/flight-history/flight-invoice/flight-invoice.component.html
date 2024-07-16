@@ -1,0 +1,162 @@
+<div class="container invoice">
+    <div class="mt-4">
+        <app-fare-details-header fareTitle="Flight Invoice"></app-fare-details-header>
+    </div>
+    <ng-container *ngFor="let itenararyItem of iteneraryData[0]?.associatedRecords" >
+
+  
+    <div class="d-flex justify-content-between align-items-center mt-4 mb-5"  *ngIf="itenararyItem?.originSystemCode === 'GDS'">
+        <img src="assets/img/logo.svg" alt="LOGO" class="img-fluid ">
+        <div class="invoice_headers">
+            <p>Booking Reference No</p>
+            <h2>{{itenararyItem?.reference}}</h2>
+        </div>
+        <div class="invoice_headers">
+            <p>Booking Date</p>
+            <h2>{{itenararyItem?.creationDate | date:'d MMMM y'}}</h2>
+        </div>
+    </div>
+</ng-container>
+    <h3 class="mt-3">Passenger Information</h3>
+    <div class="row mt-3 mb-4">
+        <div class="col-12" *ngFor="let traveler of  iteneraryData[0]?.travelers">
+            <div class="custamerName">
+                <h2>{{traveler.name.firstName}} {{traveler.name.lastName}}</h2>
+            </div>
+            <div class=" row mx-0 align-items-center border border-top-radius">
+                <div class="invoice_headers text-start col-md-2">
+                    <p>Invoice No</p>
+                    <h2> {{iteneraryData[0]?.associatedRecords[0]?.reference}} </h2>
+                </div>
+                <div class="invoice_headers text-start col-md-2">
+                    <p>Invoice Date</p>
+                    <h2></h2>
+                </div>
+                <div class="invoice_headers text-start col-md-2">
+                    <p>Customer Name</p>
+                    <h2>Abdus Salam</h2>
+                </div>
+                <div class="invoice_headers text-start col-md-4">
+                    <p>Customer Email Id</p>
+                    <h2>salamabdus@gmail.com</h2>
+                </div>
+                <div class="invoice_headers text-start col-md-2">
+                    <p>Phone No</p>
+                    <h2>55373025</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="flight__ticketDetails">
+        <h3 class="itenaryTitle">FLIGHT DETAILS</h3>
+        <!-- Loop Start-->
+        <div class="flightDetails" *ngFor="let item of items">
+            <div class="flight__sectrs d-flex  align-items-center gap-4  py-3 px-2 mb-3">
+                <h2>Doha <img class="mx-2" src="../../../../assets/img/icons/icon-destinations.svg" alt=""> London</h2>
+                <span class="duration__label h-100 py-2 ps-3"> Total Duration : 21 hr 00 min </span>
+            </div>
+            <div class="row mx-0 mb-4 flight__Itinerary__contentArea ">
+                <div class="col-md-2 d-flex align-items-center">
+                    <div class="col-12 text-center">
+                        <h4>Saudia Airlines</h4>
+                        <p class="flightNo mb-2">SA 163 -  Boeing 789</p>
+                    </div>
+                </div>
+                <div class="col-md-3 border-left-1 d-flex align-items-center">
+                    <div class="col-12 d-flex align-items-top">
+                        <span class="icon__flight_left ">
+                            <img src="assets/img/icons/icon-flight11.svg" alt="" >
+                        </span>
+                        <div class="ps-2">
+                            <h4>12 : 30</h4>
+                            <p>Lagos, Nigeria, Murtala Muhammed International</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 border-left-1 d-flex align-items-center justify-content-center">
+                    <div class="cl">
+                        <h4>Duration</h4>
+                        <h5 class="totalHour">2 hr 15 min </h5>
+                    </div>
+                    
+                </div>
+                <div class="col-md-3 border-left-1 d-flex align-items-center">
+                    <div class="col-12 d-flex align-items-top">
+                        <span class="icon__flight_right ">
+                            <img src="assets/img/icons/icon-flight12.svg" alt="" >
+                        </span>
+                        <div class="ps-2">
+                            <h4>12 : 30</h4>
+                            <p>Lagos, Nigeria, Murtala Muhammed International</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 border-left-1 d-flex align-items-center">
+                    <div class="flightTicketDetails col-12 text-end">
+                        <label>Status </label>
+                        <span class="status d-inline-block success px-2 py-1 mb-3">Confirmed</span>
+                        <label>Airline PNR </label>
+                        <span class="pnrNo"> AFSSWEDA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flight__Itinerary__tableOuter mb-3 p-0">
+                <table class="table">
+                    <thead>
+                        <th>Passenger Name</th>
+                        <th>Ticket No</th>
+                        <th>Meal Type</th>
+                        <th>Baggage</th>
+                        <th>Seat No</th>
+                    </thead>
+                    <tbody>
+                       <tr>
+                        <td>Mr . Mohammed Osamma</td>
+                        <td>512 - 09886756746   </td>
+                        <td>
+                            <span class="d-block mb-1">Asian Meal</span>
+                            <span class="status d-inline-block success px-2 py-1 mb-3">Confirmed</span>
+                        </td>
+                        <td>30 Kg</td>
+                        <td>
+                            <span class="d-block mb-1">5S</span>
+                            <span class="status d-inline-block success px-2 py-1 mb-3">Confirmed</span>
+                        </td>
+                       </tr>
+    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Loop End -->
+
+
+        <h3 class="itenaryTitle mt-4">PAYMENT INFORMATION</h3>
+        <div class="card paymentDeatails p-4 mb-5">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Subtotal</th>
+                        <th class="text-end">₦ 163,398.00</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Total Net Amount</th>
+                        <th class="text-end">₦ 163,398.00</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+    
+</div>

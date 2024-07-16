@@ -1,0 +1,19 @@
+.p-datepicker table td > span.p-highlight {
+    color: #901918 !important;
+    background: #f1d6d6 !important;
+}
+.trvDatePickerGroup{
+    >label{
+        margin-bottom: rem(7);
+    }
+    .p-calendar{
+        height: rem(42);
+        width: 100%;
+        font-weight: 800;
+        color: var(--text-primary-color);
+    }
+    .p-inputtext{
+        font-weight: 800;
+        color: var(--text-primary-color);
+    }
+}

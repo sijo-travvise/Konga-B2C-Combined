@@ -1,0 +1,165 @@
+<div class="traveller-calulate-persons">
+    <div class="passengers">
+        <!-- <h6>Total Rooms Added :{{roomCount}}</h6> -->
+        <div class="passengers-types">
+            <ng-container *ngFor="let room of searchRoomsInfo;let i=index;">
+                <div class="multi_city_form ">
+                    <div class="multiple_room ">
+                        <!-- <div class="one-room-detail px-3">
+                            <div class="d-flex justify-content-between">
+                                <h5>Room {{i+1}}</h5>
+                                <div class="multi_form_edit">
+                                    <p (click)="editRoom(i,$event)"><i class="pi pi-pencil"></i> </p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p><span>{{room.adultCount}}</span> Adult</p>
+                                <p><span>{{room.childDetails.length}}</span> Child</p>
+                                <div class="multi_form_remove">
+                                    <p (click)="removeRoom(i,$event)"><i class="pi pi-trash"></i> </p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="one-room-detail px-3 pb-lg-2">
+                            <div class="row align-items-center">
+                                <div class="col-lg-9">
+                                    <h5>Room {{i+1}}</h5>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p><span>{{room.adultCount}}</span> Adult</p>
+                                        <p><span>{{room.childDetails.length}}</span> Child</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="multi_form_edit">
+                                            <p (click)="editRoom(i,$event)"><i class="pi pi-pencil"></i> </p>
+                                        </div>
+                                        <div class="multi_form_remove">
+                                            <p (click)="removeRoom(i,$event)"><i class="pi pi-trash"></i> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="room.showorhide" class=" px-3">
+                            <!-- *ngIf="room.showorhide" -->
+                            <div class="passengers-type">
+                                <div class="text">
+
+                                    <div class="type-label">
+                                        <p>Adult</p>
+                                        <span>(17+ yrs)</span>
+                                    </div>
+                                </div>
+                                <div class="button-set text d-flex align-items-center">
+                                    <button [disabled]="isAdultButtonDisable" type="button"
+                                        class="p-button-outlined p-button" (click)="DecrementAdult(i,$event)"
+                                        (mousedown)="StopEventProp($event)">
+                                        <i class="pi pi-minus"></i>
+                                    </button>
+                                    <span class="count pcount mx-2">{{room.adultCount}}</span>
+                                    <button [disabled]="isAdultButtonDisable" type="button"
+                                        class="p-button-outlined p-button" (click)="IncrementAdult(i,$event)"
+                                        (mousedown)="StopEventProp($event)">
+                                        <i class="pi pi-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="passengers-type">
+                                <div class="text">
+
+                                    <div class="type-label">
+                                        <p class="fz14 mb-xs-0">
+                                            Child
+                                        </p>
+                                        <span>(Less than 17yrs)</span>
+                                    </div>
+                                </div>
+                                <div class="button-set text d-flex align-items-center">
+
+                                    <button [disabled]="isChildButtonDisable" type="button"
+                                        class="p-button-outlined p-button" (click)="DecrementChild(i,$event)">
+                                        <i class="pi pi-minus"></i>
+                                    </button>
+                                    <span class="count pcount mx-2">{{room.childDetails.length}}</span>
+                                    <button [disabled]="isChildButtonDisable" type="button"
+                                        class="p-button-outlined p-button" (click)="IncrementChild(i,$event)">
+                                        <i class="pi pi-plus"></i>
+                                    </button>
+                                </div>
+
+
+                            </div>
+                            <div class="child_age" *ngIf="room.childDetails.length>0">
+                                <div class="button-set">
+                                    <ul class="childAgeList appendBottom10">
+
+                                        <li *ngFor="let child of room.childDetails; let k=index;">
+                                            <span data-cy="childAgeLabel-1" class="latoBold font12 grayText appendBottom10">Child {{k+1}}  Age</span>
+
+                                            <label class="lblAge" for="0">
+                                                <select data-cy="childAge-0" id="0" class="ageSelectBox"
+                                                    (change)="ChildAgeChange($event,i,k)"
+                                                    (click)="$event.stopPropagation()"
+                                                    (keydown)="$event.stopPropagation()">
+                                                    <!-- <option value="Select" data-cy="childAgeValue-Select">Select</option> -->
+
+                                                    <option value="1" data-cy="childAgeValue-1">1</option>
+
+                                                    <option value="2" data-cy="childAgeValue-2">2</option>
+
+                                                    <option value="3" data-cy="childAgeValue-3">3</option>
+
+                                                    <option value="4" data-cy="childAgeValue-4">4</option>
+
+                                                    <option value="5" data-cy="childAgeValue-5">5</option>
+
+                                                    <option value="6" data-cy="childAgeValue-6">6</option>
+
+                                                    <option value="7" data-cy="childAgeValue-7">7</option>
+
+                                                    <option value="8" data-cy="childAgeValue-8">8</option>
+
+                                                    <option value="9" data-cy="childAgeValue-9">9</option>
+
+                                                    <option value="10" data-cy="childAgeValue-10">10</option>
+
+                                                    <option value="11" data-cy="childAgeValue-11">11</option>
+
+                                                    <option value="12" data-cy="childAgeValue-12">12</option>
+
+                                                    <option value="13" data-cy="childAgeValue-12">13</option>
+
+                                                    <option value="14" data-cy="childAgeValue-12">14</option>
+
+                                                    <option value="15" data-cy="childAgeValue-12">15</option>
+
+                                                    <option value="16" data-cy="childAgeValue-12">16</option>
+
+                                                    <option value="17" selected data-cy="childAgeValue-12">17
+                                                    </option>
+                                                </select>
+
+                                            </label>
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-12 px-3" *ngIf="i>0">
+                       
+                    </div> -->
+                </div>
+            </ng-container>
+        </div>
+        <div class="addroom_box px-3">
+            <p (click)="addAnotherRoom($event)" (mousedown)="StopEventProp($event)">Add Room +</p>
+        </div>
+        <div class="text-center px-3">
+            <button class="p-button p-button-primary btn-add mt-3" ngbDropdownItem>Done</button>
+        </div>
+    </div>
+</div>

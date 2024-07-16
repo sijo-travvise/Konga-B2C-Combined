@@ -1,0 +1,83 @@
+
+@import '../../../../../sass/all.scss';
+.icon-swap{
+    position: absolute;
+    right: rem(-15);
+    top: rem(17);
+    width: rem(40);
+    height: rem(40);
+    background: var(--primary-color);
+    border-radius: 100%;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-out;
+    cursor: pointer;
+    img{
+        transform: rotate(0rad);
+        transition: all 0.5s ease-out;
+        width: rem(23);
+    }
+    &.iconRotate{
+        img{
+            transform: rotate(3.1348rad);
+            transition: all 0.5s ease-out;
+        }
+    }
+}
+.airportName{
+    font-size: rem(12);
+    color: var(--text-primary-color);
+    font-weight: 500;
+    position: absolute;
+    bottom: rem(9);
+    left: rem(14);
+    white-space: nowrap; 
+    width: 85%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.btn-add{
+    width: 100%;
+    padding: rem(13);
+    justify-content: center;
+    font-size: rem(16);
+    font-weight: 700;
+}
+.h-64{
+    height: rem(64);
+}
+.btn-close{
+    width: rem(25);
+    height: rem(25);
+    background: var(--primary-color);
+    border-radius: 50%;
+    color: var(--text-white-color);
+    position: absolute;
+    top: rem(20);
+    right: rem(-4);
+    opacity: 1;
+    i{
+        font-size: rem(15);
+    }
+    
+}
+
+
+@media (max-width: #{$tablet-width - 1px}) {
+    .mob__device__top_50{
+        margin-top: rem(50);
+    }
+    .icon-swap {
+        right: auto;
+        left: 45%;
+        top: auto;
+        bottom: rem(-28);
+    }
+    .mob__flex__wrapp{
+        flex-wrap: wrap;
+    }
+}

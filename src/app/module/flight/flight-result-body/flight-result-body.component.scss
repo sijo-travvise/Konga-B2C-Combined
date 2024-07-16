@@ -1,0 +1,77 @@
+@import '../../../../sass/all.scss';
+.searchEngineOuter{
+    padding: rem(25) rem(70) rem(0);
+}
+
+.tripDisition{
+    position: relative;
+}
+
+.sectionRight{
+    position: absolute;
+    right: 0;
+    top: rem(-6);
+}
+
+.avilable__flights{
+    background: var(--primary-gradient-light);
+    padding: rem(27) rem(20);
+    border-top-left-radius:rem(10) ;
+    border-bottom-left-radius:rem(10) ;
+    h4{
+        font-weight: 400;
+        font-size: rem(18);
+        color: var(--text-white-color);
+    }
+}
+.flight__trip__details{
+    padding: 0 rem(30);
+    border-top-right-radius: rem(10);
+    border-bottom-right-radius: rem(10);
+    .flight__trip__type{
+        border-right: 1px solid var(--text-gray-100);
+        height: 100%;
+        padding-right: rem(30);
+        h6{
+            font-weight: 700;
+            font-size: rem(16);
+            color: var(--text-primary-color);
+        }
+    }
+    .tripFrom, .tripTo{
+        font-weight: 700;
+        font-size: rem(25);
+        color: var(--text-primary-color);
+    }
+    .tripDate{
+        padding-left: rem(30);
+        h6{
+            font-weight: 700;
+            font-size: rem(18);
+            color: var(--text-primary-color);
+            margin-right: rem(15);
+        }
+        span{
+            font-weight: 700;
+            font-size: rem(12);
+            color: var(--text-gray-200);
+        }
+    }
+}
+@media (max-width: #{$desktop-width - 1px}) {
+    .searchEngineOuter{
+        padding-left: rem(30);
+        padding-right: rem(30);
+    }
+    .flight__card .flight-card__body{
+        border-right: 0 !important;
+    }
+}
+@media (max-width: #{$tablet-width - 1px}) {
+    .sectionRight.mob__device__passenger {
+        position: absolute;
+        right: auto;
+        top:rem(55);
+    }
+   
+}

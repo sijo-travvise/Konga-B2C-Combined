@@ -1,0 +1,51 @@
+@import '../../../sass/all.scss';
+.availabilityCard{
+    background: var(--primary-gradient-light);
+    padding: rem(20) rem(20);
+    border-top-left-radius: rem(7);
+    border-bottom-left-radius: rem(7);
+    h2{
+        color: var(--text-white-color);
+        font-size: rem(18);
+        font-family: $montBold;
+        margin: 0;
+        span{
+            font-family: $montRegular;
+        }
+    }
+}
+.selcetDestinationCard{
+    border-top-right-radius: rem(7);
+    border-bottom-right-radius: rem(7);
+    box-shadow: 0 0 0 0rem var(--primary-color);
+    .selected_day, .selected_date{
+        font-size: rem(12);
+        color: var(--text-secondary-color);
+        font-family: $montRegular;
+    }
+    h2{
+        font-size: rem(20);
+        color: var(--text-primary-color);
+        font-family: $montBold;
+    }
+    img{
+        width: rem(40);
+    }
+}
+.flight__direction{
+    height: 100%;
+    border-right: 1px solid var(--bg-gray-color-300);
+    padding-right: rem(20);
+    p{
+        font-size: rem(16);
+        color: var(--text-primary-color);
+        font-family: $montBold;
+    }
+}
+
+@media (max-width: #{$desktop-width - 1px}) {
+
+    .availabilityCard, .selcetDestinationCard{
+        border-radius: rem(7);
+    }
+}

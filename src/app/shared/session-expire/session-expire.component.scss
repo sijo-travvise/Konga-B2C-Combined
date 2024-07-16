@@ -1,0 +1,12 @@
+@import '../../../sass/all.scss';
+.sectionExpiry{
+    background: #343A40;
+    p{
+        font-size: rem(18);
+        font-weight: 400;
+        b{
+            font-size: rem(25);
+            font-weight: 800;
+        }
+    }
+}

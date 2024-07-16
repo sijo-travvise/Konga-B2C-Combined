@@ -1,0 +1,268 @@
+<!-- {{bookingDetailsData | json}} -->
+<div class="row mx-0 card p-4" *ngIf="pnrRetrieveRes !== null  && pnrRetrieveRes !== undefined ">
+    <app-fare-details-header class="px-0" fareTitle="Flight Itinerary Details"></app-fare-details-header>
+    <!-- Loop Section Start-->
+    <div class="flight__Itinerary__Details__outer">
+        <div class="flight__summary__card mb-1">
+            <div class="card__header d-flex align-items-center">
+                <div class="row col-12 mx-0">
+                   
+                        <div class=" d-flex align-items-center px-0 gap-3 flex-wrap">
+                            <img src="../../../../../../assets/img/logo.svg" alt="Logo">
+                           
+                            <div class="d-flex align-items-center gap-3  border-left-1 ps-3 ">
+
+                                <i class="pi pi-check"></i>
+                                <div>
+                                    <p> Congratulations,<br />your reservation is succesful </p> 
+                                    <h3 class="font-weight-bolder pt-2" style="font-size: 12px;"> Your PNR is <strong>  {{pnrRetrieveRes?.AirlinePNR}}</strong>  </h3> 
+                                </div>
+                                
+                                
+                            </div>
+
+                            <div class="ms-auto  py-2 paymentStatus d-flex align-items-center gap-3" *ngIf="paymentSuccess== undefined">
+                                <label class="font-weight-600 ">Payment status:</label>
+                                <span class="pending px-3 py-2">Pending</span> 
+                                <button class=" btn btn-primary  ms-auto px-5 " (click)="OnClickPayNow()"> Pay Now </button>
+                            </div>
+                            <div class="ms-auto  py-2 ticketStatus d-flex align-items-center gap-3" *ngIf="paymentSuccess== false">
+                                <label class="font-weight-600 ">Payment status:</label>
+                                <span class="failed px-3 py-2">Failed</span>
+                            </div>
+                            <div class="ms-auto  py-2 ticketStatus d-flex align-items-center gap-3"  *ngIf="paymentSuccess== true">
+                                <label class="font-weight-600 ">Ticket status:</label>
+                                <span class="pending px-3 py-2">Pending</span>
+                            </div>
+
+                            <div class="  py-2 paymentStatus d-flex align-items-center gap-3" *ngIf="pnrRetrieveRes?.Passengers[0]?.TicketNumber === (null || '')">
+                                <button class=" btn btn-primary  ms-auto px-5" (click)="issueTicket()"> Issue Ticket </button>
+                            </div>
+                             
+                        </div>
+                       
+                        <form ngNoForm action="https://www.kongapay.com/paymentgateway" method="POST">
+                            <input hidden name='mode' id='mode' type="text" value="this.mode"
+                                [(ngModel)]="this.mode">
+                            <input hidden name='hash' id='hash' type="text" value="this.hash"
+                                [(ngModel)]="this.hash">
+                            <input hidden name='amount' id='amount' type="number" value="this.amount"
+                                [(ngModel)]="this.amount">
+                            <input hidden name='description' id='description' type="text" value="this.description"
+                                [(ngModel)]="this.description">
+                            <input hidden name='email' id='email' type="email" value="this.email"
+                                [(ngModel)]="this.email">
+                            <input hidden name='merchant_id' id='merchant_id' type="text" value="this.merchant_id"
+                                [(ngModel)]="this.merchant_id">
+                            <input hidden name='reference' id='reference' type="text" value="this.reference"
+                                [(ngModel)]="this.reference">
+                            <input hidden name='firstname' id='firstname' type="text" value="this.firstname"
+                                [(ngModel)]="this.firstname">
+                            <input hidden name='lastname' id='lastname' type="text" value="this.lastname"
+                                [(ngModel)]="this.lastname">
+                            <input hidden name="phone" id='phone' type="text" value="this.phone"
+                                [(ngModel)]="this.phone">
+                            <input hidden name='callback' id='callback' type="text" value="this.callback"
+                                [(ngModel)]="this.callback">
+                            <input hidden name='customerId' id='customerId' type="text" value="this.customerId"
+                                [(ngModel)]="this.customerId">
+                            <div class="container text-center mt-10">
+                                <button hidden class="btn btn_theme btn_md" id="paymentCallButton" type="submit"
+                                    onclick="submit()">Pay</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-12">
+                <h3 class="itenaryTitle">BOOKING DETAILS</h3>
+                <!-- {{bookingDetailsData | json}} -->
+                <ng-container>
+                    <div class="d-flex gap-5 align-items-center border p-3">
+                        <div class="invoice_headers">
+                            <p>Airline PNR</p>
+                            <h4>{{pnrRetrieveRes?.AirlinePNR}}</h4>
+                        </div>
+                        <!-- <div class="invoice_headers">
+                            <p>Booking Date</p>
+                            <h4>{{bookingData?.TransactionDate | date:'d MMMM y'}}</h4>
+                        </div> -->
+
+                        <div class="invoice_headers ms-auto">
+                            <p>Total Amount</p>
+                            <h4 > ₦ {{ (pnrRetrieveRes?.priceSummary?.SubTotal ?? 0) | number:'0.1-2'}} </h4>
+                            <!-- <ng-container *ngIf="bookingData?.fareInstallmentDetails?.isInstallmentApplied; else installmentPayment;">
+                                <h4 > ₦ {{ (bookingData?.TotalFare ?? 0) | number:'0.1-2'}} </h4>
+                        </ng-container > -->
+                        <ng-template #installmentPayment>
+                            <!-- <h4 *ngIf="bookingDetailsData[0]?.transactionDetails?.sellingPrice != undefined"> ₦ {{ bookingDetailsData[0].transactionDetails?.sellingPrice | number:'0.1-2'}} </h4>
+                            <h4 *ngIf="bookingDetailsData[0]?.transactionDetails?.sellingPrice == undefined"> ₦ {{ bookingDetailsData[0].flightOffers[0].price.grandTotal | number:'0.1-2'}} </h4> -->
+                        </ng-template>
+                        </div>
+                        
+
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="flight__ticketDetails">
+            <h3 class="itenaryTitle">FLIGHT DETAILS</h3>
+            <!-- Loop Start-->
+            <ng-container *ngFor="let trips of pnrRetrieveRes?.Trips;let i=index;">
+                <!-- *ngFor=" let segments of itinerary?.segments" -->
+                <div class="flightDetails">
+
+                    <div class="flight__sectrs d-flex  align-items-center gap-4  py-3 px-2 mb-3">
+                        <h2> {{trips?.FlightSegments[0]?.Origin}} <img class="mx-2"
+                                src="../../../../assets/img/icons/icon-destinations.svg" alt="ariline logo" />
+                            {{trips?.FlightSegments[trips?.FlightSegments?.length -1]?.Destination}}</h2>
+                        <span class="duration__label h-100 py-2 ps-3">
+                             <!-- {{itinerary?.segments[0]?.departure?.at | date:'
+                            E, d MMMM y'}} -->
+                            {{
+                                _microService?.getFormatedFlightDate(trips?.FlightSegments[0].DepartureDate,
+                                false,"EE , d&nbsp;MMM&nbsp;''''yy")}}
+                         </span>
+                    </div>
+                    <ng-container *ngFor="let segments of trips?.FlightSegments; let isFirst= first; let segmentIndex = index"> 
+                      
+                    <div class="row mx-0 mb-4 flight__Itinerary__contentArea ">
+                        <div class="col-md-2 d-flex align-items-center py-4">
+
+                            <div class="col-12 text-center">
+                
+                                    <img class="flight__img" src="assets/img/Airlogo/sm{{segments?.MarketingAirline}}.gif"
+                                        alt="{{segments?.MarketingAirline}}" />
+                                    <h4>{{segments?.MarketingAirline}}</h4>
+                                    <p class="flightNo mb-2">{{segments?.FlightNumber }}</p>
+                                    <span class="status success px-2">Confirmed</span>
+                               
+                            </div>
+                        </div>
+                        <div class="col-md-3 border-left-1 d-flex align-items-center">
+                            <div class="col-12 d-flex align-items-top mob__text__center mob_flex__inherit ">
+                                <span class="icon__flight_left ">
+                                    <img src="assets/img/icons/icon-flight11.svg" alt="airline logo">
+                                </span>
+                                <div class="ps-2">
+                                    <h4>
+                                        {{ _microService?.getFormatedFlightTime(segments.DepartureTime)}}
+
+                                    </h4>
+                                    <p class="py-1"><strong>Terminal: {{ segments?.TerminalInfo.FromTerminal}}</strong></p>
+                                    <p style="line-height: 14px;">  {{segments?.Origin}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 border-left-1 d-flex align-items-center justify-content-center">
+                            <div class="cl">
+                                <h4>Duration</h4>
+                                <h5 class="totalHour">  {{_microService?.getFormatedFlightTime(segments?.Duration,
+                                    true) }}  </h5>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 border-left-1 d-flex align-items-center ">
+                            <div class="col-12 d-flex align-items-top  mob__text__center mob_flex__inherit ">
+                                <span class="icon__flight_right ">
+                                    <img src="assets/img/icons/icon-flight12.svg" alt="">
+                                </span>
+                                <div class="ps-2">
+                                    <h4>
+                                        
+                                        {{ _microService?.getFormatedFlightTime(segments.ArrivalTime)}}
+                                    </h4>
+                                        <p class="py-1 font-weight-bolder"> <strong>Terminal: {{segments?.TerminalInfo.ToTerminal}}</strong></p>
+                                        <p style="line-height: 14px;"> {{segments?.Destination}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 border-left-1 d-flex align-items-center">
+                            <div class="flightTicketDetails col-12 text-end">
+                                <label>Cabin </label>
+                                <span
+                                    class="classType">{{segments?.CabinClass}}</span>
+                                <!-- <ng-container *ngIf=" itinerary?.segments?.length > 1">
+                                    <label>Stop </label>
+                                    <ng-container
+                                        *ngFor="let segments of itinerary?.segments; let segIndex = index; let isLast = last ">
+                                        <span class="d-block flightStop"
+                                            *ngIf="itinerary?.segments?.length> 1  && !isLast">
+                                            [ {{segments?.arrival?.iataCode}} ]</span>
+                                    </ng-container>
+                                </ng-container> -->
+                                <!-- <ng-container *ngFor="let associatedRecords of  bookingDetailsData[0]?.associatedRecords">
+
+                                    <ng-container *ngIf=" associatedRecords.originSystemCode === 'GDS'">
+                                        <label>GDS PNR </label>
+                                        <span class="pnrNo">{{associatedRecords.reference}} </span>
+                                    </ng-container>
+
+                                </ng-container> -->
+                                <label>Airline PNR </label>
+
+                                <ng-container >
+                                    <span class="pnrNo">
+                                        {{pnrRetrieveRes.PNRNumber}}</span>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flight__Itinerary__tableOuter mb-3 p-0">
+                        <table class="table">
+                            <thead>
+                                <th>Passenger Name</th>
+                                <!-- <th>E-Mail</th>
+                                <th>Phone</th> -->
+                                <th>Passenger Type</th>
+                                <th>Baggage</th>
+                                
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let travellers of pnrRetrieveRes?.Passengers; let teavellersIndex = index ">
+                                    <td>{{travellers?.PaxTitle}} {{travellers?.FirstName}} {{travellers?.LastName }}</td>
+                                    <td>
+                                        {{travellers?.PaxType === 1 ? 'Adult' : travellers?.PaxType === 2 ? 'Child' : 'Infant'}}
+                                    </td>
+<!--             
+                                    <td>{{travellers?.contact?.emailAddress}}</td>
+                                    <td>{{travellers?.contact?.phones[0]?.number ?? '------'}}</td> -->
+                                    <td>
+                                        
+                                        <!-- <ng-container *ngFor="let travelerPricings of bookingDetailsData[0]?.flightOffers[0]?.travelerPricings">
+                                            <ng-container *ngIf="travelerPricings?.travelerId === travellers?.id ">
+
+                                    
+                                            <ng-container *ngFor="let fareDetailsBySegment of travelerPricings?.fareDetailsBySegment">
+                                              
+                                                <span *ngIf="fareDetailsBySegment?.segmentId === segments?.id ">
+                                                    {{ fareDetailsBySegment.includedCheckedBags?.quantity !== undefined? fareDetailsBySegment.includedCheckedBags.quantity +' PC' : fareDetailsBySegment.includedCheckedBags.weight+ ' KG'}}
+                                                </span>
+                                            </ng-container>
+
+                                        </ng-container>
+                                        </ng-container> -->
+                                       {{travellers?.FreeBaggage?.AllowedWeight ? travellers?.FreeBaggage?.AllowedWeight + ' PC' :  ' -------'}}
+                                    </td>
+                                </tr>
+            
+                            </tbody>
+                        </table>
+                    </div>
+                </ng-container>
+                </div>
+
+            </ng-container>
+            <!-- Loop End -->
+
+        </div>
+    </div>
+
+</div>
+
+<p-toast [appendTo]="'body'"></p-toast>
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
+    [loderTitle]="'Please Wait'"></app-pre-loader>

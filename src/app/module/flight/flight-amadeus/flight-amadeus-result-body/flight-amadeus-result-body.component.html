@@ -1,0 +1,169 @@
+<ng-container *ngIf="recomm">
+  <div class="d-flex bg-white mb-1" *ngIf="recomm.isShowAirlinePriceCard && recomm.isAirlineStop && recomm.isShowAirline && recomm?.isAirShowFilterCard">
+    <div class=" flight__data-row flight__card--row border p-1">
+      <div class="flight__card " [ngClass]="{'border-1 h-100': searchType === 'oneWay'}"
+        *ngFor="let itinery of recomm?.itineraries; let i=index; let first= first; let last = last">
+        <!-- <ng-container *ngFor="let segments of itinery?.segments; let j=index; let isFirst = first;  let isLast = last"> -->
+
+        <div class="flight__CardHeader position-relative d-flex justify-content-start align-items-center gap-2">
+          <span class="flight-bg-primary  px-3" *ngIf="true"> {{searchType === 'roundTrip' && last ? 'Return':
+            'Depart'}}</span>
+          <div class="py-1 d-flex align-items-center gap-2">
+            <img src="assets/img/Airlogo/sm{{itinery.segments[0].carrierCode}}.gif"
+              alt="{{itinery.segments[0].carrierCode}}" class="flight-logo" />
+            <h6 class="flight__name">
+              <!-- {{}} -->
+              <ng-container *ngFor="let carrier of flightsearch_res_amadeus?.result?.dictionaries?.carriers | keyvalue">
+                <span *ngIf="carrier?.key === itinery?.segments[0]?.carrierCode">
+                  {{ carrier.value }}
+                </span>
+              </ng-container>
+            </h6>
+          </div>
+
+          <button *ngIf="first"
+            class="p-button-outlined p-button w-110 justify-content-center py-1 px-3 w-auto  rounded  ms-auto me-2">
+            {{supplier | uppercase}} </button>
+
+        </div>
+
+        <div class="row mx-0 flight_card_row py-4" [ngClass]="{'h-75': searchType === 'oneWay'}">
+          <div class="col-md-10">
+            <div class="flight-card__body d-flex justify-content-between align-items-center h-100 mob_pe_0">
+              <div class="flight-card__journey-details">
+                <h6 class="at-flight-card-depart-time">
+                  {{itinery?.segments[0].departure.at | date:'HH:mm'}}
+
+                </h6>
+                <h6 class="at-flight-card-origin-code">
+                  {{itinery?.segments[0].departure.cityName}}
+                </h6>
+
+                <span class="flight__date__time">
+
+                  {{itinery?.segments[0].departure.at | date:"d&nbsp;MMM&nbsp;''''yy"}}</span>
+
+              </div>
+              <div class="flight-card__stop-info text-center ">
+                <div class="layoverTime text-nowrap mb-1">
+                  <span class="icon__flight_left">
+                    <img src="../../../../../assets/img/icons/icon-flight11.svg" alt="" />
+                  </span>
+                  <div class="position-relative">
+                    <p class="">
+                      <ng-container
+                        *ngFor="let segments of itinery?.segments; let segIndex = index; let isLast = last ">
+                        <span class="d-block mb-1" *ngIf="itinery?.segments?.length> 1  && !isLast">
+                          {{_sharedService.calculateLayoverTime(segments?.arrival?.at, itinery?.segments[segIndex
+                          +
+                          1]?.departure?.at)}} [ {{segments?.arrival?.iataCode}} ]</span>
+                      </ng-container>
+
+                    </p>
+                    <span class="stop text-nowrap">
+                      {{ itinery?.segments?.length
+                      ===
+                      1 ? 'Direct': (itinery?.segments?.length -1 +' Stop')
+                      }}
+
+                    </span>
+                  </div>
+                  <span class="icon__flight_right">
+                    <img src="../../../../../assets/img/icons/icon-flight12.svg" alt="" />
+                  </span>
+
+                </div>
+
+              </div>
+              <div class="flight-card__journey-details text-end">
+                <h6 class="at-flight-card-depart-time">
+                  {{itinery?.segments[itinery?.segments?.length -1]?.arrival.at | date:'HH:mm'}}
+                </h6>
+                <h6 class="at-flight-card-origin-code">
+                  {{itinery?.segments[itinery?.segments?.length -1]?.arrival.cityName}}
+                </h6>
+                <span class="flight__date__time"> {{itinery?.segments[itinery?.segments?.length -1]?.arrival.at |
+                  date:"EE , dd MMM&nbsp;''''yy"}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 d-flex align-items-center mob_mb_3">
+            <div class="text-start flight__duration">
+              <h6> Duration </h6>
+              <p> {{itinery?.duration }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- </ng-container> -->
+      </div>
+    </div>
+    <div class=" w-300 ">
+      <div class="flight__card h-100">
+        <div class=" flight__pay__options">
+          <div class="d-flex align-items-center justify-content-center gap-2 flight__pay"
+            *ngIf="recomm?.price.grandTotal > 100000 && recomm?.isInstallmentApplicable">
+            <div class="box d-flex align-items-center justify-content-center px-2"
+              [ngClass]="{'active-primary': !recomm?.payAsYouEarnActive}" (click)="togglePaymentOption(recomm)">
+              <h3>Pay full Price</h3>
+            </div>
+            <div class="box  d-flex align-items-strat  gap-2 px-2" [ngClass]="{'active': recomm?.payAsYouEarnActive}"
+              (click)="togglePaymentOption(recomm)">
+              <img src="assets/img/icons/mdi_auto-pay.svg" alt="">
+              <div>
+                <h3>Pay as you earn</h3>
+                <p class="flight_price mb-2">₦ {{ recomm?.installmentAmount | number: '.2'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="py-4 d-flex align-items-center justify-content-center border_left_0">
+          <div class="flight__card_actions text-center w-100">
+            <h2 class="flight_price mb-2"
+              [ngClass]="recomm?.payAsYouEarnActive ? 'flight_price--active' : 'flight_price--active-primary'">
+              <b> ₦ {{ (recomm?.payAsYouEarnActive ? recomm?.installmentAmount : recomm?.price.grandTotal) | number:
+                '.2'}}</b> &nbsp;
+              <img type="button" (mouseenter)="showOverlayPanel($event)" (mouseleave)="hideOverlayPanel($event)"
+                src="/assets/img/icons/info.svg" alt=""
+                *ngIf="recomm?.price.grandTotal > 100000 && recomm?.isInstallmentApplicable">
+              <p-overlayPanel #overlayPanel [showCloseIcon]="false" [dismissable]="true">
+                <ng-template pTemplate>
+                  <ul class="custom-list-group">
+                    <li>Pay <span> 20 % initial payment</span></li>
+                    <li>All installments must be completed at least 7 days before the first travel date.</li>
+                  </ul>
+                </ng-template>
+              </p-overlayPanel>
+            </h2>
+            <button class="p-button-outlined p-button w-110 justify-content-center py-2"
+              (click)=" showPositionDialog('right', recomm,recomm?.payAsYouEarnActive )">Book
+              <i class="pi pi-angle-right"></i></button>
+
+            <div class="mt-4">
+              <a *ngIf="recomm?.payAsYouEarnActive" class="calculate_link_url d-block  mb-3" type="button"
+                (click)=" showCalculateDialog( recomm)"> Calculate your installment ? </a>
+              <a class="flight_link_url d-block " type="button"
+                (click)=" showPositionDialog('right', recomm, recomm?.payAsYouEarnActive)">View Flight Details</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="displayPosition">
+  <p-dialog class="modal__widget" header="Flight Details" [(visible)]="displayPosition" [position]="position"
+    [modal]="true" [style]="{width: '750px'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <app-flight-amadeus-fare-family [BookedFlightData]="bookedFlightData" [airlineList]="" [tripTye]="searchType"
+      (emiInstallments)="changedEvents($event)"></app-flight-amadeus-fare-family>
+  </p-dialog>
+</ng-container>
+
+<ng-container *ngIf="displayPositionCalc">
+  <p-dialog class="calculator__modal__widget" header="Calculator" [(visible)]="displayPositionCalc"
+    [position]="calcPosition" [modal]="true" [style]="{width: '750px'}" [baseZIndex]="10000" [draggable]="false"
+    [resizable]="false">
+    <app-amadeus-pay-as-earn-calculator [BookedFlightData]="bookedFlightData"></app-amadeus-pay-as-earn-calculator>
+  </p-dialog>
+</ng-container>

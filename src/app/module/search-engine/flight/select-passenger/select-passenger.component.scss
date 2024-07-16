@@ -1,0 +1,80 @@
+@import '../../../../../sass/all.scss';
+.icon-user{
+    width: rem(19);
+    height: rem(21);
+    background: url(/assets/img/icons/icon-user.svg) no-repeat;
+    background-size: cover;
+
+}
+
+.btn-select-passenger{
+    background: none;
+    border: 0;
+    font-size: rem(16);
+    color: var(--text-secondary-color);
+    font-weight: 400;
+}
+.flight__passenger__count{
+    color: var(--text-primary-color);
+    font-weight: 800;
+    font-family: $montBold;
+}
+.selectPassenger{
+    position: relative;
+    .passengerCard{
+        position: absolute;
+        top: rem(42);
+        left: 0;
+        width: rem(300);
+        height: auto;
+        background: var(--color-white);
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);;
+        padding: rem(15) rem(20);
+        ul{
+            margin: 0;
+            padding: 0;
+            li{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: rem(15);
+                h6{
+                    font-size: rem(16);
+                    font-weight: 700;
+                    color: var(--text-primary-color);
+                }
+                p{
+                    font-size: rem(12);
+                    font-weight: 400;
+                    color: var(--text-secondary-color);
+                }
+            }
+        }
+        .count{
+            font-size: rem(18);
+            font-weight: 700;
+            color: var(--black-color);
+            width: rem(20);
+            text-align: center;
+        }
+        .btn-add{
+            width: 100%;
+            padding: rem(13);
+            justify-content: center;
+            font-size: rem(16);
+            font-weight: 700;
+        }
+
+    }
+}
+.dropdown-toggle::after{
+    display: none;
+}
+
+.p-button{
+    padding: rem(4) rem(6);
+    border-radius: rem(5);
+    i{
+        font-size: rem(14);
+    }
+}

@@ -1,0 +1,152 @@
+@import '../../../../../sass/all.scss';
+.user__profile__card{
+    // box-shadow: 0px 16px 25px #F0F0F0;
+    border-radius: 5px;
+}
+.itemRow{
+    background: var(--color-white);
+}
+.history__icon{
+    background: var(--primary-color);
+    border-top-left-radius: rem(5);
+    border-bottom-left-radius: rem(5);
+}
+.pointer {
+   
+    .flight__depart{
+        h6{
+            font-family: $montBold;
+            font-size: rem(14);
+            line-height: rem(17);
+            color: var(--bg-dark-teal-color);
+            margin-bottom: rem(5);
+           
+        }
+        .flight__trip__type{
+            font-weight: 600;
+            font-size: rem(14);
+            color: var(--primary-color);
+        }
+        .ticketStatus{
+            border-radius: rem(5);
+            font-size: rem(12);
+            display: inline-block;
+        }
+    }
+  }
+
+
+  .resultCardItinerary__SectorWrapper{
+    padding-left: rem(30);
+    .hotel__rating{
+        border: rem(1) solid var(--bg-gray-color-100);
+        border-radius: rem(3);
+      }
+    h3{
+        font-size: rem(20);
+        color: var(--black-color);
+        font-family: $montBold;
+    }
+    p{
+        font-size: rem(14);
+        color: var(--text-secondary-color);
+        font-family: $montRegular;
+        span{
+            font-size: rem(12);
+        }
+    }
+  }
+  
+  .resultCardItinerary__SectorStatus{
+    .flight__SectorLabel{
+        font-size: rem(12);
+        font-weight: 500;
+        color: var(--text-secondary-color);
+        margin-bottom: rem(5);
+    }
+    .booking__ref__no, .booking__date{
+        font-size: rem(16);
+        font-weight: 800;
+        color: var(--text-primary-color);
+        margin-bottom: rem(5);
+        text-transform: uppercase;
+    }
+  }
+  .resultCardItinerary__PaymentWrapper{
+    width: rem(200);
+    background: var(--bg-light-red);
+    border: rem(3) solid var(--primary-color);
+    border-top-right-radius: rem(5);
+    border-bottom-right-radius: rem(5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    h4{
+        font-size: rem(26);
+        font-family: $montBold;
+        color: var(--primary-color);
+        
+    }
+    p{
+        font-size: rem(16);
+        font-family: $montBold;
+        color: var(--primary-color);
+        
+    }
+    .btn-downArrow{
+        width: rem(55);
+        height: rem(55);
+
+        position: absolute;
+        bottom: rem(-20);
+        color: var(--primary-color);
+        background: var(--color-white);
+        box-shadow: 0 0 15px #dddddd;
+        border-radius: 50%;
+        i{
+            font-size: rem(28);
+            line-height: rem(45);
+        }
+        &:active{
+            color: var(--color-white) !important;
+        }
+    }
+  }
+
+  .booking__details__tab{
+    margin-top: rem(20);
+    background: var(--color-white);
+    .booking__deatails__listing{
+        margin: 0;
+        padding: 0;
+        li{
+            margin: 0 rem(30);
+            cursor: pointer;
+            font-weight: 800;
+           i{
+            margin-right: rem(10);
+           }
+           
+           &.currentTabActive, &:hover{
+                color: var(--primary-color  );
+                
+                i{
+                    color: var(--primary-color  );
+                }
+           }
+        }
+    }
+
+    .booking__details__tab__contentArea{
+        .booking__details__tabView{
+            display: none;
+            padding: rem(0) rem(40) rem(20);
+            &.currentTabActive{
+                display: block;
+            }
+        }
+        
+    }
+
+  }

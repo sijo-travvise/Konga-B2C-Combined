@@ -1,0 +1,76 @@
+<form>
+    <div class="row px-1">
+        <div class="col-md-9 ">
+            <div class="row mb-3" >
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-6 px-2 position-relative">
+                            <div class="p-float-label">
+                                <p-autoComplete  [showEmptyMessage]="true" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [minLength]="1"></p-autoComplete>
+                                <label>Depart From ?</label>
+                                <p class="airportName">[DOH] Hamad International Airport</p>
+                            </div>
+                            <span class="icon-swap">
+                                <img src="assets/img/icons/icon-swap.svg" alt="icon swap">
+                            </span>
+                        </div>
+                        <div class="col-md-6 px-2">
+                            <div class="p-float-label">
+                                <p-autoComplete  [showEmptyMessage]="true" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [minLength]="1"></p-autoComplete>
+                                <label for="float-input">To Where ?</label>
+                                <p class="airportName">[DOH] Hamad International Airport</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="col-md-3 px-2 position-relative">
+                    <!-- <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar> -->
+                    <div class="p-float-label">
+                        <p-calendar inputId="basic" dateFormat="dd-M-yy" ></p-calendar>
+                        <label for="basic">Depart Date</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3"  *ngFor="let item of row; let i = index">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-6 px-2 position-relative">
+                            <div class="p-float-label">
+                                <p-autoComplete  [showEmptyMessage]="true" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [minLength]="1"></p-autoComplete>
+                                <label>Depart From ?</label>
+                                <p class="airportName">[DOH] Hamad International Airport</p>
+                            </div>
+                            <span class="icon-swap">
+                                <img src="assets/img/icons/icon-swap.svg" alt="icon swap">
+                            </span>
+                        </div>
+                        <div class="col-md-6 px-2">
+                            <div class="p-float-label">
+                                <p-autoComplete  [showEmptyMessage]="true" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [minLength]="1"></p-autoComplete>
+                                <label for="float-input">To Where ?</label>
+                                <p class="airportName">[DOH] Hamad International Airport</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="col-md-3 px-2 position-relative">
+                    <!-- <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar> -->
+                    <div class="p-float-label">
+                        <p-calendar inputId="basic" dateFormat="dd-M-yy" ></p-calendar>
+                        <label for="basic">Depart Date</label>
+                    </div>
+                    <button class="btn-close" (click)="deleteRow('i')"><i class="pi pi-times"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 px-2">
+            <button class="btn btn-primary w-100 h-64">Search <i class="pi pi-search" style="font-size: rem(12)"></i></button>
+            <button class="p-button p-button-outlined btn-add mt-3" (click)="addRow()">Add Another City</button>
+
+           
+        </div>
+       
+    </div>
+</form>

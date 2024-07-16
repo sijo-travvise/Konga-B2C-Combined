@@ -1,0 +1,28 @@
+
+@import '../../../../../sass/all.scss';
+.icon-swap{
+    position: absolute;
+    right: rem(-15);
+    top: rem(17);
+    width: rem(40);
+    height: rem(40);
+    background: var(--primary-color);
+    border-radius: 100%;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.airportName{
+    font-size: rem(12);
+    color: var(--text-primary-color);
+    font-weight: 500;
+    position: absolute;
+    bottom: rem(9);
+    left: rem(14);
+    white-space: nowrap; 
+    width: 85%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}

@@ -1,0 +1,9 @@
+<div class="flex flex-column gap-2  trvPhoneGroup">
+    <label for="float-input" class="w-100">{{title}}</label>
+    <ngx-intl-tel-input [cssClass]="'telephone w-100'" [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [selectedCountryISO]="CountryISO.Nigeria"
+    [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+    [selectFirstCountry]="true" [maxLength]="15" 
+    [phoneValidation]="true" [separateDialCode]="true" name="phone"  [formControl] ="formControls">
+    </ngx-intl-tel-input>
+    
+</div>

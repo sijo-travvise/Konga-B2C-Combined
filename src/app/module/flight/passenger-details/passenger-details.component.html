@@ -1,0 +1,415 @@
+<app-session-expire (sessionCompleted)='sessionCompleted($event)'></app-session-expire>
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <div class="col-md-8">
+            <!--Section Title Start-->
+            <div class="col-12 d-flex justify-content-between">
+                <app-inner-page-title [detailPageTitle]="'Flight Summary'"></app-inner-page-title>
+                <button class=" change__flight__details" [routerLink]="['/result-page']"><i class="pi pi-sync"></i>
+                    Change Flight Details</button>
+            </div>
+            <!--Section Title End-->
+            <!--Flight onward and return-->
+            <p-accordion class="w-full ">
+                <ng-container *ngFor="let trips of priceReConfirmation?.FlightItinerary?.Trips">
+                    <p-accordionTab>
+                        <ng-template pTemplate="header">
+                            <div class="d-flex align-items-center">
+                                <span class="flight-bg-primary py-2 px-3 me-3">Depart</span>
+                                <div class="flight__sectrs d-flex align-items-center  py-2 ">
+                                    <h2> {{trips?.FlightSegments[0]?.Origin}} <img
+                                            src="../../../../assets/img/icons/icon-destinations.svg" alt="">
+                                        {{trips?.FlightSegments[trips?.FlightSegments?.length
+                                        -1
+                                        ]?.Destination}}
+                                    </h2>
+                                    <div class="flight__travel__duration text-left"><span class="duration__label ms-4">
+                                            <!-- {{itinerary?.segments[0].departure.at | date:"EE , d&nbsp;MMM&nbsp;''''yy"}} -->
+                                            <!-- {{airArabiaFlightService.getFormatDate(trips?.FlightSegments[0]?.DepartureDate,
+                                                true)}} -->
+                                            {{
+                                            _microService?.getFormatedFlightDate(trips?.FlightSegments[0].DepartureDate,
+                                            false,"EE , d&nbsp;MMM&nbsp;''''yy")}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="content">
+                            <div class="flight__onward">
+                                <div class="flight__deatils__list px-40 pt-4">
+                                    <ul>
+                                        <li class="flight__deatils__list__row"
+                                            *ngFor="let segmentData of trips?.FlightSegments; let segIndex = index; let isLast= last; let isEven = even ">
+                                            <div class="flight__deatils__row__outer">
+                                                <div class="flight__direction__line">
+                                                    <span class="icon__flight_left" *ngIf="isEven">
+                                                        <img src="../../../../../assets/img/icons/icon-flight11.svg"
+                                                            alt="" />
+                                                    </span>
+                                                    <span class="icon__flight_bottom"
+                                                        *ngIf="!isEven || trips?.FlightSegments?.length==1">
+                                                        <img src="../../../../../assets/img/icons/icon-flight12.svg"
+                                                            alt="" />
+                                                    </span>
+                                                </div>
+
+                                                <div class="row mb-4">
+                                                    <div class="col-md-6">
+                                                        <h5 class="flight__time">
+
+                                                            {{ _microService?.getFormatedFlightTime(
+                                                            segmentData?.DepartureTime)}}
+                                                        </h5>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h5 class="flight__airport__name">
+                                                            {{segmentData?.Origin}}
+                                                        </h5>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4 align-items-center">
+                                                    <div class="col-md-6 mb-2">
+                                                        <h5 class="flight__travel__time">
+                                                            <!-- {{sharedService?.convertDurationToCustomFormat(segmentData?.duration)}}-->
+
+
+                                                            {{_microService?.getFormatedFlightTime(segmentData?.Duration,
+                                                            true) }}
+                                                        </h5>
+                                                    </div>
+                                                    <div class="col-md-6  d-flex ">
+                                                        <div class="flight___details d-flex align-items-center gap-2 ">
+                                                            <img src="assets/img/Airlogo/sm{{segmentData.MarketingAirline}}.gif"
+                                                                alt="{{segmentData.MarketingAirline}}" class=" me-2" />
+
+
+                                                            <div class="">
+                                                                <h5 class="flight__name"> {{
+                                                                    segmentData?.marketingAirlineName ?? segmentData.MarketingAirline }}</h5>
+                                                                <span class="flight__number">{{
+                                                                    segmentData?.MarketingAirline+'
+                                                                    '+segmentData?.FlightNumber}}
+                                                                    {{segmentData?.FlightNumber}} |
+                                                                    {{segmentData?.FlightClass}}</span>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h5 class="flight__time">{{
+                                                            _microService?.getFormatedFlightTime(
+                                                            segmentData?.ArrivalTime) }}</h5>
+                                                    </div>
+                                                    <div class="col-md-6  d-flex ">
+                                                        <h5 class="flight__airport__name"> {{segmentData?.Destination}}
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class=" position-relative py-4"
+                                                *ngIf="!isLast && trips?.FlightSegments?.length > 1 ">
+                                                <div class="flight__direction__dot__line">
+                                                    <span class="icon__user__walk">
+                                                        <img src="../../../../../../assets/img/icons/icon-user-walk.svg"
+                                                            alt="" />
+                                                    </span>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h5 class="flight__travel__time">
+                                                            {{_microService?.calculateLayover(segIndex,trips?.FlightSegments)}}
+                                                        </h5>
+                                                        <!-- {{sharedService.calculateLayoverTime(segmentData?.arrival?.at, itinerary?.segmentData[segIndex + 1].departure.at)}} -->
+                                                        <!-- <p class="flight__date">{{sharedService.GetDateFormat(flights?.flightInformation?.productDateTime?.dateOfArrival) | date:'d MMMM y'}}</p> -->
+                                                    </div>
+                                                    <div class="col-md-6 d-flex">
+                                                        <div class="flight___details ">
+                                                            <h5
+                                                                class="flight__airport__waiting d-flex align-items-center gap-1">
+                                                                Transit in
+                                                                {{segmentData?.Destination}} <span
+                                                                    class="flight__airport__code"> (
+                                                                    {{segmentData?.Destination}} )</span></h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-accordionTab>
+                </ng-container>
+            </p-accordion>
+            <!--Section Title Start-->
+            <div class="col-12 px-0 mt-4">
+                <app-inner-page-title class="mt-4" [detailPageTitle]="'Passenger Details'"></app-inner-page-title>
+            </div>
+            <!--Section Title End-->
+            <!-- {{flightPassenger.value |json}} -->
+            <div class="flight__section__passenger__details mt-2">
+                <form [formGroup]="flightPassenger">
+                    <p-accordion [multiple]="false">
+                        <p-accordionTab
+                            *ngFor="let item of passengerDetailsArrayControl!.controls; let i = index; let isLast =last"
+                            [selected]="i === selectedIndex">
+                            <ng-template pTemplate="header">
+
+                                <div class="d-flex align-items-center justify-content-between w-100"
+                                    (click)="openNextTab(i)">
+                                    <span>Passenger {{item?.value?.paxId + 1}} |
+                                        {{item.value.ptc=='Adult'?'Adult':item.value.ptc=='Child'?'Child':'Infant'}}
+                                    </span>
+                                    <span class="pe-3">
+                                        <ng-container *ngIf="item.valid; else notValid">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                viewBox="0 0 35 35" fill="none">
+                                                <path
+                                                    d="M2 17.5C2 8.93959 8.93959 2 17.5 2C26.0605 2 33 8.93959 33 17.5C33 26.0605 26.0605 33 17.5 33C8.93959 33 2 26.0605 2 17.5Z"
+                                                    fill="white" stroke="#2BBC13" stroke-width="4"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M10.6113 17.4999L15.778 22.6665L24.3891 14.0554"
+                                                    fill="white" />
+                                                <path d="M10.6113 17.4999L15.778 22.6665L24.3891 14.0554"
+                                                    stroke="#2BBC13" stroke-width="4" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </ng-container>
+                                        <ng-template #notValid>
+
+
+                                            <i class="pi pi-exclamation-triangle" style="color:red"></i>
+                                        </ng-template>
+
+                                    </span>
+
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="content">
+
+                                <div formArrayName="passengerDetailsArray">
+                                    <div>
+                                        <div [formGroupName]="i">
+                                            <div class="row mb-4">
+                                                <div class="col-md-2 mb-3 ">
+                                                    <app-select-field [title]="'Title'"
+                                                        [option]="item?.value?.ptc=='Adult' ? passengerNamePrefix : passengerInfantNamePrefix "
+                                                        [formControls]="passengerDetailsArrayControls(i,'prefix')"></app-select-field>
+                                                </div>
+                                                <div class="col-md-5 mb-3 ">
+                                                    <app-input-field [title]="'Given Name'"
+                                                        [isHintText]="'Please ensure your name it as it appears on passport'"
+                                                        [isHint]="true" [isHintIcon]="true"
+                                                        [formControls]="passengerDetailsArrayControls(i,'firstName')"></app-input-field>
+                                                </div>
+
+                                                <div class="col-md-5 mb-3 ">
+                                                    <app-input-field [title]="'Middle Name'"
+                                                        [isHintText]="'Please ensure your name it as it appears on passport'"
+                                                        [isHint]="true" [isHintIcon]="true"
+                                                        [formControls]="passengerDetailsArrayControls(i,'middleName')"
+                                                        [isRequired]=false></app-input-field>
+                                                </div>
+
+                                                <div class="col-md-5 mb-3 ">
+                                                    <app-input-field [title]="'Sur Name'" [isOptional]="false"
+                                                        [isHintText]="'Please ensure your name it as it appears on passport'"
+                                                        [isHint]="true" [isHintIcon]="true"
+                                                        [formControls]="passengerDetailsArrayControls(i,'lastName')"></app-input-field>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <app-date-picker [title]="'DOB'"
+                                                        [minViewDate]="item?.value?.ptc=='Child' ? childMinDate : item?.value?.ptc=='Infant' ? infantMinDate : '' "
+                                                        [maxViewDate]="item?.value?.ptc=='Child' ? childMaxDate : item?.value?.ptc=='Adult' ? adultMaxDate : maxDate "
+                                                        [formControls]="passengerDetailsArrayControls(i,'dOB')"
+                                                        [isRequired]=true></app-date-picker>
+                                                </div>
+
+
+                                            </div>
+
+
+                                            <p-panel [toggleable]="true" [collapsed]='true' iconPos="start"
+                                                (collapsedChange)="changesPannel($event)"
+                                                styleClass="p-pannel-passenger">
+                                                <ng-template pTemplate="header" styleClass="P-pannel-title">
+                                                    <div class="sectionTitle d-flex align-items-center gap-2">
+                                                        <h4 class="title">Passport Info <span>( Optional )</span></h4>
+                                                    </div>
+                                                </ng-template>
+
+                                                <ng-template pTemplate="content">
+
+                                                    <div class="row">
+                                                        <div class="col-md-4 mb-3 ">
+                                                            <app-country-selection [title]="'Nationality'"
+                                                                [isRequired]="isRequiredTrigger"
+                                                                [formControls]="passengerDetailsArrayControls(i,'nationality')"
+                                                                [optionList]="countryOptionList"></app-country-selection>
+                                                        </div>
+                                                        <div class="col-md-4 mb-3 ">
+                                                            <app-input-field [title]="'Passport No'"
+                                                                [isRequired]="isRequiredTrigger"
+                                                                [isHintText]="'Please ensure your passport number is valid'"
+                                                                [isHint]="true" [isHintIcon]="true"
+                                                                [formControls]="passengerDetailsArrayControls(i,'passportNumber')"></app-input-field>
+                                                        </div>
+                                                        <div class="col-md-4 mb-3 ">
+                                                            <app-country-selection title="Issue Country"
+                                                                [isRequired]="isRequiredTrigger"
+                                                                [formControls]="passengerDetailsArrayControls(i,'countryOfIssue')"
+                                                                [optionList]="countryOptionList"></app-country-selection>
+                                                        </div>
+                                                        <div class="col-md-4 mb-3">
+                                                            <app-date-picker [isRequired]="isRequiredTrigger"
+                                                                [title]="'Passport Expiry No'" [isMinDate]=true
+                                                                [formControls]="passengerDetailsArrayControls(i,'dateOfExpiry')"></app-date-picker>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-panel>
+
+
+                                            <div class="sectionTitle d-flex align-items-center gap-2 mb-3">
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 text-center mt-3" *ngIf="!isLast">
+                                    <button type="button"
+                                        class=" p-button p-button-outlined  py-3 justify-content-center"
+                                        style="width: 200px;" (click)="openNextTab(i+1)"><i
+                                            class="pi pi-user-plus me-2"></i> Next Passenger</button>
+                                </div>
+
+                            </ng-template>
+                        </p-accordionTab>
+                    </p-accordion>
+
+                    <div class="col-12 px-0 mt-4">
+                        <app-inner-page-title class="mt-4" [detailPageTitle]="'Contact Details'"></app-inner-page-title>
+                    </div>
+                    <div class="card p-4 mb-4">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <app-phone-number-filed [title]="'Code'" [isRequired]=true
+                                    [formControls]="phoneNumber"></app-phone-number-filed>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <app-input-field [title]="'Email Id'" [isRequired]=true
+                                    [formControls]="emailID"></app-input-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end mb-5">
+                        <div class="col-5">
+                            <button type="button" class=" btn btn-primary w-100 pt-3 pb-2"
+                                (click)="passengerSubmitBtn()"> Continue to payment</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--Section Title End-->
+            <!--Flight onward and return-->
+            <!--Section Title Start-->
+            <!-- <div class="col-12 px-0 mt-4">
+                <app-inner-page-title class="mt-4" [detailPageTitle]="'Passenger Details'"></app-inner-page-title>
+            </div> -->
+        </div>
+        <div class="col-md-4 ps-5 mob_px_3">
+
+            <!--Fare Details Start-->
+            <div class="flight__fare__details position-relative  ">
+             
+                
+                <!-- if pay as you earn is choosen the add this class "flight__fare__details__active" for the style change -->
+                <p *ngIf="isShowPriceWarning"><span class="text-black p-0" style="font-size: 10px;"><strong>*price may vary</strong></span></p>
+                <h3>₦ <b> {{totalFareTotalPrice | number:'.2'}} </b></h3>
+              
+                <p> Total Amount</p>
+                <!--  show this text only if pay as you earn is choosen -->
+                <!-- <a  class="calculate_link_url d-block" type="button" >  </a> -->
+
+                <button type="button" class="btn btn-primary w-max pt-3 pb-2 w-max-content"
+                    *ngIf="priceReConfirmation?.isInstallmentApplicable && priceReConfirmation?.FlightItinerary?.PriceSummary?.SubTotal > 100000"
+                    (click)="showCalculateDialog('center')"> Calculate your installment ? </button>
+
+                <button class=" p-cercle-arrow" (click)="isPriceView=!isPriceView">
+                    <i [ngClass]="{'price-view': isPriceView}" class="pi pi-angle-up isPriceView-angle"></i>
+                </button>
+            </div>
+            <div class="flight__fare__card d-flex align-items-center justify-content-between price-item-card"
+                [ngClass]="{'price-item-view': isPriceView}">
+
+                <div class="d-flex align-items-center gap-2"
+                    *ngFor=" let paxRef of flightFareData?.flightDetails?.recomentationList?.paxFareProduct; let last = last">
+                    <svg *ngIf="paxRef?.paxReference?.ptc=='ADT'" width="17" height="18" viewBox="0 0 17 18" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M8.5 0C7.56603 0 6.65304 0.277811 5.87647 0.798302C5.09991 1.31879 4.49465 2.05859 4.13724 2.92413C3.77982 3.78968 3.68631 4.7421 3.86851 5.66095C4.05072 6.57981 4.50047 7.42384 5.16088 8.0863C5.8213 8.74875 6.66272 9.1999 7.57874 9.38267C8.49476 9.56544 9.44424 9.47163 10.3071 9.11311C11.17 8.75459 11.9075 8.14746 12.4264 7.36849C12.9453 6.58952 13.2222 5.6737 13.2222 4.73684C13.2222 3.48055 12.7247 2.27572 11.8391 1.38739C10.9535 0.499059 9.75241 0 8.5 0ZM8.5 7.57895C7.93962 7.57895 7.39182 7.41226 6.92588 7.09997C6.45994 6.78767 6.09679 6.3438 5.88234 5.82447C5.66789 5.30514 5.61178 4.73369 5.72111 4.18237C5.83043 3.63106 6.10028 3.12465 6.49653 2.72717C6.89278 2.32969 7.39763 2.05901 7.94724 1.94935C8.49686 1.83968 9.06655 1.89597 9.58427 2.11108C10.102 2.32619 10.5445 2.69047 10.8558 3.15785C11.1672 3.62523 11.3333 4.17473 11.3333 4.73684C11.3333 5.49062 11.0348 6.21352 10.5035 6.74651C9.97212 7.27951 9.25145 7.57895 8.5 7.57895ZM17 18V17.0526C17 15.2938 16.3035 13.6071 15.0636 12.3634C13.8238 11.1197 12.1423 10.4211 10.3889 10.4211H6.61111C4.85774 10.4211 3.17617 11.1197 1.93635 12.3634C0.696526 13.6071 0 15.2938 0 17.0526V18H1.88889V17.0526C1.88889 15.7963 2.38641 14.5915 3.272 13.7032C4.15758 12.8148 5.3587 12.3158 6.61111 12.3158H10.3889C11.6413 12.3158 12.8424 12.8148 13.728 13.7032C14.6136 14.5915 15.1111 15.7963 15.1111 17.0526V18H17Z"
+                            fill="#252525" />
+                    </svg>
+                </div>
+                <!-- <div><h5>{{selectedCurrency}} <b>  {{totalAmount  * exchangeRate | number:'.2'}} </b></h5></div> -->
+                <div class="w-100 px-4 py-5">
+                    <ng-container *ngIf=" priceReConfirmation?.FlightItinerary?.PriceSummary as priceSummary">
+                        <h6 class="w-100 d-flex align-items-center justify-content-between mb-2"
+                            *ngFor="let passengers of ['Adult','Child','Infant']">
+
+                            <span> {{passengers}} <span class="ms-2">x {{ (passengers === 'Adult' ?
+                                    priceSummary?.Adults : passengers === 'Child' ? priceSummary?.Children :
+                                    priceSummary?.Infants) ?? 0}}</span></span>
+
+                            <!-- <span>₦ {{ ((passengers === 'Adult' ? priceSummary?.AdultTotal : passengers === 'Child' ?
+                                priceSummary?.ChildTotal : priceSummary?.Infants) ?? 1) * ((passengers === 'Adult' ?
+                                priceSummary?.Adults : passengers === 'Child' ? priceSummary?.Children :
+                                priceSummary?.InfantTotal) ?? 1) | number: '.2'}} </span> -->
+
+                                <span>₦ {{ ((passengers === 'Adult' ? priceSummary?.AdultTotal : passengers === 'Child' ?
+                                    priceSummary?.ChildTotal : priceSummary?.InfantTotal) ?? 1) | number: '.2'}} </span>
+                        </h6>
+                    </ng-container>
+                </div>
+            </div>
+
+
+            <!--Fare Details End-->
+
+        </div>
+    </div>
+</div>
+<p-toast [appendTo]="'body'"></p-toast>
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
+    [loderTitle]="loadingText"></app-pre-loader>
+
+
+<div class="section__card__modal sec_expaire">
+    <p-dialog class="dialog-no-header" [(visible)]="display" [position]="position" [modal]="true"
+        [breakpoints]="{'960px': '50vw', '640px': '100vw'}" [style]="{width: '25vw'}" [baseZIndex]="10000"
+        [draggable]="false" [resizable]="false">
+        <app-modal-after-session-expired></app-modal-after-session-expired>
+    </p-dialog>
+</div>
+<ng-container *ngIf="displayPositionCalc">
+    <p-dialog class="calculator__modal__widget" header="Calculator" [(visible)]="displayPositionCalc"
+        [position]="position" [modal]="true" [style]="{width: '750px'}" [baseZIndex]="10000" [draggable]="false"
+        [resizable]="false">
+        <app-pay-as-earn-calculator [BookedFlightData]="priceReConfirmation.FlightItinerary"
+            [isPassengerDetailsPage]="isPassengerDetailsPage" [flighInstallementDetails]="flightFareInstallementDetails"
+            (installmentApplied)="installmentAppliedChanged($event)"></app-pay-as-earn-calculator>
+    </p-dialog>
+</ng-container>

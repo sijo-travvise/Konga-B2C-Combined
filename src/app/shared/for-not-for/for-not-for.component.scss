@@ -1,0 +1,40 @@
+@import '../../../sass/all.scss';
+.pageForNotFor {
+    height: 55vh;
+    .container{
+        display: flex;
+        flex-direction: column;
+        font-family: 'Roboto', sans-serif;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+        h1 {
+            font-size: rem(160);
+            margin:rem(80) 0 0.5em;
+            line-height: rem(10);
+        }
+        p {
+            font-size: rem(18);
+            line-height: rem(26);
+            margin-bottom: rem(10);
+        }
+        small {
+            color: var(--text-secondary-color);
+        }
+        a {
+            color: var(--primary-color);
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}
+@media screen and (max-width: 480px) {
+	.container h1 {
+		font-size: 8em;
+	}
+	
+	.container p {
+		font-size: 1em;
+	}
+}

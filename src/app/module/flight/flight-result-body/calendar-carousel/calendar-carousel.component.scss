@@ -1,0 +1,39 @@
+@import '../../../../../sass/all.scss';
+
+.cheapest{
+    background: var(--green-color);
+    font-weight: 600;
+    font-size: rem(14);
+    color: var(--text-white-color);
+    padding: rem(6) rem(10);
+    width: rem(150);
+    border-top-right-radius: rem(5);
+    border-top-left-radius: rem(5);
+}
+.card{
+    border-radius: 10px;
+    cursor: pointer;
+    .cardHeader .date{
+        h5{
+            font-weight: 900;
+            font-size: rem(16);
+
+        }
+        h6{
+            font-weight: 400;
+            font-size: rem(12);
+        }
+    }
+}
+.cardFooter{
+    border-top: 1px solid  var(--bg-gray-color-100);
+    padding: rem(10);
+    h4{
+        font-size: rem(16);
+        
+        b{
+            font-weight: 900;
+        }
+    }
+}
+

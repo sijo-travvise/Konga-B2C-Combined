@@ -1,0 +1,330 @@
+@import "../../../../../sass/all.scss";
+.traveller-calulate-persons {
+  .multiple_room {
+    p {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black-color);
+      margin-top: 3px;
+      // padding-bottom: 5px;
+      span {
+        color: var(--black-color);
+      }
+    }
+    .one-room-detail {
+      background: var(--color-white);
+      border-bottom: 1px solid var(--text-gray-100);
+    }
+    .multi_form_remove {
+      button {
+        background: var(--action-button);
+        // padding-left: 10px;
+        // padding-right: 10px;
+        width: 100%;
+        color: var(--black-color);
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+      p {
+        margin: 0px;
+        color: var(--text-danger-color) !important;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        i {
+          color: var(--black-color) !important;
+          font-weight: 700;
+          font-size: 12px;
+        }
+      }
+    }
+    .multi_form_edit {
+      p {
+        margin: 0px;
+        color: var(--bg-dark-teal-color) !important;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        i {
+          color: var(--black-color) !important;
+          font-weight: 700;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .addroom_box {
+    button {
+      background-color: var(--primary-color);
+      // padding-left: 10px;
+      // padding-right: 10px;
+      width: 100%;
+      color: var(--white-color);
+      font-size: 12px;
+      font-weight: 600;
+      p {
+        margin: 0px;
+      }
+    }
+    p {
+      margin: 0px;
+      color: var(--primary-color);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+  .p-button {
+    padding: rem(4) rem(6);
+    border-radius: rem(5);
+    i {
+      font-size: rem(14);
+    }
+  }
+  .passengers {
+    .btn-add {
+      width: 100%;
+      padding: 0.8125rem;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+}
+.traveller-calulate-persons .passengers h6 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+.traveller-calulate-persons .passengers h5 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--black-color);
+  margin: 0px;
+  padding-top: 5px;
+}
+
+.traveller-calulate-persons .passengers .passengers-types .passengers-type {
+  display: flex;
+  align-items: center;
+  // padding: 4px 8px;
+  padding: 8px 0px;
+  justify-content: space-between;
+}
+.traveller-calulate-persons
+  .passengers
+  .passengers-types
+  .passengers-type
+  .text {
+  // align-items: center;
+  display: flex;
+}
+.traveller-calulate-persons
+  .passengers
+  .passengers-types
+  .passengers-type
+  .text
+  .count {
+  // margin-right: 10px;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 600;
+}
+.count{
+  width: rem(25);
+  text-align: center;
+}
+.flight_Search_boxed p {
+  font-size: 14px;
+}
+.traveller-calulate-persons
+  .passengers
+  .passengers-types
+  .passengers-type
+  .text
+  .type-label
+  span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-secondary-color);
+}
+.type-label {
+  width: 100%;
+  p {
+    color: var(--black-color);
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0px;
+  }
+  span {
+    color: var(--grey-200);
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+.traveller-calulate-persons
+  .passengers
+  .passengers-types
+  .passengers-type
+  .button-set {
+  display: flex;
+}
+// .traveller-calulate-persons
+//   .passengers
+//   .passengers-types
+//   .passengers-type
+//   .button-set
+//   button:first-child {
+//   margin: 0 10px;
+//   gap: 10px;
+// }
+.traveller-calulate-persons
+  .passengers
+  .passengers-types
+  .passengers-type
+  .button-set
+  button {
+  font-size: 12px;
+  // color: #fff;
+  border: 1px solid var(--primary-color);
+  // background: var(--primary-color);
+  i {
+    font-size: 13px;
+  }
+}
+.traveller-calulate-persons mat-icon {
+  margin-left: -4px !important;
+}
+
+button:focus,
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+a,
+a:hover {
+  text-decoration: none;
+}
+
+/*--------------------------*/
+.qty-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qty-container .input-qty {
+  text-align: center;
+  padding: 6px 10px;
+  border: 1px solid #d4d4d4;
+  max-width: 80px;
+}
+.qty-container .qty-btn-minus,
+.qty-container .qty-btn-plus {
+  border: 1px solid #d4d4d4;
+  padding: 10px 13px;
+  font-size: 10px;
+  height: 38px;
+  width: 38px;
+  transition: 0.3s;
+}
+.qty-container .qty-btn-plus {
+  margin-left: -1px;
+}
+.qty-container .qty-btn-minus {
+  margin-right: -1px;
+}
+
+/*---------------------------*/
+.btn-cornered,
+.input-cornered {
+  border-radius: 4px;
+}
+.btn-rounded {
+  border-radius: 50%;
+}
+.input-rounded {
+  border-radius: 50px;
+}
+// button texts
+.btn-submit {
+  width: 100%;
+  height: 30px;
+  border: 0;
+  background: #fff152;
+  font-weight: 700;
+  border-radius: 5px;
+}
+.Remove_btn {
+  background: #fff;
+  box-shadow: 0px 2px 4px rgb(0 0 0 / 25%);
+  border-radius: 4px;
+  color: #000;
+  font-weight: 600;
+  width: 100%;
+  height: 30px;
+  border: none !important;
+}
+.mat-dialog-content {
+  max-width: 400px;
+}
+.childAgeList {
+  padding: 0;
+
+  li {
+    display: inline-block;
+    width: 33%;
+    padding: 0 rem(3);
+    margin-bottom: rem(10);
+    .lblAge{
+      width: 100%;
+    }
+    label {
+      padding: 0;
+
+      .ageSelectBox {
+        width: 100%;
+
+        height: 32px;
+
+        border-radius: 4px;
+
+        background: #ffffff;
+
+        border: 1px solid #ccc !important;
+
+        outline: 0;
+
+        border: 0;
+
+        -webkit-appearance: none;
+
+        -moz-appearance: none;
+
+        padding: 5px 10px 5px 15px;
+
+        font-size: 12px;
+
+        color: #4a4a4a;
+      }
+    }
+
+    .lblAge {
+      position: relative;
+    }
+  }
+
+  .latoBold {
+    font-weight: 700;
+  }
+
+  .font12 {
+    font-size: 12px;
+
+    line-height: 12px;
+  }
+
+  .appendBottom10 {
+    margin-bottom: 4px;
+  }
+}

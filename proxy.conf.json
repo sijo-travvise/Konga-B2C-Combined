@@ -1,0 +1,9 @@
+{
+    "/api/*": {
+      "target": "https://KongaAPI.konga.com/api",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api": "" }
+    }
+  }

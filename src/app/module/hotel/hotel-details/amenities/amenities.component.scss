@@ -1,0 +1,27 @@
+@import "../../../../../sass/all.scss";
+.main-sections-tab-content {
+  h2 {
+    font-weight: 700;
+    font-size: rem(25);
+    line-height: rem(36);
+    color: var(--black-color);
+  }
+
+  .amenitiesList{
+    margin: 0;
+    padding: 0;
+    li{
+        display: inline-block;
+        width: 25%;
+        margin-bottom: rem(50);
+        // img{
+        //     width: rem(25);
+        // }
+        span{
+            font-size: rem(18);
+            font-family: $montSemiBold;
+        }
+    }
+  }
+
+}

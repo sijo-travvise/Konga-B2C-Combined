@@ -1,0 +1,134 @@
+@import '../../../../../sass/all.scss';
+
+.filter__clear{
+    border: 0;
+    background: none;
+    padding: 0;
+    color: var(--primary-color);
+    font-weight: 700;
+    &:hover{
+        color: var(--primary-color-hover);
+    }
+}
+.tabPriceSelection{
+    ul{
+        margin: 0;
+        padding: 0;
+        display: flex;        
+        li{
+            padding: rem(20) rem(40);
+            cursor: pointer;
+            position: relative;
+            &::before{
+                content: "";
+                display: block;
+                position: absolute;
+                left: rem(0);
+                top: rem(0);
+                height: 100%;
+                width: 0;
+                background: transparent;
+            }
+            h5{
+                font-size: rem(18);
+                font-weight: 900;
+                margin-bottom: rem(5);
+                position: relative;
+            }
+            b{
+                font-weight: 800;
+            }
+            p{
+                font-size: rem(14);
+                font-weight: 400;
+                position: relative;
+                white-space: nowrap; 
+                width: calc(100% - rem(35)); 
+                overflow: hidden;
+                text-overflow: ellipsis; 
+            }
+            &.b-radius-left{
+                &::before{
+                    border-top-left-radius: rem(10);
+                    border-bottom-left-radius: rem(10);
+                }
+            }
+            &.b-radius-right{
+                
+                &::before{
+                    border-top-right-radius: rem(10);
+                    border-bottom-right-radius: rem(10);
+                }
+            }
+            &.activeTab{
+                position: relative;
+                &::before{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    left: rem(0);
+                    top: rem(0);
+                    height: 100%;
+                    width: 100%;
+                    background: transparent;
+                    border: 2px solid var(--primary-color);
+                }
+                h5,p{
+                    color: var(--primary-color) !important;
+                }
+            }
+        }
+
+    }
+}
+
+
+
+.sortTab{
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    .subtitle{
+        font-size: rem(14);
+        font-weight: 400;
+        margin-top: rem(-11);
+    }
+}
+
+.show-more-btn{
+    height: rem(32) !important;
+}
+
+
+.card-flight{
+  flex-grow:1 !important;
+  display: flex;
+}
+
+
+.selected
+{
+    cursor: pointer;
+    background-color: var(--primary-color);
+}
+
+::ng-deep{
+    .custom-scrolltop{
+        background:  var(--primary-color)!important;
+        }
+        
+}
+
+.disabled
+{
+    pointer-events: none;
+}
+
+
+.flightCard-hover{
+    &:hover{
+        background-color: #ff73be1c;
+    }
+   
+}

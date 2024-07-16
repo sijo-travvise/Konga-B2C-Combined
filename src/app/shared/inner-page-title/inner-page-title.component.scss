@@ -1,0 +1,14 @@
+@import '../../../sass/all.scss';
+
+h4.innerPages__title{
+    font-size: rem(20);
+    font-weight: 700;
+    color: var(--text-primary-color);
+    margin-bottom: rem(10);
+    font-family: $montBold;
+}
+p.innerPages__p_graph{
+    font-size: rem(16);
+    font-weight: 400;
+    color: var(--text-secondary-color);
+}

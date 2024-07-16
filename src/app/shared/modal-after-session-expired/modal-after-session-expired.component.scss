@@ -1,0 +1,38 @@
+@import '../../../sass/all.scss';
+.modalOuter {
+    padding: 24px;
+    .zero_fetch {
+        h4 {
+            font-weight: 700;
+            font-size: rem(16);
+            color: var(--text-primary-color);
+        }
+    
+        P {
+            font-weight: 700;
+            font-size: rem(14);
+            line-height: rem(19);
+            color: var(--text-secondary-color);
+        }
+    
+        .btn-action {
+            width: 100%;
+            height: rem(45);
+            border: 0;
+            background: #04bcc9;
+            font-weight: 700;
+            border-radius: rem(5);
+            color: var(--text-white);
+            font-size: rem(14);
+        }
+        .btn-primary-continue{
+            width: 100%;
+            height: rem(45);
+            border: 0;
+            font-weight: 700;
+            border-radius: rem(5);
+            font-size: rem(14);
+        }
+    }
+}
+

@@ -1,0 +1,96 @@
+<div class="sectionBanner">
+  <div class="container ">
+ 
+    <div class="searchEngineOuter mb-4">
+      <p-tabView styleClass="tabview-custom ">
+
+        <!-- For flights -->
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <div class="tabIcon">
+              <svg width="25" height="17" viewBox="0 0 25 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M22.568 2.37933C21.3888 2.04545 20.1352 2.06913 19.0382 2.44595L18.9932 2.46132L15.7109 4.04691L6.13216 0.176306C5.71401 0.0055418 5.25708 -0.0424254 4.81342 0.0378682C4.36976 0.118162 3.9572 0.323488 3.62274 0.63046L2.34038 1.7988C2.2051 1.92207 2.09886 2.07473 2.02956 2.24544C1.96026 2.41615 1.92967 2.60053 1.94006 2.78491C1.95045 2.96928 2.00155 3.1489 2.08957 3.31046C2.1776 3.47201 2.30028 3.61134 2.44853 3.71811L8.38626 7.99511L6.10867 9.20778L4.30492 7.53265C3.96004 7.213 3.53169 7.00137 3.07134 6.92318C2.61099 6.845 2.13822 6.9036 1.70984 7.09193L0.728928 7.5242C0.575614 7.59173 0.437721 7.69079 0.323936 7.81516C0.210151 7.93953 0.122939 8.0865 0.0677961 8.24682C0.0126528 8.40714 -0.00922711 8.57733 0.00353469 8.74667C0.0162965 8.91601 0.0634234 9.08082 0.141947 9.23073L3.81353 16.2428L23.8089 6.22523C25.0062 5.65244 25.1521 4.73675 24.8889 4.06982C24.597 3.33043 23.751 2.71428 22.568 2.37933ZM23.1176 4.74352L23.1101 4.74711L4.50306 14.069L1.77155 8.85202L2.35137 8.59645C2.49417 8.53366 2.65176 8.51412 2.80522 8.54019C2.95868 8.56625 3.10146 8.63681 3.21641 8.74337L5.85516 11.194L11.4683 8.20533L3.79356 2.67707L4.69965 1.85158C4.81114 1.74927 4.94866 1.68083 5.09654 1.65407C5.24442 1.62731 5.39672 1.64329 5.53611 1.7002L15.7684 5.83488L19.5977 3.98511C20.377 3.72841 21.305 3.72042 22.152 3.96394C22.8495 4.16453 23.22 4.45592 23.3456 4.60874C23.2746 4.66195 23.1981 4.70704 23.1176 4.74352Z"
+                  fill="#901918" />
+              </svg>
+            </div>
+            <span class="title">Flight</span>
+          </ng-template>
+          <div class="tripDisition">
+            <p-tabView (onChange)="onChangeTab($event)" >
+              <p-tabPanel header="One Way" >
+                <ng-container *ngIf="tripType === 'oneWay'">
+                  <app-oneway [searchType]="tripType" [cities]="cities" [prefillFormValue] ="previousStateFormValue" (tripFormData)="searchData($event)"></app-oneway>
+                  <div class="sectionRight d-flex  align-items-center mob__device__passenger">
+                    <app-select-passenger (passengerChange)="selectedPassengerList($event)"></app-select-passenger>
+                    <app-select-cabin></app-select-cabin>
+                  </div>
+                </ng-container>
+               
+              </p-tabPanel>
+              <p-tabPanel header="Round Trip" >
+                <!-- <app-round-trip [selectedPassengerList]="selectedPassengerListData"></app-round-trip> -->
+                <ng-container *ngIf="tripType === 'roundTrip'">
+                <app-oneway [searchType]="tripType"  [cities]="cities" [prefillFormValue] ="previousStateFormValue" (tripFormData)="searchData($event)"></app-oneway>
+                <div class="sectionRight d-flex  align-items-center mob__device__passenger">
+                  <app-select-passenger></app-select-passenger>
+                  <app-select-cabin></app-select-cabin>
+                </div>
+                </ng-container>
+              </p-tabPanel>
+              <p-tabPanel header="Multi City">
+                <ng-container *ngIf="tripType === 'multiCity'">
+                <app-oneway [searchType]="tripType"  [cities]="cities" (tripFormData)="searchData($event)"></app-oneway>
+                <div class="sectionRight d-flex  align-items-center mob__device__passenger">
+                  <app-select-passenger></app-select-passenger>
+                  <app-select-cabin></app-select-cabin>
+                </div>
+                </ng-container>
+              </p-tabPanel>
+            </p-tabView>
+          </div>
+        </p-tabPanel>
+
+<!-- for hotel -->
+        <!-- <p-tabPanel header="Hotel">
+          <ng-template pTemplate="header">
+            <div class="tabIcon">
+              <svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M1.63636 20C1.31439 20 1.0447 19.872 0.827273 19.616C0.609091 19.3609 0.5 19.0444 0.5 18.6667V1.33333C0.5 0.955556 0.609091 0.638667 0.827273 0.382667C1.0447 0.127556 1.31439 0 1.63636 0C1.95833 0 2.22841 0.127556 2.44659 0.382667C2.66402 0.638667 2.77273 0.955556 2.77273 1.33333V13.3333H11.8636V5.33333C11.8636 4.6 12.0864 3.972 12.5318 3.44933C12.9765 2.92756 13.5114 2.66667 14.1364 2.66667H20.9545C22.2045 2.66667 23.2746 3.18889 24.1648 4.23333C25.0549 5.27778 25.5 6.53333 25.5 8V18.6667C25.5 19.0444 25.3909 19.3609 25.1727 19.616C24.9553 19.872 24.6856 20 24.3636 20C24.0417 20 23.772 19.872 23.5545 19.616C23.3364 19.3609 23.2273 19.0444 23.2273 18.6667V16H2.77273V18.6667C2.77273 19.0444 2.66402 19.3609 2.44659 19.616C2.22841 19.872 1.95833 20 1.63636 20ZM7.31818 12C6.37121 12 5.56629 11.6111 4.90341 10.8333C4.24053 10.0556 3.90909 9.11111 3.90909 8C3.90909 6.88889 4.24053 5.94444 4.90341 5.16667C5.56629 4.38889 6.37121 4 7.31818 4C8.26515 4 9.07008 4.38889 9.73295 5.16667C10.3958 5.94444 10.7273 6.88889 10.7273 8C10.7273 9.11111 10.3958 10.0556 9.73295 10.8333C9.07008 11.6111 8.26515 12 7.31818 12ZM14.1364 13.3333H23.2273V8C23.2273 7.26667 23.0049 6.63867 22.5602 6.116C22.1148 5.59422 21.5795 5.33333 20.9545 5.33333H14.1364V13.3333ZM7.31818 9.33333C7.64015 9.33333 7.91023 9.20533 8.12841 8.94933C8.34583 8.69422 8.45455 8.37778 8.45455 8C8.45455 7.62222 8.34583 7.30533 8.12841 7.04933C7.91023 6.79422 7.64015 6.66667 7.31818 6.66667C6.99621 6.66667 6.72614 6.79422 6.50795 7.04933C6.29053 7.30533 6.18182 7.62222 6.18182 8C6.18182 8.37778 6.29053 8.69422 6.50795 8.94933C6.72614 9.20533 6.99621 9.33333 7.31818 9.33333Z"
+                  fill="#898989" />
+              </svg>
+            </div>
+            <span class="title">Hotel</span>
+          </ng-template>
+          <div class="tripDisition">
+            <app-hotel-search-engine></app-hotel-search-engine>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Travel Insurance">
+          <ng-template pTemplate="header">
+            <div class="tabIcon">
+              <svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M1.63636 20C1.31439 20 1.0447 19.872 0.827273 19.616C0.609091 19.3609 0.5 19.0444 0.5 18.6667V1.33333C0.5 0.955556 0.609091 0.638667 0.827273 0.382667C1.0447 0.127556 1.31439 0 1.63636 0C1.95833 0 2.22841 0.127556 2.44659 0.382667C2.66402 0.638667 2.77273 0.955556 2.77273 1.33333V13.3333H11.8636V5.33333C11.8636 4.6 12.0864 3.972 12.5318 3.44933C12.9765 2.92756 13.5114 2.66667 14.1364 2.66667H20.9545C22.2045 2.66667 23.2746 3.18889 24.1648 4.23333C25.0549 5.27778 25.5 6.53333 25.5 8V18.6667C25.5 19.0444 25.3909 19.3609 25.1727 19.616C24.9553 19.872 24.6856 20 24.3636 20C24.0417 20 23.772 19.872 23.5545 19.616C23.3364 19.3609 23.2273 19.0444 23.2273 18.6667V16H2.77273V18.6667C2.77273 19.0444 2.66402 19.3609 2.44659 19.616C2.22841 19.872 1.95833 20 1.63636 20ZM7.31818 12C6.37121 12 5.56629 11.6111 4.90341 10.8333C4.24053 10.0556 3.90909 9.11111 3.90909 8C3.90909 6.88889 4.24053 5.94444 4.90341 5.16667C5.56629 4.38889 6.37121 4 7.31818 4C8.26515 4 9.07008 4.38889 9.73295 5.16667C10.3958 5.94444 10.7273 6.88889 10.7273 8C10.7273 9.11111 10.3958 10.0556 9.73295 10.8333C9.07008 11.6111 8.26515 12 7.31818 12ZM14.1364 13.3333H23.2273V8C23.2273 7.26667 23.0049 6.63867 22.5602 6.116C22.1148 5.59422 21.5795 5.33333 20.9545 5.33333H14.1364V13.3333ZM7.31818 9.33333C7.64015 9.33333 7.91023 9.20533 8.12841 8.94933C8.34583 8.69422 8.45455 8.37778 8.45455 8C8.45455 7.62222 8.34583 7.30533 8.12841 7.04933C7.91023 6.79422 7.64015 6.66667 7.31818 6.66667C6.99621 6.66667 6.72614 6.79422 6.50795 7.04933C6.29053 7.30533 6.18182 7.62222 6.18182 8C6.18182 8.37778 6.29053 8.69422 6.50795 8.94933C6.72614 9.20533 6.99621 9.33333 7.31818 9.33333Z"
+                  fill="#898989" />
+              </svg>
+            </div>
+            <span class="title">Travel Insurance</span>
+          </ng-template>
+          <p>
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui
+            blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
+            et quas molestias excepturi sint occaecati cupiditate non provident,
+            similique sunt in culpa qui officia deserunt mollitia animi, id est
+            laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
+            distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
+            cumque nihil impedit quo minus.
+          </p>
+        </p-tabPanel> -->
+      </p-tabView>
+    </div>
+
+
+  </div>
+</div>

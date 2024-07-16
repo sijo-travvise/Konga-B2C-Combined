@@ -1,0 +1,100 @@
+<div class="row main-sections-tab-content">
+    <h2>Room Availability</h2>
+    <p>Select your choice of rooms available</p>
+    <div class="searchEngineOuter">
+        <app-hotel-room-search-engine></app-hotel-room-search-engine>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-12 mb-4">
+            <div class="d-flex align-items-center">
+                <div class="hotel_fliter d-flex align-items-center gap-3">
+                    <button class="pi-button bg-white sort_btn">Sort By <img style="width: 15px;" src="assets/img/icons/icon-filter-1.svg" alt="flight" class="ms-2"></button>
+                    <button class="pi-button sort_btn bg-active">Room Only</button>
+                    <button class="pi-button sort_btn bg-active">Breakfast Only</button>
+                    <button class="pi-button sort_btn">Halfboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="room-categories-sec">
+        <!-- loop below div for dynamic data -->
+        <div class="hotel_result_box mb-3 card" *ngFor="let item of items">
+            <div class="row mx-0" >
+                <div class="col-md-3 slides2 px-0">
+                    <span class="roomType deluxe"> Deluxe Room </span>
+                    <owl-carousel-o [options]="customOptions">
+                        <ng-template carouselSlide>
+                            <div class="slide">
+                                <img src="assets/img/hotel/hotel004.jpg" />
+                                
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="slide">
+                                <img src="assets/img/hotel/hotel002.jpg" />
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="slide">
+                                <img src="assets/img/hotel/hotel003.jpg" />
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="slide">
+                                <img src="assets/img/hotel/hotel004.jpg" />
+                            </div>
+                        </ng-template>
+                    </owl-carousel-o>
+                </div>
+                <div class="col-md-6 p-0">
+                    <div class="hotel_fecilities_block py-3 px-4">
+                       <div class="col-12 d-flex align-items-center gap-4">
+                            <div class="d-flex align-items-top gap-2">
+                                <img src="../../../../../assets/img/icons/icon-measurement.svg" alt="" />
+                                <div>
+                                    <h6>366 sq ft</h6>
+                                    <p class="roomSize">Room size : 29 m²</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="../../../../../assets/img/icons/icon-cityView.svg" alt="" />
+                                <h6>City view</h6>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="../../../../../assets/img/icons/icon-occupancy.svg" alt="" />
+                                <h6>Occupancy for 2</h6>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="../../../../../assets/img/icons/icon_wifi-2.svg" alt="" />
+                                <h6>Wifi</h6>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="../../../../../assets/img/icons/icon-parking.svg" alt="" />
+                                <h6>Free Parking</h6>
+                            </div>
+                       </div>
+                        <div class="fare_rule_list">
+                            <ul>
+                                <li> Breakfast Included For 2 People </li>
+                                <li> You will be charged directly at hotel</li>
+                            </ul>
+                        </div>
+                        <div class="hotel_card_footer px-4 py-3 d-flex align-items-center gap-3">
+                            <span class="status">Room Only</span>
+                            <span class="payment success">Refundable</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex align-items-center px-0 border-left-1">
+                    <div class="hotel__fare__details text-center px-4 col-12 ">
+                        <h3><b>  ₦ 163,398.00 </b></h3>
+                        <p> Per night per room</p>
+                        <button class="p-button-outlined p-button mb-2 w-auto px-4 justify-content-center py-2" [routerLink]="['/guest-details']"> Select Room</button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>

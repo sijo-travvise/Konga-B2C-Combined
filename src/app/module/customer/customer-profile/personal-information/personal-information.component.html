@@ -1,0 +1,54 @@
+<div class="container px-0 mb-5">
+    <div class=" profile_form_wrapper">
+        <div class="row">
+            <div class="col-lg-7 ">
+                <div class="card p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h2 class="mb-0">Personal Information</h2>
+                        <button class="p-button-outlined p-button px-4">Edit</button>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <app-select-field [title]="'Title'" [option]="SalutationTypeArray"></app-select-field>
+                            </div>
+                            <div class="col-lg-8">
+                                <app-input-field [title]="'First Name'" [isRequired]=false></app-input-field>
+                                <label class="placeHolder">Please ensure your name it as it appears on passport</label>
+                            </div>
+                            <div class="col-lg-12 mb-3">
+                                <app-input-field [title]="'Last Name'" [isRequired]=false></app-input-field>
+                                <label class="placeHolder">Please ensure your name it as it appears on passport</label>
+                            </div>
+                            <div class="col-lg-12 mb-3">
+                                <app-input-field [title]="'Email Id'"
+                                [isRequired]=false></app-input-field>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <app-date-picker [title]="'DOB'"></app-date-picker>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <app-country-selection [title]="'Issue Country'"></app-country-selection>
+                            </div>
+                            <div class="col-lg-12 mb-3">
+                                <button class="btn btn-primary w-100 py-3"  routerLink="/payment-details">Save Changes</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                
+            </div>
+            <div class="col-lg-5">
+                <div class="cardSupport py-4 px-5 d-flex align-items-center gap-5">
+                    <img src="assets/img/icon-headset-small.svg" alt=""/>
+                    <div class="contentArea">
+                        <p>For any queries call our beloved team</p>
+                        <h6>92545478521546</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<ul>
+    <li [class.currentTab]="activeIndex === 0" (click)="activeIndex = 0" >LOGIN</li>
+    <li [class.currentTab]="activeIndex === 1" (click)="activeIndex = 1" >SIGN UP</li>
+</ul>
+<hr/>
+
+<div class="loginPage"  [class.loginPageActive]="activeIndex === 0">
+   
+        <form> 
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <app-input-field [title]="'Email'" [isRequired]=false></app-input-field>
+                </div>
+                <div class="col-md-12 mb-4">
+                    <app-input-field [title]="'Password'" type="password" [isRequired]=false></app-input-field>
+                </div>
+            </div> 
+            <div class="row justify-content-end">
+                <div class="col-md-12  align-self-end mb-5">
+                    <button class="p-button-primary p-button w-100 py-3 text-center d-flex justify-content-center mb-4">Login</button>
+                    <p class="p__forgot">Forgot Password ? <a  (click)="forgotPassword()">Click here to reset</a></p>
+                </div>
+            </div>
+        </form>
+       
+</div>
+<div class="signUpPage"  [class.loginPageActive]="activeIndex === 1">
+   
+        <form> 
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <app-input-field [title]="'Email'" [isRequired]=false></app-input-field>
+                </div>
+                <div class="col-md-12 mb-4">
+                    <app-input-field [title]="'Full Name'" [isRequired]=false></app-input-field>
+                </div>
+                <div class="col-md-12 mb-4">
+                    <app-input-field [title]="'Password'" type="password" [isRequired]=false></app-input-field>
+                </div>
+            </div> 
+            <div class="row justify-content-end">
+                <div class="col-md-12  align-self-end mb-5">
+                    <button class="p-button-primary p-button w-100 py-3 text-center d-flex justify-content-center ">Sign Up</button>
+                </div>
+            </div>
+        </form>
+       
+</div>
+
+<p-dialog  appendTo="body" [(visible)]="forgotWindow" [modal]="true" styleClass="forgotPageModal"  [draggable]="false" [resizable]="true">
+    <app-forgot-password (isForgotClose)="backToLogin($event)"></app-forgot-password>
+</p-dialog>

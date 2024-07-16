@@ -1,0 +1,78 @@
+@import "../../../sass/all.scss";
+.payment_card {
+  .payment_card_box {
+  }
+}
+.payment_card {
+  .row {
+    .payment_card_box {
+      padding: rem(15) rem(15);
+      cursor: pointer;
+      position: relative;
+      border-radius: rem(5);
+      border: 2px solid var(--bg-gray-color-100);
+      height: rem(170);
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: rem(0);
+        top: rem(0);
+        height: 100%;
+        width: 0;
+        background: transparent;
+        border-radius: rem(5);
+      }
+      h5 {
+        font-size: rem(15);
+        font-weight: 600;
+        margin-bottom: rem(5);
+        position: relative;
+        text-align: center;
+      }
+      b {
+        font-weight: 800;
+      }
+      p {
+        font-size: rem(14);
+        font-weight: 400;
+        position: relative;
+        white-space: nowrap;
+        width: calc(100% - rem(35));
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .activeTab {
+      position: relative;
+      padding: rem(15) rem(15);
+      cursor: pointer;
+      position: relative;
+      border-radius: rem(5);
+      height: rem(170);
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: rem(0);
+        top: rem(0);
+        height: 100%;
+        width: 100%;
+        background: transparent;
+        border: 2px solid var(--primary-color);
+        border-radius: rem(5);
+      }
+
+      h5
+      {
+        color: var(--primary-color) !important;
+        text-align: center;
+        font-size: rem(15);
+        font-weight: 600;
+        margin-bottom: rem(5);
+        position: relative;
+        text-align: center;
+      }
+    }
+  }
+}

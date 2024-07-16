@@ -1,0 +1,10 @@
+.uploadFile{
+    .pi-plus:before {
+        content: url(/assets/img/icons/photo.png);
+    }
+    .p-fileupload-choose:not(.p-disabled):hover {
+        background:var(--primary-color);
+        color: var(--color-white);
+        border-color: var(--primary-color);
+    }
+}

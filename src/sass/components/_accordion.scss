@@ -1,0 +1,39 @@
+.p-accordion {
+    .p-accordion-header {
+        .p-accordion-header-link{
+            padding-top: rem(10);
+            padding-bottom: rem(10);
+            background: var(--color-white);
+        }
+    }
+}
+.p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus{
+    box-shadow: none;
+}
+.p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon{
+    position: absolute;
+    right: 0;
+}
+
+
+.flight__section__passenger__details{
+    .p-accordion-content{
+        padding-top: 0;
+    }
+    .p-accordion {
+        .p-accordion-header {
+            .p-accordion-header-link{
+                padding: rem(20) rem(20);
+                font-family: $montBold;
+                color: var(--text-primary-color);
+            }
+        }
+        .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link{
+            border-bottom: 0;
+            background: var(--color-white);
+            color: var(--text-primary-color);
+        }
+    }
+
+
+}

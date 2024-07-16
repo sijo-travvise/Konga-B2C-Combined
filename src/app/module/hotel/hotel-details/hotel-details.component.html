@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="modify-form-section">
+        <div class="row mb-4 mt-4">
+            <div class="col-md-12 ">
+                <div class="searchEngineOuter cardShadow pb-4">
+                    <div class="tripDisition">
+                        <app-hotel-modify-search-engine></app-hotel-modify-search-engine>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-overview></app-overview>
+
+
+    <div class="row">
+        <div class="col-12 tab-view-custom-hotel">
+            <div class="d-block">
+                <div class="sticky ">
+                    <div class="bg-white border-1 d-flex justify-content-between px-5 col-12 py-4">
+                        <button class="btn-tab" (click)="[myElement.scrollIntoView({ behavior: 'smooth', block: 'start' }), activeIndex = 0]" [class.currentTabActive]="activeIndex === 0" > Select Room </button>
+                        <button class="btn-tab" (click)=" [myElement1.scrollIntoView({ behavior: 'smooth', block: 'start' }), activeIndex = 1] " [class.currentTabActive]="activeIndex === 1"> Amenities </button>
+                        <button class="btn-tab" (click)=" [myElement2.scrollIntoView({ behavior: 'smooth', block: 'start' }), activeIndex = 2] " [class.currentTabActive]="activeIndex === 2"> Reviews </button>
+                     
+                    </div>
+                 </div>
+              
+                <div #myElement class="hotel_tabView_contentarea">
+                    <app-choose-room></app-choose-room>
+                </div>
+                <div #myElement1 class="hotel_tabView_contentarea">
+                    <app-amenities></app-amenities>
+                </div>
+                <div #myElement2 class="hotel_tabView_contentarea">
+                    <app-reviews></app-reviews>
+                </div>
+                
+              </div>
+              
+            
+              <!-- <div style="height:10px;width:100%;background:black;display:inline-block;" ></div> -->
+        </div>
+    </div>
+            
+
+   
+</div>

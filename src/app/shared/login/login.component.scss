@@ -1,0 +1,52 @@
+@import '../../../sass/all.scss';
+ul{
+    margin:rem(5) 0 0;
+    padding: 0 rem(30);
+    display: flex;
+    justify-content: center;
+    li{
+        display: inline-block;
+        text-align: center;
+        width: 50%;
+        padding: rem(15) rem(20);
+        color: #B3B3B3;
+        font-family: $montBold;
+        border: rem(1) solid var(--color-white);
+        cursor: pointer;
+
+        &.currentTab{
+            border: rem(1) solid var(--primary-color);
+            border-radius: rem(5);
+            color: var(--primary-color);
+        }
+    }
+}
+
+
+.loginPage{
+    padding: rem(30) rem(50);
+    display: none;
+    &.loginPageActive{
+        display: block;
+    }
+}
+.signUpPage{
+    padding: rem(30) rem(50);
+    display: none;
+    &.loginPageActive{
+        display: block;
+    }
+}
+.p__forgot{
+    font-size: rem(14);
+    font-family: $montSemiBold;
+    color: var(--primary-color);
+    text-align: end;
+    a{
+        cursor: pointer;
+        color: var(--primary-color);
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}

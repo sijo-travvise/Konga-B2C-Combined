@@ -1,0 +1,151 @@
+.btn-primary{
+    color: var(--text-white-color) !important;
+    background: var(--primary-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    font-size: rem(18);
+    font-weight: 500;
+    letter-spacing: rem(1);
+    &:hover{
+        background: var(--primary-color-hover) ;
+        border-color: var(--primary-color-hover);
+    }
+}
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+    background: var(--primary-color-hover) ;
+    border-color: var(--primary-color-hover) ;
+}
+.p-button{
+    padding: rem(8) rem(10);
+}
+.p-button-outlined{
+    border-color: var(--primary-color) !important;
+   
+}
+
+
+
+.p-button {
+  border: 1px solid transparent;
+}
+.p-button:enabled:hover {
+  border-color: transparent;
+}
+.p-button:enabled:active {
+  border-color: transparent;
+}
+.p-button.p-button-outlined {
+  border: 1px solid var(--primary-color);;
+}
+
+.p-button-primary {
+    color: var(--text-white-color);
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: rem(6) rem(9);
+    font-size: rem(16);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+  }
+  .p-button-primary:enabled:hover {
+    background: var(--primary-color-hover) ;
+    border-color: var(--primary-color-hover);
+    color: var(--text-white-color);
+  }
+  .p-button-primary-active {
+    background: var(--primary-color-hover) !important ;
+    border-color: var(--primary-color-hover) !important;
+    color: var(--text-white-color) !important;
+  }
+  .p-button-primary:enabled:active {
+    background: var(--primary-color);
+    color: var(--text-white-color);
+    border-color: var(--primary-color);
+  }
+  .p-button.p-button-outlined {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid;
+  }
+  .p-button.p-button-outlined:enabled:hover {
+    background: var(--primary-color);
+    color: var(--text-white-color);
+    border: 1px solid;
+  }
+  .p-button.p-button-outlined:enabled:active {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid;
+  }
+  .p-button.p-button-outlined.p-button-plain {
+    color: #6c757d;
+    border-color: #6c757d;
+  }
+  .p-button.p-button-outlined.p-button-plain:enabled:hover {
+    background: #e9ecef;
+    color: #6c757d;
+  }
+  .p-button.p-button-outlined.p-button-plain:enabled:active {
+    background: #dee2e6;
+    color: #6c757d;
+  }
+  .p-button.p-button-text {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: transparent;
+  }
+  .p-button.p-button-text:enabled:hover {
+    background: rgba(59, 130, 246, 0.04);
+    color: var(--primary-color);
+    border-color: transparent;
+  }
+  .p-button.p-button-text:enabled:active {
+    background: rgba(59, 130, 246, 0.16);
+    color: var(--primary-color);
+    border-color: transparent;
+  }
+  .p-button.p-button-text.p-button-plain {
+    color: #6c757d;
+  }
+  .p-button.p-button-text.p-button-plain:enabled:hover {
+    background: #e9ecef;
+    color: #6c757d;
+  }
+  .p-button.p-button-text.p-button-plain:enabled:active {
+    background: #dee2e6;
+    color: #6c757d;
+  }
+  .p-button:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem rgb(254 191 191 / 28%);
+  }
+
+  .p-button-success{
+    background: var(--bg-success-color) !important;
+    border: 1px solid var(--bg-success-color);
+    font-size: rem(12);
+    &:hover{
+      border: 1px solid var(--bg-success-color) !important;
+      opacity: 0.8;
+    }
+  }
+
+  .p-togglebutton.p-button.p-highlight:hover {
+    background: var(--primary-color);
+    border-color:  var(--primary-color);
+}
+
+.p-togglebutton.p-button.p-highlight {
+  background: var(--primary-color);
+  border-color:  var(--primary-color);
+}
+
+.p-button.p-button-info.p-button-outlined, .p-buttonset.p-button-info > .p-button.p-button-outlined, .p-splitbutton.p-button-info > .p-button.p-button-outlined {
+  color: var(--primary-color) !important;
+}
+.p-button.p-button-info:enabled:focus {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #fb9ddc, 0 1px 2px 0 black;
+}
+.p-button.p-button-info.p-button-outlined:enabled:active{
+  background: rgba(246, 59, 131, 0.16);
+}

@@ -1,0 +1,140 @@
+<div class="Flights_Results_FlightLeftRail">
+    <div class="flight__card border-0 filterContainer py-4 px-4 mb-3">
+        <h4 class="text-center"><img class="me-2" src="assets/img/icons/icon-filter-1.svg" alt="flight" />Filter by</h4>
+    </div>
+    
+    <div class="flight__card py-3 px-4 border-0">
+        <!-- Price Range start-->
+        <div class="flight__priceRange mb-5">
+            <div class="flight__filter__header d-flex justify-content-between mb-3">
+                <h4 class="filter__title">Price Range</h4>
+                <button type="button" class="filter__clear" (click)="filterSliderValuePriceChange()">Clear</button>
+            </div>
+            <div class="price-range " >
+                <h5 class="priceRange__value"><span><span class="range">Min</span> ₦ </span> {{(PriceRange?.value[0] *  (filteredFlightData?.exchangeRate ?? 1 ) | number: '.1')  + ' - ' }} <span><span class="range">Max</span> ₦</span> {{  ( PriceRange?.value[1] *  (filteredFlightData?.exchangeRate ?? 1 ) | number: '.1') }}</h5>
+                <div class="mt-4 px-3">
+                    <p-slider [formControl]="PriceRange" [range]="true" [step]="1" [min]="minPrice" [max]="maxPrice"></p-slider>
+                </div>
+            </div>
+        </div>
+        <!-- Price Range end-->
+        <!-- Popular Filters Start-->
+        <div class="flight__filter__outer mb-4">
+            <form [formGroup]="flightPopularFilters">
+            <div class="flight__filter__header d-flex justify-content-between mb-3">
+                <h4 class="filter__title">Popular Filters</h4>
+                <button type="button" class="filter__clear" (click)="resetForm()">Clear</button>
+            </div>
+            <div class="flight__checkbox_group">
+                <div class="col-12 px-0 chkboxGroup">
+                    <div class="form-check mb-2">
+                        <label for="inlineCheckbox1" class="form-check-label">Non Stop</label>
+                        <input type="checkbox" id="inlineCheckbox1" class="form-check-input " [formControl]="HasNonStop" [checked]="HasNonStop?.value">
+                    </div>
+                    <div class="form-check mb-2">
+                        <label for="inlineCheckbox1" class="form-check-label">1 Stop</label>
+                        <input type="checkbox" id="inlineCheckbox1" class="form-check-input " [formControl]="HasOneStop" [checked]="HasOneStop?.value">
+                    </div>
+
+                    <div class="form-check mb-2"><label for="inlineCheckbox3" class="form-check-label">2 + Stop</label>
+                        <input type="checkbox" id="inlineCheckbox3" value="option3"
+                            class="form-check-input" [formControl]="HasMoreStops" [checked]="HasMoreStops?.value" >
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+        
+        <!-- Popular Filters end-->
+        <!-- Alliances start-->
+        <!-- <div class="flight__filter__outer mb-4">
+            <div class="flight__filter__header d-flex justify-content-between mb-3">
+                <h4 class="filter__title">Alliances</h4>
+                <button type="button" class="filter__clear">Clear</button>
+            </div>
+            <div class="flight__alliance__list">
+                <ul>
+                    <li class=" d-flex align-items-center" [class.activeAlliance]="activeIndex === 0" (click)="activeIndex = 0">
+                        <img src="assets/img/icons/Oneworld-Logo.svg" alt="Alliance Logo" />
+                        <h6 class="flight__alliance_title">One World <span>( 8 )</span></h6>
+                    </li>
+                    <li class=" d-flex align-items-center"  [class.activeAlliance]="activeIndex === 1" (click)="activeIndex = 1">
+                        <img src="assets/img/icons/star-alliance.svg" alt="Alliance Logo" />
+                        <h6 class="flight__alliance_title">Star Alliance<span>( 21 )</span></h6>
+                    </li>
+                    <li class=" d-flex align-items-center"  [class.activeAlliance]="activeIndex === 2" (click)="activeIndex = 2">
+                        <img src="assets/img/icons/skyteam_logo.svg" alt="Alliance Logo" />
+                        <h6 class="flight__alliance_title">Sky Team <span>( 12 )</span></h6>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+        <!-- Alliances end-->
+        <!-- Airlines Start-->
+        <!--<div class="flight__filter__outer mb-4">
+            <div class="flight__filter__header d-flex justify-content-between mb-3">
+                <h4 class="filter__title">Airlines</h4>
+                <button type="button" class="filter__clear">Clear</button>
+            </div>
+            <div class="flight__checkbox_group">
+                <div class="col-12 px-0 chkboxGroup">
+                    <div class="form-check mb-2">
+                        <label for="allAirlines" class="form-check-label">All Airlines</label>
+                        <input type="checkbox" id="allAirlines" class="form-check-input ng-valid ng-dirty ng-touched">
+                    </div>
+                    <div class="form-check mb-2"><label for="qatarAirways" class="form-check-label">Qatar Airways</label>
+                        <input type="checkbox" id="qatarAirways" value="option2"
+                            class="form-check-input ng-valid ng-dirty ng-touched">
+                    </div>
+                    <div class="form-check mb-2"><label for="kuwaitAirways" class="form-check-label">Kuwait Airways</label>
+                        <input type="checkbox" id="kuwaitAirways" value="option3"
+                            class="form-check-input ng-valid ng-dirty ng-touched">
+                    </div>
+                    <div class="form-check mb-2">
+                        <label for="turkishAirlines" class="form-check-label">Turkish Airlines</label>
+                        <input type="checkbox" id="turkishAirlines" class="form-check-input ng-valid ng-dirty ng-touched">
+                    </div>
+                    <div class="form-check mb-2"><label for="Egyptair" class="form-check-label">Egyptair</label>
+                        <input type="checkbox" id="Egyptair" value="option2"
+                            class="form-check-input ng-valid ng-dirty ng-touched">
+                    </div>
+                    <div class="form-check mb-2"><label for="etihadAirways" class="form-check-label">Etihad Airways</label>
+                        <input type="checkbox" id="etihadAirways" value="option3"
+                            class="form-check-input ng-valid ng-dirty ng-touched">
+                    </div>
+                </div>
+                <div class="flight__card_actions">
+                    <a href="#" class="flight_link_url">Show More</a>
+                </div>
+            </div>
+        </div> -->
+
+        <app-transists-airports [list]="airlineList" filterType="airline" title="Airlines" (onChangeAirline)="onChangeAirlineValue($event)"></app-transists-airports>
+        <!-- Airlines end-->
+        <!-- Departure  Start-->
+       <!-- <app-departure-return title="Departure"></app-departure-return> -->
+        <!-- Departure end-->
+        <!-- Return  Start-->
+        <!-- <app-departure-return title="Return"></app-departure-return> -->
+        <!-- Return end-->
+          <!-- Trip Duration start-->
+          <!-- <div class="flight__priceRange mb-5">
+            <div class="flight__filter__header d-flex justify-content-between mb-3">
+                <h4 class="filter__title">Trip Duration</h4>
+                <button type="button" class="filter__clear">Clear</button>
+            </div>
+            <div class="price-range ">
+                <h5 class="priceRange__value"> {{timeRangeValues[0] + ' hr ' }}   {{ + timeRangeValues[1]+ 'hr'}} </h5>
+                <div class="mt-4 px-3">
+                    <p-slider [(ngModel)]="timeRangeValues" [range]="true" [step]="1" [min]="1" [max]="24"></p-slider>
+                </div>
+            </div>
+        </div> -->
+        <!-- Trip Duration end-->
+
+         <!-- Transit Airports Start-->
+         <!-- <app-transists-airports [list]="locationListArray" filterType="airport" title="Transit Airports"></app-transists-airports> -->
+        <!-- Transit Airports end-->
+    </div>
+</div>
+

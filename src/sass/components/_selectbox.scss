@@ -1,0 +1,140 @@
+.p-dropdown:not(.p-disabled).p-focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.1rem #eee;
+  border-color: transparent;
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  color: var(--primary-color);
+  background: #eff6ff;
+}
+.p-dropdown:not(.p-disabled):hover {
+  border-color: var(--primary-color);
+}
+.p-float-label .p-inputwrapper-focus ~ label{
+  top: rem(19);
+}
+.sortTab {
+  .p-dropdown {
+    background: transparent !important;
+    border: 0;
+    align-items: center;
+    width: rem(160);
+  }
+  .p-float-label label {
+    top: rem(2);
+    font-weight: 900;
+    font-size: rem(18);
+    color: var(--text-primary-color);
+    left: 0;
+  }
+  .p-float-label .p-inputwrapper-filled ~ label {
+    display: none;
+  }
+  .p-dropdown-label {
+    padding-left: 0;
+    padding-bottom: 0;
+    color: var(--text-primary-color);
+    padding-top: 0px;
+    font-weight: 800;
+    font-size: 18px;
+    font-family: $montSemiBold;
+    padding-right: 0;
+    margin-top: rem(-15);
+  }
+  .p-dropdown .p-dropdown-trigger {
+    width: auto;
+    margin-left: rem(40);
+  }
+  .pi-chevron-down {
+    background: url(../../assets/img/icons/icon-sort.svg) no-repeat;
+    width: rem(36);
+    height: rem(36);
+    &:before {
+      display: none;
+    }
+  }
+  .p-dropdown:not(.p-disabled).p-focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0rem #bfdbfe;
+    border-color: transparent;
+  }
+}
+
+.b-radius-right.activeTab {
+  .sortTab .p-float-label label,
+  .sortTab .p-dropdown-label {
+    color: var(--primary-color);
+  }
+}
+
+.trvSelectGroup,
+.trvSelectCountryGroup {
+  .p-component {
+    width: 100%;
+    font-weight: 800;
+    color: var(--text-primary-color);
+  }
+  .p-dropdown-label {
+    // line-height: rem(40);
+    font-weight: 700;
+    color: var(--text-primary-color);
+  }
+  >label{
+    margin-bottom: rem(7);
+  }
+}
+
+.trvSelectCountryGroup {
+  .country-item {
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+  }
+  :host ::ng-deep .p-dropdown {
+    width: 14rem;
+  }
+
+  .country-item-value {
+    img.flag {
+      width: 17px;
+    }
+  }
+}
+
+.trvPhoneGroup {
+  &.p-float-label label {
+    top: rem(18);
+    font-weight: 400;
+    font-size: 1.125rem;
+    color: var(--text-primary-color);
+    left: rem(10);
+    font-size: rem(12);
+    color: #6c757d;
+  }
+}
+
+.tripDisition{
+  .p-autocomplete .p-autocomplete-panel{
+    top: 44px !important;
+  }
+}
+
+
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item.p-highlight {
+  color: #e7057e !important;
+  background: #e8198814 !important;
+}
+.p-dropdown-items-wrapper{
+  background: var(--bg-white) !important;
+}
+.pay__and__earn_box{
+  .trvSelectGroup{
+    .p-dropdown-label {
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: rem(20);
+    }
+  }
+}

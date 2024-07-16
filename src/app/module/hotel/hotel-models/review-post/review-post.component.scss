@@ -1,0 +1,12 @@
+@import "../../../../../sass/all.scss";
+.ratingSection{
+    p{
+        font-size: rem(18);
+        font-family: $montBold;
+    }
+    p.info{
+        font-size: rem(10);
+        font-family: $montRegular;
+    }
+
+}

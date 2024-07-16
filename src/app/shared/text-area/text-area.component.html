@@ -1,0 +1,5 @@
+<p class="textarea" *ngIf="header">{{header}}</p>
+<div class="flex flex-column gap-2 trvInputGroup position-relative">
+    <label for="float-input">{{title}}</label>
+    <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [placeholder]="placeholder" class="w-100" [formControl] ="formControls"></textarea>
+</div>

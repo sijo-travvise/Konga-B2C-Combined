@@ -1,0 +1,101 @@
+<div class="hotel-result-body remove_wishlist">
+    <div class="hotel-box-details  ">
+        <!-- loop  below div for dynamic data load -->
+        <div class="hotel_result_box mt-2">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 slides2 m-0">
+                    <owl-carousel-o [options]="customOptions">
+                        <ng-template carouselSlide>
+                            <div class="slide">
+                                <div class="background" style="  background-image: url(assets/img/hotel/hotel1.png);">
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="slide">
+                                <div class="background" style="  background-image: url(assets/img/hotel/hotel1.png);">
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="slide">
+                                <div class="background" style="  background-image: url(assets/img/hotel/hotel1.png);">
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <div class="slide">
+                                <div class="background" style="  background-image: url(assets/img/hotel/hotel1.png);">
+                                </div>
+                            </div>
+                        </ng-template>
+                    </owl-carousel-o>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6  mt-2  p-0">
+                    <div class="d-flex gap-2">
+                        <h2> Mövenpick Hotel Doha
+                        </h2>
+                        <div class="background_rec">
+                            <p> <img src="assets/img/icons/like.png" alt=""> Recommended</p>
+                        </div>
+                    </div>
+                    <div class="d-flex border-bottom pb-3">
+                        <nav aria-label="" class="border-right">
+                            <ol class="breadcrumb">
+                                <li><img src="assets/img/icons/star1.png" alt=""></li>
+                                <li><img src="assets/img/icons/star1.png" alt=""></li>
+                                <li><img src="assets/img/icons/star1.png" alt=""></li>
+                                <li><img src="assets/img/icons/star1.png" alt=""></li>&nbsp;&nbsp;
+                            </ol>
+                        </nav>
+                        <p> &nbsp;&nbsp;Doha , Qatar <span> 2.0 Km from Hamad Intl Airport</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<small> View In Map</small></p>
+                    </div>
+                    <div class="hotel_fecilities_block pt-3">
+                        <ul class="d-flex ps-0 align-item-center g-2">
+                            <li>
+                                <div class="d-flex align-item-center me-2 gap-1"><img src="assets/img/icons/wifi.png"
+                                        alt="">Wifi</div>
+                            </li>
+                            <li>
+                                <div class="d-flex align-item-center me-2 gap-1"><img src="assets/img/icons/ac.png"
+                                        alt="">AC</div>
+                            </li>
+                            <li>
+                                <div class="d-flex align-item-center me-2 gap-1"><img
+                                        src="assets/img/icons/airport_shuttle.png" alt=""><span>Airport Shuttle</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-lg-1 mt-1">
+                                <div id="flag">
+                                    9.2
+                                </div>
+                            </div>
+                            <div class="col-lg-10">
+                                <h3>Excellent</h3>
+                                <span>12 Reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="hotel_search_right ">
+                        <h3><span>QAR</span> 390</h3>
+                        <h4><span>QAR</span> 210</h4>
+                        <p>avg person / night</p>
+                        <div class="text-end mt-2">
+                            <button class="btn btn-primary-check w-75 h-100" routerLink="/hotel-details">Check Room
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="remove d-flex align-items-center">
+                <div class="card__action d-flex justify-content-center align-items-center col-12"><button class="btn-action"><i class="pi pi-trash"></i> </button></div>
+            </div>
+            <button class="btn more_images">1 of 4</button>
+        </div>
+    </div>   
+</div>

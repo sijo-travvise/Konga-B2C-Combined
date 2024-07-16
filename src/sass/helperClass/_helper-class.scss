@@ -1,0 +1,162 @@
+.w-110{
+    width: rem(110);
+}
+
+.px-40{
+    padding-left: rem(40);
+    padding-right: rem(40);
+}
+.px-25{
+    padding-left: rem(25);
+    padding-right: rem(25);
+}
+.fw-800{
+    font-weight: 800;
+}
+.py-15{
+    padding-top: rem(15);
+    padding-bottom: rem(15);
+}
+.text-primary{
+    color: var(--primary-color) !important;
+}
+.border-radius-50{
+    border-radius:rem(25);
+    .p-button{
+        border-radius: rem(25);
+    }
+}
+.border-radius-5{
+    border-radius:rem(5);
+}
+.mt-100{
+    margin-top: rem(100);
+}
+.min-ht-80{
+    min-height: 50vh;
+}
+.pdng--top{
+    padding-top: rem(100);
+}
+.bg-gray{
+    background: var(--text-secondary-color);
+}
+.hight-100{
+    min-height: 100vh;
+}
+.booking__status__success{
+    background: var(--bg-success-color-100);
+    color: var(--bg-success-color);
+    font-weight: 700;
+    font-size: rem(14);
+    padding: rem(5) rem(10);
+    border-radius: rem(5);
+}
+
+.rightRadius-0{
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.leftRadius-0{
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+.boarder-left-1{
+    border-left: rem(1) solid var(--bg-success-color-100);
+}
+
+.color-danger{
+    color: var(--text-danger-color) !important;
+}
+.success{
+    background: rgba(43, 188, 19, 0.2);
+    color: var(--green-color);
+}
+.deluxe{
+    background: linear-gradient(88.36deg, #0FC938 -12.66%, #FADE9D 182.33%);
+}
+.suite{
+    background: linear-gradient(88.21deg, #FE7316 -12.77%, #FADE9D 186.08%);
+}
+.cancellation_refundable{
+    background: var(--text-gray-100);
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: rem(14);
+    padding: rem(5) rem(10);
+    border-radius: rem(5);
+
+}
+
+.flight__alliance__list{
+    ul li{
+        &:hover{
+            .icon-outer{
+                svg{
+                    path{
+                        fill: var(--primary-color) !important;
+                    }
+                }
+            }
+        }
+        &.activeIndex{
+            border: 1px solid var(--primary-color);
+            .flight__alliance_title{
+                color: var(--primary-color);
+            }
+            .icon-outer{
+                svg{
+                    path{
+                        fill: var(--primary-color) !important;
+                    }
+                }
+            }
+           
+        }
+    }
+}
+
+.flight-bg-primary{
+    background: var(--primary-color);
+    color: var(--color-white);
+}
+
+.hotel__destination{
+    .flight__direction{
+      display: none !important;
+    }
+  }
+
+
+@media (max-width: #{$desktop-width - 1px}) {
+    .mob_pe_0{
+        padding-right: rem(0) !important;
+    }
+    .mob_ps_0{
+        padding-left: rem(0) !important;
+    }
+    .mob_mb_3{
+        margin-bottom: rem(15);
+    }
+    .mob_ps_3{
+        padding-left: rem(15) !important;
+    }
+   
+    .mob_pe_3{
+        padding-right: rem(15) !important;
+    }
+    .mob_px_3{
+        padding-right: rem(15) !important;
+        padding-left: rem(15) !important;
+    }
+    .mob__jusify__center{
+        justify-content: center;
+    }
+    .mob__text__center{
+        text-align: center;
+    }
+    .mob_flex__inherit{
+        display: initial !important;
+    }
+
+}

@@ -1,0 +1,78 @@
+@import '../../../sass/all.scss';
+h2{
+    font-size: rem(25);
+    font-family: $montLight;
+    text-align: center;
+    b{
+        font-family: $montBold;
+    }
+}
+
+
+.affliateCard{
+    padding: rem(30) rem(70);
+
+    .p__forgot{
+        font-size: rem(14);
+        font-family: $montSemiBold;
+        color: var(--primary-color);
+        text-align: end;
+        a{
+            cursor: pointer;
+            color: var(--primary-color);
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    .line{
+            border-top: rem(1) solid #D9D9D9;
+            text-align: center;
+            span{
+                font-size: rem(18);
+                font-family: $montSemiBold;
+                display: table;
+                padding: rem(0) rem(10);
+                margin: -8px auto;
+                background: var(--color-white);
+            }
+    }
+    .p-button{
+        font-size: rem(18);
+        letter-spacing: rem(1);
+    }
+}
+
+.ht-40{
+    height: 40vh;
+}
+
+.affliateCardSucessMessage{
+    width: 80%;
+    margin: auto;
+    border: rem(1) solid #E8E8E8;
+    background: var(--color-white);
+    border-radius: rem(7);
+    padding: rem(10);
+    .iconSuccess{
+        padding: rem(30);
+        background: rgba(231, 5, 126, 0.02);
+        img{
+            width: rem(30);
+        }
+    }
+    .contentArea{
+        h4{
+            font-size: rem(26);
+            font-family: $montBold;
+            color: var(--primary-color);
+            margin-bottom: rem(7);
+        }
+        p{
+            font-size: rem(14);
+            font-family: $montRegular;
+            color: var(--text-gray-200);
+            letter-spacing: rem(1);
+        }
+    }
+}

@@ -1,0 +1,65 @@
+<!-- {{currentDealData | json }} -->
+<!-- {{currentDealData.image}} -->
+<section class="individual__deals__details">
+    <!-- <div class="banner" [style.background]="'url(' + (currentDealData?.image || '') + ') no-repeat center / cover'"> -->
+    <div class="banner background-container" [ngStyle]="{ 'background-image': 'url(' + currentImageUrl + ')',      'background-repeat': 'no-repeat',
+    'background-size': 'cover' }">
+        <div class="overlay"></div>
+        <div class="container deals__details">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h2>Trip To</h2>
+                    <h1> {{currentDealData?.package?.packageName}}</h1>
+                </div>
+                <div class="col-lg-3">
+                    <div class="price__box ">
+                        <p>Starting From</p>
+                        <h3> <span>NGN</span> {{currentDealData?.package?.startingPrice}} </h3>
+                    </div>
+                </div>
+                <p class="mt-3 mb-3">
+                    {{currentDealData?.package?.description}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Move the request__form outside the banner div -->
+    <div class="container">
+        <div class="row justify-content-center request__form">
+            <div class="col-lg-6 request__form__box p-0">
+                <div class="boarder__head mt-2 mb-2">
+                    <h3>ENQUIRY</h3>
+                    <p>Fill up the required details and We will get back to you shortly. </p>
+                </div>
+                <form  [formGroup]="PackageEnquiryForm">
+                    <div class="row justify-content-center mt-3 mb-3 p-3">
+                        <div class="col-lg-6 mb-3">
+                            <div class="mb-3">
+                                <app-input-field   [formControls]="getForm('enquiryPersonName')" [title]="'Name'" [isRequired]=true></app-input-field>
+                            </div>
+                            <div class="mb-3">
+                                <app-input-field  [formControls]="getForm('enquiryPersonEmailID')" [title]="'Email Address'" [isRequired]=true></app-input-field>
+                               
+                            </div>
+                            <div class="mb-3">
+                                <app-phone-number-filed  [formControls]="getForm('enquiryPersonContactNo')" [title]="'Contact Number'"
+                                    [isRequired]=true></app-phone-number-filed>
+                            </div>
+                            <div class="mb-3">
+                                <app-text-area  [formControls]="getForm('specialRequest')" autoResize="false" placeholder="Write any special request" header="Special Request" ></app-text-area>
+                            </div>
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-primary w-100 h-100 mb-2 mt-2" (click)="submitEnqForm()"> Submit </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<p-toast></p-toast>
+
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
+    [loderTitle]="'Loading'"></app-pre-loader>

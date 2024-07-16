@@ -1,0 +1,7 @@
+
+<div *ngFor="let radioOption of radioOptions" class="p-field-checkbox gap-2 mb-3">
+	<p-radioButton [inputId]="radioOption.key" [name]="type" [value]="radioOption.key" [formControl]="formControls"
+		[disabled]="radioOption.key === 'R'"  ></p-radioButton>
+	<label [for]="radioOption.key">{{radioOption.name}}</label>
+</div>
+

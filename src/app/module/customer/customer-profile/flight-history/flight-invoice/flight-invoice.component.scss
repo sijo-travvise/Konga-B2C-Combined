@@ -1,0 +1,178 @@
+@import "../../../../../../sass/all.scss";
+.invoice {
+  .invoice_headers {
+    p {
+      font-weight: 400;
+      font-size: rem(12);
+      line-height: rem(14);
+      color: var(--text-secondary-color);
+      text-align: left;
+      margin-bottom: rem(3);
+    }
+    h2 {
+      font-weight: 500;
+      font-size: rem(14);
+      line-height: rem(17);
+      color: var(--black-color);
+      text-align: left;
+    }
+  }
+
+  h3 {
+    font-family: $montBold;
+    font-size: rem(20);
+    line-height: rem(30);
+    color: var(--primary-color);
+    text-transform: uppercase;
+  }
+
+  .custamerName{
+    background: var(--bg-light-red);
+    border: rem(1) solid var(--primary-color);
+    padding: rem(15) rem(30);
+    border-radius: rem(5);
+    border-bottom-right-radius: rem(0);
+    border-bottom-left-radius: rem(0);
+    h2 {
+      font-family: $montBold;
+      font-size: rem(20);
+      color: var(--primary-color);
+    }
+  }
+
+ 
+  .border {
+    padding: rem(10);
+    border-radius: rem(5);
+  }
+  .border-top-radius{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .itinerary_head {
+    background-color: var(--bg-gray-color-100);
+    p {
+      text-align: center;
+      padding: rem(15) rem(0);
+      font-weight: 700;
+      
+    }
+  }
+
+  .itenaryTitle{
+    font-size: rem(20);
+    color: var(--primary-color);
+    font-family: $montSemiBold;
+    margin-bottom: rem(5);
+}
+.flight__Itinerary__contentArea{
+  border: rem(1) solid var(--bg-gray-color-100);
+  .border-left-1{
+      border-left: rem(1) solid var(--bg-gray-color-100);
+  }
+  h4{
+      font-size: rem(16);
+      font-family: $montBold;
+  }
+  p{
+      font-size: rem(11);
+      font-family: $montSemiBold;
+      color: var(--text-primary-color);
+      line-height: rem(14);
+  }
+  .totalHour{
+      font-size: rem(12);
+      font-family: $montBold;
+      color: var(--primary-color);
+  }
+  .flightNo{
+      color: var(--text-gray-200);
+  }
+ 
+  .icon__flight_left{
+      text-align: center;
+      width: rem(45);
+      position: relative;
+      &::after{
+          content: "";
+          position: absolute;
+          top: rem(20);
+          left: 0;
+          width: 100%;
+          height: rem(3);
+          background: var(--primary-color);
+      }
+     }
+  .icon__flight_right{
+      text-align: center;
+      width: rem(45);
+      position: relative;
+      &::after{
+          content: "";
+          position: absolute;
+          top: rem(20);
+          left: 0;
+          width: 100%;
+          height: rem(3);
+          background: var(--primary-color);
+      }
+  }
+  .flightTicketDetails{
+      padding: rem(20) 0;
+      label{
+          font-size: rem(10);
+          font-family: $montRegular;
+          color:  var(--text-gray-200);
+          display: block;
+          margin-bottom: rem(3);
+      }
+      span{
+          display: block;
+          font-size: rem(12);
+          font-family: $montBold;
+          color:  var(--text--primary-color);
+          margin-bottom: rem(7);
+      }
+      .flightStop{
+          color: var(--primary-color);
+      }
+      .status{
+          border-radius: rem(5);
+          color: var(--green-color);
+      }
+  }
+    
+}
+
+
+
+.flight__Itinerary__tableOuter{
+    border: rem(1) solid var(--bg-gray-color-100);
+    padding: rem(10) rem(15);
+    border-radius: rem(5);
+    
+    th{
+        background: var(--bg-gray-color-300);
+        padding: rem(13);
+        font-size: rem(14);
+        font-weight: 800;
+    }
+    td{
+        padding: rem(13);
+        h6{
+            font-size: rem(14);
+            font-weight: 600;
+            margin-bottom: rem(5);
+        }
+        span{
+            font-weight: 400;
+        }
+    }
+      .status{
+          border-radius: rem(5);
+          color: var(--green-color);
+          font-size: rem(12);
+      }
+  }
+  
+}

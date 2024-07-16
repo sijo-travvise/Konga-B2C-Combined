@@ -1,0 +1,6 @@
+
+<div *ngFor="let checkBoxOption of checkBoxOptions" class="field-checkbox gap-2 mb-3">
+	<p-checkbox [inputId]="checkBoxOption.key" [name]="checkBoxOption.key" [value]="checkBoxOption.key" [formControl]="formControls"
+		[disabled]="checkBoxOption.key === 'R'"></p-checkbox>
+	<label [for]="checkBoxOption.key">{{checkBoxOption.name}}</label>
+</div>

@@ -1,0 +1,18 @@
+@import '../../../sass/all.scss';
+.innerPageBanner{
+    background: url(/assets/img/landingpage/banner.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: rem(20) 0px;
+    h2{
+        color: var(--primary-color);
+        span{
+            color: var(--text-gray-200);
+        }
+    }
+}
+.breadCrump{
+    background: var(--bg-gray-color-100);
+    
+}
+

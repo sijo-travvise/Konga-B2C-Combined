@@ -1,0 +1,68 @@
+<div class="payment_card">
+    <div class="row ">
+        <div class="col-xl-3  col-lg-3 col-md-4 col-sm-4">
+            <div [className]="activeIndex === 0 ? 'activeTab' : 'payment_card_box'" (click)="activeIndex = 0">
+                <div class="row p-3 justify-content-center">
+                    <div class="col-lg-4 text-center p-0">
+                        <img src="assets/img/icons/visa.png" alt="">
+                    </div>
+                    <div class="col-lg-4 text-center p-0">
+                        <img src="assets/img/icons/line.png" alt="">
+                    </div>
+                    <div class="col-lg-4 text-center p-0">
+                        <img src="assets/img/icons/mastercard.png" alt="">
+                    </div>
+                </div>
+                <h5> International <br> Debit / Credit Card</h5>
+                <div class="text-center mt-3">
+                    <p-radioButton name="groupname" value="val1" [(ngModel)]="selectedValue"></p-radioButton>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3  col-lg-3 col-md-4 col-sm-4">
+            <div [className]="activeIndex === 1 ? 'activeTab' : 'payment_card_box'" (click)="activeIndex = 1">
+                <div class="row p-3 justify-content-center">
+                    <div class="col-lg-4 text-center p-0">
+                        <img src="assets/img/icons/visa.png" alt="">
+                    </div>
+                    <div class="col-lg-4 text-center p-0">
+                        <img src="assets/img/icons/line.png" alt="">
+                    </div>
+                    <div class="col-lg-4 text-center p-0">
+                        <img src="assets/img/icons/mastercard.png" alt="">
+                    </div>
+                </div>
+                <h5> Qatar <br> Debit Only </h5>
+                <div class="text-center mt-3">
+                    <p-radioButton name="groupname" value="val2" [(ngModel)]="selectedValue"></p-radioButton>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3  col-lg-3 col-md-4 col-sm-4">
+            <div [className]="activeIndex === 2 ? 'activeTab' : 'payment_card_box'" (click)="activeIndex = 2">
+                <div class="row p-3 justify-content-center">
+                    <div class="col-lg-12 text-center p-0">
+                        <img src="assets/img/icons/oredo.png" alt="">
+                    </div>
+                </div>
+                <h5> International <br> Debit / Credit Card</h5>
+                <div class="text-center mt-3">
+                    <p-radioButton name="groupname" value="val3" [(ngModel)]="selectedValue"></p-radioButton>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3  col-lg-3 col-md-4 col-sm-4">
+            <div [className]="activeIndex === 3 ? 'activeTab' : 'payment_card_box'" (click)="activeIndex = 3">
+                <div class="row p-3 justify-content-center">
+                    <div class="col-lg-12 text-center p-0">
+                        <img src="assets/img/icons/amex.png" alt="">
+                    </div>
+                </div>
+                <h5>AMEX</h5>
+                <div class="text-center mt-3">
+                    <p-radioButton name="groupname" value="val4" [(ngModel)]="selectedValue"></p-radioButton>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

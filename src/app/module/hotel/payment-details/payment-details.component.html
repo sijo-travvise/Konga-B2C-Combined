@@ -1,0 +1,27 @@
+<div class="container-fluid payment_details p-0 mt-3">
+    <app-session-expire></app-session-expire>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                <h2 class="fs-title">Payment Details</h2>
+                <p>Please make sure the payment details are accurate.</p>
+                <app-total-amount-card [ngClass]="'mb-4 d-block'" sectionTitle="Total"
+                    sectionPgraph="( 2 Adult + 1 Child)" currancy="QAR" [totalAmount]="2310"></app-total-amount-card>
+                <app-payment-card-selection></app-payment-card-selection>
+                <app-card-details-section></app-card-details-section>
+                <div class="row justify-content-center mt-5">
+                    <div class="col-lg-4 align-items-center dflex">
+                        <h3 routerLink="/guest-details">Go Back</h3>
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btn btn-primary" style="height: 50px;width: 100%;"
+                            routerLink="/payment-details">Pay</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                <app-fare-details></app-fare-details>
+            </div>
+        </div>
+    </div>
+</div>

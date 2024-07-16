@@ -1,0 +1,62 @@
+@import '../../../sass/all.scss';
+.searchEngineOuter{
+    padding-top: rem(250);
+    position: relative;
+}
+.sectionBanner{
+    background: url(/assets/img/landingpage/banner_default.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 380px;
+    // padding: rem(70) 0px;
+    h1{
+        color: var(--primary-color);
+        span{
+            color: var(--text-gray-200);
+        }
+    }
+}
+.tb--view{
+    box-shadow: 0 0 10px #ddd;
+}
+.tabIcon{
+    text-align: center;
+    // margin-bottom: rem(7);
+}
+.title{
+    font-family: $montSemiBold;
+    font-weight: 400;
+    font-size: rem(16);
+    color: var(--text-gray-200);
+}
+
+
+.tripDisition{
+    position: relative;
+}
+
+.sectionRight{
+    position: absolute;
+    right: 0;
+    top: rem(-6);
+}
+
+@media (max-width: #{$desktop-width - 1px}) {
+    .searchEngineOuter{
+        padding-left: rem(30);
+        padding-right: rem(30);
+    }
+}
+@media (max-width: #{$tablet-width - 1px}) {
+   
+    .sectionBanner{
+        height: auto;
+        padding-bottom: rem(50);
+    }
+    .sectionRight.mob__device__passenger {
+        position: absolute;
+        right: auto;
+        top:rem(55);
+    }
+   
+}

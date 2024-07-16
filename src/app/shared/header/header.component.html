@@ -1,0 +1,58 @@
+<!-- {{user | json}} -->
+<div class="container-fuild header-bg">
+    <div class="container d-flex align-items-center justify-content-between py-2">
+        <a href="#" class="brand">
+            <img src="assets/img/logo.svg" alt="Logo" />
+        </a>
+        <div class="section_right d-flex align-items-center gap-4">
+            <button class="link__Affiliates p-button py-2 px-4 p-button-outlined h-100"  (click)="showDialog()" *ngIf="user==undefined">Affiliates</button>
+            
+            <!-- <div class="login_signup d-flex align-items-center gap-2 " (click)="showLoginPage()" *ngIf="user==undefined">
+                <i class="pi pi-user"></i>
+                <a>Login</a>
+                <span class="mx-1">/</span>
+                <a>Signup</a>
+            </div> -->
+
+            <div class="topbar__menu" *ngIf="user!=undefined">
+                <span class="d-flex align-items-center gap-2 btn-user p-0" (click)="op.toggle($event)" >
+                    <img src="../../../assets/img/dummy-user.jpg" alt="user" />
+                    <i class="pi pi-angle-down"></i>
+                </span>
+                <p-overlayPanel #op class="topBar__overlayPanel">
+                    <div class="card__profile">
+                        <div class="profile__header col-12 px-3 d-flex gap-3 pb-2 align-items-center ">
+                            <img src="../../../assets/img/dummy-user.jpg" alt="user" />
+                            <div class="user">
+                                <h5>{{user?.leadUserFirstName}} {{user?.leadUserLastName}}</h5>
+                                <p>Affiliate</p>
+                            </div>
+                        </div>
+                        <div class="usr__nav  col-12 px-3">
+                            <ul>
+                                <li><a href="#"><i class="pi pi-user"></i> View Profile </a></li>
+                                <li (click)="logOut()"><a><i class="pi pi-sign-out"></i> Log Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </p-overlayPanel>
+             
+            </div>
+
+        </div>
+    </div>
+</div>
+<div  [ngClass]="[ breadCrumps ? 'hide' : 'show']" >
+    <app-bread-crumb></app-bread-crumb>
+</div>
+   
+<p-dialog  [(visible)]="visible" [modal]="true" class="affliatePageModal" [draggable]="false" [resizable]="true">
+    <app-affliate (isloadingAffiliate)="affiliateLoading($event)"></app-affliate>
+</p-dialog>
+<p-dialog  [(visible)]="loginPage" [modal]="true" class="loginPageModal" [draggable]="false" [resizable]="true">
+    <app-login (isCloseLogin)="closeLogin($event)"></app-login>
+</p-dialog>
+
+
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading [loderTitle]="'Loading'"></app-pre-loader>
+

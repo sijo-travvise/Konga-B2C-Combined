@@ -1,0 +1,26 @@
+@import '../../../sass/all.scss';
+.total__Amount__card{
+    background: var(--primary-gradient-light);
+    padding: rem(15) rem(25);
+    border-radius: rem(5);
+    .title__pgraph{
+        h5{
+            font-size: rem(25);
+            font-weight: 800;
+            color: var(--text-white-color);
+        }
+        p{
+            font-size: rem(14);
+            font-weight: 400;
+            color: var(--text-white-color);
+        }
+    }
+    h4{
+        font-size: rem(25);
+        font-weight: 400;
+        color: var(--text-white-color);
+        b{
+            font-weight: 800;
+        }
+    }
+}

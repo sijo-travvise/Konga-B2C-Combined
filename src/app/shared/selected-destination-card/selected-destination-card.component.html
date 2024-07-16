@@ -1,0 +1,51 @@
+<div class="row mb-4">
+
+    <!-- flightResultData?.data?.CombinedBound?.at(0) -->
+    <div class="col-md-12 col-lg-2 mob_mb_3">
+        <div class="availabilityCard h-100 d-flex align-items-center">
+            <h2>{{tripData?.length ?? 0}} flights <span>Available</span></h2>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-10 ps-0 mob_ps_3">
+        <div class="selcetDestinationCard px-3 bg-white d-flex align-items-center gap-3 h-100">
+            <div class="flight__direction d-flex align-items-center gap-3">
+                <img src="{{flightDirectionIcon}}" />
+                <p>{{flightTripType}}</p>
+            </div>
+            <ng-container *ngIf="tripData[0]?.supplier == '1A'; else nxtSupplier">
+
+                <ng-container *ngFor="let travelDetails of tripData[0]?.offer?.itineraries; let i =index">
+                    <div class="p-3 border border-start-0 border-top-0 border-bottom-0 ">
+                        <h2 class="d-flex align-items-center justify-content-start">
+                            {{travelDetails?.segments[0].departure?.cityName}} <img
+                                src="../../../assets/img/icons/icon-destinations.svg"
+                                class="px-2" />{{travelDetails?.segments[travelDetails?.segments?.length
+                            -1].arrival?.cityName}} </h2>
+                        <span class="selected_date">{{travelDetails?.segments[0].departure?.departtime_detail }}</span>
+                        <!-- <span class="selected_day">{{travelDetails?.segments[travelDetails?.segments?.length -1].arrival?.arrivaltime_detail}}</span> -->
+                    </div>
+                </ng-container>
+
+            </ng-container>
+            <ng-template #nxtSupplier>
+
+                <ng-container *ngFor="let travelDetails of tripData[0]?.offer?.flights[0]?.Trips; let i =index">
+                    <div class="p-3 border border-start-0 border-top-0 border-bottom-0 ">
+                        <h2 class="d-flex align-items-center justify-content-start">
+                            {{travelDetails?.FlightSegments[0]?.Origin}} <img
+                                src="../../../assets/img/icons/icon-destinations.svg"
+                                class="px-2" />{{travelDetails?.FlightSegments[travelDetails?.FlightSegments?.length
+                            -1]?.Destination}} </h2>
+                        <span class="selected_date">{{
+                            _microService?.getFormatedFlightDate(travelDetails?.FlightSegments[0]?.DepartureDate,false,"d&nbsp;MMM&nbsp;''''yy"
+                            )}}</span>
+                    
+                    </div>
+                </ng-container>
+
+            </ng-template>
+
+
+        </div>
+    </div>
+</div>

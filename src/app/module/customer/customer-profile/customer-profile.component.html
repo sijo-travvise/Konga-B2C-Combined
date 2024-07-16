@@ -1,0 +1,149 @@
+<div class="container mt-100 min-ht-80">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="user__profile__card mb-4 text-center pt-4 px-5 pb-4">
+                <div class="col-12 position-relative d-flex justify-content-center">
+                    <div class="circular-progress " >
+                        <div class="userImage" [ngStyle]="{'background': 'url(../../../../assets/img/user.jpg)'}"></div>
+                    </div>
+                </div>
+                <h2>Ahamed Sahib</h2>
+
+                <div class="userInformation text-start">
+                    <h6>Info</h6>
+                    <p class="d-flex align-items-center gap-2"><i class="pi pi-envelope"></i> zara4536@gmail.com</p>
+                    <p class="d-flex align-items-center gap-2"><i class="pi pi-calendar"></i> 31 December 1998</p>
+                </div>
+            </div>
+            <!--Trip Summary Start-->
+            <div class="user__profile__card px-4 mb-5 py-3 user__trip__summary" style="display: none;">
+                <h3>Trip Summary</h3>
+                <ul>
+                    <li>
+                        <span class="icon-summary">
+                            <img src="assets/img/icons/icon-flight-summary.svg" alt="" />
+                        </span>
+                        <div class="summary__details">
+                            <p class="date">12 Sep ‘ 23 - 22 Sep ‘ 23</p>
+                            <h4>Trip From DOH - MAD</h4>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon-summary">
+                            <img src="assets/img/icons/icon-calander.svg" alt="" />
+                        </span>
+                        <div class="summary__details">
+                            <p class="date">12 Sep ‘ 23 - 22 Sep ‘ 23</p>
+                            <h4>Check In  Movenpick , Madrid</h4>
+                            <span class="success__msg">Successfully Issued</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon-summary">
+                            <img src="assets/img/icons/icon-qustion-mark.svg" alt="" />
+                        </span>
+                        <div class="summary__details">
+                            <p class="date">12 Sep ‘ 23 - 22 Sep ‘ 23</p>
+                            <h4>Check In</h4>
+                            <a href="" class="link__url">Book Hotel</a>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon-summary">
+                            <img src="assets/img/icons/icon-calander.svg" alt="" />
+                        </span>
+                        <div class="summary__details">
+                            <p class="date">12 Sep ‘ 23 - 22 Sep ‘ 23</p>
+                            <h4>Check In  Movenpick , Madrid</h4>
+                            <span class="success__msg">Successfully Issued</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--Trip Summary End-->
+        </div>
+        <div class="col-md-9">
+            <div class=" mb-4  user__details_tab_section">
+                <ul class="mb-3">
+                    <li [class.currentTabActive]="activeIndex === 0" (click)="activeIndex = 0">
+                        <div class="icon_tab">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.04762 28.9524C2.20953 28.9524 1.49181 28.6537 0.894478 28.0564C0.297145 27.459 -0.00101329 26.7418 2.58711e-06 25.9048V9.14286C2.58711e-06 8.30476 0.298669 7.58705 0.896003 6.98972C1.49334 6.39238 2.21054 6.09422 3.04762 6.09524H9.14286V3.04762C9.14286 2.20953 9.44153 1.49181 10.0389 0.894478C10.6362 0.297145 11.3534 -0.00101329 12.1905 2.58711e-06H18.2857C19.1238 2.58711e-06 19.8415 0.298669 20.4389 0.896003C21.0362 1.49334 21.3344 2.21054 21.3333 3.04762V6.09524H27.4286C28.2667 6.09524 28.9844 6.39391 29.5817 6.99124C30.179 7.58857 30.4772 8.30578 30.4762 9.14286V15.6571C30.019 15.327 29.5365 15.041 29.0286 14.7992C28.5206 14.5575 27.9873 14.3482 27.4286 14.1714V9.14286H3.04762V25.9048H13.8286C13.9048 26.4381 14.019 26.9587 14.1714 27.4667C14.3238 27.9746 14.5143 28.4698 14.7429 28.9524H3.04762ZM12.1905 6.09524H18.2857V3.04762H12.1905V6.09524ZM24.381 32C22.273 32 20.4759 31.2569 18.9897 29.7707C17.5035 28.2844 16.7609 26.4879 16.7619 24.381C16.7619 22.273 17.505 20.4759 18.9912 18.9897C20.4775 17.5035 22.274 16.7609 24.381 16.7619C26.4889 16.7619 28.286 17.505 29.7722 18.9912C31.2584 20.4775 32.001 22.274 32 24.381C32 26.4889 31.2569 28.286 29.7707 29.7722C28.2844 31.2584 26.4879 32.001 24.381 32ZM26.8952 27.9619L27.9619 26.8952L25.1429 24.0762V19.8095H23.619V24.6857L26.8952 27.9619Z" fill="#E7057E"/>
+                            </svg>
+                        </div>
+                        <h6>My Trips</h6>
+                    </li>
+                    <li [class.currentTabActive]="activeIndex === 1" (click)="activeIndex = 1">
+                        <div class="icon_tab">
+                            <svg width="18" height="28" viewBox="0 0 18 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15.4286 2.54545H11.5714V5.09091H15.4286V25.4545H2.57143V5.09091H6.42857V2.54545H2.57143C1.88944 2.54545 1.23539 2.81364 0.753154 3.291C0.270917 3.76837 0 4.41581 0 5.09091V25.4545C0 26.1296 0.270917 26.7771 0.753154 27.2545C1.23539 27.7318 1.88944 28 2.57143 28H15.4286C16.1106 28 16.7646 27.7318 17.2468 27.2545C17.7291 26.7771 18 26.1296 18 25.4545V5.09091C18 4.41581 17.7291 3.76837 17.2468 3.291C16.7646 2.81364 16.1106 2.54545 15.4286 2.54545ZM9 7.63636C9.68198 7.63636 10.336 7.90454 10.8183 8.38191C11.3005 8.85927 11.5714 9.50672 11.5714 10.1818C11.5714 10.8569 11.3005 11.5044 10.8183 11.9817C10.336 12.4591 9.68198 12.7273 9 12.7273C8.31801 12.7273 7.66396 12.4591 7.18173 11.9817C6.69949 11.5044 6.42857 10.8569 6.42857 10.1818C6.42857 9.50672 6.69949 8.85927 7.18173 8.38191C7.66396 7.90454 8.31801 7.63636 9 7.63636ZM14.1429 17.8182H3.85714V16.5455C3.85714 14.8527 7.29 14 9 14C10.71 14 14.1429 14.8527 14.1429 16.5455V17.8182ZM14.1429 21.6364H3.85714V20.3636H14.1429V21.6364ZM9 24.1818H3.85714V22.9091H9V24.1818ZM10.2857 5.09091H7.71429V0H10.2857V5.09091Z" fill="#898989"/>
+                            </svg>
+                        </div>
+                        <h6>Personal Information</h6>
+                    </li> 
+                    
+                </ul>
+            </div>
+
+            <div class="section__user__details__content__area">
+                <div class="tab__content__area" [class.currentTabActive]="activeIndex === 0" >
+                   <div class="dashboard__history__tab">
+                    <ul>
+                        <li  [class.currentFilterActive]="activeFilterIndex === 0" (click)="activeFilterIndex = 0">
+                            <div class="icon__tab">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.3333 24V13.3333H24V24H13.3333ZM13.3333 10.6667V0H24V10.6667H13.3333ZM0 10.6667V0H10.6667V10.6667H0ZM0 24V13.3333H10.6667V24H0Z" fill="#898989"/>
+                                </svg>
+                            </div>
+                            <span>All</span>
+                        </li>
+                        <li  [class.currentFilterActive]="activeFilterIndex === 1" (click)="activeFilterIndex = 1">
+                            <div class="icon__tab">
+                                <svg width="25" height="17" viewBox="0 0 25 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22.568 2.37933C21.3888 2.04545 20.1352 2.06913 19.0382 2.44595L18.9932 2.46132L15.7109 4.04691L6.13216 0.176306C5.71401 0.0055418 5.25708 -0.0424254 4.81342 0.0378682C4.36976 0.118162 3.9572 0.323488 3.62274 0.63046L2.34038 1.7988C2.2051 1.92207 2.09886 2.07473 2.02956 2.24544C1.96026 2.41615 1.92967 2.60053 1.94006 2.78491C1.95045 2.96928 2.00155 3.1489 2.08957 3.31046C2.1776 3.47201 2.30028 3.61134 2.44853 3.71811L8.38626 7.99511L6.10867 9.20778L4.30492 7.53265C3.96004 7.213 3.53169 7.00137 3.07134 6.92318C2.61099 6.845 2.13822 6.9036 1.70984 7.09193L0.728928 7.5242C0.575614 7.59173 0.437721 7.69079 0.323936 7.81516C0.210151 7.93953 0.122939 8.0865 0.0677961 8.24682C0.0126528 8.40714 -0.00922711 8.57733 0.00353469 8.74667C0.0162965 8.91601 0.0634234 9.08082 0.141947 9.23073L3.81353 16.2428L23.8089 6.22523C25.0062 5.65244 25.1521 4.73675 24.8889 4.06982C24.597 3.33043 23.751 2.71428 22.568 2.37933ZM23.1176 4.74352L23.1101 4.74711L4.50306 14.069L1.77155 8.85202L2.35137 8.59645C2.49417 8.53366 2.65176 8.51412 2.80522 8.54019C2.95868 8.56625 3.10146 8.63681 3.21641 8.74337L5.85516 11.194L11.4683 8.20533L3.79356 2.67707L4.69965 1.85158C4.81114 1.74927 4.94866 1.68083 5.09654 1.65407C5.24442 1.62731 5.39672 1.64329 5.53611 1.7002L15.7684 5.83488L19.5977 3.98511C20.377 3.72841 21.305 3.72042 22.152 3.96394C22.8495 4.16453 23.22 4.45592 23.3456 4.60874C23.2746 4.66195 23.1981 4.70704 23.1176 4.74352Z" fill="#898989"/>
+                                </svg>
+                            </div>
+                            <span>Flight</span>
+                        </li>
+                        <li [class.currentFilterActive]="activeFilterIndex === 2" (click)="activeFilterIndex = 2">
+                            <div class="icon__tab">
+                                <svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.63636 20C1.31439 20 1.0447 19.872 0.827273 19.616C0.609091 19.3609 0.5 19.0444 0.5 18.6667V1.33333C0.5 0.955556 0.609091 0.638667 0.827273 0.382667C1.0447 0.127556 1.31439 0 1.63636 0C1.95833 0 2.22841 0.127556 2.44659 0.382667C2.66402 0.638667 2.77273 0.955556 2.77273 1.33333V13.3333H11.8636V5.33333C11.8636 4.6 12.0864 3.972 12.5318 3.44933C12.9765 2.92756 13.5114 2.66667 14.1364 2.66667H20.9545C22.2045 2.66667 23.2746 3.18889 24.1648 4.23333C25.0549 5.27778 25.5 6.53333 25.5 8V18.6667C25.5 19.0444 25.3909 19.3609 25.1727 19.616C24.9553 19.872 24.6856 20 24.3636 20C24.0417 20 23.772 19.872 23.5545 19.616C23.3364 19.3609 23.2273 19.0444 23.2273 18.6667V16H2.77273V18.6667C2.77273 19.0444 2.66402 19.3609 2.44659 19.616C2.22841 19.872 1.95833 20 1.63636 20ZM7.31818 12C6.37121 12 5.56629 11.6111 4.90341 10.8333C4.24053 10.0556 3.90909 9.11111 3.90909 8C3.90909 6.88889 4.24053 5.94444 4.90341 5.16667C5.56629 4.38889 6.37121 4 7.31818 4C8.26515 4 9.07008 4.38889 9.73295 5.16667C10.3958 5.94444 10.7273 6.88889 10.7273 8C10.7273 9.11111 10.3958 10.0556 9.73295 10.8333C9.07008 11.6111 8.26515 12 7.31818 12ZM14.1364 13.3333H23.2273V8C23.2273 7.26667 23.0049 6.63867 22.5602 6.116C22.1148 5.59422 21.5795 5.33333 20.9545 5.33333H14.1364V13.3333ZM7.31818 9.33333C7.64015 9.33333 7.91023 9.20533 8.12841 8.94933C8.34583 8.69422 8.45455 8.37778 8.45455 8C8.45455 7.62222 8.34583 7.30533 8.12841 7.04933C7.91023 6.79422 7.64015 6.66667 7.31818 6.66667C6.99621 6.66667 6.72614 6.79422 6.50795 7.04933C6.29053 7.30533 6.18182 7.62222 6.18182 8C6.18182 8.37778 6.29053 8.69422 6.50795 8.94933C6.72614 9.20533 6.99621 9.33333 7.31818 9.33333Z" fill="#898989"/>
+                                </svg>
+                                    
+                            </div>
+                            <span>Hotel</span>
+                        </li>
+                    </ul>
+                    <div class="dashboard__history__content__area">
+                        <div class="dashboard__content__area" [class.currentFilterActive]="activeFilterIndex === 1" >
+                            <app-flight-history></app-flight-history>
+                        </div>
+                        <div class="dashboard__content__area" [class.currentFilterActive]="activeFilterIndex === 0" >
+                            <div class="mb-3">
+                                <app-flight-history></app-flight-history>
+                            </div>
+                            <div class="mb-3">
+                                <app-hotel-history></app-hotel-history>
+                            </div>
+                        </div>
+                        <div class="dashboard__content__area" [class.currentFilterActive]="activeFilterIndex === 2" >
+                            <app-hotel-history></app-hotel-history>
+                        </div>
+                    </div>
+                   </div>
+                </div>
+                
+
+                <div class="tab__content__area" [class.currentTabActive]="activeIndex === 1" >
+                    <app-personal-information></app-personal-information>
+                </div>
+        
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
