@@ -5,7 +5,6 @@
                 <div class="tripDisition">
                     <p-tabView (onChange)="onChangeTab($event)"
                         [activeIndex]="flightResultData?.tripType === 'oneWay'? 0 : flightResultData?.tripType === 'roundTrip' ? 1 : flightResultData?.tripType === 'multiCity' ? 2 : 0">
-
                         <p-tabPanel header="One Way">
                             <ng-container *ngIf="tripType === 'oneWay'">
                                 <app-oneway [searchFlightFormValue]="flightResultData?.formData" [searchType]="tripType"
@@ -20,7 +19,6 @@
                         </p-tabPanel>
                         <p-tabPanel header="Round Trip">
                             <ng-container *ngIf="tripType === 'roundTrip'">
-
                                 <app-oneway [searchFlightFormValue]="flightResultData?.formData" [searchType]="tripType"
                                     [cities]="cities" (changedFlightData)="changedFlightDataEvent($event)"></app-oneway>
                                 <div class="sectionRight d-flex  align-items-center mob__device__passenger">

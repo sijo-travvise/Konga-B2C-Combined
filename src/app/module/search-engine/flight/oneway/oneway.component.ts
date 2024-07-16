@@ -126,6 +126,7 @@ export class OnewayComponent implements OnInit {
     });
 
     if (this.prefillFormValue !== null) {
+
       if (typeof this.prefillFormValue?.selectedFromCity === 'object') {
         this.selectedFromCity.patchValue(this.prefillFormValue?.selectedFromCity)
       }
@@ -134,7 +135,7 @@ export class OnewayComponent implements OnInit {
       }
     }
 
-    this.serachFormValue();
+    this.serachFormValue();  
   }
 
   addItem(currentIndex: number = 1) {
@@ -348,8 +349,6 @@ export class OnewayComponent implements OnInit {
       }
     });
     this.amedeusReqModel.searchCriteria.flightFilters.cabinRestrictions[0].cabin = this.selectedCabinDataData.subValue.toUpperCase();
-    debugger
-
     let parameters: FlightSearchRequest = null;
 
     //for micro service\
@@ -519,18 +518,22 @@ export class OnewayComponent implements OnInit {
 
   serachFormValue() {
     if (this.searchFlightFormValue !== undefined && this.searchFlightFormValue !== null) {
-      console.log(this.searchType === 'oneWay' ? new Date(this.searchFlightFormValue?.DepartedDate ?? this.minimumDate) : (Array.isArray(this.searchFlightFormValue?.DepartedDate) ? [(this.searchFlightFormValue?.DepartedDate?.at(0) ?? new Date()), (this.searchFlightFormValue?.DepartedDate[1] ?? new Date())] : [new Date(), new Date()]),);
+
+      let checkDate =   new Date(this.searchFlightFormValue?.DepartedDate)  > new Date(this.searchFlightFormValue?.ReturnDate) ? new Date(this.searchFlightFormValue?.DepartedDate)  :  new Date(this.searchFlightFormValue?.ReturnDate)
+
       this.flightSearchForm.patchValue({
         selectedFromCity: this.searchFlightFormValue?.selectedFromCity,
         selectedToCity: this.searchFlightFormValue?.selectedToCity,
         DepartedDate: this.searchType === 'oneWay' ? new Date(this.searchFlightFormValue?.DepartedDate ?? this.minimumDate) : (Array.isArray(this.searchFlightFormValue?.DepartedDate) ? [new Date(this.searchFlightFormValue?.DepartedDate?.at(0) ?? this.minimumDate), new Date(this.searchFlightFormValue?.DepartedDate[1] ?? this.minimumDate)] : new Date(this.searchFlightFormValue?.DepartedDate)),
-        ReturnDate: new Date(this.searchFlightFormValue?.ReturnDate),
+        ReturnDate: checkDate,
         DirectFlights: this.searchFlightFormValue?.DirectFlights,
         FlexibleDate: this.searchFlightFormValue?.FlexibleDate,
         NearbyAirports: this.searchFlightFormValue?.NearbyAirports,
         multiCityArray: this.multiArrayFill(this.searchFlightFormValue?.multiCityArray)
       })
     }
+
+    console.log(this.flightSearchForm.value);
   }
 
   multiArrayFill(fromData: any) {
@@ -611,7 +614,6 @@ export class OnewayComponent implements OnInit {
     // if (this.roundTripDateArry.length == 2) {
     //   this.roundTripDateArry.length = 0;
     // }
-    debugger;
     if (new Date(this.DepartedDate?.value) > new Date(this.ReturnDate.value)) {
       this.ReturnDate.patchValue(this.DepartedDate?.value);
     }
@@ -637,15 +639,16 @@ export class OnewayComponent implements OnInit {
 
 
   ngOnChanges(changes: SimpleChanges) {
-    // if (this.searchType === 'oneWay' && this.flightSearchForm) {
+    console.log(changes);
+    if (this.searchType === 'oneWay' && this.flightSearchForm) {
 
-    //   this.DepartedDate?.patchValue(new Date());
-    //   this.serachFormValue();
-    // }
-    // else if (this.searchType === 'roundTrip' && this.flightSearchForm) {
-    //   this.DepartedDate?.patchValue(new Date());
-    //   this.serachFormValue();
+      this.DepartedDate?.patchValue(new Date());
+      this.serachFormValue();
+    }
+    else if (this.searchType === 'roundTrip' && this.flightSearchForm) {
+      this.DepartedDate?.patchValue(new Date());
+      this.serachFormValue();
 
-    // }
+    }
   }
 }
