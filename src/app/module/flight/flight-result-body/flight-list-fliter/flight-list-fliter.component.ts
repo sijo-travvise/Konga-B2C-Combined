@@ -14,7 +14,7 @@ export class FlightListFliterComponent {
   airlineTopFilterCopy = [];
 
   ngOnInit() {
-    this.getLowestFareByCarrier(this.commonResult);
+    // this.getLowestFareByCarrier(this.commonResult);
   };
 
   clearFareFilter() {
@@ -28,6 +28,7 @@ export class FlightListFliterComponent {
   }
 
   getLowestFareByCarrier(resultList: any) {
+    console.log('enter rge  eenheheeh')
     const airlineTopFilterCopy = [];
     resultList.forEach((offerItem: any) => {
       if (offerItem?.supplier === 'Verteil') {
