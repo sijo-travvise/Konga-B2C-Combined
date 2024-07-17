@@ -20,7 +20,8 @@ export class FlightService {
   readonly flightSearch = environment.apiUrl;
   readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
   readonly flightBookurl = 'https://kongaflightbookingapi.travvise.com/';
-   readonly createPnrUrl = 'https://indigo.travvise.com/'; 
+  //  readonly createPnrUrl = 'https://indigo.travvise.com/'; 
+   readonly createPnrUrl = 'http://verteil.travvise.com/'; 
    readonly flightPNRurl = 'https://flightbookingapi.travvise.com/';
 
 
