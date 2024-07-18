@@ -104,7 +104,7 @@ export class FlightService {
 
 
   createFlightPNR(pnrData: any): Observable<any> {
-    return this.http.post<any>(this.createPnrUrl + "api/booking/createpnr", pnrData);
+    return this.http.post<any>(this.flightBookurl + "api/PNR/createpnr", pnrData);
   }
 
 

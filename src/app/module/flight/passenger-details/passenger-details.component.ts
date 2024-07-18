@@ -693,6 +693,19 @@ export class PassengerDetailsComponent implements AfterViewInit {
       //       : this.affiliated_user.userType;
       // }
       // this.getOffersRequestModel.flightFareInstallementDetails = this.flightFareInstallementDetails;
+    let revalidateObj = {
+        SelectedTripFareKeys: [
+          {
+            RevalidateKey: this.flightFareData?.FSC,
+          }
+        ]
+      }
+
+      // if (selectedFareFamilyData.length) {
+      //   revalidateObj.SelectedTripFareKeys[0].selectedFareFamilies = selectedFareFamilyData
+      // }
+
+
 
 
 
@@ -707,7 +720,8 @@ export class PassengerDetailsComponent implements AfterViewInit {
         BookingRefNumber: Math.floor(10000 + Math.random() * 90000).toString(),
         RevalidateKey: this.priceReConfirmation?.RevalidateKey,
         Affiliate: 5,
-        // SelectedTripFareKeys:selectedTripFareKeys
+        SelectedTripFareKeys: revalidateObj?.SelectedTripFareKeys,
+        TicketProcessType: 2
       }
       // console.log(createPnrRequest);
 
