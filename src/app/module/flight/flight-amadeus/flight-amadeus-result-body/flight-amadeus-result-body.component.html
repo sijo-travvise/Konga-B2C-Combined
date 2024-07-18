@@ -1,5 +1,5 @@
 <ng-container *ngIf="recomm">
-  <div class="d-flex bg-white mb-1" *ngIf="recomm.isShowAirlinePriceCard && recomm.isAirlineStop && recomm.isShowAirline && recomm?.isAirShowFilterCard">
+  <div class="d-flex bg-white mb-1" *ngIf="recomm.isShowAirlinePriceCard && recomm.isAirlineStop && recomm.isShowAirlineCard && recomm?.isAirShowFilterCard">
     <div class=" flight__data-row flight__card--row border p-1">
       <div class="flight__card " [ngClass]="{'border-1 h-100': searchType === 'oneWay'}"
         *ngFor="let itinery of recomm?.itineraries; let i=index; let first= first; let last = last">

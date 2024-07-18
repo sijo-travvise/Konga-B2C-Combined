@@ -85,7 +85,7 @@ export class FlightResultBodyComponent implements AfterViewInit {
           offer['isInstallmentApplicable'] = this.sharedService.getInstallationDateDuration(offer?.itineraries[0].segments[0]?.departure.at) ?? false;
           offer['isShowAirlinePriceCard'] = true;
           offer['isAirlineStop'] = true;
-          offer['isShowAirline'] = true;
+          offer['isShowAirlineCard'] = true;
           offer['isAirShowFilterCard'] = true;
 
 
@@ -172,13 +172,11 @@ export class FlightResultBodyComponent implements AfterViewInit {
 
   noDataFound(data: any){
         // console.log(this.filteredFlightData?.result?.data);
-       return  data?.some((item: any) => 
-        item.offer.isShowAirlinePriceCard === true &&
-        item.offer.isAirlineStop === true &&
-        item.offer.isShowAirline === true &&
-        item.offer.isAirShowFilterCard === true
-      );
-      
+        return  data?.some((item: any) => 
+          item.offer.isShowAirlinePriceCard === true &&
+          item.offer.isAirlineStop === true &&
+          item.offer.isShowAirlineCard === true &&
+          item.offer.isAirShowFilterCard === true);
 
   }
 

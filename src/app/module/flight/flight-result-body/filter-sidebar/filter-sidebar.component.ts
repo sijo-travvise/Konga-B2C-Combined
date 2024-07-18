@@ -175,7 +175,7 @@ export class FilterSidebarComponent {
                 }
               });
             });
-            offerItem.offer.isShowAirline = filterData?.length ? alrlineCount : true;
+            offerItem.offer.isShowAirlineCard = filterData?.length ? alrlineCount : true;
           }
           else {
             let isShowAirlineCard = false;
