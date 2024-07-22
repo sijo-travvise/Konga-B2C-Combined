@@ -639,7 +639,6 @@ export class OnewayComponent implements OnInit {
 
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     if (this.searchType === 'oneWay' && this.flightSearchForm) {
 
       this.DepartedDate?.patchValue(new Date());

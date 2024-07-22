@@ -28,8 +28,10 @@ export class FlightListFliterComponent {
   }
 
   getLowestFareByCarrier(resultList: any) {
-    console.log('enter rge  eenheheeh')
-    const airlineTopFilterCopy = [];
+
+    let airlineTopFilterCopy = [];
+    this.airlineTopFilterCopy.length =0;
+
     resultList.forEach((offerItem: any) => {
       if (offerItem?.supplier === 'Verteil') {
         offerItem?.offer?.flights.forEach((flightDetail: any) => {
@@ -50,7 +52,7 @@ export class FlightListFliterComponent {
           let existingAirline = airlineTopFilterCopy.find(item => item.ValidatingAirline === airline);
 
           if (existingAirline) {
-            if (!existingAirline[stopKey] || existingAirline[stopKey].PriceTotal > stopData.PriceTotal) {
+            if (!existingAirline[stopKey] || ((existingAirline[stopKey]?.PriceTotal ?? Infinity) >= stopData.PriceTotal)) {
               existingAirline[stopKey] = stopData;
             }
           } else {
@@ -70,8 +72,11 @@ export class FlightListFliterComponent {
 
     this.airlineTopFilterCopy.push(...airlineTopFilterCopy);
 
+
+    // console.log(resultList);
+
     const lists = resultList.reduce((acc, flight) => {
-      if (flight.supplier === '1A') {
+      if (flight.supplier === '1A') {        
         const carrierCode = flight?.offer?.itineraries[0].segments[0].carrierCode;
         const segmentCount = flight?.offer?.itineraries[0].segments.length;
         const stops = segmentCount === 1 ? 'nonStop' : segmentCount === 2 ? 'oneStop' : 'twoStop';
@@ -80,12 +85,14 @@ export class FlightListFliterComponent {
         const existingAirlineMain = airlineTopFilterCopy.find(item => item.airlineCode === carrierCode);
 
         if (existingAirline) {
+          if ((existingAirline[stops]?.PriceTotal ?? Infinity) > parseFloat(flight.fare)) {
           existingAirline[stops] = {
             id: flight.id,
             supplier: flight.supplier,
             PriceTotal: parseFloat(flight.fare),
             isSelected: false,
           };
+        }
         } else if (existingAirlineMain) {
           if ((existingAirlineMain[stops]?.PriceTotal ?? Infinity) > parseFloat(flight.fare)) {
             existingAirlineMain[stops] = {
@@ -106,6 +113,7 @@ export class FlightListFliterComponent {
             twoStop: stops === 'twoStop' ? { PriceTotal: parseFloat(flight.fare), isSelected: false, id: flight.id, supplier: flight.supplier } : {},
           });
         }
+        // console.log(acc );
       }
       return acc;
     }, []);
