@@ -103,11 +103,11 @@
           <div class="d-flex align-items-center justify-content-center gap-2 flight__pay"
             *ngIf="recomm?.price.grandTotal > 100000 && recomm?.isInstallmentApplicable">
             <div class="box d-flex align-items-center justify-content-center px-2"
-              [ngClass]="{'active-primary': !recomm?.payAsYouEarnActive}" (click)="togglePaymentOption(recomm)">
+              [ngClass]="{'active-primary': !recomm?.payAsYouEarnActive}" (click)="togglePaymentOption(recomm, false)">
               <h3>Pay full Price</h3>
             </div>
             <div class="box  d-flex align-items-strat  gap-2 px-2" [ngClass]="{'active': recomm?.payAsYouEarnActive}"
-              (click)="togglePaymentOption(recomm)">
+              (click)="togglePaymentOption(recomm, true)">
               <img src="assets/img/icons/mdi_auto-pay.svg" alt="">
               <div>
                 <h3>Pay as you earn</h3>

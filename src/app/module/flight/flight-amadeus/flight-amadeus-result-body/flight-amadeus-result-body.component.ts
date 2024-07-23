@@ -106,8 +106,8 @@ export class FlightAmadeusResultBodyComponent {
     //   }
     // }
   }
-  togglePaymentOption(flightRecomondation: any) {
-    flightRecomondation.payAsYouEarnActive = !flightRecomondation.payAsYouEarnActive;
+  togglePaymentOption(flightRecomondation: any, state: boolean = true) {
+    flightRecomondation.payAsYouEarnActive = state;
   }
 
   showOverlayPanel(event: MouseEvent) {
