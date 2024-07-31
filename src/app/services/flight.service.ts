@@ -18,11 +18,11 @@ export class FlightService {
 
 
   readonly flightSearch = environment.apiUrl;
-  readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
-  readonly flightBookurl = 'https://kongaflightbookingapi.travvise.com/';
+  // readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
+  // readonly flightBookurl = 'https://kongaflightbookingapi.travvise.com/';
   //  readonly createPnrUrl = 'https://indigo.travvise.com/'; 
-   readonly createPnrUrl = 'http://verteil.travvise.com/'; 
-   readonly flightPNRurl = 'https://flightbookingapi.travvise.com/';
+  //  readonly createPnrUrl = 'http://verteil.travvise.com/'; 
+  //  readonly flightPNRurl = 'https://flightbookingapi.travvise.com/';
 
 
   // readonly flightsearchurl = 'http://192.168.10.213:8080/';
@@ -36,6 +36,11 @@ export class FlightService {
 
   // readonly flightsearchurl = 'http://localhost:51797/';
   // readonly flightBookurl = 'http://localhost:56518/'; 
+
+  //Live
+  // =====================
+  readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
+  readonly flightBookurl = 'https://kongaflightbookingapi.travvise.com/';
 
   constructor(private http: HttpClient) { }
 

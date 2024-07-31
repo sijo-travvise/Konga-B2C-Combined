@@ -1379,8 +1379,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
         next: (data: any) => {
           this.isLoading = false;
           if (data?.length && data[0]?.Status === 'SUCCESS') {
-            this.router.navigate(['flight-itinerary/'+ createPnrRequest?.AirlinePNR+'-'+Supplier_ID]);
-
+            this.router.navigate(['flight-itinerary/'+ data[0]?.AirTransactions_ID+'-'+Supplier_ID]);
           }
           else {
 
