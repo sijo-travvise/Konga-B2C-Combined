@@ -1319,6 +1319,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
     let ticketCount: number = 0
     this.airArabiaRequestObj.flightTransactionDetails = [];
     this.airArabiaRequestObj.flightTransactionSegmentDetails = [];
+    this.b2CUserAirTransactions.RevalidateKey = this.flightFareData?.FSC;
 
     this.b2CUserAirTransactions.b2CUserAirTransactions.length =0;
      const firstTrip =  createPnrRequest?.Trips[0];

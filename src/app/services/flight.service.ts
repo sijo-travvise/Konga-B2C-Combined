@@ -20,18 +20,18 @@ export class FlightService {
   readonly flightSearch = environment.apiUrl;
   // readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
   // readonly flightBookurl = 'https://kongaflightbookingapi.travvise.com/';
-  //  readonly createPnrUrl = 'https://indigo.travvise.com/'; 
-  //  readonly createPnrUrl = 'http://verteil.travvise.com/'; 
+  //  readonly vertailUrl = 'https://indigo.travvise.com/'; 
+  //  readonly vertailUrl = 'http://verteil.travvise.com/'; 
   //  readonly flightPNRurl = 'https://flightbookingapi.travvise.com/';
 
 
   // readonly flightsearchurl = 'http://192.168.10.213:8080/';
   // readonly flightBookurl = 'http://192.168.10.213:8083/';
-  // readonly createPnrUrl = 'http://192.168.10.213:8085/';
+  // readonly vertailUrl = 'http://192.168.10.213:8085/';
 
-  // readonly flightsearchurl = 'https://6csh4gtg-51797.inc1.devtunnels.ms/'
-  // readonly flightBookurl= 'https://6csh4gtg-56518.inc1.devtunnels.ms/'
-  // readonly createPnrUrl = 'https://6csh4gtg-7271.inc1.devtunnels.ms/'
+  // readonly flightsearchurl = 'https://ssjlh50t-51797.inc1.devtunnels.ms/'
+  // readonly flightBookurl= 'https://ssjlh50t-56518.inc1.devtunnels.ms/'
+  // readonly vertailUrl = 'https://ssjlh50t-7271.inc1.devtunnels.ms/'
 
 
   // readonly flightsearchurl = 'http://localhost:51797/';
@@ -41,6 +41,7 @@ export class FlightService {
   // =====================
   readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
   readonly flightBookurl = 'https://kongaflightbookingapi.travvise.com/';
+  readonly vertailUrl = 'https://verteil.travvise.com/'
 
   constructor(private http: HttpClient) { }
 
@@ -115,7 +116,7 @@ export class FlightService {
 
   savePnrData(pnrSaveData: any): Observable<any> {
     // return this.http.post<any>(this.flightBookurl + "api/Booking/Save", pnrSaveData);
-    return this.http.post<any>(this.flightBookurl + "api/booking/SaveBookingDetails", pnrSaveData);
+    return this.http.post<any>(this.vertailUrl + "api/booking/SaveBookingDetails", pnrSaveData);
   }
 
   getBookingDetails(bookingRefID: number): Observable<any> {

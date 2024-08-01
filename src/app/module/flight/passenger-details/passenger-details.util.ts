@@ -626,6 +626,7 @@ interface IMicroServiceSaveToDb {
   b2BCustomerAirTransactions: IMicroServiceAirTransaction[];
   b2CUserAirTransactions: IMicroServiceAirTransaction[];
   Mode: number;
+   RevalidateKey:string,
 }
 
 
@@ -662,7 +663,8 @@ export const B2CUserAirTransactions: IMicroServiceSaveToDb = {
       BookingType: 0
     }
   ],
-  Mode: 0
+  Mode: 0,
+   RevalidateKey: "",
 };
 
 
