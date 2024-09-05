@@ -1,0 +1,9 @@
+@import '../../../../sass/all.scss';
+h2{
+    font-size: rem(25);
+    font-family: $montLight;
+    text-align: center;
+    b{
+        font-family: $montBold;
+    }
+}

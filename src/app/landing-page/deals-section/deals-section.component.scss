@@ -125,6 +125,61 @@
     }
   }
 }
+
+::ng-deep{
+  .regFormModal{
+    .p-dialog{width: 25vw;}
+    .p-dialog-content{
+        overflow: inherit;
+    }
+  }
+  .orgFormModal{
+    .p-dialog{width: 35vw;}
+    .p-dialog-content{
+        overflow: inherit;
+    }
+  }
+
+  
+.regFormModal,.orgFormModal {
+  .p-dialog {
+    .p-dialog-header {
+      background: var(--bg-white);
+      border-top-left-radius: rem(8);
+      border-top-right-radius: rem(8);
+      .p-dialog-header-icons {
+        position: absolute;
+        right: -13px;
+        top: -10px;
+      }
+    }
+  }
+  .p-dialog .p-dialog-content {
+    min-height: auto;
+  }
+  .p-dialog-header-icons {
+    display: flex;
+    align-items: center;
+    // position: absolute;
+    // left: rem(-61);
+    background: var(--primary-color);
+    padding: 0;
+    border-radius: rem(25);
+    // border-bottom-left-radius: rem(10);
+    .p-dialog-header-close-icon {
+      font-size: rem(18);
+      color: var(--text-white-color);
+    }
+  }
+  .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
+    background: var(--primary-color) !important;
+  }
+}
+ 
+}
+.pointer{
+  cursor: pointer;
+}
 @media (max-width: #{$tablet-width - 1px}) {
   .section__deals {
     padding-top: rem(10);
@@ -147,4 +202,19 @@
 .no-data-text{
   font-weight: 500;
   color: var(--text-gray-200);
+}
+
+@media (max-width: $desktop-width) {
+  ::ng-deep{
+    .regFormModal{
+      .p-dialog{width: 70%;}
+    }
+  }
+}
+@media (max-width: 600px) {
+  ::ng-deep{
+    .regFormModal{
+      .p-dialog{width: 95%;}
+    }
+  }
 }

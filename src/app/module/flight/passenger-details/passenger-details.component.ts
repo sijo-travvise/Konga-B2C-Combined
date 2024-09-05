@@ -80,6 +80,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
 
   //micro service data}
   public priceReConfirmation: any = null;
+  public bookingDetailsData: any = null;
   private airArabiaRequestObj = airArabiaSaveReqModel;
   public totalMarkUpValue: number = 0;
   public totalAdditionalServicesValue: number = 0;
@@ -89,6 +90,361 @@ export class PassengerDetailsComponent implements AfterViewInit {
   isShowPriceWarning: boolean = false;
   b2CUserAirTransactions = B2CUserAirTransactions
   loadingText ='we are fetching price details';
+   data  = {
+    "IsAirPaymentRequired": true,
+    "SupplierConfirmationNumber": "T7Q3PI",
+    "PNRNumber": "T7Q3PI",
+    "SupplierID": 0,
+    "AirlinePNR": "T7Q3PI",
+    "TicketTimeLimit": "2024-08-08T10:31:02Z",
+    "Passengers": [
+        {
+            "PassangerId": 0,
+            "Title": 0,
+            "PaxTitle": "Mr",
+            "Gender": "Male",
+            "PaxType": 0,
+            "PaxTypeID": 1,
+            "FirstName": "sijo",
+            "MiddleName": "fizal",
+            "LastName": "mathews",
+            "AssociationID": 0,
+            "PaxOrder": 0,
+            "IsPrimaryPax": true,
+            "DOB": "1992-05-04",
+            "Nationality": null,
+            "TicketNumber": null,
+            "DateOfIssue": null,
+            "TicketStatusID": null,
+            "CountryOfResidenceCode": null,
+            "PassportInfo": {
+                "DocumentTypeID": 0,
+                "Number": null,
+                "IssueCountryCode": null,
+                "IssueCity": null,
+                "IssueDate": null,
+                "ExipryDate": null
+            },
+            "SelectedBaggageInfo": null,
+            "SelectedSeat": null,
+            "SelectedMealInfo": null,
+            "AncillaryInfo": null,
+            "FreeBaggage": {
+                "AllowedWeight": 2,
+                "Description": null
+            }
+        }
+    ],
+    "Trips": [
+        {
+            "BoundType": 20,
+            "ResultIndex": 0,
+            "FlightIndex": 0,
+            "OutFlightIndex": 0,
+            "InFlightIndex": 0,
+            "Id": 1,
+            "SupplierId": 2,
+            "SupplierName": "Verteil",
+            "PCC": null,
+            "SupplierCode": "1S",
+            "Duration": "7210",
+            "FareType": 0,
+            "FareTypeCode": null,
+            "IsRefundable": false,
+            "FareSourceCode": null,
+            "ValidatingAirline": "KQ",
+            "FlightSegments": [
+                {
+                    "SegmentNumber": 0,
+                    "Origin": "LHR",
+                    "Destination": "NBO",
+                    "DepartureDate": "210824",
+                    "ArrivalDate": "220824",
+                    "DepartureDt": "0001-01-01T00:00:00",
+                    "ArrivalDt": "0001-01-01T00:00:00",
+                    "Equipment": "",
+                    "MarketingAirline": "KQ",
+                    "OperatingAirline": "KQ",
+                    "SeatsRemaining": null,
+                    "CabinClass": "Y",
+                    "FlightClass": "Economy",
+                    "IsEticket": true,
+                    "FareBasis": "YFFFR4",
+                    "FlightRefKey": null,
+                    "Duration": "3605",
+                    "FlightNumber": "101",
+                    "DepartureTime": "0525",
+                    "ArrivalTime": "0525",
+                    "StopQuantity": 0,
+                    "TerminalInfo": {
+                        "FromTerminal": "4",
+                        "ToTerminal": "1A"
+                    },
+                    "BaggageInfo": {
+                        "QuantityAllowed": "2",
+                        "QuantityCode": "W",
+                        "UnitQualifier": "K"
+                    },
+                    "Stops": null,
+                    "FlightIndicator": null,
+                    "SupplierId": 2,
+                    "SegmentKey": "LHRNBOKQ10121082405252208240525",
+                    "CompleteSegmentKey": "LHRNBOKQ10121082405252208240525EconomyYYFFFR4",
+                    "SegmentAirlineKey": "KQ,",
+                    "cabin": null,
+                    "operatingAirlineName": "Kenya Airways",
+                    "marketingAirlineName": "Kenya Airways",
+                    "AffiliateV1FlightNumber": null,
+                    "SupplierMiscAttribute": null,
+                    "SegmentKeyForSearch": "LHRNBOKQ10121082405252208240525"
+                },
+                {
+                    "SegmentNumber": 0,
+                    "Origin": "NBO",
+                    "Destination": "CDG",
+                    "DepartureDate": "220824",
+                    "ArrivalDate": "230824",
+                    "DepartureDt": "0001-01-01T00:00:00",
+                    "ArrivalDt": "0001-01-01T00:00:00",
+                    "Equipment": "788",
+                    "MarketingAirline": "KQ",
+                    "OperatingAirline": "KQ",
+                    "SeatsRemaining": null,
+                    "CabinClass": "Y",
+                    "FlightClass": "Economy",
+                    "IsEticket": true,
+                    "FareBasis": "YFFFR4",
+                    "FlightRefKey": null,
+                    "Duration": "3605",
+                    "FlightNumber": "112",
+                    "DepartureTime": "1150",
+                    "ArrivalTime": "1150",
+                    "StopQuantity": 0,
+                    "TerminalInfo": {
+                        "FromTerminal": "1A",
+                        "ToTerminal": "2E"
+                    },
+                    "BaggageInfo": {
+                        "QuantityAllowed": "2",
+                        "QuantityCode": "W",
+                        "UnitQualifier": "K"
+                    },
+                    "Stops": null,
+                    "FlightIndicator": null,
+                    "SupplierId": 2,
+                    "SegmentKey": "NBOCDGKQ11222082411502308241150",
+                    "CompleteSegmentKey": "NBOCDGKQ11222082411502308241150EconomyYYFFFR4",
+                    "SegmentAirlineKey": "KQ,",
+                    "cabin": null,
+                    "operatingAirlineName": "Kenya Airways",
+                    "marketingAirlineName": "Kenya Airways",
+                    "AffiliateV1FlightNumber": null,
+                    "SupplierMiscAttribute": null,
+                    "SegmentKeyForSearch": "NBOCDGKQ11222082411502308241150"
+                }
+            ],
+            "TripKey": "LHRNBOKQ10121082405252208240525NBOCDGKQ11222082411502308241150",
+            "ATripKey": "LHRNBOKQ10121082405252208240525EconomyYYFFFR4NBOCDGKQ11222082411502308241150EconomyYYFFFR4",
+            "TripAirlineKey": "KQ,KQ,",
+            "SearchKey": "LHRCDG2024-08-210&1&0&0&0&NGN&",
+            "FlightClass": 0,
+            "FirstSegment": {
+                "SegmentNumber": 0,
+                "Origin": "LHR",
+                "Destination": "NBO",
+                "DepartureDate": "210824",
+                "ArrivalDate": "220824",
+                "DepartureDt": "0001-01-01T00:00:00",
+                "ArrivalDt": "0001-01-01T00:00:00",
+                "Equipment": "",
+                "MarketingAirline": "KQ",
+                "OperatingAirline": "KQ",
+                "SeatsRemaining": null,
+                "CabinClass": "Y",
+                "FlightClass": "Economy",
+                "IsEticket": true,
+                "FareBasis": "YFFFR4",
+                "FlightRefKey": null,
+                "Duration": "3605",
+                "FlightNumber": "101",
+                "DepartureTime": "0525",
+                "ArrivalTime": "0525",
+                "StopQuantity": 0,
+                "TerminalInfo": {
+                    "FromTerminal": "4",
+                    "ToTerminal": "1A"
+                },
+                "BaggageInfo": {
+                    "QuantityAllowed": "2",
+                    "QuantityCode": "W",
+                    "UnitQualifier": "K"
+                },
+                "Stops": null,
+                "FlightIndicator": null,
+                "SupplierId": 2,
+                "SegmentKey": "LHRNBOKQ10121082405252208240525",
+                "CompleteSegmentKey": "LHRNBOKQ10121082405252208240525EconomyYYFFFR4",
+                "SegmentAirlineKey": "KQ,",
+                "cabin": null,
+                "operatingAirlineName": "Kenya Airways",
+                "marketingAirlineName": "Kenya Airways",
+                "AffiliateV1FlightNumber": null,
+                "SupplierMiscAttribute": null,
+                "SegmentKeyForSearch": "LHRNBOKQ10121082405252208240525"
+            },
+            "LastSegment": {
+                "SegmentNumber": 0,
+                "Origin": "NBO",
+                "Destination": "CDG",
+                "DepartureDate": "220824",
+                "ArrivalDate": "230824",
+                "DepartureDt": "0001-01-01T00:00:00",
+                "ArrivalDt": "0001-01-01T00:00:00",
+                "Equipment": "788",
+                "MarketingAirline": "KQ",
+                "OperatingAirline": "KQ",
+                "SeatsRemaining": null,
+                "CabinClass": "Y",
+                "FlightClass": "Economy",
+                "IsEticket": true,
+                "FareBasis": "YFFFR4",
+                "FlightRefKey": null,
+                "Duration": "3605",
+                "FlightNumber": "112",
+                "DepartureTime": "1150",
+                "ArrivalTime": "1150",
+                "StopQuantity": 0,
+                "TerminalInfo": {
+                    "FromTerminal": "1A",
+                    "ToTerminal": "2E"
+                },
+                "BaggageInfo": {
+                    "QuantityAllowed": "2",
+                    "QuantityCode": "W",
+                    "UnitQualifier": "K"
+                },
+                "Stops": null,
+                "FlightIndicator": null,
+                "SupplierId": 2,
+                "SegmentKey": "NBOCDGKQ11222082411502308241150",
+                "CompleteSegmentKey": "NBOCDGKQ11222082411502308241150EconomyYYFFFR4",
+                "SegmentAirlineKey": "KQ,",
+                "cabin": null,
+                "operatingAirlineName": "Kenya Airways",
+                "marketingAirlineName": "Kenya Airways",
+                "AffiliateV1FlightNumber": null,
+                "SupplierMiscAttribute": null,
+                "SegmentKeyForSearch": "NBOCDGKQ11222082411502308241150"
+            },
+            "SupplierMiscAttribute": null,
+            "TripKeyForSearch": "LHRNBOKQ10121082405252208240525NBOCDGKQ11222082411502308241150",
+            "FlexiFareDetails": null
+        }
+    ],
+    "priceSummary": {
+        "AdultBaseFare": 5438796,
+        "AdultTaxes": 615407,
+        "AdultYQTax": 0,
+        "AdultTotal": 6054203,
+        "ChildBaseFare": 0,
+        "ChildTaxes": 0,
+        "ChildYQTax": 0,
+        "ChildTotal": 0,
+        "InfantBaseFare": 0,
+        "InfantTaxes": 0,
+        "InfantYQTax": 0,
+        "InfantTotal": 0,
+        "SubTotal": 6054203,
+        "PriceTotal": 6054203,
+        "TaxTotal": 0,
+        "TaxYQTotal": 0,
+        "CurrencyExchangeRate": 0,
+        "HandlingFee": 0,
+        "Markup": 0,
+        "Discount": 0,
+        "IsRefundable": false,
+        "BaseCurrency": "NGN",
+        "SelectedCurrency": "NGN",
+        "Adults": 1,
+        "Children": 0,
+        "Infants": 0,
+        "DropnetDiscount": 0,
+        "Commission": 0,
+        "SegmentDiscount": 0,
+        "SupplierBookingFee": 0
+    },
+    "Response": null,
+    "Error": null,
+    "DialCode": "234",
+    "MobileNumber": "2424344",
+    "EmailAddress": "sijovarghese808@gmail.com",
+    "flightSearchRequest": {
+        "SearchSegments": [
+            {
+                "Origin": "LHR",
+                "Destination": "CDG",
+                "DepartureDate": "2024-08-21",
+                "DepartureTime": null,
+                "BoundType": 20,
+                "FlightClass": 0
+            }
+        ],
+        "SearchId": null,
+        "AirlinePreference": null,
+        "Affiliate": 1,
+        "AffiliateName": null,
+        "Language": "en-GB",
+        "TypeOfTrip": 1,
+        "FareType": 0,
+        "Source": null,
+        "FirstSegment": {
+            "Origin": "LHR",
+            "Destination": "CDG",
+            "DepartureDate": "2024-08-21",
+            "DepartureTime": null,
+            "BoundType": 20,
+            "FlightClass": 0
+        },
+        "LastSegment": {
+            "Origin": "LHR",
+            "Destination": "CDG",
+            "DepartureDate": "2024-08-21",
+            "DepartureTime": null,
+            "BoundType": 20,
+            "FlightClass": 0
+        },
+        "IsDirectFlight": false,
+        "IsDateFlexible": false,
+        "ActiveAirlines": "All",
+        "NumberOfInfants": 0,
+        "NumberOfChildren": 0,
+        "NumberOfAdults": 1,
+        "FlightClass": 0,
+        "SearchKey": "LHRCDG2024-08-2101ADT0CHD0INFEconomy~1",
+        "SearchKeyInbound": "LHRCDG2024-08-211ADT0CHD0INFEconomy",
+        "SearchKeyOutbound": "LHRCDG2024-08-211ADT0CHD0INFEconomy",
+        "SearchKeyOutboundPlusOne": "LHRCDG2024-08-221ADT0CHD0INFEconomy",
+        "AffiliateSelectedFlight": null,
+        "BlockAirlines": "None",
+        "CountryCode": "qa",
+        "SelectedCurrency": "NGN",
+        "SupplierId": 2,
+        "SupplierName": "Verteil",
+        "OriginCountry": null,
+        "DestinationCountry": null,
+        "RequestType": null,
+        "SearchPassengerType": null,
+        "PromoCodes": null,
+        "AppVersion": null,
+        "DeviceType": null,
+        "OsVersion": null,
+        "SearchSource": null
+    },
+    "Status": 13,
+    "Code": 0,
+    "Message": null,
+    "IMessage": null
+}
 
 
   constructor(
@@ -161,6 +517,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
       this.router.navigateByUrl('/');
     } else {
       this.flightRevalidate();
+      // this.getBookingDetails(this.data?.AirlinePNR)
       // this.findPassengerData(this.flightFareData?.flightDetails?.recomentationList?.paxFareProduct);
       // this.createPassengerDetailsArray(this.flightFareData?.travelerPricings);
     }
@@ -845,9 +1202,9 @@ export class PassengerDetailsComponent implements AfterViewInit {
     return passengerDetailsArray;
   }
 
-  LoadFlightBookingSuccessTemplate() {
+  LoadFlightBookingSuccessTemplate(pnrData: any) {
     var bookingdate = this.datepipe.transform(new Date(), 'dd/MM/yyyy HH:mm');
-    var crspnr = this.flightorderResponse.data.associatedRecords[0].reference;
+    var crspnr = pnrData?.AirlinePNR;
 
     this.htmlHead =
       '<html><head><style>.page-break { clear: both; margin-bottom: 20px; } .print_btn_area { text-align: center; margin-bottom: 20px; } td { color: #555; } p { margin: 0 0 8px;} ol { padding-left: 15px; } /* button:not (.btn-checked ) .select { display: none; } */  .page-break { page-break-after: always; } header, .main-footer, .main-header, .navbar, .main-sidebar, .print_btn_area, .not_print_area, footer, .sinupsec, .comonfooter, .footercopy { display: none !important; } .skin-black-light .content-wrapper, .skin-black-light .main-footer {border-left:0px !important;} table { width: 100% !important; white-space: normal !important; } p { margin-bottom: 5px; } .irctc { background-color: #da1e26 !important; -webkit-print-color-adjust: exact; } .colr {color: #fff !important;} .mntbl { border: none !important;} </style> </head>';
@@ -885,9 +1242,9 @@ export class PassengerDetailsComponent implements AfterViewInit {
       '</td>' +
       '</tr>';
     //ITINERARY
-    this.flightorderResponse.data.flightOffers[0].itineraries?.forEach(
-      (itinerary_i) => {
-        itinerary_i.segments?.forEach((segment_i) => {
+    pnrData?.Trips.forEach((trips: any) => {
+        trips?.FlightSegments?.forEach((segments: any) =>{
+
           this.segmentdetails =
             this.segmentdetails +
             "<tr><td style='line-height: 5px;'>&nbsp;</td>" +
@@ -895,29 +1252,15 @@ export class PassengerDetailsComponent implements AfterViewInit {
             "<tr bgcolor='#9f9f9f' style='vertical-align:middle;border: 1px solid #9f9f9f;' class='grey'>" +
             "<td style='padding:7px 10px;vertical-align:middle;font-size:12px;text-align:left;margin-top:0px;color:#fff;'>" +
             "<img src='https://travel.konga.com/assets/img/common/FlightDeparture.png' width='20px' style='margin-right: 5px;'/> Flight Details (" +
-            segment_i.departure.cityName +
-            ',' +
-            segment_i.departure.airPortName +
-            '(' +
-            segment_i.departure.iataCode +
-            ') to ' +
-            segment_i.arrival.cityName +
-            ',' +
-            segment_i.arrival.airPortName +
-            '(' +
-            segment_i.arrival.iataCode +
-            '))' +
+            segments.Origin + ' to ' +
+            segments.Destination +
+            ')'  +
             "<p style='display: block;'>*Please verify flight times with the airlines prior to departure</p></td>" +
             '</tr>';
 
-          var dep_date = this.datepipe.transform(
-            segment_i.departure.at,
-            'dd/MM/yyyy HH:mm'
-          );
-          var arrival_date = this.datepipe.transform(
-            segment_i.arrival.at,
-            'dd/MM/yyyy HH:mm'
-          );
+          var dep_date =  this._microService?.getFormatedFlightDate(segments.DepartureDate, true,"EE , d&nbsp;MMM&nbsp;''''yy");
+            
+          var arrival_date =   this._microService?.getFormatedFlightDate(segments.ArrivalDate,true,"EE , d&nbsp;MMM&nbsp;''''yy")
           this.segmentdetails =
             this.segmentdetails +
             '<tr>' +
@@ -936,24 +1279,23 @@ export class PassengerDetailsComponent implements AfterViewInit {
             "<tr style='padding-bottom: 20px; font-size: 13px; line-height: 20px; vertical-align: top;'>" +
             "<td style='padding: 5px; background: #fff;'>" +
             "<div style='font-weight: bold;'><img src='https://travel.konga.com/assets/img/Airlogo/sm" +
-            segment_i.carrierCode +
+            segments?.MarketingAirline +
             ".gif' alt='img'></div>" +
             "<div style='font-weight: bold; color: #666;'>" +
-            segment_i.carrierCode +
+            segments?.MarketingAirline +
             ' ' +
-            segment_i.number +
+            segments?.FlightNumber +
             '</div>' +
             "<div style='font-weight: bold; color: #666;'>" +
-            segment_i.aircraft.code +
+            segments?.Equipment +
             '</div>' +
             "<div style='font-weight: normal; color: #777;'>Cabin: " +
-            this.flightorderResponse.data.flightOffers[0].travelerPricings[0]
-              .fareDetailsBySegment[0].cabin +
+            segments?.FlightClass +
             '</div>' +
             '</td>' +
             "<td style='padding: 5px; background: #fff;'>" +
             "<div style='font-weight: bold;'>" +
-            segment_i.departure.airPortName +
+            segments.Origin +
             '</div>' +
             "<div style='font-weight: bold; color: #666;'>" +
             dep_date +
@@ -961,7 +1303,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
             '</td>' +
             "<td style='padding: 5px; background: #fff;'>" +
             "<div style='font-weight: bold;'>" +
-            segment_i.arrival.airPortName +
+            segments.Destination +
             '</div>' +
             "<div style='font-weight: bold; color: #666;'>" +
             arrival_date +
@@ -974,17 +1316,18 @@ export class PassengerDetailsComponent implements AfterViewInit {
             '</table>' +
             '</td>' +
             '</tr>';
-        });
+        
+      });
       }
     );
     //passenger details
-    var baggage =
-      this.flightorderResponse.data.flightOffers[0].travelerPricings[0]
-        .fareDetailsBySegment[0].includedCheckedBags?.quantity != undefined
-        ? this.flightorderResponse.data.flightOffers[0].travelerPricings[0]
-          .fareDetailsBySegment[0].includedCheckedBags.quantity + ' PC'
-        : this.flightorderResponse.data.flightOffers[0].travelerPricings[0]
-          .fareDetailsBySegment[0].includedCheckedBags.weight + ' KG';
+    // var baggage =
+    //   this.flightorderResponse.data.flightOffers[0].travelerPricings[0]
+    //     .fareDetailsBySegment[0].includedCheckedBags?.quantity != undefined
+    //     ? this.flightorderResponse.data.flightOffers[0].travelerPricings[0]
+    //       .fareDetailsBySegment[0].includedCheckedBags.quantity + ' PC'
+    //     : this.flightorderResponse.data.flightOffers[0].travelerPricings[0]
+    //       .fareDetailsBySegment[0].includedCheckedBags.weight + ' KG';
 
     this.passengerdetails =
       '<tr><td>&nbsp;</td></tr>' +
@@ -1003,35 +1346,30 @@ export class PassengerDetailsComponent implements AfterViewInit {
       "<td style='padding: 2px 5px; background: #f5f5f5; width:25%; color: #555; text-align:center;'>Ticket Status.</td>" +
       '</tr>';
 
-    this.flightorderResponse.data.travelers?.forEach((traveler_i) => {
-      this.flightorderResponse.data.flightOffers[0].travelerPricings?.forEach(
-        (travelerprice_i) => {
-          if (traveler_i.id == travelerprice_i.travelerId) {
+      pnrData?.Passengers?.forEach((passenger: any, index: number) => {
             var trav_type =
-              travelerprice_i.travelerType == 'Infant'
-                ? 'Infant'
-                : travelerprice_i.travelerType;
+              passenger?.paxTypeID === 1 ? 'Adult' :  passenger?.paxTypeID === 2 ? 'Child' : 'Infant'
+            
             this.passengerdetails +=
               "<tr style='font-size: 13px;'>" +
               "<td style='padding: 2px 5px; background: #fff;'>" +
-              traveler_i.id +
+              (index +1) +
               '</td>' +
               "<td style='padding: 2px 5px; background: #fff;'><strong>" +
-              traveler_i.name.firstName.toUpperCase() +
-              ' ' +
-              traveler_i.name.lastName.toUpperCase() +
+              passenger.PaxTitle.toUpperCase() +  ' ' +
+              passenger.FirstName.toUpperCase() +  ' ' +
+              passenger.MiddleName.toUpperCase() +' ' +
+              passenger.LastName.toUpperCase() +
               '</strong></td>' +
               "<td style='padding: 2px 5px; background: #fff;'>" +
               trav_type +
               '</td>' +
               "<td style='padding: 2px 5px; background: #fff;'>" +
-              baggage +
+              '------' +
               '</td>' +
               "<td style='padding: 2px 5px; background: #fff; text-align:center;'>Pending</td>" +
               '</tr>';
-          }
-        }
-      );
+  
     });
     this.passengerdetails += '</table>' + '</td>' + '<td></td>' + '</tr>';
     this.pricedetails =
@@ -1055,7 +1393,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
       '<tr>' +
       "<td style='padding: 2px 10px; width: 50%; text-align: left; background: #fff; color: #555; border-top: 1px solid #ccc; font-weight: normal;'>Total</td>" +
       "<td style='padding: 2px 10px; width: 50%; text-align: right; color: #555; background: #fff; border-top: 1px solid #ccc; font-weight: normal;'>" +
-      this.flightorderResponse.data.flightOffers[0].price.grandTotal +
+      pnrData?.priceSummary?.SubTotal +
       '</td>' +
       '</tr>' +
       '</table>' +
@@ -1069,12 +1407,10 @@ export class PassengerDetailsComponent implements AfterViewInit {
       "<table style='width: 100%;' class='address-details'>" +
       '<tr>' +
       "<td style='padding: 5px 0px 9px;width:25%;font-weight:normal;/* border-right:1px solid #d9d9d9; */text-align:left;background:#fff;color:#333;font-size:12px;'>Customer Contact Details : <strong>+" +
-      this.flightorderResponse.data.travelers[0].contact.phones[0]
-        .countryCallingCode +
-      this.flightorderResponse.data.travelers[0].contact.phones[0].number +
+      (pnrData?.DialCode) + (pnrData?.MobileNumber) +
       '</strong> </td>' +
       "<td style='padding: 5px 0px 9px;width:55%;text-align: right;color:#555;font-weight:normal;background:#fff;font-size:12px;'>E-mail :<strong>" +
-      this.flightorderResponse?.data?.travelers[0]?.contact?.emailAddress +
+      pnrData?.EmailAddress +
       '</strong></td>' +
       '</tr>' +
       '</table>' +
@@ -1126,7 +1462,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
       '</td></tr></table></td></tr></table></td></tr></tbody></table></body></html>';
   }
 
-  sendOrderCreationMail() {
+  sendOrderCreationMail(pnrData:  any, bookingData: any) {
     this.emailDetails.EmailSubject = 'Flight Booking Details';
     this.emailDetails.IsPaymentSuccess = true;
     this.emailDetails.EmailContent =
@@ -1137,40 +1473,56 @@ export class PassengerDetailsComponent implements AfterViewInit {
       this.passengerdetails +
       this.pricedetails +
       this.footer;
+      console.log(this.emailDetails)
 
-    for (var i = 0; i < this.flightorderResponse.data.travelers.length; i++) {
-      if (i != 0) {
-        var toAdd = true;
-        for (var j = 0; j < i; j++) {
-          if (
-            this.flightorderResponse?.data?.travelers[i]?.contact
-              ?.emailAddress ==
-            this.flightorderResponse?.data?.travelers[j].contact?.emailAddress
-          ) {
-            toAdd = false;
-          }
-        }
-        if (toAdd == true) {
-          this.emailDetails.ToMailList.push({
-            Name:
-              this.flightorderResponse.data.travelers[i].name.firstName +
-              ' ' +
-              this.flightorderResponse.data.travelers[i].name.lastName,
-            MailId:
-              this.flightorderResponse.data.travelers[i]?.contact?.emailAddress,
-          });
-        }
-      } else {
+    // for (var i = 0; i < this.flightorderResponse.data.travelers.length; i++) {
+    //   if (i != 0) {
+    //     var toAdd = true;
+    //     for (var j = 0; j < i; j++) {
+    //       if (
+    //         this.flightorderResponse?.data?.travelers[i]?.contact
+    //           ?.emailAddress ==
+    //         this.flightorderResponse?.data?.travelers[j].contact?.emailAddress
+    //       ) {
+    //         toAdd = false;
+    //       }
+    //     }
+    //     if (toAdd == true) {
+    //       this.emailDetails.ToMailList.push({
+    //         Name:
+    //           this.flightorderResponse.data.travelers[i].name.firstName +
+    //           ' ' +
+    //           this.flightorderResponse.data.travelers[i].name.lastName,
+    //         MailId:
+    //           this.flightorderResponse.data.travelers[i]?.contact?.emailAddress,
+    //       });
+    //     }
+    //   } else {
+    //     this.emailDetails.ToMailList.push({
+    //       Name:
+    //         this.flightorderResponse.data.travelers[i].name.firstName +
+    //         ' ' +
+    //         this.flightorderResponse.data.travelers[i].name.lastName,
+    //       MailId:
+    //         this.flightorderResponse.data.travelers[i]?.contact?.emailAddress,
+    //     });
+    //   }
+    // }
+
+    const uniqueEmails = new Set();
+    bookingData?.AirTransaction?.forEach((traveler: any) => {
+      const email = traveler?.Emailid;
+    
+      if (email && !uniqueEmails.has(email)) {
+        uniqueEmails.add(email);
         this.emailDetails.ToMailList.push({
-          Name:
-            this.flightorderResponse.data.travelers[i].name.firstName +
-            ' ' +
-            this.flightorderResponse.data.travelers[i].name.lastName,
-          MailId:
-            this.flightorderResponse.data.travelers[i]?.contact?.emailAddress,
+          Name: `${traveler.LeadPaxName}`,
+          MailId: email,
         });
       }
-    }
+    });
+    
+
 
     if (this.emailDetails != null && this.emailDetails != undefined) {
       this._flightService
@@ -1380,7 +1732,10 @@ export class PassengerDetailsComponent implements AfterViewInit {
         next: (data: any) => {
           this.isLoading = false;
           if (data?.length && data[0]?.Status === 'SUCCESS') {
-            this.router.navigate(['flight-itinerary/'+ createPnrRequest?.AirlinePNR+'-'+Supplier_ID]);
+            this.LoadFlightBookingSuccessTemplate(createPnrRequest);
+            // this.sendOrderCreationMail(response);
+            this.getBookingDetails(createPnrRequest?.AirlinePNR)
+            // this.router.navigate(['flight-itinerary/'+ createPnrRequest?.AirlinePNR+'-'+Supplier_ID]);
           }
           else {
 
@@ -1416,16 +1771,15 @@ export class PassengerDetailsComponent implements AfterViewInit {
           // this.flightorderResponse = response.result;
           this.isLoading = false;
 
-          this.sharedService.setLocalStore(
-            'bookingOrderData',
-            response.result
-          );
+          // this.sharedService.setLocalStore(
+          //   'bookingOrderData',
+          //   response.result
+          // );
 
           this.isLoading = false;
           this.flightSavePNR(response);
           // let pnr = response?.result?.data?.associatedRecords[0]?.reference;
-          // this.LoadFlightBookingSuccessTemplate();
-          // this.sendOrderCreationMail();
+
           // this.router.navigate(['/flight-itinerary', pnr]);
           // this.farePriceResult = response;
           // this.flightFareData = response?.result?.data?.flightOffers[0]
@@ -1446,6 +1800,39 @@ export class PassengerDetailsComponent implements AfterViewInit {
       },
     });
 
+  }
+
+  getBookingDetails(flightTransactions_ID: string) {
+    this.isLoading = true;
+    this._flightService.getBookingDetails(flightTransactions_ID).subscribe({
+      complete: () => { },
+      error: (error: any) => { this.isLoading = false; },
+      next: (data: any) => {
+        if (data !== null && data !== undefined) {
+          this.bookingDetailsData = data;
+
+          // this.getCustomerProfileData(data?.FlightTransactions[0]?.CustomerProfile_ID)
+          this.isLoading = false;
+          this.sendOrderCreationMail(this.data, data);
+          // this.router.navigate(['/flight-itinerary', flightTransactions_ID]);
+       
+        }
+        else {
+          // Swal.fire({
+          //   icon: 'error',
+          //   title: 'Oops...',
+          // }).then(function () {
+          //   window.location.href = "/";
+          // })
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Something went wrong!. Please Try Again',
+          });
+          this.isLoading = false;
+        }
+      },
+    });
   }
 
 }

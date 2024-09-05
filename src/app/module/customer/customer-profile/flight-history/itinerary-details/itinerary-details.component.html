@@ -99,6 +99,18 @@
                             <!-- <h4 *ngIf="bookingDetailsData[0]?.transactionDetails?.sellingPrice != undefined"> ₦ {{ bookingDetailsData[0].transactionDetails?.sellingPrice | number:'0.1-2'}} </h4>
                             <h4 *ngIf="bookingDetailsData[0]?.transactionDetails?.sellingPrice == undefined"> ₦ {{ bookingDetailsData[0].flightOffers[0].price.grandTotal | number:'0.1-2'}} </h4> -->
                         </ng-template>
+
+                        <ng-container
+                        *ngIf="bookingDetailsData?.AirTransaction[0].FlightFareEMICalculator?.isInstallmentApplied; else installmentPayment;">
+                        <h4> ₦ {{ (bookingDetailsData?.AirTransaction[0].FlightFareEMICalculator?.initialDownPayment ?? 0) |
+                            number:'0.1-2'}} </h4>
+                    </ng-container>
+                    <ng-template #installmentPayment>
+                        <h4 *ngIf="bookingDetailsData?.AirTransaction[0]?.SellingPrice != undefined"> ₦ {{
+                            bookingDetailsData?.AirTransaction[0]?.SellingPrice | number:'0.1-2'}} </h4>
+                        <h4 *ngIf="bookingDetailsData?.AirTransaction[0]?.SellingPrice == undefined"> ₦  {{ (pnrRetrieveRes?.priceSummary?.SubTotal ?? 0)}} </h4>
+                    </ng-template>
+
                         </div>
                         
 

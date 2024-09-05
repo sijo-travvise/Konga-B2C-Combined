@@ -1,0 +1,30 @@
+<form [formGroup]="custForm" (ngSubmit)="onSubmit()">
+    <div class="request__form">
+        <h2>Independence Day <b>Yacht Cruise!</b></h2>
+        <hr />
+        <div class="row">
+            <div class="col-12 mb-3">
+                <app-input-field title="Name*" [formControls]="getControl('name')"></app-input-field>
+            </div>
+            <div class="col-12 mb-3">
+                <app-input-field title="Email*" [formControls]="getControl('email')"></app-input-field>
+            </div>
+            <div class="col-12 mb-3">
+                <app-phone-number-filed title="Mobile Number (WhatsApp)*"
+                    [formControls]="getControl('mobileNumber')"></app-phone-number-filed>
+            </div>
+            <div class="col-12 mb-3">
+                <app-select-field title="Choose an option*" [option]="packageType"
+                    [formControls]="getControl('packageType')"></app-select-field>
+            </div>
+            <div class="col-12 mb-3">
+                <button class="btn btn-primary w-100 py-2" type="submit">Book Now</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<p-toast></p-toast>
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
+    [loderTitle]="'we are finding the best flights for you'">
+</app-pre-loader>

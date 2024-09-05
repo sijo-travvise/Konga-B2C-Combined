@@ -30,6 +30,7 @@ export class ItineraryDetailsComponent {
   public customerId: string = "";
   isLoading: boolean = false;
   @Input() paymentSuccess: boolean = false;
+  @Input() flightTransactions_ID: any = null;
 
   constructor(public sharedService: SharedService, private _flightService: FlightService,  public _microService: MicroService, private messageService: MessageService) {
 
@@ -145,7 +146,7 @@ export class ItineraryDetailsComponent {
     this.lastname = this.bookingDetailsData[0]?.FlightTransactionDetails[0]?.LastName ?? "";
     this.phone = this.bookingDetailsData[0]?.FlightTransactionDetails[0]?.PhoneNumber ?? "";
     let weburl = environment.webUrl;
-    this.callback = weburl + "flight-itinerary";
+    this.callback = weburl + "flight-itinerary/" + this.flightTransactions_ID;
     this.customerId = this.bookingDetailsData[0]?.FlightTransactions[0]?.CustomerProfile_ID?? "";
     this.reference = this.bookingDetailsData[0]?.FlightTransactions[0]?.AirlinePNR ?? "";
 

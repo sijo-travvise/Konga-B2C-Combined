@@ -1,0 +1,49 @@
+<form [formGroup]="orgForm" (ngSubmit)="onSubmit()">
+    <div class="request__form">
+        <h2>Register Your <b>Organization</b></h2>
+        <hr />
+        <div class="requestCard px-3 py-1">
+            <h5> <strong class="d-flex w-100 pb-3"> Register Your Company and Get 50% Off Your First Invoice Service Charge</strong> </h5>
+          
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <app-input-field [formControls]="getControl('companyName')" title="Company Name*"></app-input-field>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <app-select-field [formControls]="getControl('industry')" title="Industry Type*" [option]="industryType"></app-select-field>
+                </div>
+                <div class="col-md-6 pb-3">
+                    <app-country-selection [formControls]="getControl('country')" title="Country*"  [optionList]="countryOptionList"></app-country-selection>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <app-input-field [formControls]="getControl('state')" title="State*"></app-input-field>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <app-input-field [formControls]="getControl('email')" title="Email*"></app-input-field>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <app-phone-number-filed [formControls]="getControl('mobileNumber')" title="Mobile Number*"></app-phone-number-filed>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <app-input-field [formControls]="getControl('personalEmail')" title="Contact Person Email Address*"></app-input-field>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <app-phone-number-filed [formControls]="getControl('personalPhone')" title="Contact Person Phone number*"></app-phone-number-filed>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <app-text-area [formControls]="getControl('address')" title="Full Address*"></app-text-area>
+                </div>
+                
+            
+                <div class="col-12 mb-3 d-flex justify-content-end">
+                    <button class="btn btn-primary w-auto py-2 px-5" type="submit">Book Now</button>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</form>
+<p-toast></p-toast>
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
+    [loderTitle]="'Submitting your request. Please wait'"></app-pre-loader>
+

@@ -30,6 +30,8 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { DatePipe } from '@angular/common';
 import { MoreDealDetailsComponent } from './landing-page/deals-section/more-deal-details/more-deal-details.component';
+import { OrganizationFormComponent } from './landing-page/deals-section/organization-form/organization-form.component';
+import { PartyRegisterFormComponent } from './landing-page/deals-section/party-register-form/party-register-form.component';
 // import {ToastModule} from 'primeng/toast';
 
 
@@ -43,6 +45,8 @@ export function httpTranlateLoaderFactory(http:HttpClient){
         SearchEngineComponent,
         DealsSectionComponent,
         MoreDealDetailsComponent,
+        OrganizationFormComponent,
+        PartyRegisterFormComponent,
     ],
     providers: [
         DatePipe,

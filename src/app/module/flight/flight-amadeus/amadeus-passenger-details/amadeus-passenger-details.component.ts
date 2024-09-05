@@ -1043,7 +1043,6 @@ export class AmadeusPassengerDetailsComponent {
           console.log(response);
           // this.fare_PriceUpsell_Res = data;
           this.isLoading = false;
-          debugger;
           const flightFareInstallementDetails =  this.flightFareData?.flightFareInstallementDetails ?? null;
           this.flightFareData = response?.result?.data?.flightOffers[0];
           this.flightFareData['flightFareInstallementDetails'] = flightFareInstallementDetails ?? null;

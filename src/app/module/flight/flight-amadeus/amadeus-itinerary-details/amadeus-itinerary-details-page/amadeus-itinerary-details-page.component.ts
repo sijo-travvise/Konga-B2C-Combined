@@ -25,6 +25,7 @@ export class AmadeusItineraryDetailsPageComponent {
   public callback: string = "";
   public customerId: string = "";
   @Input() paymentSuccess: boolean = false;
+  @Input() flightTransactions_ID: any = null;
 
   constructor(public sharedService: SharedService, private service: FlightService) {
 
@@ -100,7 +101,7 @@ export class AmadeusItineraryDetailsPageComponent {
     this.lastname = this.iteneraryData[0]?.travelers[0]?.name?.lastName ?? "";
     this.phone = this.iteneraryData[0]?.travelers[0]?.contact?.phones[0]?.number ?? "";
     let weburl = environment.webUrl;
-    this.callback = weburl + "flight-itinerary";
+    this.callback = weburl + "1A-flight-itinerary/" + this.flightTransactions_ID;
     this.customerId = this.iteneraryData[0]?.travelers[0]?.contact?.emailAddress ?? "";
     this.reference = this.iteneraryData[0]?.associatedRecords[0]?.reference ?? "";
 

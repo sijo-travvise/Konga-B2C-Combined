@@ -16,32 +16,12 @@ import { log } from 'console';
 })
 export class FlightService {
 
-
+//Ameseus API's
   readonly flightSearch = environment.apiUrl;
-  // readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
-  // readonly flightBookurl = 'https://kongaflightbookingapi.travvise.com/';
-  //  readonly vertailUrl = 'https://indigo.travvise.com/'; 
-  //  readonly vertailUrl = 'http://verteil.travvise.com/'; 
-  //  readonly flightPNRurl = 'https://flightbookingapi.travvise.com/';
-
-
-  // readonly flightsearchurl = 'http://192.168.10.213:8080/';
-  // readonly flightBookurl = 'http://192.168.10.213:8083/';
-  // readonly vertailUrl = 'http://192.168.10.213:8085/';
-
-  // readonly flightsearchurl = 'https://ssjlh50t-51797.inc1.devtunnels.ms/'
-  // readonly flightBookurl= 'https://ssjlh50t-56518.inc1.devtunnels.ms/'
-  // readonly vertailUrl = 'https://ssjlh50t-7271.inc1.devtunnels.ms/'
-
-
-  // readonly flightsearchurl = 'http://localhost:51797/';
-  // readonly flightBookurl = 'http://localhost:56518/'; 
-
-  //Live
-  // =====================
-  readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
-  readonly flightBookurl = 'https://kongaflightbookingapi.travvise.com/';
-  readonly vertailUrl = 'https://verteil.travvise.com/'
+  //micro service API's
+  readonly flightsearchurl =  environment.flightsearchurl;
+  readonly flightBookurl =  environment.flightBookurl
+  readonly vertailUrl = environment.vertailUrl
 
   constructor(private http: HttpClient) { }
 
@@ -119,8 +99,12 @@ export class FlightService {
     return this.http.post<any>(this.vertailUrl + "api/booking/SaveBookingDetails", pnrSaveData);
   }
 
-  getBookingDetails(bookingRefID: number): Observable<any> {
-    return this.http.get<any>(this.flightBookurl + "api/Booking/bookingdetails?bookingId="+bookingRefID); 
+  // getBookingDetails(bookingRefID: number): Observable<any> {
+  //   return this.http.get<any>(this.flightBookurl + "api/Booking/bookingdetails?bookingId="+bookingRefID); 
+  // }
+  
+  getBookingDetails(pnr: string): Observable<any> {
+    return this.http.get<any>(this.vertailUrl + "api/Booking/GetBookingDetails?pnrNumber="+pnr); 
   } 
 
   retrieveAirArabiaPNR(pnrData: any): Observable<any> {

@@ -7,7 +7,7 @@ import { SharedService } from 'src/app/services/shared.service';
 @Component({
   selector: 'app-flight-itinerary-details',
   template: `
-  <div class="container my-5" style="max-width: 1200px;" > <app-itinerary-details [pnrRetrieveRes]='pnrRetrieveRes' [bookingDetailsData]='bookingDetailsData' [paymentSuccess]='paymentSuccess'></app-itinerary-details>  <app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
+  <div class="container my-5" style="max-width: 1200px;" > <app-itinerary-details [pnrRetrieveRes]='pnrRetrieveRes' [bookingDetailsData]='bookingDetailsData' [paymentSuccess]='paymentSuccess' [flightTransactions_ID]='flightTransactions_ID' [flightTransactions_ID]='flightTransactions_ID'></app-itinerary-details>  <app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
   [loderTitle]="'we are fetching booking details'"></app-pre-loader></div>
   `,
   providers: [SharedService, MessageService, FlightService],
@@ -28,7 +28,6 @@ export class FlightItineraryDetailsComponent implements OnInit {
   this.route.paramMap.subscribe((params: any) => {
     this.flightTransactions_ID = params.get('pnr');
   });
-  debugger;
   if (this.flightTransactions_ID !== null && this.flightTransactions_ID?.length)  {
     // this.getBookingDetails(this.flightTransactions_ID);
     this.retrievePNR(this.flightTransactions_ID);
@@ -64,34 +63,36 @@ export class FlightItineraryDetailsComponent implements OnInit {
     // }
   }
 
-  // getBookingDetails(flightTransactions_ID: number) {
-  //   this.isLoading = true;
-  //   this._flightService.getBookingDetails(flightTransactions_ID).subscribe({
-  //     complete: () => { },
-  //     error: (error: any) => { this.isLoading = false; },
-  //     next: (data: any) => {
-  //       if (data !== null && data !== undefined) {
-  //         this.bookingDetailsData = data;
+  getBookingDetails(flightTransactions_ID: string) {
+    this.isLoading = true;
+    this._flightService.getBookingDetails(flightTransactions_ID).subscribe({
+      complete: () => { },
+      error: (error: any) => { this.isLoading = false; },
+      next: (data: any) => {
+        if (data !== null && data !== undefined) {
+          this.bookingDetailsData = data;
 
-  //         // this.getCustomerProfileData(data?.FlightTransactions[0]?.CustomerProfile_ID)
-  //         this.retrievePNR(data);
-  //       }
-  //       else {
-  //         // Swal.fire({
-  //         //   icon: 'error',
-  //         //   title: 'Oops...',
-  //         // }).then(function () {
-  //         //   window.location.href = "/";
-  //         // })
-  //         this.messageService.add({
-  //           severity: 'error',
-  //           summary: 'Error',
-  //           detail: 'Something went wrong!. Please Try Again',
-  //         });
-  //       }
-  //     },
-  //   });
-  // }
+          // this.getCustomerProfileData(data?.FlightTransactions[0]?.CustomerProfile_ID)
+          this.isLoading = false;
+       
+        }
+        else {
+          // Swal.fire({
+          //   icon: 'error',
+          //   title: 'Oops...',
+          // }).then(function () {
+          //   window.location.href = "/";
+          // })
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Something went wrong!. Please Try Again',
+          });
+          this.isLoading = false;
+        }
+      },
+    });
+  }
 
 
   retrievePNR(bookingData: any): void {
@@ -115,8 +116,11 @@ export class FlightItineraryDetailsComponent implements OnInit {
             // trips?.FlightSegments?.map((segments: any) => segments['vendorName'] = this.getAirlineName(segments?.MarketingAirline));
           });
           // (this.airlinesListData?.find((airline: any) => airline?.vendorCode === tripAirlineKey.split(',')[0]?.trim()))?.vendorName ?? '';
-          this.isLoading = false;
-          this.isCompleted = false;
+          // this.isLoading = false;
+          // this.isCompleted = false;
+          this.getBookingDetails(data?.AirlinePNR ?? '');
+
+       
         }
         else {
           // Swal.fire({
@@ -125,6 +129,8 @@ export class FlightItineraryDetailsComponent implements OnInit {
           // }).then(function () {
           //   window.location.href = "/";
           // })
+          this.isLoading = false;
+          this.isCompleted = false;
           this.messageService.add({
             severity: 'error',
             summary: 'Error',

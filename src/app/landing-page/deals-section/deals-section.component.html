@@ -94,6 +94,20 @@
         </div>
     </div>
 </div>
+<div class="container  ">
+    <div class="row">
+        <div class="col-md-6 hvr-float">
+            <div class="card shadow-lg pointer" (click)="orgShowDialog()">
+                <img class="w-100" src="../../../assets/img/CORPORATE-TRAVEL.png" alt="" />
+            </div>
+        </div>
+        <div class="col-md-6 hvr-float">
+            <div class="card shadow-lg pointer" (click)="regShowDialog()">
+                <img class="w-100" src="../../../assets/img/cruise.png" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container package__section ">
     <h2><span>Explore</span> <b> the Unexplored</b></h2>
     <p>Our tour packages </p>
@@ -129,3 +143,10 @@
     </ng-template>
 
 </div>
+
+<p-dialog  [modal]="true" [(visible)]="regvisible" [draggable]="false"  class="regFormModal" >
+    <app-party-register-form (closeModal)="handleCloseModal($event,'regvisible')" ></app-party-register-form>
+</p-dialog>
+<p-dialog  [modal]="true" [(visible)]="orgvisible" [draggable]="false"  class="orgFormModal" >
+    <app-organization-form (closeModal)="handleCloseModal($event,'orgvisible')"></app-organization-form>
+</p-dialog>

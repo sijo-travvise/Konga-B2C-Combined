@@ -23,7 +23,6 @@ export class GuestDetailsComponent {
     ];
   }
   nextPassenger(tabindex: number) {
-    // debugger;
     this.activeIndex = tabindex;
     this.i = tabindex;
   }

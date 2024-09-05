@@ -7,7 +7,7 @@ import { SharedService } from 'src/app/services/shared.service';
 @Component({
   selector: 'app-amadeus-itinerary-details',
   template: `
-  <div class="container my-5" style="max-width: 1200px;" > <app-amadeus-itinerary-details-page [iteneraryData]='flightIteneraryData' [paymentSuccess]='paymentSuccess'></app-amadeus-itinerary-details-page>  <app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
+  <div class="container my-5" style="max-width: 1200px;" > <app-amadeus-itinerary-details-page [iteneraryData]='flightIteneraryData' [paymentSuccess]='paymentSuccess' [flightTransactions_ID] ='universalLocatorCode' ></app-amadeus-itinerary-details-page>  <app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
   [loderTitle]="'we are fetching booking details'"></app-pre-loader></div>
   `,
   providers: [SharedService, MessageService, FlightService],

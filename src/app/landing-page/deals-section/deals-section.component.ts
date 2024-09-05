@@ -15,6 +15,8 @@ export class DealsSectionComponent {
   selectedItem: string;
   isLoading:boolean = false;
   packageModuleList: any =[];
+  regvisible = false;
+  orgvisible = false;
   constructor(private router: Router, private packageService: PackageService, private messageService: MessageService) {}
 
   navigateToDeals(event: string, name: string, index: number) {
@@ -68,4 +70,15 @@ export class DealsSectionComponent {
       }
     });
   };
+
+  regShowDialog() {
+    this.regvisible = true;
+}
+orgShowDialog() {
+    this.orgvisible = true;
+}
+handleCloseModal(event: any,type: string) {
+  type === 'regvisible' ?  this.regvisible = false :  this.orgvisible = false;
+
+}
 }
