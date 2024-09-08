@@ -83,7 +83,7 @@ export class OrganizationFormComponent implements OnInit {
 
     let emailDetails: EmailDetailsModel = new EmailDetailsModel();
     this.isLoading = true;
-    emailDetails.ToMailList = [{ Name: 'corporate travel', MailId: "corporatetravel@konga.om" }],
+    emailDetails.ToMailList = [{ Name: 'corporate travel', MailId: 'corporatetravel@konga.com' }, {Name :'Abiola Bakare', MailId: 'abiola.bakare@konga.com'}, {Name :'Yusuf Babatunde', MailId: 'yusuf.babatunde@konga.com'}, {Name:'Joy Okorie', MailId:'joy.okorie@konga.com'},{ Name: 'Akeem Adeyemi', MailId: 'akeem.adeyemi@konga.com' }],
     emailDetails.EmailSubject = "Register Your Organization"
     emailDetails.IsPaymentSuccess = false;
     emailDetails.EmailContent =

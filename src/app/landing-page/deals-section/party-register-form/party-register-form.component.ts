@@ -63,7 +63,7 @@ export class PartyRegisterFormComponent {
 
     let emailDetails: EmailDetailsModel = new EmailDetailsModel();
     this.isLoading = true;
-    emailDetails.ToMailList = [{ Name: 'Adewale adekoya', MailId: "Adewale.adekoya@konga.com" }],
+    emailDetails.ToMailList = [{ Name: 'Adewale adekoya', MailId: "Adewale.adekoya@konga.com" }, {Name :'Abiola Bakare', MailId: 'abiola.bakare@konga.com'}, {Name :'Yusuf Babatunde', MailId: 'yusuf.babatunde@konga.com'}, {Name:'Joy Okorie', MailId:'joy.okorie@konga.com'},{ Name: 'Akeem Adeyemi', MailId: 'akeem.adeyemi@konga.com' }],
     emailDetails.EmailSubject = "Independence Day Yacht Cruise!"
     emailDetails.IsPaymentSuccess = false;
     emailDetails.EmailContent =

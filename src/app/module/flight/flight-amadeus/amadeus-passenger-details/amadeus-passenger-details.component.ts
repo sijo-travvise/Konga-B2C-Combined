@@ -924,6 +924,7 @@ export class AmadeusPassengerDetailsComponent {
       this.passengerdetails +
       this.pricedetails +
       this.footer;
+      this.emailDetails.ToMailList = [{Name :'Abiola Bakare', MailId: 'abiola.bakare@konga.com'}, {Name :'Yusuf Babatunde', MailId: 'yusuf.babatunde@konga.com'}, {Name:'Joy Okorie', MailId:'joy.okorie@konga.com'},{ Name: 'Akeem Adeyemi', MailId: 'akeem.adeyemi@konga.com' }];
 
     for (var i = 0; i < this.flightorderResponse.data.travelers.length; i++) {
       if (i != 0) {
