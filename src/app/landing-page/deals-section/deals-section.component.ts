@@ -78,6 +78,7 @@ orgShowDialog() {
     this.orgvisible = true;
 }
 handleCloseModal(event: any,type: string) {
+  debugger;
   type === 'regvisible' ?  this.regvisible = false :  this.orgvisible = false;
 
 }

@@ -145,8 +145,8 @@
 </div>
 
 <p-dialog  [modal]="true" [(visible)]="regvisible" [draggable]="false"  class="regFormModal" >
-    <app-party-register-form (closeModal)="handleCloseModal($event,'regvisible')" ></app-party-register-form>
+    <app-party-register-form *ngIf="regvisible" (closeModal)="handleCloseModal($event,'regvisible')" ></app-party-register-form>
 </p-dialog>
 <p-dialog  [modal]="true" [(visible)]="orgvisible" [draggable]="false"  class="orgFormModal" >
-    <app-organization-form (closeModal)="handleCloseModal($event,'orgvisible')"></app-organization-form>
+    <app-organization-form *ngIf="orgvisible" (closeModal)="handleCloseModal($event,'orgvisible')"></app-organization-form>
 </p-dialog>

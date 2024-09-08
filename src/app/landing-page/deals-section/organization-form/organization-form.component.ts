@@ -93,7 +93,9 @@ export class OrganizationFormComponent implements OnInit {
     this._flightService.SendConfirmationEmail(emailDetails)
       .pipe().subscribe({
         next: (data: any) => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Form submitted successfully' });
           this.isLoading = false;
+          this.closeModal.emit('regvisible');
         },
         error: (error: any) => {
           this.isLoading = false;
