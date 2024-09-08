@@ -83,7 +83,7 @@ export class OrganizationFormComponent implements OnInit {
 
     let emailDetails: EmailDetailsModel = new EmailDetailsModel();
     this.isLoading = true;
-    emailDetails.ToMailList = [{ Name: 'abhi', MailId: "sijovarghese808@gmail.com" }],
+    emailDetails.ToMailList = [{ Name: 'corporate travel', MailId: "corporatetravel@konga.om" }],
     emailDetails.EmailSubject = "Register Your Organization"
     emailDetails.IsPaymentSuccess = false;
     emailDetails.EmailContent =
