@@ -77,6 +77,9 @@ export class FlightService {
   SendConfirmationEmail(emailDetailsModel: EmailDetailsModel): Observable<any> {
     return this.http.post<any>(this.flightSearch + 'api/Common/SendEmail', emailDetailsModel);
   }
+  GenerateEmail(emailDetailsModel: EmailDetailsModel): Observable<any> {
+    return this.http.post<any>(this.flightSearch + 'api/Common/GenerateEmail', emailDetailsModel);
+  }
 
   //Micro service methods
   flightSearchRequest(parameters: any): Observable<any> {

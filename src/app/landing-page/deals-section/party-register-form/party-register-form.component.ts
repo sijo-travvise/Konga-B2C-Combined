@@ -31,7 +31,7 @@ export class PartyRegisterFormComponent {
 
   ngOnInit(): void {
     this.buildForm();
-    alert();
+   // alert();
   }
   getControl(control: string) {
     return this.custForm.get(control) as FormControl<any>;
@@ -63,13 +63,14 @@ export class PartyRegisterFormComponent {
 
     let emailDetails: EmailDetailsModel = new EmailDetailsModel();
     this.isLoading = true;
-    emailDetails.ToMailList = [{ Name: 'Adewale adekoya', MailId: "Adewale.adekoya@konga.com" }, {Name :'Abiola Bakare', MailId: 'abiola.bakare@konga.com'}, {Name :'Yusuf Babatunde', MailId: 'yusuf.babatunde@konga.com'}, {Name:'Joy Okorie', MailId:'joy.okorie@konga.com'},{ Name: 'Akeem Adeyemi', MailId: 'akeem.adeyemi@konga.com' }],
+    //.ToMailList = [{ Name: 'Adewale adekoya', MailId: "Adewale.adekoya@konga.com" }, {Name :'Abiola Bakare', MailId: 'abiola.bakare@konga.com'}, {Name :'Yusuf Babatunde', MailId: 'yusuf.babatunde@konga.com'}, {Name:'Joy Okorie', MailId:'joy.okorie@konga.com'},{ Name: 'Akeem Adeyemi', MailId: 'akeem.adeyemi@konga.com' }],
+    emailDetails.ToMailList = [{ Name: 'Adewale adekoya', MailId: "junaidkp703@gmail.com" }],
     emailDetails.EmailSubject = "Independence Day Yacht Cruise!"
     emailDetails.IsPaymentSuccess = false;
     emailDetails.EmailContent =
       `<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f4f4; padding: 20px;"><tr><td><table width="600" cellpadding="0" cellspacing="0" border="0" align="center" style="background-color: #ffffff; border: 1px solid #dddddd;"><tr><td style="background-color: #e7057e; color: #ffffff; padding: 20px; text-align: center;"><h1 style="margin: 0;"> Independence Day Yacht Cruise! </h1></td></tr><tr><td style="padding: 20px;"><table width="100%" cellpadding="5" cellspacing="0" border="0" style="background-color: #f9f9f9; border-collapse: collapse;"><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Name</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.name + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Email</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.email + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Mobile Number (WhatsApp)</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.mobileNumber.e164Number + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Choose an option</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.packageType.code + `</td></tr></table></td></tr><tr><td style="background-color: #e7057e; color: #ffffff; padding: 10px; text-align: center;"><p style="margin: 0; font-size: 12px;">&copy; Konga Travel & Tours. All rights reserved.</p></td></tr></table></td></tr></table>`
-
-    this._flightService.SendConfirmationEmail(emailDetails)
+      
+    this._flightService.GenerateEmail(emailDetails)
       .pipe().subscribe({
         next: (data: any) => {
           this.isLoading = false;

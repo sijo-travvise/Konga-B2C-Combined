@@ -5,7 +5,7 @@ export const environment = {
     merchantId: 'ktt',
     mode: 'live',
     publicKey: 'live_pu_12d87995517a6b982d1babc58955eaaa',
-     flightsearchurl: 'https://kongaflightapi.travvise.com/',
-     flightBookurl: 'https://kongaflightbookingapi.travvise.com/',
-     vertailUrl: 'https://verteil.travvise.com/',
+     flightsearchurl: 'https://FlightSearch.konga.com/',
+     flightBookurl: 'https://FlightBook.konga.com/',
+     vertailUrl: 'https://Verteil.konga.com/',
 };
