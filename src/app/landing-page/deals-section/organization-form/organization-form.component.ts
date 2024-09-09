@@ -90,19 +90,16 @@ export class OrganizationFormComponent implements OnInit {
 
       `<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f4f4; padding: 20px;"><tr><td><table width="600" cellpadding="0" cellspacing="0" border="0" align="center" style="background-color: #ffffff; border: 1px solid #dddddd;"><tr><td style="background-color: #e7057e; color: #ffffff; padding: 20px; text-align: center;"><h1 style="margin: 0;">Register Your Organization</h1></td></tr><tr><td style="padding: 20px;"><table width="100%" cellpadding="5" cellspacing="0" border="0" style="background-color: #f9f9f9; border-collapse: collapse;"><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Company Name</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.companyName + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Industry Type</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.industry.code + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Country</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.country.name + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">State</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.state + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Email</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.email + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Mobile Number</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.personalPhone.e164Number + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Contact Person Email Address*</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.personalEmail + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Contact Person Phone number</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.personalPhone.e164Number + `</td></tr><tr><td style="border-bottom: 1px solid #dddddd; padding: 10px; font-weight: bold; color: #e7057e;">Full Address</td><td style="border-bottom: 1px solid #dddddd; padding: 10px; color: #333333;">` + formValue.address + `</td></tr></table></td></tr><tr><td style="background-color: #e7057e; color: #ffffff; padding: 10px; text-align: center;"><p style="margin: 0; font-size: 12px;">&copy;  Konga Travel & Tours. All rights reserved.</p></td></tr></table></td></tr></table>`
 
-    this._flightService.SendConfirmationEmail(emailDetails)
-      .pipe().subscribe({
+    this._flightService.GenerateEmail(emailDetails).subscribe({
         next: (data: any) => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Form submitted successfully' });
           this.isLoading = false;
-          this.closeModal.emit('regvisible');
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Form submitted successfully' });
         },
         error: (error: any) => {
           this.isLoading = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error to submit the form' });
         },
         complete: () => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Form submitted successfully' });
           this.isLoading = false;
           this.closeModal.emit('regvisible');
         }
