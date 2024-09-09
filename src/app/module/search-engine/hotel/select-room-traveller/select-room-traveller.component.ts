@@ -138,7 +138,7 @@ export class SelectRoomTravellerComponent {
       //   showConfirmButton: true,
       //   // timer: 1500,
       // });
-      alert("You must have at least one room");
+      // alert("You must have at least one room");
     }
     this.searchRoomsInfo[this.searchRoomsInfo.length - 1].showorhide = true;
   }
