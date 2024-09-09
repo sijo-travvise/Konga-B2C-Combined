@@ -31,7 +31,6 @@ export class PartyRegisterFormComponent {
 
   ngOnInit(): void {
     this.buildForm();
-   // alert();
   }
   getControl(control: string) {
     return this.custForm.get(control) as FormControl<any>;
