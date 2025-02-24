@@ -7,7 +7,7 @@
 <!-- <h2 class="mb-4">JOIN OUR <b>AFFILATE PROGRAM</b></h2>
 
     <hr class="mb-5" /> -->
-<div class="affliateCard" *ngIf="isLogin; else register">
+<div class="affliateCard container" *ngIf="isLogin; else register">
 
     <form [formGroup]="loginForm" (ngSubmit)="loginAffiliate()">
         <div class="row">
@@ -43,7 +43,7 @@
 <!-- JOIN OUR AFFILATE PROGRAM -->
 <ng-template #register>
     <ng-container *ngIf="isRegisterd==false; else registrationSuccess">
-        <div class="affliateCard">
+        <div class="affliateCard container">
             <!-- {{affiliateRegForm.value | json}} -->
             <form [formGroup]="affiliateRegForm" (ngSubmit)="registerAffiliate()">
                 <div class="row">
