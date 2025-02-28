@@ -13,6 +13,6 @@ export class AffiliateService {
     return this.http.post<any>(this.flightsearchurl + 'api/B2BCustomer/RegisterB2BCustomer', reqmodel);
   }
   Login(reqmodel: any): Observable<any> {
-    return this.http.post<any>(this.flightsearchurl + 'api/B2BCustomer/Login', reqmodel);
+    return this.http.post<any>(this.flightsearchurl + 'api/OAuth/token/authorize', reqmodel);
   }
 }

@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AffiliateService } from 'src/app/services/affiliate.service';
 import { SharedService } from 'src/app/services/shared.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { first } from 'rxjs';
+import { log } from 'console';
 
 @Component({
   selector: 'app-affliate',
@@ -23,7 +26,16 @@ export class AffliateComponent {
   @Output() isloadingAffiliate: EventEmitter<boolean> = new EventEmitter(true);
 
   public user:any;
-  constructor(private cdr: ChangeDetectorRef,private router: Router, private formBuilder: FormBuilder,public sharedService:SharedService,private affiliateService:AffiliateService,private messageService:MessageService) { }
+  login_clicked: boolean = false;
+  _2FAEnabled: boolean = false;
+  isLoggedIn: any = false;
+  constructor(private cdr: ChangeDetectorRef,
+              private router: Router,
+              private authenticationService: AuthenticationService,
+              private formBuilder: FormBuilder,
+              public sharedService:SharedService,
+              private affiliateService:AffiliateService,
+              private messageService:MessageService) { }
   ngOnInit(): void {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Not enough permission to continue. Please Try Again' });
     this.affiliateRegForm = this.formBuilder.group({
@@ -134,34 +146,43 @@ export class AffliateComponent {
   {
     if(this.loginForm.valid)
     {
+
+      
       let reqmodel=
       {
-        email:this.user_email.value,
-        password:this.password.value,
+        username: this.user_email.value,
+        password: this.password.value,
+        grant_Type:'client_credentials',
+        type:'Login'
       }
       this.isloadingAffiliate.emit(true);
       this.affiliateService.Login(reqmodel).subscribe({
         complete: () => { }, // completeHandler
         error: (error: any) => { this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong. Please Try Again' });       this.isloadingAffiliate.emit(false); },    // errorHandler 
         next: (response: any) => {
-          if (response !== null && response !== undefined) {
-            this.isloadingAffiliate.emit(false);
-            if(response.permissions.filter((item: { o_View: boolean; })=>item.o_View==true).length > 0)
-            {
-              this.user=response;
-              this.user!.id=response.userID.toString();
-              this.user!.b2BCustomer_ID=response.b2BCustomer_ID.toString();
-              this.user!.userType="B2B";
-              this.sharedService.setLocalStore('user',"");
-              this.sharedService.setLocalStore('affiliate_user',JSON.stringify(this.user));
-              this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login success.' });
-              window.location.reload();
-            }
-            else
-            {
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Not enough permission to continue. Please Try Again' });
+          if (response && response.success!==false) {
+            // this.isloadingAffiliate.emit(false);
+
+            this.sharedService.setLocalStore('__token',response);
+            this.authenticationService.setToken(response);
+            this.Generate2FA_otp();
+            // if(response.permissions.filter((item: { o_View: boolean; })=>item.o_View==true).length > 0)
+            // {
+
+            //   this.user=response;
+            //   this.user!.id=response.userID.toString();
+            //   this.user!.b2BCustomer_ID=response.b2BCustomer_ID.toString();
+            //   this.user!.userType="B2B";
+            //   this.sharedService.setLocalStore('user',"");
+            //   this.sharedService.setLocalStore('affiliate_user',JSON.stringify(this.user));
+            //   this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login success.' });
+            //   window.location.reload();
+            // }
+            // else
+            // {
+            //   this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Not enough permission to continue. Please Try Again' });
             
-            }
+            // }
             
           }
           else {
@@ -179,4 +200,94 @@ export class AffliateComponent {
       this.loginForm.markAllAsTouched();
     }
   }
+
+
+
+  Generate2FA_otp() {
+    console.log('line 207');
+    
+    let reqModel =
+    {
+      email: this.user_email.value,
+      password: this.password.value
+    }
+    this.login_clicked = true;
+    this.authenticationService.Generate2FA_otp(reqModel)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.login_clicked = false;
+          
+          if (data?.data) {
+            this._2FAEnabled = true;
+          }
+          else {
+            this._2FAEnabled = false;
+            // this.loginChecker();
+
+            // this.proceedToLogin();
+          }
+        },
+        error => {
+          this.login_clicked = false;
+          // this.error = error;
+          //     this.login_clicked = false
+          //     this.show_error_msg = true;
+        });
+  }
+
+
+  // loginChecker() {
+    
+  //   if (!this.isLoggedIn) {
+  //     // this.isShowBranchList = [];
+  //     this.login_clicked = true;
+  //     this.isLoggedIn = true;
+  
+  //     this.authenticationService.login(
+  //       this.login.username.value, 
+  //       this.login.password.value, 
+  //       this.otp, 
+  //       this.ipAddress, 
+  //       // this.latitude, 
+  //       // this.longitude
+  //     ).subscribe({
+  //       next: (data: any) => {
+  //         if (data && data.success) {
+  //           // this.show_error_msg = false;
+  //           // this.show_error_msgBranch = false;
+  //           // this.LoginUserData = data.data;
+  
+  //           if (data.data?.branchList?.length > 0) {
+  //             // this.branchList.setValidators([Validators.required]);
+  //             // this.branchList.updateValueAndValidity();
+  
+  //             if (data.data.branchList.length === 1) {
+  //               // this.isShowBranchList = [];
+  //               // const singleBranch = data.data.branchList[0];
+  //               // this.branchList.patchValue(singleBranch.value);
+  //               // this.LoginUserData.selectedBranch = singleBranch;
+  //               // this.routingDashboard();
+  //             } else {
+  //               // this.login_clicked = false;
+  //               // this.isShowBranchListView=true;
+  //               // this.isShowBranchList = data?.data?.branchList;
+  //             }
+  //           } else {
+  //             // this.LoginUserData.selectedBranch = null;
+  //             // this.branchList.clearValidators();
+  //             // this.branchList.updateValueAndValidity();
+  //             // this.routingDashboard();
+  //           }
+  //         }
+  //       },
+  //       error: (error: any) => {
+  //         // this.handleLoginError(error.error.errorMessage);
+  //       },
+  //       complete: () => {
+  //         // Add any logic needed on completion here if necessary
+  //       }
+  //     });
+  //   }
+  // }
 }

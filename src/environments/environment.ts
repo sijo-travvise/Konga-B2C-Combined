@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44318/',
-
+  apiUrl: 'https://localhost:44396/',
 
 
   flightsearchurl: 'https://kongaflightapi.travvise.com/',
