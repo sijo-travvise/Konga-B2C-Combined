@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { FilterService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { SharedService } from 'src/app/services/shared.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 interface Language {
   name: String;
@@ -28,17 +29,25 @@ export class HeaderComponent implements OnInit {
   visible: boolean = false;
   loginPage: boolean = false;
   public forgotWindow:boolean = false;
-  user:any;
+  user:any = null;
+  currentUser:any = null;
 
   public isLoading: boolean = false;
 
-  constructor(private translateService: TranslateService, private _sharedService: SharedService, private messageService: MessageService,  private primengConfig: PrimeNGConfig) {
+  constructor(private translateService: TranslateService, 
+              private _sharedService: SharedService, 
+              private messageService: MessageService,  
+              private _authenticationService: AuthenticationService,
+              private primengConfig: PrimeNGConfig) {
     this.translateService.setDefaultLang('en');
     const browserlang = this.translateService.getBrowserLang();
     this.translateService.use(browserlang);
-    if(this._sharedService.getLocalStore('affiliate_user')!='' && this._sharedService.getLocalStore('affiliate_user')!=undefined)
+    this.currentUser = _authenticationService.affliateUser;
+
+    if(Object.keys(this.currentUser).length> 1)
     {
-      this.user= JSON.parse(this._sharedService.getLocalStore('affiliate_user'));
+      
+      this.user= this.currentUser;
     }
     
   }
@@ -77,9 +86,8 @@ export class HeaderComponent implements OnInit {
 
   logOut()
   {
-    debugger
-    this._sharedService.setLocalStore('user',"");
-    this._sharedService.setLocalStore('affiliate_user',"");
+    localStorage.removeItem('__token');
+    localStorage.removeItem('currentUser');
     window.location.reload();
   }
   ngOnChanges(changes: SimpleChanges) {

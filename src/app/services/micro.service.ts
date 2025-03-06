@@ -17,11 +17,23 @@ export class MicroService {
 
   // microservice flights common functions
 
-  getFormatedFlightTime(time: string, isHour: boolean = false) {
+
+  getFormatedFlightTime(time: string | null | undefined, isHour: boolean = false): string {
+    if (!time || time.length < 4) {
+      return "Invalid Time"; // Handle incorrect or missing input
+    }
+    
     const hours = time.substring(0, 2);
     const minutes = time.substring(2, 4);
-    return isHour ? `${hours} Hr :${minutes} Min` : `${hours}:${minutes}`;
+    
+    return isHour ? `${hours} Hr : ${minutes} Min` : `${hours}:${minutes}`;
   }
+
+  // getFormatedFlightTime(time: string, isHour: boolean = false) {
+  //   const hours = time.substring(0, 2);
+  //   const minutes = time.substring(2, 4);
+  //   return isHour ? `${hours} Hr :${minutes} Min` : `${hours}:${minutes}`;
+  // }
 
   
   getFormatedFlightDate(dateString: string, isDay: boolean = false, formats = 'yy-MMM-dd') {

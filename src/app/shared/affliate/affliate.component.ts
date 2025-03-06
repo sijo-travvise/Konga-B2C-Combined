@@ -6,7 +6,7 @@ import { AffiliateService } from 'src/app/services/affiliate.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { first } from 'rxjs';
-import { log } from 'console';
+import { error, log } from 'console';
 
 @Component({
   selector: 'app-affliate',
@@ -29,6 +29,8 @@ export class AffliateComponent {
   login_clicked: boolean = false;
   _2FAEnabled: boolean = false;
   isLoggedIn: any = false;
+  otp: any;
+  ipAddress: any;
   constructor(private cdr: ChangeDetectorRef,
               private router: Router,
               private authenticationService: AuthenticationService,
@@ -115,7 +117,6 @@ export class AffliateComponent {
         error: (error: any) => { this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Registration failed. Please Try Again' }); this.isLoading = false; },    // errorHandler 
         next: (response: any) => {
           if (response !== null && response !== undefined) {
-            console.log(response);
             this.isloadingAffiliate.emit(false);
             this.isRegisterd=true;
           }
@@ -146,8 +147,7 @@ export class AffliateComponent {
   {
     if(this.loginForm.valid)
     {
-
-      
+      this.isLoading =true;
       let reqmodel=
       {
         username: this.user_email.value,
@@ -155,10 +155,10 @@ export class AffliateComponent {
         grant_Type:'client_credentials',
         type:'Login'
       }
-      this.isloadingAffiliate.emit(true);
-      this.affiliateService.Login(reqmodel).subscribe({
+      this.isLoading = true;
+      this.affiliateService.getAcessToken(reqmodel).subscribe({
         complete: () => { }, // completeHandler
-        error: (error: any) => { this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong. Please Try Again' });       this.isloadingAffiliate.emit(false); },    // errorHandler 
+        error: (error: any) => { this.isLoading = false; this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong. Please Try Again' });       this.isloadingAffiliate.emit(false); },    // errorHandler 
         next: (response: any) => {
           if (response && response.success!==false) {
             // this.isloadingAffiliate.emit(false);
@@ -186,9 +186,9 @@ export class AffliateComponent {
             
           }
           else {
-
             setTimeout(() => {
-              this.isloadingAffiliate.emit(false);
+              this.isLoading = false;
+              // this.isloadingAffiliate.emit(false);
             }, 300);
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid email or password. Please Try Again' });
           }
@@ -204,8 +204,6 @@ export class AffliateComponent {
 
 
   Generate2FA_otp() {
-    console.log('line 207');
-    
     let reqModel =
     {
       email: this.user_email.value,
@@ -219,17 +217,20 @@ export class AffliateComponent {
           this.login_clicked = false;
           
           if (data?.data) {
+            this.isLoading = false;
             this._2FAEnabled = true;
+            this.isLoading = false;
           }
           else {
             this._2FAEnabled = false;
-            // this.loginChecker();
+            this.loginChecker();
 
             // this.proceedToLogin();
           }
         },
         error => {
           this.login_clicked = false;
+          this.isLoading = false;
           // this.error = error;
           //     this.login_clicked = false
           //     this.show_error_msg = true;
@@ -237,57 +238,55 @@ export class AffliateComponent {
   }
 
 
-  // loginChecker() {
+  loginChecker() {
+      // this.isShowBranchList = [];
+      this.login_clicked = true;
+      this.affiliateService.login(
+        this.user_email.value,
+        this.password.value,
+        this.otp, 
+        this.ipAddress, 
+        // this.latitude, 
+        // this.longitude
+      ).subscribe({
+        next: (data: any) => {
+          if (data && data.success) {
+            // this.show_error_msg = false;
+            // this.show_error_msgBranch = false;
+            // this.LoginUserData = data.data;
+            this.isLoading = false;
+            this.sharedService.setLocalStore('currentUser',data.data);
+            this.authenticationService?.authenticateUser(data.data);
+            this.isLoading = false;
+            this.router.navigate(['/'])
+          }else {
+            this.isLoading = false;
+          }
+        },
+        error: (error: any) => {
+          this.isLoading = false;
+          // this.handleLoginError(error.error.errorMessage);
+        },
+        complete: () => {
+          // Add any logic needed on completion here if necessary
+        }
+      });
+  }
+  
+
+    getMyIP() {
+      this.sharedService?.getMyIP()
+      .subscribe({
+        complete: () => {}, // completeHandler
+        error: (error: any) => {
+        }, // errorHandler
+        next: (data: any) => {
+          if (data != null) {
+            this.ipAddress=data?.ip;
+          } 
+        },
+      });
+    }
+
     
-  //   if (!this.isLoggedIn) {
-  //     // this.isShowBranchList = [];
-  //     this.login_clicked = true;
-  //     this.isLoggedIn = true;
-  
-  //     this.authenticationService.login(
-  //       this.login.username.value, 
-  //       this.login.password.value, 
-  //       this.otp, 
-  //       this.ipAddress, 
-  //       // this.latitude, 
-  //       // this.longitude
-  //     ).subscribe({
-  //       next: (data: any) => {
-  //         if (data && data.success) {
-  //           // this.show_error_msg = false;
-  //           // this.show_error_msgBranch = false;
-  //           // this.LoginUserData = data.data;
-  
-  //           if (data.data?.branchList?.length > 0) {
-  //             // this.branchList.setValidators([Validators.required]);
-  //             // this.branchList.updateValueAndValidity();
-  
-  //             if (data.data.branchList.length === 1) {
-  //               // this.isShowBranchList = [];
-  //               // const singleBranch = data.data.branchList[0];
-  //               // this.branchList.patchValue(singleBranch.value);
-  //               // this.LoginUserData.selectedBranch = singleBranch;
-  //               // this.routingDashboard();
-  //             } else {
-  //               // this.login_clicked = false;
-  //               // this.isShowBranchListView=true;
-  //               // this.isShowBranchList = data?.data?.branchList;
-  //             }
-  //           } else {
-  //             // this.LoginUserData.selectedBranch = null;
-  //             // this.branchList.clearValidators();
-  //             // this.branchList.updateValueAndValidity();
-  //             // this.routingDashboard();
-  //           }
-  //         }
-  //       },
-  //       error: (error: any) => {
-  //         // this.handleLoginError(error.error.errorMessage);
-  //       },
-  //       complete: () => {
-  //         // Add any logic needed on completion here if necessary
-  //       }
-  //     });
-  //   }
-  // }
 }

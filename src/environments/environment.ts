@@ -7,9 +7,9 @@ export const environment = {
   apiUrl: 'https://localhost:44396/',
 
 
-  flightsearchurl: 'https://kongaflightapi.travvise.com/',
-  flightBookurl: 'https://kongaflightbookingapi.travvise.com/',
-  vertailUrl: 'https://verteil.travvise.com/',
+  // flightsearchurl: 'https://flightapi.travvise.com/',
+  // flightBookurl: 'https://kongaflightbookingapi.travvise.com/',
+  // vertailUrl: 'https://verteil.travvise.com/',
 
 
     // readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
@@ -28,8 +28,8 @@ export const environment = {
   // readonly vertailUrl = 'https://ssjlh50t-7271.inc1.devtunnels.ms/'
 
 
-  // readonly flightsearchurl = 'http://localhost:51797/';
-  // readonly flightBookurl = 'http://localhost:56518/'; 
+ flightsearchurl:'http://localhost:51797/',
+  flightBookurl: 'http://localhost:56518/',
 
 
 

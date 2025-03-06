@@ -4,6 +4,7 @@ import { FlightService } from 'src/app/services/flight.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { ICommonResultModel } from '../../search-engine/search-engine.util';
 import { MicroService } from 'src/app/services/micro.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-flight-result-body',
@@ -24,8 +25,16 @@ export class FlightResultBodyComponent implements AfterViewInit {
   public isLoading = false;
   commonResultModel: ICommonResultModel[] = [];
   cities: any[];
-  constructor(private _flightService: FlightService, private router: Router, private activatedRoute: ActivatedRoute, private sharedService: SharedService, private cdr: ChangeDetectorRef, private _microService: MicroService) {
+  constructor(private _flightService: FlightService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private sharedService: SharedService,
+              private cdr: ChangeDetectorRef,
+              private _authenticationService: AuthenticationService,
+              private _microService: MicroService) {
     this.router.getCurrentNavigation().extras.state;
+
+    
 
   }
   public selectedCabinDataData: any;

@@ -8,9 +8,11 @@ import { FlightService } from 'src/app/services/flight.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { SelectPassengerComponent } from '../select-passenger/select-passenger.component';
 import { amadeusRequestModelObject } from 'src/app/Models/flight/Amadeus/flight-offer.model';
-import { FlightSearchRequest } from 'src/app/Models/flight/Amadeus/micro-service-flight.model';
-import { log } from 'console';
+import { FlightSearchRequest, FlightSearch, SearchSegment } from 'src/app/Models/flight/Amadeus/micro-service-flight.model';
+import { error, log } from 'console';
 import { MicroService } from 'src/app/services/micro.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import moment from 'moment';
 // import { default as airLineCity } from "src/assets/json/AirIntCitys.json";
 
 import { debounceTime } from 'rxjs/operators';
@@ -56,6 +58,7 @@ export class OnewayComponent implements OnInit {
   public amedeusReqModel = amadeusRequestModelObject;
   affiliated_user: any;
   affiliate_user_permission: any;
+  selectedSuppiers: string = ''
 
   searchResultObj = {
     amedeusData: null,
@@ -69,6 +72,7 @@ export class OnewayComponent implements OnInit {
 
 
   supplierList: any[] = [];
+  currentUser: any;
 
 
 
@@ -103,7 +107,24 @@ export class OnewayComponent implements OnInit {
     return this.flightSearchForm?.get('currentMinDate') as FormArray;
   }
 
-  constructor(private router: Router, private sharedService: SharedService, public form: FormBuilder, private _flightService: FlightService, private messageService: MessageService, private primengConfig: PrimeNGConfig, private _microService: MicroService) { }
+  constructor(private router: Router,
+              private sharedService: SharedService,
+              public form: FormBuilder, 
+              private _flightService: FlightService, 
+              private messageService: MessageService, 
+              private primengConfig: PrimeNGConfig, 
+              private _authenticationService: AuthenticationService,
+              private _microService: MicroService) { 
+
+                if(this._authenticationService.affliateUser != null && Object.keys(this._authenticationService.affliateUser).length !== 0)  {
+                  console.log(this._authenticationService.affliateUser,'line 117');
+                  this.currentUser = this._authenticationService.affliateUser;
+                  this.getSupplierDetails();
+
+                  
+                  
+                }
+              }
 
   ngOnInit() {
     // this.getSupplierDetails(); for getting suppliers information (TODO in later versions)
@@ -258,6 +279,9 @@ export class OnewayComponent implements OnInit {
   }
 
   resultPageRouter() {
+
+    console.log(this.searchResultObj,'line 283');
+    
     this.sharedService?.setLocalStore("flightData", this.searchResultObj);
     if (this.searchResultObj.amedeusData !== null || this.searchResultObj.data !== null) {
       this.router.navigateByUrl('/result-page');
@@ -350,6 +374,9 @@ export class OnewayComponent implements OnInit {
     });
     this.amedeusReqModel.searchCriteria.flightFilters.cabinRestrictions[0].cabin = this.selectedCabinDataData.subValue.toUpperCase();
     let parameters: FlightSearchRequest = null;
+    let flightSearch = FlightSearch;
+
+    
 
     //for micro service\
 
@@ -385,51 +412,110 @@ export class OnewayComponent implements OnInit {
           return;
         }
         else {
-          parameters = {
-            device: "desktop",
-            from: this.selectedFromCity.value?.CityCode,
-            to: this.selectedToCity.value?.CityCode,
-            depDate: datepipe.transform(this.DepartedDate.value, 'yyyy-MM-dd'),
-            returnDate: this.searchType === 'roundTrip' ? datepipe.transform(this.ReturnDate.value, 'yyyy-MM-dd') : '',
-            adt: this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'adult')?.count,
-            chd: this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'child')?.count,
-            inf: this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'infant')?.count,
-            cls: this.CabinList.value?.value ?? '0',
-            aff: "1",
-            pwd: "aff",
-            currency: 'NGN',
-            language: "en-GB",
-            cn: "qa",
-            source: "API",
-            isDirectSearch: false,
-            airlinePreference: "",
-            isSearchFlexible: false,
-            UtmSource: "",
-            UtmMedium: "",
-            ///Suppliers: '1,2'
-            Suppliers: '2'
-          };
+          // parameters = {
+          //   device: "desktop",
+          //   from: this.selectedFromCity.value?.CityCode,
+          //   to: this.selectedToCity.value?.CityCode,
+          //   depDate: datepipe.transform(this.DepartedDate.value, 'yyyy-MM-dd'),
+          //   returnDate: this.searchType === 'roundTrip' ? datepipe.transform(this.ReturnDate.value, 'yyyy-MM-dd') : '',
+          //   adt: this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'adult')?.count,
+          //   chd: this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'child')?.count,
+          //   inf: this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'infant')?.count,
+          //   cls: this.CabinList.value?.value ?? '0',
+          //   aff: "1",
+          //   pwd: "aff",
+          //   currency: 'NGN',
+          //   language: "en-GB",
+          //   cn: "qa",
+          //   source: "API",
+          //   isDirectSearch: false,
+          //   airlinePreference: "",
+          //   isSearchFlexible: false,
+          //   UtmSource: "",
+          //   UtmMedium: "",
+          //   ///Suppliers: '1,2'
+          //   Suppliers: '2'
+          // };
+          this.isLoading = true;
+          flightSearch.CustomerUser_ID = 1;
+          // flightSearch.CustomerUser_ID = this.currentUser?.customerUser_ID;
+          flightSearch.NumberOfAdults = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'adult')?.count;
+          flightSearch.NumberOfChildren = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'child')?.count;
+          flightSearch.NumberOfInfants = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'infant')?.count;
+          flightSearch.SelectedCurrency = "NGN";
+          // flightSearch.Suppliers = '28';
+          flightSearch.Suppliers = this.selectedSuppiers;
+          flightSearch.SearchSegments = [];
+          flightSearch.ApplicationConfig.fareType = 0;
+          flightSearch.ApplicationConfig.CustomerProfileId = this.currentUser?.customerProfile_ID;
 
 
-          let travelDetails = {
-            origin: this.selectedFromCity.value?.CityCode,
-            destination: this.selectedToCity.value?.CityCode,
-            date: this.DepartedDate.value,
-            ReturnDate: this.ReturnDate.value,
+
+
+          console.log(this.searchType,'line 450');
+          if (this.searchType.toLocaleLowerCase() === 'oneway' || this.searchType.toLocaleLowerCase() === 'roundtrip') {
+            
+            // let onwordcls = MicroServiceCabinClass.find(item => item.value === this.am_selectedclass_ow)?.microvalue;
+            let searchSegment: SearchSegment =
+            {
+              Origin: this.selectedFromCity.value?.CityCode,
+              Destination: this.selectedToCity.value?.CityCode,
+              DepartureDate: moment(this.DepartedDate.value).startOf('day').format('YYYY-MM-DD'),
+              FlightClass: Number(this.CabinList.value?.value) ?? 0,
+              BoundType: 20,
+              AirlinePreference: []
+            };
+            flightSearch.SearchSegments.push(searchSegment);
+            flightSearch.TypeOfTrip = 1;
+
+
+            console.log(this.triptype,'line 472', this.searchType);
+            
           }
 
-          if (this.searchType === 'roundTrip') {
-            this.amedeusReqModel.originDestinations.push(this.addTravellingData('oneWay', 1, travelDetails));
-            this.amedeusReqModel.originDestinations.push(this.addTravellingData('roundTrip', 2, travelDetails));
+          if (this.searchType.toLocaleLowerCase() === 'roundtrip') {
+
+            console.log(this.triptype,'line 478', this.searchType);
+            // let returncls = MicroServiceCabinClass.find(item => item.value === this.am_selectedclass_re)?.microvalue;
+      
+            let searchSegment: SearchSegment =
+            {
+              Origin: this.selectedToCity.value?.CityCode,
+              Destination: this.selectedFromCity.value?.CityCode,
+              DepartureDate: moment(this.ReturnDate.value).startOf('day').format('YYYY-MM-DD'),
+              FlightClass: Number(this.CabinList.value?.value) ?? 0,
+              BoundType: 10,
+              AirlinePreference: []
+            };
+            flightSearch.SearchSegments.push(searchSegment);
+            flightSearch.TypeOfTrip = 2;
           }
 
-          else {
-            this.amedeusReqModel.originDestinations.push(this.addTravellingData('oneWay', 1, travelDetails));
-          }
+
+          // let travelDetails = {
+          //   origin: this.selectedFromCity.value?.CityCode,
+          //   destination: this.selectedToCity.value?.CityCode,
+          //   date: this.DepartedDate.value,
+          //   ReturnDate: this.ReturnDate.value,
+          // }
+
+          // if (this.searchType === 'roundTrip') {
+          //   this.amedeusReqModel.originDestinations.push(this.addTravellingData('oneWay', 1, travelDetails));
+          //   this.amedeusReqModel.originDestinations.push(this.addTravellingData('roundTrip', 2, travelDetails));
+          // }
+
+          // else {
+          //   this.amedeusReqModel.originDestinations.push(this.addTravellingData('oneWay', 1, travelDetails));
+          // }
 
         }
 
-        this.submitTravelAmeadiusData(parameters, true);
+        // this.submitTravelAmeadiusData(parameters, true);
+
+        if(this.currentUser) {
+          this.microServiceSearch(flightSearch);
+        }
+
 
 
       }
@@ -475,19 +561,71 @@ export class OnewayComponent implements OnInit {
   }
 
 
+  microServiceSearch(flightSearch) {
+
+    this._flightService.microServiceFlightSearch(flightSearch).subscribe(data=> {
+      console.log(data,'line 550');
+      this.isLoading = false;
+
+      if (data && data?.CombinedBound !== null) {
+        this.isLoading = false;
+        var SupplierName = "";
+        data.CombinedBound = (Object.keys(data?.CombinedBound).map(key => ({ amount: key, flights: data.CombinedBound[key], additionalMarkupAmount: 0 }))?.sort((a: any, b: any) => a.amount - b.amount));
+        data['totalFlights'] = 0;
+      }
+      this.searchResultObj.data = data;
+      this.resultPageRouter();
+
+    }, error=> {
+      this.isLoading = false;
+      
+    })
+  }
+
+
   getSupplierDetails() {
+    console.log('line 496');
+    
     this.isLoading = true;
-    const supplierType = 1;
-    this.sharedService.GetAllSuppliers().subscribe({
+    this.sharedService.GetAllSuppliers(1).subscribe({
       complete: () => { }, // completeHandler
       error: (error: any) => { this.isLoading = false; },    // errorHandler 
       next: (data: any) => {
         if (data?.length) {
           this.isLoading = false;
-          this.supplierList = data;
+          
+
+          this.findMatchingSupplierFromCurrentUser(data);
+        }else {
+          this.isLoading = false;
         }
       },
     });
+  }
+
+
+
+  findMatchingSupplierFromCurrentUser(suppliers) {
+
+    
+    const flightPrivilages = this._authenticationService.affliateUser.privilages.flightService;
+
+
+    flightPrivilages.forEach((flights: any)=> {
+      
+      const allowedSuplierCode = flights.supplierCode;
+
+      suppliers.forEach((item: any)=> {
+        if (allowedSuplierCode === item?.supplierCode) {
+          if(this.selectedSuppiers) {
+            this.selectedSuppiers += ',';
+          }
+          this.selectedSuppiers += item.pccList[0].supplier_DTID;
+        }
+      });
+
+    });
+    
   }
 
   buildForm() {

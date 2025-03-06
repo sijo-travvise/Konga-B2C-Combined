@@ -673,6 +673,7 @@ export class FlightAmadeusFareFamilyComponent {
     this.fareActiveFunction(fareData, data.slides[0]?.id)
   }
 
+  
   ngOnChanges(changes: SimpleChanges) {
     // console.log(changes);
     // this.GetFare_PriceUpsellWithoutPNRReqModel();

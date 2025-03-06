@@ -8,6 +8,7 @@ import { FlightService } from 'src/app/services/flight.service';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { CarouselComponent, OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { MicroService } from 'src/app/services/micro.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-flight-details',
@@ -26,7 +27,7 @@ export class FlightDetailsComponent implements AfterViewInit {
   @Input() tripTye: any = 'oneWay';
   @Output() emiInstallments: EventEmitter<any> = new EventEmitter();
 
-  public isLoading: boolean = false;
+  public isLoading: boolean = true;
   public fare_PriceUpsell_Res: any;
   adult_count: number = 1;
   child_count: number = 1;
@@ -41,7 +42,23 @@ export class FlightDetailsComponent implements AfterViewInit {
 
   affiliated_user:any;
   affiliate_user_permission:any;
-  constructor(private router: Router, public sharedService: SharedService, private _flightService: FlightService, private cdr: ChangeDetectorRef, private messageService: MessageService, private primengConfig: PrimeNGConfig,public _microService: MicroService) { }
+  revalidateObj: any = null;
+  currrentUser: any;
+  flexiPrice: number = 0;
+  matchingFlexiFareDetails: any[];
+  constructor(private router: Router,
+              public sharedService: SharedService,
+              public _flightService: FlightService,
+              private cdr: ChangeDetectorRef,
+              private messageService: MessageService,
+              private primengConfig: PrimeNGConfig,
+              private _authenticationService: AuthenticationService,
+              public _microService: MicroService) {
+
+                this.currrentUser = this._authenticationService.affliateUser;
+                
+
+               }
 
 
 
@@ -117,13 +134,29 @@ export class FlightDetailsComponent implements AfterViewInit {
       this.affiliated_user =  JSON.parse(this.sharedService.getLocalStore('affiliate_user'));;
       this.affiliate_user_permission = this.affiliated_user?.permissions.filter((item: { moduleName: string; })=>item.moduleName=="AIR SERVICES")[0];
     }
-    this.isBookingFooterConsole = true;
+    
     this.getFareUpsellData(this.BookedFlightData);
     this.selectedFare = this.BookedFlightData;
   }
 
   ngAfterViewInit() {
     this.cdr.detectChanges();
+    this.isLoading = true;
+    
+    if(this.BookedFlightData && this.BookedFlightData.Trips[0].SupplierName == "Amadeus") {
+      this._authenticationService.affliateUser
+      this.revalidateObj = {
+        SelectedTripFareKeys: [
+          {RevalidateKey: this.BookedFlightData.FSC}
+        ],
+      };
+      this.revalidateObj["CustomerProfileId"]= this.currrentUser.customerProfile_ID;
+      this.getAirArabiaFlex()
+
+    }else {
+      this.isBookingFooterConsole = true;
+      this.isLoading = false;
+    }
   }
 
   fareActiveFunction(itineraries: any, activeIndex: number = 0) {
@@ -203,8 +236,27 @@ export class FlightDetailsComponent implements AfterViewInit {
 
   OnClickBookNow(fare:any){
     // fare['fareRules'] = this.BookedFlightData?.fareRules;
-    this.sharedService.setLocalStore("airPricePointSelected", fare );
-    this.router.navigateByUrl('/passenger-details');
+    if(this.isBookingFooterConsole) {
+      let selectedFareDetails = {
+        FSC: this.BookedFlightData.FSC
+      }
+      localStorage.removeItem('fareFamily');
+      this.sharedService.setLocalStore("airPricePointSelected", selectedFareDetails );
+      this.router.navigateByUrl('/passenger-details');
+    }else {
+      let selectedFareDetails= {
+        supplier: this.BookedFlightData.Trips[0].SupplierName,
+        selectedFare: fare,
+        boundType: this.BookedFlightData.Trips[0].BoundType,
+        FSC: this.BookedFlightData.FSC
+      }
+      localStorage.removeItem('airPricePointSelected');
+      this.sharedService.setLocalStore("fareFamily", selectedFareDetails );
+      this.router.navigateByUrl('/passenger-details');
+    }
+
+    
+   
   }
 
   
@@ -213,6 +265,8 @@ export class FlightDetailsComponent implements AfterViewInit {
   }
 
   getPassedData(data: any,fareData: any) {
+    fareData.activeIndex = data.startPosition;
+    
     // this.activeSlides = data;
     // console.log(this.activeSlides,data.slides[0]?.id);
     // this.fareActiveFunction(fareData, data.slides[0]?.id)
@@ -234,4 +288,118 @@ export class FlightDetailsComponent implements AfterViewInit {
   getDescriptionList(description: string): string[] {
     return description.split('\n');
   }
+
+
+  getAirArabiaFlex() {
+    
+    this._flightService.getFlexifareDeatils(this.revalidateObj).subscribe(data=> {
+      if(data&& data.CombinedBound != null) {
+        this.BookedFlightData.Trips = data.Flights[0].Trips;
+        this.BookedFlightData.FSC = data.Flights[0].FSC;
+        this.BookedFlightData?.Trips.forEach((trip: any)=> {
+          trip.FlexiFareDetails[0].select = true;
+        })
+
+        this.cdr.detectChanges();
+        
+
+
+        // this.SelectedFare =data.Flights[0];
+        // this.SelectedFare.PriceSummary.additionalMarkupAmount = this.SelectedFlightArray.fareDetails?.flights.find((air:any) => air.isSelected)?.PriceSummary.additionalMarkupAmount;
+        // this.SelectedFare.PriceSummary.additionalMarkupType = this.SelectedFlightArray.fareDetails?.flights.find((air:any) => air.isSelected)?.PriceSummary.additionalMarkupType;
+        this.loadFlexiFare();
+        this.isLoading = false;
+      }else {
+        this.isLoading = false;
+        //  Swal.fire({
+        //     icon: 'error',
+        //     title: 'Oops...',
+        //     text: 'Something went wrong!',
+        //   });
+        //   this.dialogRef.close();
+      }
+    }, error=> {
+      this.isLoading = false;
+    })
+  }
+
+  selectFlexi(flexi) {
+    this.flexiPrice = flexi.Amount
+    
+  }
+
+
+
+
+  loadFlexiFare() {
+    if (this.BookedFlightData?.Trips && this.BookedFlightData?.Trips.length > 0 ) {
+      this.isLoading = true;
+      const createMatchingService = (data: any[]) => {
+        const matchingServicesArray: any[] = [];
+        const matchingServices: { [key: string]: any[] } = {};
+
+        data.forEach(item => {
+          if (item?.FlexiFareDetails && item?.FlexiFareDetails.length> 0) {
+            item?.FlexiFareDetails.forEach((flexiFare: any) => {
+              const { ServiceId } = flexiFare;
+
+              if (!matchingServices[ServiceId]) {
+                matchingServices[ServiceId] = [];
+              }
+
+              let origin = '';
+              let destination = '';
+        
+              if (item.FlightSegments.length > 1) {
+                origin = item.FlightSegments[0].Origin;
+                destination = item.FlightSegments[item.FlightSegments.length - 1].Destination;
+              } else if (item.FlightSegments.length === 1) {
+                origin = item.FlightSegments[0].Origin;
+                destination = item.FlightSegments[0].Destination;
+              }
+
+              matchingServices[ServiceId].push({
+                ...flexiFare,
+                Origin: origin,
+                Destination: destination,
+                selected: false ,
+              });
+            });
+          }
+        });
+        Object.keys(matchingServices).forEach(ServiceId => {
+
+          const detailsArray = matchingServices[ServiceId];
+          if (detailsArray.length > 0) {
+            detailsArray[0].selected = true;
+          }
+          matchingServicesArray.push({
+            ServiceId,
+            activeIndex: 0,
+            Details: detailsArray
+          });
+        });
+      
+        return matchingServicesArray;
+      };
+        
+        
+      const result = createMatchingService(this.BookedFlightData?.Trips);
+      this.matchingFlexiFareDetails = result;
+      this.isLoading = false;
+      // const zeroAmountFare = this.SelectedFare?.Trips[0]?.FlexiFareDetails?.find((fare: any) => fare.Amount === 0);
+      // if (zeroAmountFare) {
+      //     this.selected_offer = zeroAmountFare.ServiceId;
+      // }
+
+      // const  passengerCount = (this.SelectedFare?.PriceSummary?.Adults + this.SelectedFare?.PriceSummary?.Children + this.SelectedFare?.PriceSummary?.Infants);
+      // this.selectedFareMarkupPrice = this.SelectedFare?.PriceSummary.additionalMarkupType == "Amount"? (this.SelectedFare?.PriceSummary.additionalMarkupAmount * passengerCount) : this._sharedService.calculateMarkUpPercentage(this.SelectedFare?.PriceSummary.PriceTotal, this.SelectedFare?.PriceSummary.additionalMarkupAmount);
+
+      // this.totalFare = Number(this.SelectedFare?.PriceSummary.PriceTotal) + this.selectedFareMarkupPrice;
+      
+    }else {
+    }
+  }
+
+
 }

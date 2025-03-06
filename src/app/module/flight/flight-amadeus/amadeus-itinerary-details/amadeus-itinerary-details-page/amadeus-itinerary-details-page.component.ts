@@ -130,7 +130,6 @@ export class AmadeusItineraryDetailsPageComponent {
     const totalHours = Math.floor(totalMinutes / 60);
     const remainingMinutes = totalMinutes % 60;
 
-    // console.log(`Total Duration: ${totalHours} hours and ${remainingMinutes} minutes`);
     return (` ${totalHours} hr ${remainingMinutes} min`)
 
   }

@@ -5,6 +5,7 @@ import { FlightService } from 'src/app/services/flight.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { SlideInOutAnimation } from './animations';
 import { MicroService } from 'src/app/services/micro.service';
+import { log } from 'console';
 
 @Component({
   selector: 'app-one-way-trip',
@@ -75,6 +76,9 @@ export class OneWayTripComponent {
   }
 
   showPositionDialog(position: string, FlightDetails: any) {
+
+    console.log(FlightDetails,'line 80');
+    
     this.position = position;
     this.displayPosition = true;
     let selectedFare = FlightDetails.flights.find((flights: any) => flights.isSelected);

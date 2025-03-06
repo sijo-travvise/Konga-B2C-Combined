@@ -40,6 +40,62 @@
 
     </form>
 </div>
+
+<ng-container *ngIf="_2FAEnabled==true;">
+    <div class="affliateCard container">
+        <!-- {{affiliateRegForm.value | json}} -->
+        <form [formGroup]="affiliateRegForm" (ngSubmit)="registerAffiliate()">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <app-input-field [title]="'Business Name'" [isRequired]=true
+                        [formControls]="businessname"></app-input-field>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <app-input-field [title]="'Lead User First Name'" [isRequired]=true
+                        [formControls]="userfname"></app-input-field>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <app-input-field [title]="'Lead User Last Name'" [isRequired]=true
+                        [formControls]="userlname"></app-input-field>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <app-input-field [title]="'Email'" [isRequired]=true [formControls]="email"></app-input-field>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <!-- <app-select-field [title]="'Select Your Country'" [option]="country"></app-select-field> -->
+                    <app-country-with-state [title]="'Select Your Country'" [isRequired]="false"
+                        [formControls]="country" [optionList]="countryOptionList"></app-country-with-state>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <!-- <app-select-field [title]="'Select Your State'"></app-select-field> -->
+                    <app-state-selection [title]="'Select Your State'" [isRequired]="false" [formControls]="state"
+                        [optionList]="stateOptionList"></app-state-selection>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <app-input-field [title]="'Office Address'" [isRequired]=true
+                        [formControls]="office_addr"></app-input-field>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <app-phone-number-filed [title]="'Code'" [isRequired]=true
+                        [formControls]="phonenumber"></app-phone-number-filed>
+                </div>
+
+            </div>
+            <div class="row justify-content-end mb-4">
+                <!-- (click)="this.isRegisterd = !this.isRegisterd;" -->
+                <div class="col-md-5  align-self-end">
+                    <button type="submit"
+                        class="p-button-primary p-button w-100 py-3 text-center d-flex justify-content-center mb-4">Submit</button>
+                    <button type="button"
+                        class="p-button-outlined p-button w-100 py-3 text-center d-flex justify-content-center mb-4"
+                        (click)="isLogin=true;">Click Here To Login</button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</ng-container>
 <!-- JOIN OUR AFFILATE PROGRAM -->
 <ng-template #register>
     <ng-container *ngIf="isRegisterd==false; else registrationSuccess">
@@ -121,4 +177,7 @@
 
 </ng-template>
 <p-toast [appendTo]="'body'"></p-toast>
-<!-- <app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading [loderTitle]="'Loading'"></app-pre-loader> -->
+
+<!-- <app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
+    [loderTitle]="'we are finding the best flights for you'"></app-pre-loader> -->
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading [loderTitle]="'Loading'"></app-pre-loader>

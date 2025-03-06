@@ -33,7 +33,6 @@ export class BreadCrumbComponent implements OnInit{
   }
   ngOnInit() {
     this.actRoute.paramMap.subscribe((params) => {
-      console.log(params);
       // this.product_id = params.get('id')!;
     });
 

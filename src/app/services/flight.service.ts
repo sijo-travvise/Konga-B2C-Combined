@@ -8,6 +8,7 @@ import { flightUpsell } from '../Models/flight/Amadeus/flight-upsell-model';
 import { flightPricing } from '../Models/flight/Amadeus/flight-pricing.model';
 import { FlightOrder } from '../Models/flight/Amadeus/flight-order.model';
 import { EmailDetailsModel } from '../Models/Mail/EmailDetailsModel';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { log } from 'console';
 
 
@@ -21,9 +22,11 @@ export class FlightService {
   //micro service API's
   readonly flightsearchurl =  environment.flightsearchurl;
   readonly flightBookurl =  environment.flightBookurl
-  readonly vertailUrl = environment.vertailUrl
+  //readonly vertailUrl = environment.vertailUrl
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private sanitizer: DomSanitizer
+  ) { }
 
   private passengerCount = new BehaviorSubject<any>({});
   private cabinData = new BehaviorSubject<any>({});
@@ -98,8 +101,8 @@ export class FlightService {
 
 
   savePnrData(pnrSaveData: any): Observable<any> {
-    // return this.http.post<any>(this.flightBookurl + "api/Booking/Save", pnrSaveData);
-    return this.http.post<any>(this.vertailUrl + "api/booking/SaveBookingDetails", pnrSaveData);
+    return this.http.post<any>(this.flightBookurl + "api/Booking/Save", pnrSaveData);
+    //return this.http.post<any>(this.vertailUrl + "api/booking/SaveBookingDetails", pnrSaveData);
   }
 
   // getBookingDetails(bookingRefID: number): Observable<any> {
@@ -107,7 +110,7 @@ export class FlightService {
   // }
   
   getBookingDetails(pnr: string): Observable<any> {
-    return this.http.get<any>(this.vertailUrl + "api/Booking/GetBookingDetails?pnrNumber="+pnr); 
+    return this.http.get<any>(this.flightBookurl + "api/Booking/GetBookingDetails?pnrNumber="+pnr); 
   } 
 
   retrieveAirArabiaPNR(pnrData: any): Observable<any> {
@@ -120,4 +123,38 @@ export class FlightService {
     return this.http.post<any>(this.flightBookurl + "api/Booking/IssueTicket", pnrData);
   }
 
+
+  microServiceFlightSearch(reqmodel: any): Observable<any> {
+    return this.http.post<any>(this.flightsearchurl + "api/search/search", reqmodel);
+  }
+
+  getFlexifareDeatils(params: any): Observable<any> {
+    return this.http.post<any>(this.flightsearchurl + "api/search/GetFlexifareDeatils", params);
+  }
+
+
+  getDescriptionList(description: string): SafeHtml[] | any {
+    // return description.split(/[\n,]+/);
+    //  return description!.split(/,|\n+/).filter((line) => line.trim() !== '');
+
+    const parts = description.split(/,|\n+/).map((part) => part.trim());
+    const processedParts = parts.map((part) => {
+      if (/<a\s[^>]*href=/.test(part)) {
+        return part;
+      } else if (/(https?:\/\/[^\s]+)/.test(part)) {
+        const urlMatch = part.match(/(https?:\/\/[^\s]+)/);
+        if (urlMatch) {
+          const url = urlMatch[0];
+          return part.replace(
+            url,
+            `<a href="${url}" target="_blank">${url}</a>`
+          );
+        }
+      }
+      return part;
+    });
+    return processedParts.map((part) =>
+      this.sanitizer.bypassSecurityTrustHtml(part)
+    );
+  }
 }

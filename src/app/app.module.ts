@@ -25,13 +25,15 @@ import { SharedModule } from './shared/shared.module';
 import { CustomerModule } from './module/customer/customer.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { DatePipe } from '@angular/common';
 import { MoreDealDetailsComponent } from './landing-page/deals-section/more-deal-details/more-deal-details.component';
 import { OrganizationFormComponent } from './landing-page/deals-section/organization-form/organization-form.component';
 import { PartyRegisterFormComponent } from './landing-page/deals-section/party-register-form/party-register-form.component';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+
 // import {ToastModule} from 'primeng/toast';
 
 
@@ -49,7 +51,8 @@ export function httpTranlateLoaderFactory(http:HttpClient){
         PartyRegisterFormComponent,
     ],
     providers: [
-        DatePipe,
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        DatePipe
       ],
     bootstrap: [AppComponent],
     imports: [

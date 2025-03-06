@@ -5,7 +5,7 @@
             <img src="assets/img/logo.svg" alt="Logo" />
         </a>
         <div class="section_right d-flex align-items-center gap-4">
-            <button class="link__Affiliates p-button py-2 px-4 p-button-outlined h-100"  routerLink="/affiliate" *ngIf="user==undefined">Affiliates</button>
+            <button class="link__Affiliates p-button py-2 px-4 p-button-outlined h-100"  routerLink="/affiliate" *ngIf="user==(undefined || null)">Affiliates</button>
             <!-- (click)="showDialog()" -->
             
             <!-- <div class="login_signup d-flex align-items-center gap-2 " (click)="showLoginPage()" *ngIf="user==undefined">
@@ -25,7 +25,7 @@
                         <div class="profile__header col-12 px-3 d-flex gap-3 pb-2 align-items-center ">
                             <img src="../../../assets/img/dummy-user.jpg" alt="user" />
                             <div class="user">
-                                <h5>{{user?.leadUserFirstName}} {{user?.leadUserLastName}}</h5>
+                                <h5>{{user?.firstName}} {{user?.lastName}}</h5>
                                 <p>Affiliate</p>
                             </div>
                         </div>

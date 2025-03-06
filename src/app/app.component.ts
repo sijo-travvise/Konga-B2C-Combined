@@ -20,7 +20,6 @@ export class AppComponent {
         if (event instanceof NavigationEnd) {
             this.currentRoute = event.url;
             this.path = this.currentRoute.split('/').pop();
-              //console.log(this.path);
         }
 
 

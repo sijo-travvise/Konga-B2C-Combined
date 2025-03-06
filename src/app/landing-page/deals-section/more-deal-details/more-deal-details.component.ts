@@ -31,12 +31,10 @@ export class MoreDealDetailsComponent {
     });
 
     // const data = history.state.yourData;
-    // console.log(data);
     // debugger;
     this.routeParamsSubscription = this.route.params.subscribe(
       (params: Params) => {
         const id = params['deal-identity-Code'];
-        //console.log('Route parameter "id" changed:', id);
         if (id !== null && id !== undefined) {
           this.dealDataFetch(id);
           this.getPackageList(id);

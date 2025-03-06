@@ -115,8 +115,6 @@ export class SharedService {
 
 
   convertTimeDuration(duration: string, segData: boolean = false): string {
-    console.log(duration);
-    
     const durationParts = segData ? duration.match(/(\d+)\s*(hrs?|hours?|h)\s*(\d+)\s*(mins?|minutes?|m)/i) : duration.match(/(\d+)\s*(hrs?|hours?|h)\s*(\d+)\s*(mins?|minutes?|m)/i);
     if (!durationParts || !durationParts.length) {
       return ""; // Invalid input format
@@ -125,7 +123,6 @@ export class SharedService {
     const minutes = parseInt(durationParts[3]?? '3');
 
     const isoDuration = `PT${hours}H${minutes}M`;
-    console.log(hours+ ''+ minutes);
     return isoDuration;
   }
 
@@ -158,13 +155,17 @@ export class SharedService {
   }
   
 
-  GetAllSuppliers(): Observable<any[]> {
-    return this.http.get<any>(this.flightSearch + "api/Common/GetAllSuppliers");
+  GetAllSuppliers(supplierType: number = 0): Observable<any[]> {
+    return this.http.get<any>(this.flightSearch + "api/Common/GetAllSuppliers?type=" + supplierType);
   }
 
   
   GetAllAirLines(): Observable<any[]> {
     return this.http.get<any>(this.flightSearch + "api/Common/GetAllAirLines");
+  }
+
+  getMyIP() {
+    return this.http.get<any>("https://api.ipify.org/?format=json");
   }
 
 

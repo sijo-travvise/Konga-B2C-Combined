@@ -22,7 +22,7 @@ const routes: Routes = [
       ],
     },
   },
-  {path: '', loadChildren:()=> import('./shared/shared.module').then((m)=>m.SharedModule)},
+  // {path: '', loadChildren:()=> import('./shared/shared.module').then((m)=>m.SharedModule)},
   
 ];
 

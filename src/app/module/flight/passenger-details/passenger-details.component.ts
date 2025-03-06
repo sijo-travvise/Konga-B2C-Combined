@@ -12,6 +12,7 @@ import { FilterService, MessageService } from 'primeng/api';
 import { AmadeusService } from 'src/app/services/amadeus.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { RegExpValidators } from 'src/app/shared/validators';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import {
   FlightPricingReq,
   flightPricing,
@@ -77,6 +78,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
   public isPassengerDetailsPage: boolean = true;
   totalFareTotalPrice: number = 0;
   flightFareInstallementDetails: any = null;
+  currrentUser: any;
 
   //micro service data}
   public priceReConfirmation: any = null;
@@ -445,6 +447,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
     "Message": null,
     "IMessage": null
 }
+  flightFareFamily: any = {};
 
 
   constructor(
@@ -456,6 +459,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
     private cdr: ChangeDetectorRef,
     private messageService: MessageService,
     private datepipe: DatePipe,
+    private _authenticationService: AuthenticationService,
     public _microService: MicroService
   ) {
     // this.fare_PriceUpsell_Res_AllList= this.sharedService?.getLocalStore("airPricePointSelected");
@@ -470,6 +474,8 @@ export class PassengerDetailsComponent implements AfterViewInit {
         (item: { moduleName: string }) => item.moduleName == 'AIR SERVICES'
       )[0];
     }
+
+    this.currrentUser = this._authenticationService.affliateUser;
 
     this.getCurrentPath();
   }
@@ -498,6 +504,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
   ngOnInit() {
     this.flightResultData = this.sharedService?.getLocalStore('flightData');
     this.flightFareData = this.sharedService?.getLocalStore('airPricePointSelected');
+    this.flightFareFamily = this.sharedService?.getLocalStore('fareFamily');
     // this.totalFareTotalPrice = this.flightFareData?.price?.grandTotal ?? 0
     this.getCountryData();
     // this.LoadPassengerDetails();
@@ -513,13 +520,34 @@ export class PassengerDetailsComponent implements AfterViewInit {
       sms: ['Y'],
       passengerDetailsArray: this.form.array([]),
     });
-    if (this.flightFareData === undefined || this.flightFareData === null) {
+    if (this.flightFareData != undefined && this.flightFareData != null)  {
+      let revalidateObj: any = null;
+      revalidateObj = {
+        SelectedTripFareKeys: [
+          {
+            RevalidateKey: this.flightFareData?.FSC,
+          }
+        ]
+      }
+      this.flightRevalidate(revalidateObj);
+    } else if(this.flightFareFamily != undefined && this.flightFareFamily != null){
+
+      let revalidateObj: any = null;
+      revalidateObj = {
+        CustomerProfileId:this.currrentUser.customerProfile_ID,
+        SelectedTripFareKeys: [
+          {
+            RevalidateKey: this.flightFareFamily?.FSC,
+            selectedFareFamilies: [{
+              id:this.flightFareFamily.selectedFare.ServiceId,
+              boundType:this.flightFareFamily.boundType
+            }]
+          }
+        ]
+      }
+      this.flightRevalidate(revalidateObj);
+    }else {
       this.router.navigateByUrl('/');
-    } else {
-      this.flightRevalidate();
-      // this.getBookingDetails(this.data?.AirlinePNR)
-      // this.findPassengerData(this.flightFareData?.flightDetails?.recomentationList?.paxFareProduct);
-      // this.createPassengerDetailsArray(this.flightFareData?.travelerPricings);
     }
     // this.totalAmount =  this.flightFareData?.selectedFare?.totalAmount ??  (this.flightFareData?.flightDetails?.recomentationList?.recPriceInfo?.totalPrice_modified  ?? 0)
 
@@ -550,16 +578,9 @@ export class PassengerDetailsComponent implements AfterViewInit {
   }
 
 
-  flightRevalidate() {
+  flightRevalidate(revalidateObj) {
 
-    let revalidateObj: any = null;
-    revalidateObj = {
-      SelectedTripFareKeys: [
-        {
-          RevalidateKey: this.flightFareData?.FSC,
-        }
-      ]
-    }
+    
 
     this.isLoading = true;
     this._flightService.flightFareRevalidate(revalidateObj)
