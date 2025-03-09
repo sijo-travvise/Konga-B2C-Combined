@@ -100,11 +100,11 @@
                             <h4 *ngIf="bookingDetailsData[0]?.transactionDetails?.sellingPrice == undefined"> ₦ {{ bookingDetailsData[0].flightOffers[0].price.grandTotal | number:'0.1-2'}} </h4> -->
                         </ng-template>
 
-                        <ng-container
+                        <!-- <ng-container
                         *ngIf="bookingDetailsData?.AirTransaction[0].FlightFareEMICalculator?.isInstallmentApplied; else installmentPayment;">
                         <h4> ₦ {{ (bookingDetailsData?.AirTransaction[0].FlightFareEMICalculator?.initialDownPayment ?? 0) |
                             number:'0.1-2'}} </h4>
-                    </ng-container>
+                    </ng-container> -->
                     <ng-template #installmentPayment>
                         <h4 *ngIf="bookingDetailsData?.AirTransaction[0]?.SellingPrice != undefined"> ₦ {{
                             bookingDetailsData?.AirTransaction[0]?.SellingPrice | number:'0.1-2'}} </h4>
@@ -242,23 +242,14 @@
 <!--             
                                     <td>{{travellers?.contact?.emailAddress}}</td>
                                     <td>{{travellers?.contact?.phones[0]?.number ?? '------'}}</td> -->
-                                    <td>
-                                        
-                                        <!-- <ng-container *ngFor="let travelerPricings of bookingDetailsData[0]?.flightOffers[0]?.travelerPricings">
-                                            <ng-container *ngIf="travelerPricings?.travelerId === travellers?.id ">
-
-                                    
-                                            <ng-container *ngFor="let fareDetailsBySegment of travelerPricings?.fareDetailsBySegment">
-                                              
-                                                <span *ngIf="fareDetailsBySegment?.segmentId === segments?.id ">
-                                                    {{ fareDetailsBySegment.includedCheckedBags?.quantity !== undefined? fareDetailsBySegment.includedCheckedBags.quantity +' PC' : fareDetailsBySegment.includedCheckedBags.weight+ ' KG'}}
-                                                </span>
-                                            </ng-container>
-
+                                    <ng-container  *ngIf="segments?.BaggageInfo != null && segments?.BaggageInfo.length> 0">
+                                        <ng-container *ngFor="let baggaege of segments.BaggageInfo">
+                                            <td *ngIf="baggaege.paxType == travellers?.PaxType">
+                                                {{baggaege.QuantityAllowed}} {{segments.BaggageInfo[0].UnitQualifier}}
+                                            </td>
                                         </ng-container>
-                                        </ng-container> -->
-                                       {{travellers?.FreeBaggage?.AllowedWeight ? travellers?.FreeBaggage?.AllowedWeight + ' PC' :  ' -------'}}
-                                    </td>
+                                    </ng-container>
+            
                                 </tr>
             
                             </tbody>

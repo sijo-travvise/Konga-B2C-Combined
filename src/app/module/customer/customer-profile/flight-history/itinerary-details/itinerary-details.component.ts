@@ -31,14 +31,16 @@ export class ItineraryDetailsComponent {
   isLoading: boolean = false;
   @Input() paymentSuccess: boolean = false;
   @Input() flightTransactions_ID: any = null;
+  @Input() bookingDetailsData: any = null;
+  @Input() pnrRetrieveRes: any = null;
 
   constructor(public sharedService: SharedService, private _flightService: FlightService,  public _microService: MicroService, private messageService: MessageService) {
 
   }
-  @Input() bookingDetailsData: any = null;
-  @Input() pnrRetrieveRes: any = null;
-  ngOnInit() {
   
+  ngOnInit() {
+    
+    
   }
 
   OnClickPayNow() {

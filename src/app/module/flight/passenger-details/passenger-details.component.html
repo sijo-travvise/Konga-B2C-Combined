@@ -317,7 +317,7 @@
                     <div class="row justify-content-end mb-5">
                         <div class="col-5">
                             <button type="button" class=" btn btn-primary w-100 pt-3 pb-2"
-                                (click)="passengerSubmitBtn()"> Continue to payment</button>
+                                (click)="passengerSubmitBtn(2)"> Continue to payment</button>
                         </div>
                     </div>
                 </form>
@@ -413,3 +413,5 @@
             (installmentApplied)="installmentAppliedChanged($event)"></app-pay-as-earn-calculator>
     </p-dialog>
 </ng-container>
+
+<!-- <div [innerHTML]="htmlView"></div> -->

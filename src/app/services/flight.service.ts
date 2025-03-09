@@ -77,8 +77,8 @@ export class FlightService {
   flightItenararyDetails(locatorCode: string, paymentStatus: any) {
     return this.http.get<any>(this.flightSearch + "api/AmadeusAPI/RetrivePNR?reference=" + locatorCode + "&paymentStatus=" + paymentStatus);
   }
-  SendConfirmationEmail(emailDetailsModel: EmailDetailsModel): Observable<any> {
-    return this.http.post<any>(this.flightSearch + 'api/Common/SendEmail', emailDetailsModel);
+  SendConfirmationEmail(reqmodel:any): Observable<any> {
+    return this.http.post<any>(this.flightSearch + "api/Mail/SendEmailWithAttachment" , reqmodel);
   }
   GenerateEmail(emailDetailsModel: EmailDetailsModel): Observable<any> {
     return this.http.post<any>(this.flightSearch + 'api/Common/GenerateEmail', emailDetailsModel);
@@ -109,8 +109,8 @@ export class FlightService {
   //   return this.http.get<any>(this.flightBookurl + "api/Booking/bookingdetails?bookingId="+bookingRefID); 
   // }
   
-  getBookingDetails(pnr: string): Observable<any> {
-    return this.http.get<any>(this.flightBookurl + "api/Booking/GetBookingDetails?pnrNumber="+pnr); 
+  getBookingDetails(bookingRefID: string): Observable<any> {
+    return this.http.get<any>(this.flightBookurl + "api/Booking/bookingdetails?bookingId=" + bookingRefID);
   } 
 
   retrieveAirArabiaPNR(pnrData: any): Observable<any> {
