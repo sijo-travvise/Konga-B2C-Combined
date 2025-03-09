@@ -82,7 +82,14 @@ export class PassengerDetailsComponent implements AfterViewInit {
   flightFareInstallementDetails: any = null;
   currentUser: any;
   emailConfiguration:any = {
-   
+    DisplayName: 'Konga',
+    From: 'travel@konga.com',
+    Host: 'smtp.sendgrid.net',
+    Password: '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',
+    Port: 25,
+    UserName: 'apikey',
+    UseSSL: false,
+    UseStartTls: true,
   }
 
   //micro service data}
@@ -102,6 +109,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
   revalidateObj: any ;
 
   htmlView: any;
+
   constructor(
     private router: Router,
     public sharedService: SharedService,
