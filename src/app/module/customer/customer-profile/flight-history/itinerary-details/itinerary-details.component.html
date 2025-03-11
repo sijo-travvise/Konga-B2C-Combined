@@ -128,7 +128,7 @@
             <h3 class="itenaryTitle">FLIGHT DETAILS</h3>
             <!-- Loop Start-->
             <ng-container *ngFor="let segment of AllFlightDetails.segments">
-                {{AllFlightDetails.segments | json}}
+                <!-- {{AllFlightDetails.segments | json}} -->
                 <!-- *ngFor=" let segments of itinerary?.segments" -->
                 <div class="flightDetails">
 
@@ -233,7 +233,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let travellerInfo of AllFlightDetails?.passenger">
-                                    {{AllFlightDetails?.passenger | json}}
+                                    <!-- {{AllFlightDetails?.passenger | json}} -->
                                     <td>{{travellerInfo.Prefix}}  {{travellerInfo.FirstName}}  {{travellerInfo.LastName}} </td>
                                     <td>
                                         {{travellerInfo.TravellerType === 'ADT'? 'Adult':travellerInfo.TravellerType=='CHD'?'Child':'Infant'}} 
