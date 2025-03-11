@@ -128,6 +128,7 @@
             <h3 class="itenaryTitle">FLIGHT DETAILS</h3>
             <!-- Loop Start-->
             <ng-container *ngFor="let segment of AllFlightDetails.segments">
+                {{AllFlightDetails.segments | json}}
                 <!-- *ngFor=" let segments of itinerary?.segments" -->
                 <div class="flightDetails">
 
@@ -232,21 +233,14 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let travellerInfo of AllFlightDetails?.passenger">
+                                    {{AllFlightDetails?.passenger | json}}
                                     <td>{{travellerInfo.Prefix}}  {{travellerInfo.FirstName}}  {{travellerInfo.LastName}} </td>
                                     <td>
                                         {{travellerInfo.TravellerType === 'ADT'? 'Adult':travellerInfo.TravellerType=='CHD'?'Child':'Infant'}} 
                                     </td>
-<!--             
-                                    <td>{{travellers?.contact?.emailAddress}}</td>
-                                    <td>{{travellers?.contact?.phones[0]?.number ?? '------'}}</td> -->
-                                    <ng-container  *ngIf="segments?.BaggageInfo != null && segments?.BaggageInfo.length> 0">
-                                        <ng-container *ngFor="let baggaege of segments.BaggageInfo">
-                                            <td *ngIf="baggaege.paxType == travellers?.PaxType">
-                                                {{baggaege.QuantityAllowed}} {{segments.BaggageInfo[0].UnitQualifier}}
-                                            </td>
-                                        </ng-container>
-                                    </ng-container>
-            
+                                    <td>
+                                        {{travellerInfo.TravellerType === 'ADT'? AllFlightDetails.segments[0].AdultBaggage:travellerInfo.TravellerType=='CHD'?AllFlightDetails.segments[0].ChildBaggage:AllFlightDetails.segments[0].InfantBaggage}}
+                                    </td>
                                 </tr>
             
                             </tbody>

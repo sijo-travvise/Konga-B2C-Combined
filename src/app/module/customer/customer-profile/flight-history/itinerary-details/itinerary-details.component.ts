@@ -34,6 +34,7 @@ export class ItineraryDetailsComponent {
   @Input() flightTransactions_ID: any = null;
   @Input() bookingDetailsData: any = null;
   @Input() pnrRetrieveRes: any = null;
+  @Input()  AllFlightDetails:any;
 
   constructor(public sharedService: SharedService, private _flightService: FlightService,  public _microService: MicroService, private messageService: MessageService) {
 
