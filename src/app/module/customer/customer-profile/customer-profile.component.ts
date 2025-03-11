@@ -1,12 +1,11 @@
 import { style } from '@angular/animations';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { User, UserProfileUpdate } from 'src/app/Models/User';
+import { User } from 'src/app/Models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FlightService } from 'src/app/services/flight.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { MessageService } from 'primeng/api';
-import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-customer-profile',
   templateUrl: './customer-profile.component.html',
@@ -28,7 +27,6 @@ export class CustomerProfileComponent {
     private cdr: ChangeDetectorRef,
     private authenticationService: AuthenticationService,
     private router: Router,
-    private _userService: UserService
   ) {}
   ngOnInit() {
     this.currentUser = this.authenticationService.affliateUser;
@@ -65,8 +63,5 @@ export class CustomerProfileComponent {
         }
       },
     });
-  }
-  onFileSelected(event:any){
-    console.log("EVENT",event);
   }
 }
