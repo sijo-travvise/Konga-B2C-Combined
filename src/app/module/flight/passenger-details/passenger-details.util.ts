@@ -463,6 +463,7 @@ export const airArabiaSaveReqModel = {
     FlightTransactions_ID: 0,
     UserTrackID: "",
     BookingRefID: "",
+    CurCode: '',
     Company_ID: 0,
     CompBranch_ID: 0,
     Supplier_ID: 0,
@@ -577,12 +578,16 @@ export const airArabiaSaveReqModel = {
     lpoFilePath: '',
     mailDate:'',
     mailFilePath: '',
-    lpoNumber: ''
+    lpoNumber: '',
+    emailFilePath : '',
+    flightBookingRemarks: '',
 
   },
+  flightBookingRemarks: '',
   flightTransactionDetails: [{}],
   flightTransactionSegmentDetails: [{}
   ],
+  FlightFareEMICalculatorDetails: null,
   Mode: 1
 }
 

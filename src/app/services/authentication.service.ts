@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, map } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import { log } from "console";
 import { User } from '../Models/User';
 import { SharedService } from "./shared.service";
 import { Router } from "@angular/router";
@@ -22,7 +21,7 @@ export interface AuthTokens {
 export class AuthenticationService {
 
     private currentTokenSubject: BehaviorSubject<AuthTokens> = new BehaviorSubject<AuthTokens>(this._sharedService.getLocalStore('__token') || {});
-    private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(this._sharedService.getLocalStore('currentUser') || {});
+    public currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(this._sharedService.getLocalStore('currentUser') || {});
     public currentToken:Observable<AuthTokens>;
 
     constructor(private http: HttpClient,

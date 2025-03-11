@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { SearchReqUIModel } from '../Models/flight/Amadeus/Fare_MasterPricerTravelBoardSearch';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ export class SharedService {
   readonly flightSearch = environment.apiUrl;
   public selectedCurrency:any;
   public exchangeRate:any;
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+              private datePipe: DatePipe
+  ) { }
 
   airLineCity() {
     return this.http.get<any>('assets/json/AirIntCitys.json')
@@ -53,6 +56,28 @@ export class SharedService {
 
     var Time = new Date(timeArr).getTime() - new Date(timeDep).getTime();
     return Math.floor(Time / (1000 * 60 * 60)) + " hr " + Math.floor(Time / (1000 * 60)) % 60 + " min";
+  }
+
+  getFormatedTime(time: string, isHour: boolean = false) {
+    // return this.datePipe.transform(time, 'HH:mm');
+    const hours = time.substring(0, 2);
+    const minutes = time.substring(2, 4);
+    return isHour ? `${hours}:${minutes}` : `${hours}:${minutes}`;
+  }
+
+  getFormatDate(dateString: string, isDay: boolean = false, formats = 'yyy-MMM-dd') {
+    // const currentYear = new Date().getFullYear().toString().slice(0, 2); // Get the current year's first two digits
+    // const year = currentYear + dateString.slice(0, 2); // Combine the current year's first two digits with the first two digits from the input
+    // return (this.datePipe.transform(new Date(year + '-' + dateString.slice(2, 4) + '-' + dateString.slice(4, 6)), isDay ? 'EE yy-MMM-dd' : formats));
+
+    const currentYear = new Date().getFullYear().toString().slice(0, 2); // Get the current year's first two digits
+    const year = parseInt(currentYear + dateString.slice(-2)); // Combine the current year's first two digits with the first two digits from the input
+    const month = parseInt(dateString.slice(2, 4)) - 1; // Extract the month (0-based index for JavaScript Date)
+    const day = parseInt(dateString.slice(0, 2)); // Extract the day
+    const date = new Date();
+    date.setFullYear(year, month, day); // Set the full year, month, and day
+    return this.datePipe.transform(date, isDay ? 'EE yyy-MMM-dd' : formats);
+
   }
 
   CalculateLayOverV2(flightDetails: any, index: any) {

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { FlightService } from 'src/app/services/flight.service';
 import { SharedService } from 'src/app/services/shared.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-flight-itinerary-details',
@@ -13,6 +14,7 @@ import { SharedService } from 'src/app/services/shared.service';
   providers: [SharedService, MessageService, FlightService],
 })
 export class FlightItineraryDetailsComponent implements OnInit {
+
   universalLocatorCode: any = null;
   merchant_reference: any = null;
   isLoading: boolean = false;
@@ -20,18 +22,29 @@ export class FlightItineraryDetailsComponent implements OnInit {
   public flightIteneraryData: any = null;
   public paymentSuccess:boolean=undefined;
   public bookingDetailsData: any;
-
-
-  flightTransactions_ID: Array<string> = [];
+  flightTransactions_ID: any = null;
   pnrRetrieveRes: any;
- constructor( private route: ActivatedRoute, private messageService: MessageService, private _flightService: FlightService, private sharedService: SharedService){
-  this.route.paramMap.subscribe((params: any) => {
-    this.flightTransactions_ID = params.get('pnr');
-  });
-  if (this.flightTransactions_ID !== null && this.flightTransactions_ID?.length)  {
-    // this.getBookingDetails(this.flightTransactions_ID);
-    this.retrievePNR(this.flightTransactions_ID);
-  }
+  currentUser: any;
+
+ constructor( private route: ActivatedRoute, 
+              private messageService: MessageService, 
+              private _flightService: FlightService, 
+              private _authenticationService: AuthenticationService,
+              private sharedService: SharedService){
+
+              this.route.paramMap.subscribe((params: any) => {
+                this.flightTransactions_ID = params.get('pnr').toString();
+                console.log(this.flightTransactions_ID);
+    
+              });
+
+              this.currentUser = this._authenticationService.affliateUser;
+
+              
+              if (this.flightTransactions_ID !== null)  {
+                this.getBookingDetails(this.flightTransactions_ID);
+                // this.retrievePNR(this.flightTransactions_ID);
+              }
 
  }
 
@@ -71,9 +84,9 @@ export class FlightItineraryDetailsComponent implements OnInit {
       next: (data: any) => {
         if (data !== null && data !== undefined) {
           this.bookingDetailsData = data;
-
+          this.retrievePNR(data)
           // this.getCustomerProfileData(data?.FlightTransactions[0]?.CustomerProfile_ID)
-          this.isLoading = false;
+          // this.isLoading = false;
        
         }
         else {
@@ -96,30 +109,25 @@ export class FlightItineraryDetailsComponent implements OnInit {
 
 
   retrievePNR(bookingData: any): void {
-    this.isLoading = true;
-    this.isCompleted = true;
-    const idArray = bookingData.split('-');
+
+   
+    // this.isLoading = true;
+    // this.isCompleted = true;
+    // const idArray = bookingData.split('-');
     const retrivePNRObj = {
-      SupplierId: idArray[1],
-      PNRNumber:  idArray[0]
-    }
+      SupplierId: bookingData?.FlightTransactions[0]?.SUPPLIER_DTID,
+      PNRNumber: bookingData?.FlightTransactions[0]?.AirlinePNR,
+      AffiliateId: this.currentUser?.customerUser_ID,
+      CustomerProfileId: bookingData?.FlightTransactions[0]?.CustomerProfile_ID,
+    };
     this._flightService.retrieveAirArabiaPNR(retrivePNRObj).subscribe({
       complete: () => { this.isLoading = false; },
       error: (error: any) => { this.isLoading = false; },
       next: (data: any) => {
         if (data) {
-          // console.log(this.countryOptionList,"here we go");
           this.pnrRetrieveRes = data;
-          this.pnrRetrieveRes?.Trips?.forEach((trips: any, tripIndex: number) =>{
       
-            //  trips['vendorName'] = this.getAirlineName(trips?.ValidatingAirline);
-            // trips?.FlightSegments?.map((segments: any) => segments['vendorName'] = this.getAirlineName(segments?.MarketingAirline));
-          });
-          // (this.airlinesListData?.find((airline: any) => airline?.vendorCode === tripAirlineKey.split(',')[0]?.trim()))?.vendorName ?? '';
-          // this.isLoading = false;
-          // this.isCompleted = false;
-          this.getBookingDetails(data?.AirlinePNR ?? '');
-
+           this.isLoading = false
        
         }
         else {

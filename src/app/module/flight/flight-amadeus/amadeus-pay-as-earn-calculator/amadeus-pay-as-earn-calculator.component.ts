@@ -31,18 +31,22 @@ export class AmadeusPayAsEarnCalculatorComponent {
   constructor(private formBuilder: FormBuilder, private sharedService: SharedService, private router: Router) { }
 
   ngOnInit() {
-    console.log(this.BookedFlightData);
     this.calclateInstallMentData(this.payPercentage.value, this.PayBySplitType.value.code )
     this.installmentAmount = this.BookedFlightData?.installmentAmount;
    
     this.installmentAmount = this.sharedService.getInstallmentAmount(this.BookedFlightData?.price?.grandTotal ?? 0, 20);
-    if(this.flighInstallementDetails !== null && this.flighInstallementDetails !== undefined){
-      const installmentArrayLength = Object.keys(this.flighInstallementDetails?.installementSplitAmount?.installmentDetails)?.length;
-      this.payPercentage.setValue(this.flighInstallementDetails.minimumDownPayment ?? 20)
-      this.PayBySplitType.setValue({ name: `${this.flighInstallementDetails?.splitInstallmentCount ?? 1} Time${(this.flighInstallementDetails?.splitInstallmentCount ?? 1) > 1 ? 's': ''}`, code: this.flighInstallementDetails?.splitInstallmentCount ?? 1 });
-       this.calclateInstallMentData(this.payPercentage.value, installmentArrayLength ?? 1);
-       this.installmentAmount = this.sharedService.getInstallmentAmount(this.BookedFlightData?.price?.grandTotal ?? 0, this.flighInstallementDetails?.minimumDownPayment );
-    }
+    // debugger;
+    // if(this.flighInstallementDetails !== null && this.flighInstallementDetails !== undefined){
+    //   debugger;
+
+    //   console.log('line 42');
+      
+    //   const installmentArrayLength = Object.keys(this.flighInstallementDetails?.installementSplitAmount?.installmentDetails)?.length;
+    //   this.payPercentage.setValue(this.flighInstallementDetails.minimumDownPayment ?? 20)
+    //   this.PayBySplitType.setValue({ name: `${this.flighInstallementDetails?.splitInstallmentCount ?? 1} Time${(this.flighInstallementDetails?.splitInstallmentCount ?? 1) > 1 ? 's': ''}`, code: this.flighInstallementDetails?.splitInstallmentCount ?? 1 });
+    //    this.calclateInstallMentData(this.payPercentage.value, installmentArrayLength ?? 1);
+    //    this.installmentAmount = this.sharedService.getInstallmentAmount(this.BookedFlightData?.price?.grandTotal ?? 0, this.flighInstallementDetails?.minimumDownPayment );
+    // }
   }
 
   inputValueChanges(event: any) {
@@ -51,8 +55,6 @@ export class AmadeusPayAsEarnCalculatorComponent {
   }
 
   onChangeItem(event: any) {
-    console.log(event);
-    
     this.calclateInstallMentData(this.payPercentage.value, event.value.code)
   }
 

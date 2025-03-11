@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 // import {TranslateService} from '@ngx-translate/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError} from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,21 @@ export class AppComponent {
   title = 'NBK-B2C';
   path: any;
   currentRoute: string;
+  user: any;
  
-  constructor(private router: Router) {
+  constructor(private router: Router,
+            private _authenticationService: AuthenticationService
+  ) {
     this.currentRoute = "Demo";
+
+
+    this._authenticationService.currentUserSubject.subscribe(data=> {
+      if(data != null && Object.keys(data).length)  {
+        this.user= data;
+      }
+    });
+
+  
     this.router.events.subscribe((event: Event) => {
 
         if (event instanceof NavigationEnd) {

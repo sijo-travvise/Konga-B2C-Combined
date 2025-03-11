@@ -50,7 +50,7 @@ export class DealsSectionComponent {
     nav: true,
   };
   ngOnInit(): void {
-      this.getAllPackageList();
+      // this.getAllPackageList();
   };
 
   getAllPackageList(): void { 

@@ -128,6 +128,8 @@ export class FlightDetailsComponent implements AfterViewInit {
 
   public flightUpsellReqData = FlightUpsellReqData;
   ngOnInit() {    
+    console.log(this.BookedFlightData,'line 131');
+    
     if(this.sharedService.getLocalStore('affiliate_user')!='' && this.sharedService.getLocalStore('affiliate_user')!=undefined)
     {
       debugger
@@ -280,7 +282,13 @@ export class FlightDetailsComponent implements AfterViewInit {
   }
 
   showCalculateDialog(fareList: any){
-      // this.emiInstallments.emit(fareList);
+    console.log(fareList,'line 283');
+    let selectedFare = this.BookedFlightData
+    selectedFare.PriceSummary.SubTotal = fareList.Details[0].Amount;
+    selectedFare.PriceSummary.PriceTotal = fareList.Details[0].Amount;
+    selectedFare.flexi = fareList;
+
+      this.emiInstallments.emit(selectedFare);
       // console.log(this.BookedFlightData);
       
   }
@@ -310,6 +318,7 @@ export class FlightDetailsComponent implements AfterViewInit {
         this.loadFlexiFare();
         this.isLoading = false;
       }else {
+        this.isBookingFooterConsole = true;
         this.isLoading = false;
         //  Swal.fire({
         //     icon: 'error',
@@ -360,6 +369,7 @@ export class FlightDetailsComponent implements AfterViewInit {
 
               matchingServices[ServiceId].push({
                 ...flexiFare,
+                Amount: flexiFare.Amount + this.BookedFlightData.PriceSummary.SubTotal,
                 Origin: origin,
                 Destination: destination,
                 selected: false ,
@@ -376,7 +386,8 @@ export class FlightDetailsComponent implements AfterViewInit {
           matchingServicesArray.push({
             ServiceId,
             activeIndex: 0,
-            Details: detailsArray
+            Details: detailsArray,
+            FSC: this.BookedFlightData.FSC
           });
         });
       

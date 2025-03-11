@@ -41,6 +41,8 @@ export class PayAsEarnCalculatorComponent {
    
     this.installmentAmount = this.sharedService.getInstallmentAmount(this.BookedFlightData?.PriceSummary?.SubTotal ?? 0, 20);
     if(this.flighInstallementDetails !== null && this.flighInstallementDetails !== undefined){
+      console.log('line 44');
+      
       const installmentArrayLength = Object.keys(this.flighInstallementDetails?.installementSplitAmount?.installmentDetails)?.length;
       this.payPercentage.setValue(this.flighInstallementDetails.minimumDownPayment ?? 20)
       this.PayBySplitType.setValue({ name: `${this.flighInstallementDetails?.splitInstallmentCount ?? 1} Time${(this.flighInstallementDetails?.splitInstallmentCount ?? 1) > 1 ? 's': ''}`, code: this.flighInstallementDetails?.splitInstallmentCount ?? 1 });
@@ -107,12 +109,33 @@ export class PayAsEarnCalculatorComponent {
     
 
     if (showType) {
+      console.log('line 112');
+      
       this.installmentApplied.emit(flightFareInstallementDetails);
     }
     else {
-      this.BookedFlightData.flightFareInstallementDetails = flightFareInstallementDetails;
-      this.sharedService.setLocalStore("airPricePointSelected", this.BookedFlightData );
-      this.router.navigateByUrl('/passenger-details');
+      if(this.BookedFlightData && this.BookedFlightData.flexi) {
+        let selectedFareDetails= {
+          supplier: this.BookedFlightData.Trips[0].SupplierName,
+          selectedFare: this.BookedFlightData.flexi,
+          boundType: this.BookedFlightData.Trips[0].BoundType,
+          FSC: this.BookedFlightData.FSC,
+          flightFareInstallementDetails: flightFareInstallementDetails
+        }
+  
+        localStorage.removeItem('airPricePointSelected');
+        this.sharedService.setLocalStore("fareFamily", selectedFareDetails );
+        this.router.navigateByUrl('/passenger-details');
+      }else {
+        this.BookedFlightData.flightFareInstallementDetails = flightFareInstallementDetails;
+        this.sharedService.setLocalStore("airPricePointSelected", this.BookedFlightData );
+        this.router.navigateByUrl('/passenger-details');
+      }
+      
+
+      
+      console.log('line 117');
+      
     }
 
   }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, ChangeDetectorRef  } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { FilterService, MessageService, PrimeNGConfig } from 'primeng/api';
@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   availableLanguages: Language[] = [];
   selectLanguage: Language = this.availableLanguages[0];
   @Input() currentLink: string = '';
+  @Input() currentUserUpdated: any = null;
   public breadCrumps: boolean;
   public currency = new FormControl({ "currency": "QAR" }, { nonNullable: true });
   countries: any[];
@@ -45,8 +46,7 @@ export class HeaderComponent implements OnInit {
     const browserlang = this.translateService.getBrowserLang();
     this.translateService.use(browserlang);
     this.currentUser = _authenticationService.affliateUser;
-
-    if(Object.keys(this.currentUser).length> 1)
+    if(Object.keys(this.currentUser).length> 0 ||( this.currentUserUpdated != null) )
     {
       
       this.user= this.currentUser;
@@ -94,7 +94,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/']);
   }
   ngOnChanges(changes: SimpleChanges) {
-    let change = changes['currentLink'];
+    // let change = changes['currentLink'];
+    this.user = this.currentUserUpdated;
     if (this.currentLink == 'home' || this.currentLink == '') {
       this.breadCrumps = false;
       // alert(this.breadCrumps);
