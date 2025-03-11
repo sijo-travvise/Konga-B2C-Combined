@@ -157,4 +157,8 @@ export class FlightService {
       this.sanitizer.bypassSecurityTrustHtml(part)
     );
   }
+  GetUserFlightBookings(params: any): Observable<any> {
+    const queryParams = new HttpParams({ fromObject: params });
+    return this.http.get(`${this.flightSearch}api/BookingHistory/CustomerUserFlightTransactions/CustomerUserFlightTransactions`, { params: queryParams });
+  }
 }

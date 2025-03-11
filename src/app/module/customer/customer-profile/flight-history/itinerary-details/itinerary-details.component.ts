@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-itinerary-details',
   templateUrl: './itinerary-details.component.html',
+  providers: [MessageService],
   styleUrls: ['./itinerary-details.component.scss']
 })
 export class ItineraryDetailsComponent {
@@ -31,7 +32,7 @@ export class ItineraryDetailsComponent {
   isLoading: boolean = false;
   @Input() paymentSuccess: boolean = false;
   @Input() flightTransactions_ID: any = null;
-
+  @Input()  AllFlightDetails:any;
   constructor(public sharedService: SharedService, private _flightService: FlightService,  public _microService: MicroService, private messageService: MessageService) {
 
   }
@@ -182,6 +183,89 @@ export class ItineraryDetailsComponent {
    }
    
   }
+  
+  convertMinutesToTime(minutes: number): string {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    let timeString = '';
+
+    if (hours > 0) {
+      timeString += `${hours} hr`;
+      if (hours > 1) {
+        timeString += 's'; // pluralize "hr" if necessary
+      }
+    }
+
+    if (remainingMinutes > 0) {
+      if (timeString.length > 0) {
+        timeString += ' '; // add space if hours are already included
+      }
+      timeString += `${remainingMinutes} min`;
+      if (remainingMinutes > 1) {
+        timeString += 's'; // pluralize "min" if necessary
+      }
+    }
+
+    return timeString.trim();
+  }
+  getClassName(cabin: string): string {
+    switch (cabin) {
+      case 'C':
+        return 'Business class';
+      case 'F':
+        return 'First class';
+      case 'Y':
+        return 'Economy';
+      case 'W':
+        return 'Economy Premium';
+      case 'M':
+        return 'Economy Standard';
+      default:
+        return 'Unknown class';
+    }
+  }
+  // getStatusDescription(status: number): string {
+  //   switch (status) {
+  //       case 1:
+  //           return "Pending";
+  //       case 2:
+  //           return "Confirmed";
+  //       case 3:
+  //           return "Cancelled";
+  //       case 4:
+  //           return "Void";
+  //       case 5:
+  //           return "Refunded";
+  //       case 6:
+  //           return "ReIssued";
+  //       case 7:
+  //           return "Failed";
+  //       default:
+  //           return "Unknown";
+  //   }
+  // }
+  getStatusDescription(status: number, returnType: 'description' | 'class'): string {
+    switch (status) {
+      case 1:
+        return returnType === 'description' ? 'Pending' : 'error';
+      case 2:
+        return returnType === 'description' ? 'Confirmed' : 'success';
+      case 3:
+        return returnType === 'description' ? 'Cancelled' : 'error';
+      case 4:
+        return returnType === 'description' ? 'Void' : 'error';
+      case 5:
+        return returnType === 'description' ? 'Refunded' : 'success';
+      case 6:
+        return returnType === 'description' ? 'ReIssued' : 'success';
+      case 7:
+        return returnType === 'description' ? 'Failed' : 'error';
+      default:
+        return returnType === 'description' ? 'Unknown' : 'error';
+    }
+  }
+  
 }
 
 

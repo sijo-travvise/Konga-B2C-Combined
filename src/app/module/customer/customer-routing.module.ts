@@ -6,7 +6,7 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 
 
 const routes: Routes = [
-  {path: 'customer_profile', component:CustomerProfileComponent},
+  {path: 'customer-profile', component:CustomerProfileComponent},
 //   {path: 'Passenger_Details', component:PassengerDetailsComponent},
  ];
 

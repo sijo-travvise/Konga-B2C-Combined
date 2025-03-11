@@ -3,6 +3,7 @@ export class User {
     customerUser_ID: number;
     empRole_ID: number;
     customerProfile_ID: number;
+    title?: any;
     username: string;
     emailid: string;
     email: string;
@@ -10,6 +11,8 @@ export class User {
     password: string;
     firstName: string;
     lastName: string;
+    d_DOB?: any;
+    phoneNumber?: any;
     token?: string;
     companyName?: string;
     privilages?: Privilages;
@@ -108,3 +111,46 @@ export interface AuthTokens {
     accessToken: string;
     accessTokenExpiration: string;
 }
+export interface UserProfile {
+    i_User_HTID: number
+    i_Company_MTID: any
+    v_CustomerType: any
+    i_Customer_HTID: any
+    i_CompanyBranch_HTID: any
+    i_CostCenter_HTID: any
+    v_Title: string
+    v_FirstName: string
+    v_MiddleName: any
+    v_LastName: string
+    i_Designation_MTID: any
+    i_Department_MTID: any
+    i_UserRole_MTID: any
+    v_EmployeeNumber: any
+    d_DOB: string
+    i_NationalityCountry_MTID: any
+    v_PhoneCode: any
+    v_PhoneNumber: string
+    v_Email: string
+    v_Grade: any
+    nV_Password: string
+    v_AmadeusSigninCode: any
+    v_TravelPortSigninCode: any
+    v_SabreSigninCode: any
+    nV_ProfilePictureFilePath: string
+    b_ActiveStatus: boolean
+    i_CreatedUser_HTID: any
+    dT_CreatedDate: string
+    i_ModifiedUser_HTID: number
+    dT_ModifiedDate: string
+    b_Enable2FA: any
+    token?: string
+  }
+  export interface UserProfileUpdate{
+    id: number;
+    title?: any;
+    email: string;
+    firstName: string;
+    lastName: string;
+    d_DOB?: any;
+    phoneNumber?: any;
+  }

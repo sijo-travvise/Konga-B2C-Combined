@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FlightInvoiceComponent implements OnInit {
   items=[1,2]
-  @Input()  iteneraryData: any = null;
+  @Input()  AllFlightDetails:any;
   ngOnInit() {
 
   }

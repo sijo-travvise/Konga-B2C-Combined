@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,7 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import {KnobModule} from 'primeng/knob';
 import { FlightHistoryComponent } from './customer-profile/flight-history/flight-history.component';
 import { ItineraryDetailsComponent } from './customer-profile/flight-history/itinerary-details/itinerary-details.component';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { FlightInvoiceComponent } from './customer-profile/flight-history/flight-invoice/flight-invoice.component';
 import { HotelHistoryComponent } from './customer-profile/hotel-history/hotel-history.component';
 import { HotelItineraryDetailsComponent } from './customer-profile/hotel-history/hotel-itinerary-details/hotel-itinerary-details.component';
@@ -51,6 +51,7 @@ import { PersonalInformationComponent } from './customer-profile/personal-inform
     BrowserAnimationsModule,
     NgbModule,
     DropdownModule,
+    ReactiveFormsModule,
     FormsModule,
     AutoCompleteModule,
     CalendarModule,

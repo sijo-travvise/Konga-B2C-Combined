@@ -1,5 +1,5 @@
 <!-- {{bookingDetailsData | json}} -->
-<div class="row mx-0 card p-4" *ngIf="pnrRetrieveRes !== null  && pnrRetrieveRes !== undefined ">
+<div class="row mx-0 card p-4" *ngIf="AllFlightDetails !== null && AllFlightDetails !== undefined">
     <app-fare-details-header class="px-0" fareTitle="Flight Itinerary Details"></app-fare-details-header>
     <!-- Loop Section Start-->
     <div class="flight__Itinerary__Details__outer">
@@ -15,29 +15,28 @@
                                 <i class="pi pi-check"></i>
                                 <div>
                                     <p> Congratulations,<br />your reservation is succesful </p> 
-                                    <h3 class="font-weight-bolder pt-2" style="font-size: 12px;"> Your PNR is <strong>  {{pnrRetrieveRes?.AirlinePNR}}</strong>  </h3> 
+                                    <h3 class="font-weight-bolder pt-2" style="font-size: 12px;"> Your PNR is <strong>  {{AllFlightDetails.header.AirlinePNR}}</strong>  </h3> 
                                 </div>
                                 
                                 
                             </div>
-
-                            <div class="ms-auto  py-2 paymentStatus d-flex align-items-center gap-3" *ngIf="paymentSuccess== undefined">
+                            <div class="ms-auto  py-2 paymentStatus d-flex align-items-center gap-3"  *ngIf="AllFlightDetails && AllFlightDetails.payment">
                                 <label class="font-weight-600 ">Payment status:</label>
                                 <span class="pending px-3 py-2">Pending</span> 
                                 <button class=" btn btn-primary  ms-auto px-5 " (click)="OnClickPayNow()"> Pay Now </button>
                             </div>
-                            <div class="ms-auto  py-2 ticketStatus d-flex align-items-center gap-3" *ngIf="paymentSuccess== false">
+                            <div class="ms-auto  py-2 ticketStatus d-flex align-items-center gap-3"  *ngIf="AllFlightDetails && AllFlightDetails.payment">
                                 <label class="font-weight-600 ">Payment status:</label>
                                 <span class="failed px-3 py-2">Failed</span>
                             </div>
-                            <div class="ms-auto  py-2 ticketStatus d-flex align-items-center gap-3"  *ngIf="paymentSuccess== true">
+                            <div class="ms-auto  py-2 ticketStatus d-flex align-items-center gap-3"   *ngIf="AllFlightDetails && AllFlightDetails.payment">
                                 <label class="font-weight-600 ">Ticket status:</label>
                                 <span class="pending px-3 py-2">Pending</span>
                             </div>
 
-                            <div class="  py-2 paymentStatus d-flex align-items-center gap-3" *ngIf="pnrRetrieveRes?.Passengers[0]?.TicketNumber === (null || '')">
+                            <!-- <div class="  py-2 paymentStatus d-flex align-items-center gap-3" *ngIf="pnrRetrieveRes?.Passengers[0]?.TicketNumber === (null || '')">
                                 <button class=" btn btn-primary  ms-auto px-5" (click)="issueTicket()"> Issue Ticket </button>
-                            </div>
+                            </div> -->
                              
                         </div>
                        
@@ -81,17 +80,23 @@
                 <ng-container>
                     <div class="d-flex gap-5 align-items-center border p-3">
                         <div class="invoice_headers">
-                            <p>Airline PNR</p>
-                            <h4>{{pnrRetrieveRes?.AirlinePNR}}</h4>
+                            <p  class="mb-2">Airline PNR</p>
+                            <h4>{{AllFlightDetails.header.AirlinePNR}}</h4>
                         </div>
-                        <!-- <div class="invoice_headers">
+                        <div class="invoice_headers">
+                            <ng-container *ngIf="AllFlightDetails.header.Status">
+                                <p class="mb-2">Status</p>
+                                <span class="ticketStatus" [ngClass]="getStatusDescription(AllFlightDetails.header.Status, 'class')">{{ getStatusDescription(AllFlightDetails.header.Status, 'description') }}</span>
+                            </ng-container>
+                        </div>
+                        <div class="invoice_headers">
                             <p>Booking Date</p>
-                            <h4>{{bookingData?.TransactionDate | date:'d MMMM y'}}</h4>
-                        </div> -->
+                            <h4>{{AllFlightDetails.header.DepartDate | date: 'dd MMM yyyy'}}</h4>
+                        </div>
 
                         <div class="invoice_headers ms-auto">
                             <p>Total Amount</p>
-                            <h4 > ₦ {{ (pnrRetrieveRes?.priceSummary?.SubTotal ?? 0) | number:'0.1-2'}} </h4>
+                            <h4 > ₦ {{AllFlightDetails.header.CustomerSellRateTotal}} </h4>
                             <!-- <ng-container *ngIf="bookingData?.fareInstallmentDetails?.isInstallmentApplied; else installmentPayment;">
                                 <h4 > ₦ {{ (bookingData?.TotalFare ?? 0) | number:'0.1-2'}} </h4>
                         </ng-container > -->
@@ -122,33 +127,27 @@
         <div class="flight__ticketDetails">
             <h3 class="itenaryTitle">FLIGHT DETAILS</h3>
             <!-- Loop Start-->
-            <ng-container *ngFor="let trips of pnrRetrieveRes?.Trips;let i=index;">
+            <ng-container *ngFor="let segment of AllFlightDetails.segments">
                 <!-- *ngFor=" let segments of itinerary?.segments" -->
                 <div class="flightDetails">
 
                     <div class="flight__sectrs d-flex  align-items-center gap-4  py-3 px-2 mb-3">
-                        <h2> {{trips?.FlightSegments[0]?.Origin}} <img class="mx-2"
+                        <h2>{{segment.OriginCity | uppercase}}  <img class="mx-2"
                                 src="../../../../assets/img/icons/icon-destinations.svg" alt="ariline logo" />
-                            {{trips?.FlightSegments[trips?.FlightSegments?.length -1]?.Destination}}</h2>
+                                {{segment.DestinationCity | uppercase}}</h2>
                         <span class="duration__label h-100 py-2 ps-3">
-                             <!-- {{itinerary?.segments[0]?.departure?.at | date:'
-                            E, d MMMM y'}} -->
-                            {{
-                                _microService?.getFormatedFlightDate(trips?.FlightSegments[0].DepartureDate,
-                                false,"EE , d&nbsp;MMM&nbsp;''''yy")}}
+                            {{segment.DepartureTime| date: 'dd MMM ‘ yy'}}
                          </span>
                     </div>
-                    <ng-container *ngFor="let segments of trips?.FlightSegments; let isFirst= first; let segmentIndex = index"> 
-                      
                     <div class="row mx-0 mb-4 flight__Itinerary__contentArea ">
                         <div class="col-md-2 d-flex align-items-center py-4">
 
                             <div class="col-12 text-center">
                 
-                                    <img class="flight__img" src="assets/img/Airlogo/sm{{segments?.MarketingAirline}}.gif"
-                                        alt="{{segments?.MarketingAirline}}" />
-                                    <h4>{{segments?.MarketingAirline}}</h4>
-                                    <p class="flightNo mb-2">{{segments?.FlightNumber }}</p>
+                                <img src="assets/img/Airlogo/sm{{segment.Carrier}}.gif" alt="{{segment.Carrier}}" />
+                                    <!-- <h4>{{segments?.MarketingAirline}}</h4> -->
+                                    <p class="flightNo mb-2">{{segment.FlightNumber}}</p>
+                                    <p class="flightNo mb-2">{{ segment.Equipment.startsWith('7') ? 'Boeing' : segment.Equipment.startsWith('3') ? 'Airbus' : '' }} - {{ segment.Equipment }}</p>
                                     <span class="status success px-2">Confirmed</span>
                                
                             </div>
@@ -160,19 +159,18 @@
                                 </span>
                                 <div class="ps-2">
                                     <h4>
-                                        {{ _microService?.getFormatedFlightTime(segments.DepartureTime)}}
+                                        {{segment.DepartureTime | date:'HH:mm'}}
 
                                     </h4>
-                                    <p class="py-1"><strong>Terminal: {{ segments?.TerminalInfo.FromTerminal}}</strong></p>
-                                    <p style="line-height: 14px;">  {{segments?.Origin}}</p>
+                                    <p class="py-1" *ngIf="segment.OriginTerminal != null || segment.OriginTerminal != '' " class="terminal"><strong>Terminal: {{segment.OriginTerminal}}</strong></p>
+                                    <p style="line-height: 14px;"> [{{segment.Origin}}] {{segment.OriginAirport}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2 border-left-1 d-flex align-items-center justify-content-center">
                             <div class="cl">
                                 <h4>Duration</h4>
-                                <h5 class="totalHour">  {{_microService?.getFormatedFlightTime(segments?.Duration,
-                                    true) }}  </h5>
+                                <h5 class="totalHour"> {{convertMinutesToTime(segment.TravelTime)}} </h5>
                             </div>
 
                         </div>
@@ -182,12 +180,11 @@
                                     <img src="assets/img/icons/icon-flight12.svg" alt="">
                                 </span>
                                 <div class="ps-2">
-                                    <h4>
-                                        
-                                        {{ _microService?.getFormatedFlightTime(segments.ArrivalTime)}}
+                                    <h4> 
+                                        {{segment.ArrivalTime |date:'HH:mm'}}
                                     </h4>
-                                        <p class="py-1 font-weight-bolder"> <strong>Terminal: {{segments?.TerminalInfo.ToTerminal}}</strong></p>
-                                        <p style="line-height: 14px;"> {{segments?.Destination}}</p>
+                                        <p class="py-1 font-weight-bolder" *ngIf="segment.DestinationTerminal != null|| segment.DestinationTerminal != '' " class="terminal"> <strong>Terminal: {{segment.DestinationTerminal}}</strong></p>
+                                        <p style="line-height: 14px;"> [{{segment.Destination}}] {{segment.DestinationAirport}}</p>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +192,7 @@
                             <div class="flightTicketDetails col-12 text-end">
                                 <label>Cabin </label>
                                 <span
-                                    class="classType">{{segments?.CabinClass}}</span>
+                                    class="classType">{{getClassName(segment.CabinClass)}}</span>
                                 <!-- <ng-container *ngIf=" itinerary?.segments?.length > 1">
                                     <label>Stop </label>
                                     <ng-container
@@ -217,7 +214,7 @@
 
                                 <ng-container >
                                     <span class="pnrNo">
-                                        {{pnrRetrieveRes.PNRNumber}}</span>
+                                        {{AllFlightDetails.header.AirlinePNR}}</span>
                                 </ng-container>
 
                             </div>
@@ -234,10 +231,10 @@
                                 
                             </thead>
                             <tbody>
-                                <tr *ngFor="let travellers of pnrRetrieveRes?.Passengers; let teavellersIndex = index ">
-                                    <td>{{travellers?.PaxTitle}} {{travellers?.FirstName}} {{travellers?.LastName }}</td>
+                                <tr *ngFor="let travellerInfo of AllFlightDetails?.passenger">
+                                    <td>{{travellerInfo.Prefix}}  {{travellerInfo.FirstName}}  {{travellerInfo.LastName}} </td>
                                     <td>
-                                        {{travellers?.PaxType === 1 ? 'Adult' : travellers?.PaxType === 2 ? 'Child' : 'Infant'}}
+                                        {{travellerInfo.TravellerType === 'ADT'? 'Adult':travellerInfo.TravellerType=='CHD'?'Child':'Infant'}} 
                                     </td>
 <!--             
                                     <td>{{travellers?.contact?.emailAddress}}</td>
@@ -257,14 +254,13 @@
 
                                         </ng-container>
                                         </ng-container> -->
-                                       {{travellers?.FreeBaggage?.AllowedWeight ? travellers?.FreeBaggage?.AllowedWeight + ' PC' :  ' -------'}}
+                                        {{travellerInfo.TravellerType === 'ADT'? AllFlightDetails.segments[0].AdultBaggage:travellerInfo.TravellerType=='CHD'?AllFlightDetails.segments[0].ChildBaggage:AllFlightDetails.segments[0].InfantBaggage}}
                                     </td>
                                 </tr>
             
                             </tbody>
                         </table>
                     </div>
-                </ng-container>
                 </div>
 
             </ng-container>

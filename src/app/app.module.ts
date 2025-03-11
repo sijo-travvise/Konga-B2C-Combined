@@ -33,7 +33,7 @@ import { MoreDealDetailsComponent } from './landing-page/deals-section/more-deal
 import { OrganizationFormComponent } from './landing-page/deals-section/organization-form/organization-form.component';
 import { PartyRegisterFormComponent } from './landing-page/deals-section/party-register-form/party-register-form.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
-
+import { ScrollTopModule } from 'primeng/scrolltop';
 // import {ToastModule} from 'primeng/toast';
 
 
@@ -61,6 +61,7 @@ export function httpTranlateLoaderFactory(http:HttpClient){
         BrowserAnimationsModule,
         NgbModule,
         DropdownModule,
+        ScrollTopModule ,
         FormsModule,
         SharedModule,
         AutoCompleteModule,

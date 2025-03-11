@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FilterService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { SharedService } from 'src/app/services/shared.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 interface Language {
   name: String;
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit {
   constructor(private translateService: TranslateService, 
               private _sharedService: SharedService, 
               private messageService: MessageService,  
+               private router: Router,
               private _authenticationService: AuthenticationService,
               private primengConfig: PrimeNGConfig) {
     this.translateService.setDefaultLang('en');
@@ -89,6 +91,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('__token');
     localStorage.removeItem('currentUser');
     window.location.reload();
+    this.router.navigate(['/']);
   }
   ngOnChanges(changes: SimpleChanges) {
     let change = changes['currentLink'];

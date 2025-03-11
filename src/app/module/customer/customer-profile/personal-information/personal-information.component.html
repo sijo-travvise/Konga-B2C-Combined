@@ -5,33 +5,34 @@
                 <div class="card p-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h2 class="mb-0">Personal Information</h2>
-                        <button class="p-button-outlined p-button px-4">Edit</button>
+                        <button class="p-button-outlined p-button px-4" (click)="enableEditing()">
+                            {{ isEditUserInfo ? 'Cancel Editing' : 'Edit Profile' }}
+                        </button>
                     </div>
-                    <form>
+                    <form [formGroup]="userForm">
                         <div class="row">
                             <div class="col-lg-4">
-                                <app-select-field [title]="'Title'" [option]="SalutationTypeArray"></app-select-field>
+                                <app-select-field [formControls]="title" [title]="'Title'" [option]="SalutationTypeArray"></app-select-field>
                             </div>
                             <div class="col-lg-8">
-                                <app-input-field [title]="'First Name'" [isRequired]=false></app-input-field>
+                                <app-input-field [formControls]="fName" [title]="'First Name'" [isRequired]=false></app-input-field>
                                 <label class="placeHolder">Please ensure your name it as it appears on passport</label>
                             </div>
                             <div class="col-lg-12 mb-3">
-                                <app-input-field [title]="'Last Name'" [isRequired]=false></app-input-field>
+                                <app-input-field [formControls]="lName" [title]="'Last Name'" [isRequired]=false></app-input-field>
                                 <label class="placeHolder">Please ensure your name it as it appears on passport</label>
                             </div>
                             <div class="col-lg-12 mb-3">
-                                <app-input-field [title]="'Email Id'"
-                                [isRequired]=false></app-input-field>
+                                <app-input-field [formControls]="emailID" [title]="'Email Id'" [isRequired]=false></app-input-field>
                             </div>
                             <div class="col-lg-6 mb-3">
-                                <app-date-picker [title]="'DOB'"></app-date-picker>
+                                <app-date-picker [formControls]="DOB" [title]="'DOB'"></app-date-picker>
                             </div>
                             <div class="col-lg-6 mb-4">
-                                <app-country-selection [title]="'Issue Country'"></app-country-selection>
+                                <app-phone-number-filed [formControls]="pNumber" [title]="'Code'" [isRequired]=true></app-phone-number-filed>
                             </div>
                             <div class="col-lg-12 mb-3">
-                                <button class="btn btn-primary w-100 py-3"  routerLink="/payment-details">Save Changes</button>
+                                <button class="btn btn-primary w-100 py-3" (click)="onClick()" [ngClass]="isEditUserInfo ? '' : 'disabled'">Save Changes</button>
                             </div>
                         </div>
                         

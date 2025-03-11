@@ -12,12 +12,31 @@
         .userImage{
             height: 100%;
             width: 100%;
-            background-size: cover !important;
+            // background-size: cover !important;
             background-position: center !important;
             border-radius: 100%;
+            .upload-label {
+                cursor: pointer;
+                background: var(--bg-white);
+                border-radius: .3125rem;
+                margin-top: 50%;
+                transition: all .5s;
+                opacity: 0;
+            }
+            &:hover {
+                .upload-label{
+                    // margin-top: 0;
+                    transition: all .5s;
+                    opacity: 1;
+                    cursor: pointer;
+                    background: var(--bg-white);
+                    border-radius: .3125rem;
+                }
+            }
+            input[type=file] {
+                display: none;
+            }
         }
-      
-       
     }
 
     h2{
