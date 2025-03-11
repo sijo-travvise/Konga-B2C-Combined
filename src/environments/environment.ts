@@ -5,68 +5,47 @@
 export const environment = {
   production: false,
   apiUrl: 'https://localhost:44396/',
-
-
-  // flightsearchurl: 'https://flightapi.travvise.com/',
-  // flightBookurl: 'https://kongaflightbookingapi.travvise.com/',
-  // vertailUrl: 'https://verteil.travvise.com/',
-
-
-    // readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
+  // readonly flightsearchurl = 'https://kongaflightapi.travvise.com/';
   // readonly flightBookurl = 'https://kongaflightbookingapi.travvise.com/';
   //  readonly vertailUrl = 'https://indigo.travvise.com/'; 
   //  readonly vertailUrl = 'http://verteil.travvise.com/'; 
   //  readonly flightPNRurl = 'https://flightbookingapi.travvise.com/';
 
-
-  // readonly flightsearchurl = 'http://192.168.10.213:8080/';
-  // readonly flightBookurl = 'http://192.168.10.213:8083/';
-  // readonly vertailUrl = 'http://192.168.10.213:8085/';
-
-  // readonly flightsearchurl = 'https://ssjlh50t-51797.inc1.devtunnels.ms/'
-  // readonly flightBookurl= 'https://ssjlh50t-56518.inc1.devtunnels.ms/'
-  // readonly vertailUrl = 'https://ssjlh50t-7271.inc1.devtunnels.ms/'
-
-
- flightsearchurl:'http://localhost:51797/',
+  flightsearchurl: 'http://localhost:51797/',
   flightBookurl: 'http://localhost:56518/',
-
-
-
-
-  webUrl: 'http://localhost:4000/',
+  webUrl: 'http://localhost:57420/',
   // merchantId: 'konga224',
   // mode: 'test',
   // publicKey: 'test_pu_b822553f28b5eaab3b7ed0d092adf74d'
   merchantId: 'ktt',
-    mode: 'live',
-    publicKey: 'live_pu_12d87995517a6b982d1babc58955eaaa',
+  mode: 'live',
+  publicKey: 'live_pu_12d87995517a6b982d1babc58955eaaa',
 
 
-    firebase: {
-      apiKey: 'AIzaSyBP-g5ASdQOgEjBDU8uV_Tx7ki3xyDULdw',
-      authDomain: 'travvise.firebaseapp.com',
-      projectId: 'travvise',
-      storageBucket: 'travvise.appspot.com',
-      messagingSenderId: '684818782610',
-      appId: '1:684818782610:web:c8b741d108051c98ce094b',
-      measurementId: 'G-XP15C138JD',
-    },
+  firebase: {
+    apiKey: 'AIzaSyBP-g5ASdQOgEjBDU8uV_Tx7ki3xyDULdw',
+    authDomain: 'travvise.firebaseapp.com',
+    projectId: 'travvise',
+    storageBucket: 'travvise.appspot.com',
+    messagingSenderId: '684818782610',
+    appId: '1:684818782610:web:c8b741d108051c98ce094b',
+    measurementId: 'G-XP15C138JD',
+  },
 
-    emailConfiguration:  {
-      DisplayName: 'Konga',
-      From: 'travel@konga.com',
-      Host: 'smtp.sendgrid.net',
-      Password: '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',
-      Port: 25,
-      UserName: 'apikey',
-      UseSSL: false,
-      UseStartTls: true,
-    },
+  emailConfiguration: {
+    DisplayName: 'Konga',
+    From: 'travel@konga.com',
+    Host: 'smtp.sendgrid.net',
+    Password: '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',
+    Port: 25,
+    UserName: 'apikey',
+    UseSSL: false,
+    UseStartTls: true,
+  },
 
-    guestMail: 'junaid.kp@travvise.com',
-    guestPassword: 'Ugl8q'
-  
+  guestMail: 'junaid.kp@travvise.com',
+  guestPassword: 'Ugl8q'
+
 };
 
 

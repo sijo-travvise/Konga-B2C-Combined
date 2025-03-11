@@ -50,6 +50,7 @@ export class TransistsAirportsComponent {
     verdorFilter: [],
     type:'airline'
   };
+  debugger;
   const selectedOrderIds = data.map((v, i) => v ?  Object.keys(this.list)[i]  : null)
   .filter(v => v !== null);
   vendor.verdorFilter = selectedOrderIds;
@@ -70,7 +71,11 @@ export class TransistsAirportsComponent {
     (this.AirlineFilterForm.controls['AirlineList'] as FormArray).controls.forEach((element, index) => {
       element.reset(false);
     });
-    this._flightService.applyFlightsFilters([]);
+    let vendor ={
+      verdorFilter: [],
+      type:'airline'
+    };
+    this.onChangeAirline.emit(vendor);
   }
 
   getCarrierItem(index:number){

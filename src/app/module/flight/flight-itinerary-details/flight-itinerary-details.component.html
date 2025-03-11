@@ -43,16 +43,15 @@
                             </div>
                            
                             <form ngNoForm action="https://kongapay-pg.kongapay.com/kpaydirect" method="POST">
-                                <input hidden name='mode' id='mode' type="text" value="this.mode"
-                                    [(ngModel)]="this.mode">
-                                <input hidden name='hash' id='hash' type="text" value="this.hash"
-                                    [(ngModel)]="this.hash">
+                                <input hidden name='public_key' id='public_key' type="text" value="this.public_key"
+                                [(ngModel)]="this.public_key">
+                                <input hidden name='mode' id='mode' type="text" value="this.mode" [(ngModel)]="this.mode">
+                                <input hidden name='hash' id='hash' type="text" value="this.hash" [(ngModel)]="this.hash">
                                 <input hidden name='amount' id='amount' type="number" value="this.amount"
                                     [(ngModel)]="this.amount">
                                 <input hidden name='description' id='description' type="text" value="this.description"
                                     [(ngModel)]="this.description">
-                                <input hidden name='email' id='email' type="email" value="this.email"
-                                    [(ngModel)]="this.email">
+                                <input hidden name='email' id='email' type="email" value="this.email" [(ngModel)]="this.email">
                                 <input hidden name='merchant_id' id='merchant_id' type="text" value="this.merchant_id"
                                     [(ngModel)]="this.merchant_id">
                                 <input hidden name='reference' id='reference' type="text" value="this.reference"
@@ -61,8 +60,7 @@
                                     [(ngModel)]="this.firstname">
                                 <input hidden name='lastname' id='lastname' type="text" value="this.lastname"
                                     [(ngModel)]="this.lastname">
-                                <input hidden name="phone" id='phone' type="text" value="this.phone"
-                                    [(ngModel)]="this.phone">
+                                <input hidden name="phone" id='phone' type="text" value="this.phone" [(ngModel)]="this.phone">
                                 <input hidden name='callback' id='callback' type="text" value="this.callback"
                                     [(ngModel)]="this.callback">
                                 <input hidden name='customerId' id='customerId' type="text" value="this.customerId"
@@ -92,7 +90,7 @@
     
                             <div class="invoice_headers ms-auto">
                                 <p>Total Amount</p>
-                                <h4 > ₦ {{ (pnrRetrieveRes?.priceSummary?.SubTotal ?? 0) | number:'0.1-2'}} </h4>
+                                <h4 > ₦ {{ (bookingDetailsData?.FlightTransactions[0].CustomerSellRateTotal ?? 0) | number:'0.1-2'}} </h4>
                                 <!-- <ng-container *ngIf="bookingData?.fareInstallmentDetails?.isInstallmentApplied; else installmentPayment;">
                                     <h4 > ₦ {{ (bookingData?.TotalFare ?? 0) | number:'0.1-2'}} </h4>
                             </ng-container > -->
@@ -164,7 +162,7 @@
                                             {{ _microService?.getFormatedFlightTime(segments.DepartureTime)}}
     
                                         </h4>
-                                        <p class="py-1"><strong>Terminal: {{ segments?.TerminalInfo.FromTerminal}}</strong></p>
+                                        <p class="py-1" *ngIf="segments?.TerminalInfo.FromTerminal"><strong>Terminal: {{ segments?.TerminalInfo.FromTerminal}}</strong></p>
                                         <p style="line-height: 14px;">  {{segments?.Origin}}</p>
                                     </div>
                                 </div>
@@ -187,7 +185,7 @@
                                             
                                             {{ _microService?.getFormatedFlightTime(segments.ArrivalTime)}}
                                         </h4>
-                                            <p class="py-1 font-weight-bolder"> <strong>Terminal: {{segments?.TerminalInfo.ToTerminal}}</strong></p>
+                                            <p class="py-1 font-weight-bolder" *ngIf="segments?.TerminalInfo.ToTerminal"> <strong>Terminal: {{segments?.TerminalInfo.ToTerminal}}</strong></p>
                                             <p style="line-height: 14px;"> {{segments?.Destination}}</p>
                                     </div>
                                 </div>
@@ -196,7 +194,7 @@
                                 <div class="flightTicketDetails col-12 text-end">
                                     <label>Cabin </label>
                                     <span
-                                        class="classType">{{segments?.CabinClass}}</span>
+                                        class="classType">{{segments?.FlightClass}}</span>
                                     <!-- <ng-container *ngIf=" itinerary?.segments?.length > 1">
                                         <label>Stop </label>
                                         <ng-container
