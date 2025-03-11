@@ -42,9 +42,12 @@ export class CustomerProfileComponent {
     let obj = {
       UserID: userid.toString(),
     };
-
+    debugger
+    this.isLoading = true;
     this.flightService.GetUserFlightBookings(obj).subscribe({
-      complete: () => {},
+      complete: () => {
+        this.isLoading = false;
+      },
       error: (error: any) => {
         this.isLoading = false;
         //console.log('error',error);
@@ -59,57 +62,6 @@ export class CustomerProfileComponent {
           this.flightHistoryData = data.data;
           this.isLoading = false;
           console.log('flightHistoryData', this.flightHistoryData);
-        }
-      },
-    });
-  }
-  updateUserProfile(event: any) {
-    console.log('user event for updating', event);
-    
-    let updateProfileData:UserProfileUpdate={
-      id: this.user.customerUser_ID,
-      email: event.emailID,
-      title: event.title?.value || event.title,
-      firstName: event.fName,
-      lastName: event.lName,
-      d_DOB: event.DOB,
-      phoneNumber: event.pNumber.internationalNumber,
-    }
-
-    this.isLoading = true;
-
-    this._userService.UpdateUserProfile(updateProfileData).subscribe({
-      complete: () => {},
-      error: (error: any) => {
-        console.log('Error While Fetching', error);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Something went wrong!',
-        });
-        this.isLoading = false;
-      },
-      next: (data: any) => {
-        if (data) {
-          if (data.status === true) {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'Profile Updated Successfully!',
-            });
-            //this.getUserProfile(this.currentUser?.user_HTID);
-
-            this.isLoading = false;
-          } else {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: data.alertMSG,
-            });
-            this.isLoading = false;
-          }
-        } else {
-          this.isLoading = false;
         }
       },
     });

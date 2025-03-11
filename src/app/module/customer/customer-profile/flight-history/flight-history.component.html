@@ -1,4 +1,4 @@
-<ng-container *ngIf="flightHistoryDataList?.length">
+<ng-container *ngIf="flightHistoryDataList?.length else NoData">
     <ng-container *ngFor="let history of flightHistoryDataList; let index = index">
         <div class="px-3" >
             <div class="row itemRow mb-4">
@@ -104,7 +104,13 @@
         </div>
     </ng-container>
 </ng-container>
+<ng-template #NoData>
+    <div class="py-5 d-flex align-items-center justify-content-center bg-white card mt-lg-5 mt-lg-4 mt-2">
+        <h2> No Flights History found </h2>
+    </div>
+</ng-template>
+<!-- <ng-template  #NoData>
+    <app-pre-loader  [isLoadingComplete]=isLoading [loderTitle]="'Loading'"></app-pre-loader>
 
-
-
+</ng-template> -->
 
