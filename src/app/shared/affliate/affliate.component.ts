@@ -5,9 +5,20 @@ import { MessageService } from 'primeng/api';
 import { AffiliateService } from 'src/app/services/affiliate.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { environment } from 'src/environments/environment';
 import { first } from 'rxjs';
 import { error, log } from 'console';
 
+export class FileUpload {
+  key: string;
+  name: string;
+  url: string;
+  file: File;
+
+  constructor(file: File) {
+    this.file = file;
+  }
+}
 @Component({
   selector: 'app-affliate',
   templateUrl: './affliate.component.html',
@@ -22,6 +33,9 @@ export class AffliateComponent {
   public countryOptionList: any = [];
   public stateOptionList:any;
   isLoading=false;
+  isUploading:boolean=false;
+  public imageUrl:any;
+  currentLogoUpload: FileUpload;
 
   @Output() isloadingAffiliate: EventEmitter<boolean> = new EventEmitter(true);
 
@@ -31,6 +45,8 @@ export class AffliateComponent {
   isLoggedIn: any = false;
   otp: any;
   ipAddress: any;
+  isSubmitted: boolean = false;
+  isRequestLoading: boolean;
   constructor(private cdr: ChangeDetectorRef,
               private router: Router,
               private authenticationService: AuthenticationService,
@@ -47,8 +63,10 @@ export class AffliateComponent {
       office_addr: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phonenumber: ['', Validators.required],
-      state: [''],
-      country: [''],
+      companyLogo: ['', Validators.required],
+      termsAccepted: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['', Validators.required],
     });
     this.loginForm = this.formBuilder.group({
       password: ['',Validators.required],
@@ -96,39 +114,12 @@ export class AffliateComponent {
     return this.affiliateRegForm?.get('state') as FormControl<any>;
   }
   registerAffiliate() {
+    this.isSubmitted = true;
     if(this.affiliateRegForm.valid)
     {
-
-      let reqmodel=
-      {
-        businessName:this.affiliateRegForm?.value?.businessname,
-        leadUserFirstName:this.affiliateRegForm?.value?.userfname,
-        leadUserLastName:this.affiliateRegForm?.value?.userlname,
-        email:this.affiliateRegForm?.value?.email,
-        phoneNumber:this.affiliateRegForm?.value?.phonenumber?.e164Number,
-        country:this.affiliateRegForm?.value?.country?.country,
-        state:this.affiliateRegForm?.value?.state?.value,
-        office_addr:this.affiliateRegForm?.value?.office_addr,
-      }
-      // this.isLoading = true;
-      this.isloadingAffiliate.emit(true);
-      this.affiliateService.RegisterB2BCustomer(reqmodel).subscribe({
-        complete: () => { }, // completeHandler
-        error: (error: any) => { this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Registration failed. Please Try Again' }); this.isLoading = false; },    // errorHandler 
-        next: (response: any) => {
-          if (response !== null && response !== undefined) {
-            this.isloadingAffiliate.emit(false);
-            this.isRegisterd=true;
-          }
-          else {
-            setTimeout(() => {
-              this.isloadingAffiliate.emit(false);
-            }, 600);
-           
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'This email is already associated with an account. Please Try Again' });
-          }
-        }
-      });
+      this.isSubmitted = false;
+      this.isRequestLoading = true;
+      this.sendMail();
     }
     else
     {
@@ -166,24 +157,6 @@ export class AffliateComponent {
             this.sharedService.setLocalStore('__token',response);
             this.authenticationService.setToken(response);
             this.Generate2FA_otp();
-            // if(response.permissions.filter((item: { o_View: boolean; })=>item.o_View==true).length > 0)
-            // {
-
-            //   this.user=response;
-            //   this.user!.id=response.userID.toString();
-            //   this.user!.b2BCustomer_ID=response.b2BCustomer_ID.toString();
-            //   this.user!.userType="B2B";
-            //   this.sharedService.setLocalStore('user',"");
-            //   this.sharedService.setLocalStore('affiliate_user',JSON.stringify(this.user));
-            //   this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login success.' });
-            //   window.location.reload();
-            // }
-            // else
-            // {
-            //   this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Not enough permission to continue. Please Try Again' });
-            
-            // }
-            
           }
           else {
             setTimeout(() => {
@@ -200,8 +173,6 @@ export class AffliateComponent {
       this.loginForm.markAllAsTouched();
     }
   }
-
-
 
   Generate2FA_otp() {
     let reqModel =
@@ -287,6 +258,138 @@ export class AffliateComponent {
         },
       });
     }
+
+
+    onLogoFileSelected(event: any) {
+      this.isUploading=true;
+      if (event.target.files && event.target.files[0]) {
+        
+        let reader = new FileReader(); // HTML5 FileReader API
+        let file = event.target.files[0];
+        const size = (file.size / 1024 / 1024).toFixed(2); // File size in MB
+        reader.readAsDataURL(file);
+    
+        reader.onload = () => {
+          this.imageUrl = reader.result;
+    
+          if (+size > 5) { // File size exceeds 5MB
+
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'The maximum file size is less than 5MB' });
+            // Swal.fire({
+            //   title: "upload limit",
+            //   text: "The maximum file size is less than 5MB",
+            //   icon: "error"
+            // });
+            
+            this.isUploading=false;
+          } else {
+            // Create a new FileUpload object
+            this.currentLogoUpload = new FileUpload(file);
+    
+            // Start uploading the file and handle the observable response
+            this.sharedService.pushFileToStorage(this.currentLogoUpload, '/Company-Logos').subscribe({
+              next: (percentage: number) => {
+                
+                if (percentage === 100) {
+                 
+    
+                  // Start checking for the URL once the upload is complete
+                  const intervalId = setInterval(() => {
+                    if (this.currentLogoUpload.url) {
+                     
+                      this.getControl('companyLogo').setValue(this.currentLogoUpload.url);
+                      this.isUploading=false;
+                      clearInterval(intervalId); // Clear the interval once the URL is found
+                    }
+                  }, 500); // Check every 500ms
+                }
+              },
+              error: (error: any) => {
+                this.isUploading=false;
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Broken connection' });
+                // Swal.fire({
+                //   title: "Upload Error",
+                //   text: "broken connection",
+                //   icon: "error"
+                // });
+              },
+              complete: () => {
+                
+              }
+            });
+          }
+        };
+      } else {
+        this.isUploading=false;
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No files selected' });
+        // Swal.fire({
+        //   title: "Upload Error",
+        //   text: "No files selected",
+        //   icon: "error"
+        // });
+      }
+    }
+
+
+    sendMail(){
+      // const companyName= this.companyListDataSource.name;
+    let body = (<HTMLElement>document.getElementById('register-template'))?.innerHTML;
+    let fileName='TICKET ITINERARY/'+ 'KONGA' +"_Request" +".pdf";
+      let reqmodel=
+      {
+        receiverID:0,
+        orderID: 'KONGA' + "_Request_" + new Date().toISOString(),
+        displayName:"this.companyListDataSource?.secondaryName",
+        to:['azeezmc414@gmail.com'],
+        cc:[],
+        from: environment?.emailConfiguration?.From,
+        body:body,
+        fileName: fileName,
+        subject: `Konga Customer Registration`,
+        emailConfig:environment?.emailConfiguration
+      }
+
+      
+      
+     
+
+      this.sharedService.SendConfirmationEmail(reqmodel).subscribe({
+        complete: () => {
+          
+        },
+        error: (error: any) => {
+          this.isRequestLoading=false;
+         
+          this.affiliateRegForm.reset();
+          // this.closeDialog();
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Unable to procees the request ,please contact support' });
+        },
+        next: (data: any) => {
+          
+          this.isRequestLoading=false;
+          if (data?.successMSG != null) {
+            this.affiliateRegForm.reset();
+            // this.closeDialog();
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Request sent Successfully.' });
+            
+          } else {
+            this.affiliateRegForm.reset();
+            // this.closeDialog();
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong!' });
+           
+          }
+        }
+      });
+      
+    
+  }
+
+    getControl(controlName: string): FormControl {
+      return this.affiliateRegForm.get(controlName) as FormControl;
+    }
+
+
+    
 
     
 }

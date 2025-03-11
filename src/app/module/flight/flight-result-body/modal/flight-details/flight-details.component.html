@@ -208,7 +208,7 @@
 
 </div>
     
-<div class="px-4 py-4 d-flex align-items-center justify-content-between price-footer" *ngIf="isBookingFooterConsole">
+<div class="px-4 py-4 d-flex align-items-center justify-content-between price-footer" *ngIf="isBookingFooterConsole && matchingFlexiFareDetails.length == 0">
 
     <h5> <b>{{'₦' }}&nbsp;{{(BookedFlightData?.flightFareInstallementDetails !== null ? BookedFlightData?.flightFareInstallementDetails?.initialDownPayment :   BookedFlightData?.PriceSummary?.SubTotal + flexiPrice) | number:'0.1-2' }}</b>
     </h5>

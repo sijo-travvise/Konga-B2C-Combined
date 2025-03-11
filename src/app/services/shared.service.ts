@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, finalize } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 import { SearchReqUIModel } from '../Models/flight/Amadeus/Fare_MasterPricerTravelBoardSearch';
 import { DatePipe } from '@angular/common';
+
+import { FileUpload } from '../shared/affliate/affliate.component';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +17,12 @@ export class SharedService {
   readonly flightSearch = environment.apiUrl;
   public selectedCurrency:any;
   public exchangeRate:any;
+  private basePath = '/lpo';
+  companyName = 'KONGA';
   constructor(private http:HttpClient,
-              private datePipe: DatePipe
+              private datePipe: DatePipe,
+              private storage: AngularFireStorage,
+              private db: AngularFireDatabase
   ) { }
 
   airLineCity() {
@@ -133,6 +141,10 @@ export class SharedService {
     );
   }
 
+  SendConfirmationEmail(reqmodel:any): Observable<any> {
+    return this.http.post<any>(this.flightSearch + "api/Mail/SendEmailWithAttachment" , reqmodel);
+  }
+
   calculateLayoverTime(date1:any,date2:any){
     var Time = new Date(date2).getTime() - new Date(date1).getTime(); 
     return Math.floor(Time/(1000*60*60)) + " hrs " + Math.floor(Time/(1000*60))%60+" mins";
@@ -193,5 +205,28 @@ export class SharedService {
     return this.http.get<any>("https://api.ipify.org/?format=json");
   }
 
+
+  pushFileToStorage(fileUpload: FileUpload, basePathName:string = '/lpo'): Observable<any> {
+    this.basePath = basePathName;
+    const filePath = `${this.companyName}/${this.basePath}/${fileUpload.file.name}`;
+    const storageRef = this.storage.ref(filePath);
+    const uploadTask = this.storage.upload(filePath, fileUpload.file);
+
+    uploadTask.snapshotChanges().pipe(
+      finalize(() => {
+        storageRef.getDownloadURL().subscribe((downloadURL:any) => {
+          fileUpload.url = downloadURL;
+          fileUpload.name = fileUpload.file.name;
+          this.saveFileData(fileUpload);
+        });
+      })
+    ).subscribe();
+      
+    return uploadTask.percentageChanges();
+  }
+
+  private saveFileData(fileUpload: FileUpload): void {
+    this.db.list(this.basePath).push(fileUpload);
+  }
 
 }
