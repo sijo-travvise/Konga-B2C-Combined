@@ -18,7 +18,7 @@
             <div class="topbar__menu" *ngIf="user!=undefined">
                 <span class="d-flex align-items-center gap-2 btn-user p-0" (click)="op.toggle($event)" >
                     <img src="../../../assets/img/dummy-user.jpg" alt="user" />
-                    <h5>{{user?.email}}</h5>
+                    <h5> {{user?.firstName}} {{user?.lastName}}</h5>
                     <i class="pi pi-angle-down"></i>
                 </span>
                 <p-overlayPanel #op class="topBar__overlayPanel">
@@ -26,7 +26,7 @@
                         <div class="profile__header col-12 px-3 d-flex gap-3 pb-2 align-items-center ">
                             <img src="../../../assets/img/dummy-user.jpg" alt="user" />
                             <div class="user">
-                                <h5>{{user?.firstName}} {{user?.lastName}}</h5>
+                                <h5>{{user?.email}}</h5>
                                 <!-- <p>Affiliate</p> -->
                             </div>
                         </div>
