@@ -38,8 +38,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private translateService: TranslateService, 
               private _sharedService: SharedService, 
+              private router: Router,
               private messageService: MessageService,  
-               private router: Router,
               private _authenticationService: AuthenticationService,
               private primengConfig: PrimeNGConfig) {
     this.translateService.setDefaultLang('en');
@@ -90,6 +90,7 @@ export class HeaderComponent implements OnInit {
   {
     localStorage.removeItem('__token');
     localStorage.removeItem('currentUser');
+    this.router.navigate(['/'])
     window.location.reload();
     this.router.navigate(['/']);
   }

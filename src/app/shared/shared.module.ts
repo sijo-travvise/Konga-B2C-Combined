@@ -57,6 +57,7 @@ import { ToastModule } from 'primeng/toast';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { TextAreaComponent } from './text-area/text-area.component';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { TermsAndConditionsComponent } from './affliate/terms-and-conditions/terms-and-conditions.component';
 
 
 
@@ -94,7 +95,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     CountryWithStateComponent,
     StateSelectionComponent,
     ForgotPasswordComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    TermsAndConditionsComponent
     
     
     

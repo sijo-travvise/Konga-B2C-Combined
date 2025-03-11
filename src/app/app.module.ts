@@ -21,6 +21,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlightModule } from './module/flight/flight.module';
 import { SearchEngineModule } from './module/search-engine/search-engine.module';
 import { HotelModule } from './module/hotel/hotel.module';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { SharedModule } from './shared/shared.module';
 import { CustomerModule } from './module/customer/customer.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -34,6 +39,8 @@ import { OrganizationFormComponent } from './landing-page/deals-section/organiza
 import { PartyRegisterFormComponent } from './landing-page/deals-section/party-register-form/party-register-form.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { environment } from 'src/environments/environment';
+
 // import {ToastModule} from 'primeng/toast';
 
 
@@ -81,6 +88,11 @@ export function httpTranlateLoaderFactory(http:HttpClient){
         ButtonModule,
         ReactiveFormsModule,
         RippleModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireAuthModule,
+        AngularFirestoreModule,
+        AngularFireStorageModule,
+        AngularFireDatabaseModule,
         TranslateModule.forRoot({
             loader:{
                 provide:TranslateLoader,

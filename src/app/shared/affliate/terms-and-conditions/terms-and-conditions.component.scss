@@ -1,0 +1,34 @@
+div:has(> blockquote) {
+    background-color: #ededed;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  blockquote p::before {
+    content: '\201C';
+  }
+  
+  blockquote p::after {
+    content: '\201D';
+  }
+  
+  blockquote + p {
+    text-align: right;
+  }
+
+  p{
+    font-size: 14px;
+    line-height: 25px;
+  }
+
+  li{
+    font-size: 14px;
+    margin: 10px 0;
+    list-style: disc;
+  }
+
+  ul {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }

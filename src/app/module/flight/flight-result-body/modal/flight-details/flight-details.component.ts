@@ -45,12 +45,13 @@ export class FlightDetailsComponent implements AfterViewInit {
   revalidateObj: any = null;
   currrentUser: any;
   flexiPrice: number = 0;
-  matchingFlexiFareDetails: any[];
+  matchingFlexiFareDetails: any[] = [];
   constructor(private router: Router,
               public sharedService: SharedService,
               public _flightService: FlightService,
               private cdr: ChangeDetectorRef,
               private messageService: MessageService,
+              
               private primengConfig: PrimeNGConfig,
               private _authenticationService: AuthenticationService,
               public _microService: MicroService) {
@@ -305,7 +306,9 @@ export class FlightDetailsComponent implements AfterViewInit {
         this.BookedFlightData.Trips = data.Flights[0].Trips;
         this.BookedFlightData.FSC = data.Flights[0].FSC;
         this.BookedFlightData?.Trips.forEach((trip: any)=> {
-          trip.FlexiFareDetails[0].select = true;
+          if(trip.FlexiFareDetails != null && trip.FlexiFareDetails.length> 0) {
+            trip.FlexiFareDetails[0].select = true;
+          }
         })
 
         this.cdr.detectChanges();
@@ -318,14 +321,10 @@ export class FlightDetailsComponent implements AfterViewInit {
         this.loadFlexiFare();
         this.isLoading = false;
       }else {
-        this.isBookingFooterConsole = true;
+        // this.isBookingFooterConsole = true;
         this.isLoading = false;
-        //  Swal.fire({
-        //     icon: 'error',
-        //     title: 'Oops...',
-        //     text: 'Something went wrong!',
-        //   });
-        //   this.dialogRef.close();
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong!' })
+         
       }
     }, error=> {
       this.isLoading = false;
@@ -396,7 +395,11 @@ export class FlightDetailsComponent implements AfterViewInit {
         
         
       const result = createMatchingService(this.BookedFlightData?.Trips);
+      debugger;
       this.matchingFlexiFareDetails = result;
+      if(this.matchingFlexiFareDetails.length < 1) {
+        this.isBookingFooterConsole = true;
+      }
       this.isLoading = false;
       // const zeroAmountFare = this.SelectedFare?.Trips[0]?.FlexiFareDetails?.find((fare: any) => fare.Amount === 0);
       // if (zeroAmountFare) {

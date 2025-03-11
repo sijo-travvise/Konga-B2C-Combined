@@ -28,7 +28,8 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(private authenticationService: AuthenticationService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    console.log('line 31');
+    
     const currentUser = this.authenticationService.affliateUser;
     const currentToken = this.authenticationService.currentAccessToken;
     const isRefreshUrl = request.url.endsWith('/token/refresh_Token');
