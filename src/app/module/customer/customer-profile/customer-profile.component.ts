@@ -35,7 +35,6 @@ export class CustomerProfileComponent {
     if (Object.keys(this.currentUser).length > 1) {
       this.user = this.currentUser;
       this.getUserFlightBookings(this.user.customerUser_ID);
-      this.getUserProfile();
     }
     //console.log('current user', this.user);
   }
@@ -63,14 +62,6 @@ export class CustomerProfileComponent {
         }
       },
     });
-  }
-  getUserProfile() {
-    this.userProfileData = this.user;
-    this.currentUser.lastName = this.userProfileData.v_LastName;
-    this.currentUser.firstName = this.userProfileData.v_FirstName;
-    this.sharedService.setLocalStore('currentUser', this.currentUser);
-    this.authenticationService?.authenticateUser(this.currentUser);
-    this.isLoading = false;
   }
   updateUserProfile(event: any) {
     console.log('user event for updating', event);
@@ -125,6 +116,5 @@ export class CustomerProfileComponent {
   }
   onFileSelected(event:any){
     console.log("EVENT",event);
-  
   }
 }

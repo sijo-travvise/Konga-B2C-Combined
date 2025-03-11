@@ -1,10 +1,11 @@
-import { Component, Input, OnInit, SimpleChanges, ChangeDetectorRef  } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, ChangeDetectorRef, ViewChild  } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { FilterService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { SharedService } from 'src/app/services/shared.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 interface Language {
   name: String;
@@ -33,7 +34,7 @@ export class HeaderComponent implements OnInit {
   public forgotWindow:boolean = false;
   user:any = null;
   currentUser:any = null;
-
+  @ViewChild('op') overlayPanel!: OverlayPanel;
   public isLoading: boolean = false;
 
   constructor(private translateService: TranslateService, 
@@ -90,9 +91,16 @@ export class HeaderComponent implements OnInit {
   {
     localStorage.removeItem('__token');
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/'])
+    this.router.navigate([''])
     window.location.reload();
-    this.router.navigate(['/']);
+  }
+  closePanel() {
+    
+    if (this.overlayPanel) {
+      this.overlayPanel.hide();  // ✅ Hides the overlay panel
+    } else {
+      console.error('OverlayPanel is undefined!');
+    }
   }
   ngOnChanges(changes: SimpleChanges) {
     // let change = changes['currentLink'];

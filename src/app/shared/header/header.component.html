@@ -27,11 +27,11 @@
                             <img src="../../../assets/img/dummy-user.jpg" alt="user" />
                             <div class="user">
                                 <h5>{{user?.firstName}} {{user?.lastName}}</h5>
-                                <p>Affiliate</p>
+                                <!-- <p>Affiliate</p> -->
                             </div>
                         </div>
                         <div class="usr__nav  col-12 px-3">
-                            <ul>
+                            <ul (click)="closePanel()">
                                 <li routerLink="/customer-profile"><a><i class="pi pi-user"></i> View Profile </a></li>
                                 <li (click)="logOut()"><a><i class="pi pi-sign-out"></i> Log Out</a></li>
                             </ul>
