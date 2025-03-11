@@ -32,9 +32,11 @@ export class FlightHistoryComponent {
     this.bookingDetailsTab = 'out';
   }
   toggleAccordion(FlightTransactions_ID: string = '0', Transaction: any): void {
+    this.isLoading = true;
     if (FlightTransactions_ID === this.bookingDetailsTab) {
       this.bookingDetailsTab = '0'; // Close the tab if it's already open
       return;
+      this.isLoading = false;
     }
   
     this.bookingDetailsTab = FlightTransactions_ID; // Open the tab
@@ -97,7 +99,7 @@ export class FlightHistoryComponent {
       payment:this.parseJSON(Transaction.flightTransactionsPaymentGateway_JSON)
     };
     
-    console.log('AllFlightDetails', this.AllFlightDetails);
+    //console.log('AllFlightDetails', this.AllFlightDetails);
     this.isLoading = false;
   }
 }

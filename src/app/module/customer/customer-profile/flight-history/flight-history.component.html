@@ -109,8 +109,5 @@
         <h2> No Flights History found </h2>
     </div>
 </ng-template>
-<!-- <ng-template  #NoData>
-    <app-pre-loader  [isLoadingComplete]=isLoading [loderTitle]="'Loading'"></app-pre-loader>
-
-</ng-template> -->
+<app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading [loderTitle]="'Please Wait'"></app-pre-loader>
 
