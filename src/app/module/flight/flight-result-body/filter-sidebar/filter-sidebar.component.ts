@@ -148,10 +148,10 @@ export class FilterSidebarComponent {
       this.airlineList = { ...this.airlineList, ...airlineMap }
     }
     // flightData?.amedeusData?.result?.dictionaries
-    if (flightData?.amedeusData !== null && flightData?.amedeusData !== undefined) {
+    // if (flightData?.amedeusData !== null && flightData?.amedeusData !== undefined) {
 
-      this.airlineList = { ...this.airlineList, ...flightData?.amedeusData?.result?.dictionaries?.carriers }
-    }
+    //   this.airlineList = { ...this.airlineList, ...flightData?.amedeusData?.result?.dictionaries?.carriers }
+    // }
   }
 
 
@@ -300,7 +300,7 @@ export class FilterSidebarComponent {
 
     }
 
-    if ((changes['filteredFlightData']?.currentValue?.amedeusData !== null && changes['filteredFlightData']?.currentValue?.amedeusData !== undefined) || (changes['filteredFlightData']?.currentValue?.data !== null && changes['filteredFlightData']?.currentValue?.data !== undefined) && this.flightPopularFilters) {
+    if ((changes['filteredFlightData']?.currentValue?.data !== null && changes['filteredFlightData']?.currentValue?.data !== undefined) && this.flightPopularFilters) {
       // console.log(this.filteredFlightData);
       // if (this.filteredFlightData?.CombinedBound?.length) {
       //   this.minPrice = parseFloat(this.filteredFlightData?.CombinedBound[0]?.amount ?? 0);

@@ -71,7 +71,7 @@ export class FlightService {
   }
 
   GetHash(amount: number, public_key: string, reference: string): Observable<any> {
-    return this.http.get(this.flightSearch + 'api/Common/GenerateSha512HashKey?amount=' + amount + '&public_key=' + public_key + '&reference=' + reference); //, {responseType: 'text'}
+    return this.http.get(this.flightSearch + 'api/Common/GetKongaPayHashKey?amount=' + amount + '&public_key=' + public_key + '&reference=' + reference); //, {responseType: 'text'}
   }
 
   flightItenararyDetails(locatorCode: string, paymentStatus: any) {

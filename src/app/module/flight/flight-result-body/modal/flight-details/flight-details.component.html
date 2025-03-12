@@ -6,7 +6,7 @@
                     alt="" class="px-2">
                 {{flight?.FlightSegments[flight?.FlightSegments?.length - 1]?.Destination}}</h2>
             <div class="flight__travel__duration text-left">
-                <span class="duration__label"> Total Duration : {{
+                <span class="duration__label" *ngIf="flight?.Duration"> Total Duration : {{
                     _microService?.getFormatedFlightTime(flight?.Duration, true)}} </span>
             </div>
         </div>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="row pb-4 align-items-center">
                             <div class="col-md-6 mob_mb_3">
-                                <h5 class="flight__travel__time">{{
+                                <h5 class="flight__travel__time" *ngIf="segmentData?.Duration">{{
                                     _microService?.getFormatedFlightTime(segmentData?.Duration, true) }}</h5>
                             </div>
                             <div class="col-md-6  d-flex ">
@@ -51,9 +51,7 @@
                                     <!-- <ng-container *ngFor="let carrier of airlineList | keyvalue"> -->
                                     <div class="">
                                         <h5 class="flight__name"> {{ segmentData?.marketingAirlineName ?? segmentData.MarketingAirline }}</h5>
-                                        <span class="flight__number">{{ segmentData?.MarketingAirline+'
-                                            '+segmentData?.FlightNumber}} {{segmentData?.FlightNumber}} |
-                                            {{segmentData?.FlightClass}}</span>
+                                        <span class="flight__number">{{segmentData?.FlightNumber}} | {{segmentData?.FlightClass}}</span>
                                     </div>
 
                                     <!-- </ng-container> -->
