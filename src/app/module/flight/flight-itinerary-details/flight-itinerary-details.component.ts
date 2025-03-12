@@ -49,7 +49,6 @@ export class FlightItineraryDetailsComponent implements OnInit {
 
               this.route.paramMap.subscribe((params: any) => {
                 this.flightTransactions_ID = params.get('pnr').toString();
-                console.log(this.flightTransactions_ID);
     
               });
 

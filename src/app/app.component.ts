@@ -16,6 +16,7 @@ export class AppComponent {
   currentRoute: string;
   user: any;
   ipAddress: any;
+  authenticationLoading: boolean;
  
   constructor(private router: Router,
             private _authenticationService: AuthenticationService,
@@ -26,10 +27,19 @@ export class AppComponent {
     this.getMyIP()
 
     this._authenticationService.currentUserSubject.subscribe(data=> {
+      
       if(data != null && Object.keys(data).length)  {
         this.user= data;
+      }else{
+        this.user = this._authenticationService.affliateUser;
       }
     });
+
+
+    this._authenticationService.authenticationLoadingSubject.subscribe(state => {
+      this.authenticationLoading = state;
+    });
+
 
   
     this.router.events.subscribe((event: Event) => {
@@ -51,8 +61,6 @@ export class AppComponent {
 
 
   checkAuthentication() {
-    console.log('line 54');
-    
     if(Object.keys(this._authenticationService.affliateUser).length< 1) {
       const req = {
         username: environment.guestMail,
@@ -75,7 +83,7 @@ export class AppComponent {
                 if (data && data.success) {
                   this._sharedService.setLocalStore('currentUser',data.data);
                   this._authenticationService?.authenticateUser(data.data);
-                  this.router.navigate(['/'])
+                  this.router.navigate(['/']);
                 }else {
                 }
               })
@@ -88,8 +96,6 @@ export class AppComponent {
 
       })
     }
-    console.log(this._authenticationService.affliateUser,'line 50');
-    
   }
 
 

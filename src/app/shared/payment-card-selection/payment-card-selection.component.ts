@@ -21,16 +21,16 @@ export class PaymentCardSelectionComponent {
   // }
   // ngOnInit() {
   //   if (this.activeIndex == 0) {
-  //     debugger;
+  //     ;
   //     this.selectedValue = 'val1';
   //   } else if (this.activeIndex == 1) {
-  //     debugger;
+  //     ;
   //     this.selectedValue = 'val2';
   //   } else if (this.activeIndex == 2) {
-  //     debugger;
+  //     ;
   //     this.selectedValue = 'val3';
   //   } else if (this.activeIndex == 3) {
-  //     debugger;
+  //     ;
   //     this.selectedValue = 'val4';
   //   }
   // }

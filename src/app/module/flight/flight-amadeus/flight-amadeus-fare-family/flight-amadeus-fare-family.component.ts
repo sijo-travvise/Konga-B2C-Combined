@@ -84,7 +84,7 @@ export class FlightAmadeusFareFamilyComponent {
   ngOnInit() {
     if(this.sharedService.getLocalStore('affiliate_user')!='' && this.sharedService.getLocalStore('affiliate_user')!=undefined)
     {
-      debugger
+      
       this.affiliated_user =  JSON.parse(this.sharedService.getLocalStore('affiliate_user'));;
       this.affiliate_user_permission = this.affiliated_user?.permissions.filter((item: { moduleName: string; })=>item.moduleName=="AIR SERVICES")[0];
     }

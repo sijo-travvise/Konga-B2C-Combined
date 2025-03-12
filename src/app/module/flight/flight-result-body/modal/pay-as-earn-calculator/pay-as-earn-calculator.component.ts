@@ -35,13 +35,11 @@ export class PayAsEarnCalculatorComponent {
   constructor(private formBuilder: FormBuilder, private sharedService: SharedService, public _microService: MicroService, private router: Router) { }
 
   ngOnInit() {
-    console.log(this.BookedFlightData, this.flighInstallementDetails);
     this.calclateInstallMentData(this.payPercentage.value, this.PayBySplitType.value.code);
   
    
     this.installmentAmount = this.sharedService.getInstallmentAmount(this.BookedFlightData?.PriceSummary?.SubTotal ?? 0, 20);
     if(this.flighInstallementDetails !== null && this.flighInstallementDetails !== undefined){
-      console.log('line 44');
       
       const installmentArrayLength = Object.keys(this.flighInstallementDetails?.installementSplitAmount?.installmentDetails)?.length;
       this.payPercentage.setValue(this.flighInstallementDetails.minimumDownPayment ?? 20)
@@ -109,8 +107,6 @@ export class PayAsEarnCalculatorComponent {
     
 
     if (showType) {
-      console.log('line 112');
-      
       this.installmentApplied.emit(flightFareInstallementDetails);
     }
     else {
@@ -131,10 +127,6 @@ export class PayAsEarnCalculatorComponent {
         this.sharedService.setLocalStore("airPricePointSelected", this.BookedFlightData );
         this.router.navigateByUrl('/passenger-details');
       }
-      
-
-      
-      console.log('line 117');
       
     }
 

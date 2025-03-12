@@ -33,7 +33,7 @@
                                             *ngIf="status === 'Refunded'">{{ status }}</span>
                                     </ng-container>
                                 </ng-container>
-                                <h6><b>{{parseJSONHeader(history?.flightTransactions_JSON).DepartDate | date: 'dd MMM ‘ yy'}}</b></h6>
+                                <h6><b>{{parseJSONHeader(history?.flightTransactions_JSON).DepartDate |  date: 'dd-MMM-yyyy'}}</b></h6>
                                 <p class="flight__trip__type"> 
                                     {{
                                         !parseJSONHeader(history?.flightTransactions_JSON)?.TravelType ||

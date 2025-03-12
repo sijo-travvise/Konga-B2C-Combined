@@ -49,8 +49,7 @@
                         </h6>
 
                         <span class="flight__date__time"> {{
-                          _microService?.getFormatedFlightDate(trips?.FlightSegments[0].DepartureDate,false,"d&nbsp;MMM&nbsp;''''yy"
-                          )}} </span>
+                          _microService?.getFormatedFlightDate(trips?.FlightSegments[0].DepartureDate, false, "d-MMM-yyyy")}} </span>
 
                       </div>
                       <div class="flight-card__stop-info text-center ">
@@ -100,7 +99,7 @@
                         </h6>
                         <span class="flight__date__time">
                           {{ _microService?.getFormatedFlightDate(trips?.FlightSegments[trips?.FlightSegments?.length
-                          -1]?.ArrivalDate,false,"d&nbsp;MMM&nbsp;''''yy" )}}</span>
+                          -1]?.ArrivalDate,false, "d-MMM-yyyy" )}}</span>
                       </div>
                     </div>
                   </div>

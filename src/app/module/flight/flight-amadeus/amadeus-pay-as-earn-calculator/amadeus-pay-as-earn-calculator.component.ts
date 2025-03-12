@@ -35,11 +35,10 @@ export class AmadeusPayAsEarnCalculatorComponent {
     this.installmentAmount = this.BookedFlightData?.installmentAmount;
    
     this.installmentAmount = this.sharedService.getInstallmentAmount(this.BookedFlightData?.price?.grandTotal ?? 0, 20);
-    // debugger;
+    // ;
     // if(this.flighInstallementDetails !== null && this.flighInstallementDetails !== undefined){
-    //   debugger;
+    //   ;
 
-    //   console.log('line 42');
       
     //   const installmentArrayLength = Object.keys(this.flighInstallementDetails?.installementSplitAmount?.installmentDetails)?.length;
     //   this.payPercentage.setValue(this.flighInstallementDetails.minimumDownPayment ?? 20)

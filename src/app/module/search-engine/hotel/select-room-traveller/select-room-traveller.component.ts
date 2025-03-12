@@ -26,7 +26,7 @@ export class SelectRoomTravellerComponent {
   @Output() total_room_count = new EventEmitter<any>();
 
   ngOnInit(): void {
-    // debugger;
+    // ;
     //this.passengerChange.emit(this.passenger);
     this.total_room_count.emit(this.room_list.length);
     if (this.searchRoomsInfo.length == 0) {
@@ -143,7 +143,7 @@ export class SelectRoomTravellerComponent {
     this.searchRoomsInfo[this.searchRoomsInfo.length - 1].showorhide = true;
   }
   editRoom(index: number, e: any){
-    // debugger
+    // 
     this.StopEventProp(e);
     this.searchRoomsInfo.forEach((element,i) => {
       if(i==index){

@@ -133,7 +133,7 @@ export class FlightDetailsComponent implements AfterViewInit {
     
     if(this.sharedService.getLocalStore('affiliate_user')!='' && this.sharedService.getLocalStore('affiliate_user')!=undefined)
     {
-      debugger
+      
       this.affiliated_user =  JSON.parse(this.sharedService.getLocalStore('affiliate_user'));;
       this.affiliate_user_permission = this.affiliated_user?.permissions.filter((item: { moduleName: string; })=>item.moduleName=="AIR SERVICES")[0];
     }
@@ -283,7 +283,6 @@ export class FlightDetailsComponent implements AfterViewInit {
   }
 
   showCalculateDialog(fareList: any){
-    console.log(fareList,'line 283');
     let selectedFare = this.BookedFlightData
     selectedFare.PriceSummary.SubTotal = fareList.Details[0].Amount;
     selectedFare.PriceSummary.PriceTotal = fareList.Details[0].Amount;
@@ -395,7 +394,7 @@ export class FlightDetailsComponent implements AfterViewInit {
         
         
       const result = createMatchingService(this.BookedFlightData?.Trips);
-      debugger;
+      ;
       this.matchingFlexiFareDetails = result;
       if(this.matchingFlexiFareDetails.length < 1) {
         this.isBookingFooterConsole = true;

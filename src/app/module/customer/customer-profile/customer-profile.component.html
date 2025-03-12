@@ -1,6 +1,6 @@
 <div class="container mt-100 min-ht-80">
     <div class="row">
-        <div class="col-md-3" *ngIf="user!=undefined">
+        <div class="col-md-3" *ngIf="user!=undefined && user?.email != 'junaid.kp@travvise.com'">
             <div class="user__profile__card mb-4 text-center pt-4 px-5 pb-4">
                 <div class="col-12 position-relative d-flex justify-content-center">
                     <div class="circular-progress ">
@@ -70,7 +70,7 @@
             </div> -->
             <!--Trip Summary End-->
         </div>
-        <div class="col-md-9">
+        <div  [ngClass]="{ 'col-md-9': user!=undefined && user?.email != 'junaid.kp@travvise.com', 'col-md-12': user!=undefined && user?.email == 'junaid.kp@travvise.com'}">
             <!-- <div class=" mb-4  user__details_tab_section">
                 <ul class="mb-3">
                     <li [class.currentTabActive]="activeIndex === 0" (click)="activeIndex = 0">
