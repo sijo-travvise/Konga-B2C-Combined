@@ -22,7 +22,7 @@ export class AppComponent {
             private _sharedService: SharedService,
   ) {
     this.currentRoute = "Demo";
-    this.checkAuthentication();
+    //this.checkAuthentication();
     this.getMyIP()
 
     this._authenticationService.currentUserSubject.subscribe(data=> {

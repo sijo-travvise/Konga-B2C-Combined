@@ -13,6 +13,7 @@ import { error, log } from 'console';
 import { MicroService } from 'src/app/services/micro.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import moment from 'moment';
+import Swal from 'sweetalert2';
 // import { default as airLineCity } from "src/assets/json/AirIntCitys.json";
 
 import { debounceTime } from 'rxjs/operators';
@@ -514,6 +515,26 @@ export class OnewayComponent implements OnInit {
 
         if(this.currentUser) {
           this.microServiceSearch(flightSearch);
+        }
+        else{
+          this.isLoading = false;
+          Swal.fire({
+            title: 'Continue as Guest?',
+            text: 'If you already have an account, log in for a better experience.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Continue as guest',
+            cancelButtonText: 'Login',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+              //console.log('Continuing as Guest');
+              this.microServiceSearch(flightSearch);
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+              //console.log('Navigating to Login');
+              this.router.navigate(['/affiliate']);
+            }
+          });
         }
 
 
