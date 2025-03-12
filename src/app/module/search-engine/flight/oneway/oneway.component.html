@@ -99,7 +99,7 @@
         <div class="row px-1">
             <div class="col-md-9 " formArrayName="multiCityArray">
                 <ng-container *ngFor="let  item of multiCityArrayControl.controls; let i = index">
-                    <div class="row mb-3" [formGroupName]="i">
+                    <div class="row" [formGroupName]="i">
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-6 px-2 position-relative mb-3">
@@ -169,7 +169,7 @@
             <div class="col-md-3 px-2">
                 <button class="btn btn-primary w-100 h-64" (click)="searchResult('multicity')">Search <i
                         class="pi pi-search" style="font-size: rem(12)"></i></button>
-                <button class="p-button p-button-outlined btn-add mt-3"
+                <button class="p-button p-button-outlined btn-add mt-3 h-64"
                     (click)="addItem(multiCityArrayControl?.controls?.length ?? 0)"
                     *ngIf="(multiCityArrayControl?.controls?.length ?? 0) < 6">Add Another City</button>
 

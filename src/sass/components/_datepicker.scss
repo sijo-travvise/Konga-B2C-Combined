@@ -1,6 +1,6 @@
 .p-datepicker table td > span.p-highlight {
-    color: #901918 !important;
-    background: #f1d6d6 !important;
+    color: var(--primary-color) !important;
+    background: #e7057e15 !important;
 }
 .trvDatePickerGroup{
     >label{
