@@ -561,21 +561,58 @@ export class OnewayComponent implements OnInit {
         return;
       }
       else {
-        this.multiCityArrayControl.value.forEach((cityData: any, index: number) => {
-          this.amedeusReqModel.searchCriteria.flightFilters.cabinRestrictions[0].originDestinationIds.push((index + 1).toString());
-          // this.requestModel?.searchAirLeg.push(this.travelingMultiData(cityData));
-
-          let travelDetails = {
-            origin: cityData.selectedMultiFromCity?.CityCode,
-            destination: cityData.selectedMultiToCity?.CityCode,
-            date: cityData.DepartedMultiDate
-          }
-
-          this.amedeusReqModel.originDestinations.push(this.addTravellingData('oneWay', (index + 1), travelDetails));
-
-        });
-        this.isLoading = true;
-        this.submitTravelAmeadiusData(parameters, true);
+        if(this.currentUser) {
+          this.multiCityArrayControl.value.forEach((cityData: any, index: number) => {
+            this.amedeusReqModel.searchCriteria.flightFilters.cabinRestrictions[0].originDestinationIds.push((index + 1).toString());
+            // this.requestModel?.searchAirLeg.push(this.travelingMultiData(cityData));
+  
+            let travelDetails = {
+              origin: cityData.selectedMultiFromCity?.CityCode,
+              destination: cityData.selectedMultiToCity?.CityCode,
+              date: cityData.DepartedMultiDate
+            }
+  
+            this.amedeusReqModel.originDestinations.push(this.addTravellingData('oneWay', (index + 1), travelDetails));
+  
+          });
+          this.isLoading = true;
+          this.submitTravelAmeadiusData(parameters, true);
+        }
+        else{
+          this.isLoading = false;
+          Swal.fire({
+            title: 'Continue as Guest?',
+            text: 'If you already have an account, log in for a better experience.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Continue as guest',
+            cancelButtonText: 'Login',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+              //console.log('Continuing as Guest');
+             
+              this.multiCityArrayControl.value.forEach((cityData: any, index: number) => {
+                this.amedeusReqModel.searchCriteria.flightFilters.cabinRestrictions[0].originDestinationIds.push((index + 1).toString());
+                // this.requestModel?.searchAirLeg.push(this.travelingMultiData(cityData));
+      
+                let travelDetails = {
+                  origin: cityData.selectedMultiFromCity?.CityCode,
+                  destination: cityData.selectedMultiToCity?.CityCode,
+                  date: cityData.DepartedMultiDate
+                }
+      
+                this.amedeusReqModel.originDestinations.push(this.addTravellingData('oneWay', (index + 1), travelDetails));
+      
+              });
+              this.isLoading = true;
+              this.submitTravelAmeadiusData(parameters, true);
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+              //console.log('Navigating to Login');
+              this.router.navigate(['/affiliate']);
+            }
+          });
+        }
       }
     }
 

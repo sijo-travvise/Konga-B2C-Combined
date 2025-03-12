@@ -2,6 +2,12 @@
 .searchEngineOuter{
     padding-top: rem(250);
     position: relative;
+    z-index: 1;
+    ::ng-deep{
+        .p-overlay {
+            top:rem(30) !important;
+        }
+    }
 }
 .sectionBanner{
     background: url(/assets/img/landingpage/banner_default.jpg) no-repeat;

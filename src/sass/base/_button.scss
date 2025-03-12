@@ -149,3 +149,11 @@
 .p-button.p-button-info.p-button-outlined:enabled:active{
   background: rgba(246, 59, 131, 0.16);
 }
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
+  background-color: var(--bg-success-color) !important;
+  padding: rem(10) !important;
+}
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel) {
+  background-color: var(--primary-color) !important;
+  padding: rem(10) !important;
+}
