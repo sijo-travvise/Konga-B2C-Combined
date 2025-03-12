@@ -602,7 +602,6 @@ export class OnewayComponent implements OnInit {
                 });
                 this.microServiceSearch(flightSearch);
               } else if (result.dismiss === Swal.DismissReason.cancel) {
-                //console.log('Navigating to Login');
                 this.router.navigate(['/affiliate']);
               }
             });
