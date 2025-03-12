@@ -48,8 +48,8 @@ export class FlightListFliterComponent {
             PriceTotal: flightDetail.PriceSummary.PriceTotal,
             isSelected: false,
           };
-
-          let existingAirline = airlineTopFilterCopy.find(item => item.ValidatingAirline === airline);
+          debugger
+          let existingAirline = airlineTopFilterCopy.find(item => item.airlineCode === airlineCode);
 
           if (existingAirline) {
             if (!existingAirline[stopKey] || ((existingAirline[stopKey]?.PriceTotal ?? Infinity) >= stopData.PriceTotal)) {
@@ -75,49 +75,49 @@ export class FlightListFliterComponent {
 
     // console.log(resultList);
 
-    const lists = resultList.reduce((acc, flight) => {
-      if (flight.supplier === '1A') {        
-        const carrierCode = flight?.offer?.itineraries[0].segments[0].carrierCode;
-        const segmentCount = flight?.offer?.itineraries[0].segments.length;
-        const stops = segmentCount === 1 ? 'nonStop' : segmentCount === 2 ? 'oneStop' : 'twoStop';
+    // const lists = resultList.reduce((acc, flight) => {
+    //   if (flight.supplier === '1A') {        
+    //     const carrierCode = flight?.offer?.itineraries[0].segments[0].carrierCode;
+    //     const segmentCount = flight?.offer?.itineraries[0].segments.length;
+    //     const stops = segmentCount === 1 ? 'nonStop' : segmentCount === 2 ? 'oneStop' : 'twoStop';
 
-        const existingAirline = acc.find(item => item.airlineCode === carrierCode);
-        const existingAirlineMain = airlineTopFilterCopy.find(item => item.airlineCode === carrierCode);
+    //     const existingAirline = acc.find(item => item.airlineCode === carrierCode);
+    //     const existingAirlineMain = airlineTopFilterCopy.find(item => item.airlineCode === carrierCode);
 
-        if (existingAirline) {
-          if ((existingAirline[stops]?.PriceTotal ?? Infinity) > parseFloat(flight.fare)) {
-          existingAirline[stops] = {
-            id: flight.id,
-            supplier: flight.supplier,
-            PriceTotal: parseFloat(flight.fare),
-            isSelected: false,
-          };
-        }
-        } else if (existingAirlineMain) {
-          if ((existingAirlineMain[stops]?.PriceTotal ?? Infinity) > parseFloat(flight.fare)) {
-            existingAirlineMain[stops] = {
-              id: flight.id,
-              supplier: flight.supplier,
-              PriceTotal: parseFloat(flight.fare),
-              isSelected: false,
-            };
-          }
-        } else {
-          acc.push({
-            FSC: flight.supplier,
-            id: flight.id,
-            ValidatingAirline: this.airlineList[carrierCode] ?? carrierCode,
-            airlineCode: carrierCode,
-            nonStop: stops === 'nonStop' ? { PriceTotal: parseFloat(flight.fare), isSelected: false, id: flight.id, supplier: flight.supplier } : {},
-            oneStop: stops === 'oneStop' ? { PriceTotal: parseFloat(flight.fare), isSelected: false, id: flight.id, supplier: flight.supplier } : {},
-            twoStop: stops === 'twoStop' ? { PriceTotal: parseFloat(flight.fare), isSelected: false, id: flight.id, supplier: flight.supplier } : {},
-          });
-        }
-        // console.log(acc );
-      }
-      return acc;
-    }, []);
-    this.airlineTopFilterCopy.push(...lists);
+    //     if (existingAirline) {
+    //       if ((existingAirline[stops]?.PriceTotal ?? Infinity) > parseFloat(flight.fare)) {
+    //       existingAirline[stops] = {
+    //         id: flight.id,
+    //         supplier: flight.supplier,
+    //         PriceTotal: parseFloat(flight.fare),
+    //         isSelected: false,
+    //       };
+    //     }
+    //     } else if (existingAirlineMain) {
+    //       if ((existingAirlineMain[stops]?.PriceTotal ?? Infinity) > parseFloat(flight.fare)) {
+    //         existingAirlineMain[stops] = {
+    //           id: flight.id,
+    //           supplier: flight.supplier,
+    //           PriceTotal: parseFloat(flight.fare),
+    //           isSelected: false,
+    //         };
+    //       }
+    //     } else {
+    //       acc.push({
+    //         FSC: flight.supplier,
+    //         id: flight.id,
+    //         ValidatingAirline: this.airlineList[carrierCode] ?? carrierCode,
+    //         airlineCode: carrierCode,
+    //         nonStop: stops === 'nonStop' ? { PriceTotal: parseFloat(flight.fare), isSelected: false, id: flight.id, supplier: flight.supplier } : {},
+    //         oneStop: stops === 'oneStop' ? { PriceTotal: parseFloat(flight.fare), isSelected: false, id: flight.id, supplier: flight.supplier } : {},
+    //         twoStop: stops === 'twoStop' ? { PriceTotal: parseFloat(flight.fare), isSelected: false, id: flight.id, supplier: flight.supplier } : {},
+    //       });
+    //     }
+    //     // console.log(acc );
+    //   }
+    //   return acc;
+    // }, []);
+    // this.airlineTopFilterCopy.push(...lists);
   }
 
   selectedFlight(airline: any, data: any) {

@@ -63,19 +63,26 @@ export class FlightItineraryDetailsComponent implements OnInit {
  }
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-    //   this.universalLocatorCode = params.get('locatorCode');
-    //   this.merchant_reference = this.route?.snapshot?.queryParamMap?.get("merchant_reference");
-    // });
+    this.route.paramMap.subscribe(params => {
+      // this.universalLocatorCode = params.get('locatorCode');
+      // this.merchant_reference = this.route?.snapshot?.queryParamMap?.get("merchant_reference");
+      var paymentStatus = this.route.snapshot.queryParamMap.get("status");
+      if (paymentStatus == "success") {
+        this.paymentSuccess = true;
+      }
+      else if(paymentStatus=="failed"){
+        this.paymentSuccess = false;
+      }
+    });
     // if (this.universalLocatorCode != null) {
     //   var paymentStatus = this.route.snapshot.queryParamMap.get("status");
-    //   this.itineraryDetails(paymentStatus);
+    //   //this.itineraryDetails(paymentStatus);
     // }
     // else if(this.merchant_reference !=null)
     // {
     //   this.universalLocatorCode=this.merchant_reference
     //   var paymentStatus = this.route.snapshot.queryParamMap.get("status");
-    //   this.itineraryDetails(paymentStatus);
+    //   //this.itineraryDetails(paymentStatus);
     // }
     // else{
     //   var paymentStatus = this.route.snapshot.queryParamMap.get("status");
@@ -224,6 +231,7 @@ export class FlightItineraryDetailsComponent implements OnInit {
     this._flightService.GetHash(this.amount, this.public_key, this.reference)
       .subscribe(
         (res2: any) => {
+          debugger
           if (res2.statusCode == 200 && res2.result != null && res2.result != undefined) {
 
             this.hash = res2.result.hashKey;
@@ -284,16 +292,16 @@ export class FlightItineraryDetailsComponent implements OnInit {
   
       this.amount = Number(priceWithDecimal);  //1000
       this.description = "Konga Pay";
-      this.email = this.bookingDetailsData[0]?.FlightTransactionDetails[0]?.Email ?? "";
+      this.email = this.bookingDetailsData?.FlightTransactionDetails[0]?.Email ?? "";
       this.merchant_id = environment.merchantId;
-      this.firstname = this.bookingDetailsData[0]?.FlightTransactionDetails[0]?.FirstName ?? "";
-      this.lastname = this.bookingDetailsData[0]?.FlightTransactionDetails[0]?.LastName ?? "";
-      this.phone = this.bookingDetailsData[0]?.FlightTransactionDetails[0]?.PhoneNumber ?? "";
+      this.firstname = this.bookingDetailsData?.FlightTransactionDetails[0]?.FirstName ?? "";
+      this.lastname = this.bookingDetailsData?.FlightTransactionDetails[0]?.LastName ?? "";
+      this.phone = this.bookingDetailsData?.FlightTransactionDetails[0]?.PhoneNumber ?? "";
       let weburl = environment.webUrl;
       this.callback = weburl + "flight-itinerary/" + this.flightTransactions_ID;
-      this.customerId = this.bookingDetailsData[0]?.FlightTransactions[0]?.CustomerProfile_ID?? "";
-      this.reference = this.bookingDetailsData[0]?.FlightTransactions[0]?.AirlinePNR ?? "";
-  
+      this.customerId = this.bookingDetailsData?.FlightTransactions[0]?.CustomerProfile_ID?? "";
+      this.reference = this.bookingDetailsData?.FlightTransactions[0]?.AirlinePNR ?? "";
+      // debugger
     }
 
     issueTicket() {
