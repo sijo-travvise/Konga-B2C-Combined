@@ -28,7 +28,7 @@ export class FileUpload {
 export class AffliateComponent {
   affiliateRegForm: FormGroup;
   loginForm: FormGroup;
-  isLogin: boolean = true;
+  isLogin: boolean = false;
   isRegisterd: boolean = false;
   public countryOptionList: any = [];
   public stateOptionList:any;

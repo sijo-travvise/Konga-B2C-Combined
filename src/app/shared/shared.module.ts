@@ -134,6 +134,7 @@ import { TermsAndConditionsComponent } from './affliate/terms-and-conditions/ter
   exports:[
     HeaderComponent,
     FooterComponent,
+    LoginComponent,
     BreadcrumbModule,
     SessionExpireComponent,
     InnerPageTitleComponent,
@@ -143,6 +144,7 @@ import { TermsAndConditionsComponent } from './affliate/terms-and-conditions/ter
     CountrySelectionComponent,
     PhoneNumberFiledComponent,
     AlertComponent,
+    DialogModule,
     TravelPolicyHeaderComponent,
     RadioButtonComponent,
     FareDetailsHeaderComponent,

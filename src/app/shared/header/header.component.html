@@ -5,7 +5,7 @@
             <img src="assets/img/logo.svg" alt="Logo" />
         </a>
         <div class="section_right d-flex align-items-center gap-4">
-            <button class="link__Affiliates p-button py-2 px-4 p-button-outlined h-100"  routerLink="/affiliate" *ngIf="user==(undefined || null)">Affiliates</button>
+            <button class="link__Affiliates p-button py-2 px-4 p-button-outlined h-100"  routerLink="/register" *ngIf="user==(undefined || null)">Register</button>
             <!-- (click)="showDialog()" -->
             
             <!-- <div class="login_signup d-flex align-items-center gap-2 " (click)="showLoginPage()" *ngIf="user==undefined">
@@ -51,9 +51,9 @@
 <!-- <p-dialog  [(visible)]="visible" [modal]="true" class="affliatePageModal" [draggable]="false" [resizable]="true">
     <app-affliate (isloadingAffiliate)="affiliateLoading($event)"></app-affliate>
 </p-dialog> -->
-<p-dialog  [(visible)]="loginPage" [modal]="true" class="loginPageModal" [draggable]="false" [resizable]="true">
+<!-- <p-dialog  [(visible)]="loginPage" [modal]="true" class="loginPageModal" [draggable]="false" [resizable]="true">
     <app-login (isCloseLogin)="closeLogin($event)"></app-login>
-</p-dialog>
+</p-dialog> -->
 
 
 <app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading [loderTitle]="'Loading'"></app-pre-loader>
