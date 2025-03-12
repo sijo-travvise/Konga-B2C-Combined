@@ -52,15 +52,11 @@ export class PersonalInformationComponent {
     }
   }
   ngOnChanges(changes: SimpleChanges) {
-    // console.log("ngOnChanges triggered", changes);
-    // console.log('userinfo currentValue:', changes['userinfo']?.currentValue);
-    // console.log('this.userForm:', this.userForm);
     if (
       changes['userinfo'] &&
       changes['userinfo'].currentValue &&
       this.userForm
     ) {
-      console.log('Patching form with:', changes['userinfo'].currentValue);
       if (this.userinfo !== null && this.userinfo !== undefined) {
         this.userFormData(this.userinfo);
         this.userForm.disable();
@@ -119,8 +115,6 @@ export class PersonalInformationComponent {
     if (this.isEditUserInfo) {
       if (this.userForm.valid) {
         this.updateUser.emit(this.userForm.value);
-        //console.log("data emit to update service",this.userForm.value);
-        //this.userForm.disable();
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
@@ -143,9 +137,8 @@ export class PersonalInformationComponent {
   }
 
   userFormData(userData: UserProfile) {
-    debugger;
+    ;
     if (!this.userForm) return;
-    console.log('for patching', userData);
 
     // this.userForm.patchValue({
     //   title: this.SalutationTypeArray.find((pax: any) => pax.value === userData.v_Title),

@@ -31,7 +31,7 @@ export class MoreDealDetailsComponent {
     });
 
     // const data = history.state.yourData;
-    // debugger;
+    // ;
     this.routeParamsSubscription = this.route.params.subscribe(
       (params: Params) => {
         const id = params['deal-identity-Code'];

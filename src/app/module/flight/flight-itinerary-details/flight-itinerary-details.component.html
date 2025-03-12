@@ -92,7 +92,7 @@
     
                             <div class="invoice_headers ms-auto">
                                 <p>Total Amount</p>
-                                <h4 > ₦ {{ (pnrRetrieveRes?.priceSummary?.SubTotal ?? 0) | number:'0.1-2'}} </h4>
+                                <h4 > ₦ {{ (bookingDetailsData?.FlightTransactions[0]?.TotalFare ?? 0) | number:'0.1-2'}} </h4>
                                 <!-- <ng-container *ngIf="bookingData?.fareInstallmentDetails?.isInstallmentApplied; else installmentPayment;">
                                     <h4 > ₦ {{ (bookingData?.TotalFare ?? 0) | number:'0.1-2'}} </h4>
                             </ng-container > -->
@@ -136,7 +136,7 @@
                                 E, d MMMM y'}} -->
                                 {{
                                     _microService?.getFormatedFlightDate(trips?.FlightSegments[0].DepartureDate,
-                                    false,"EE , d&nbsp;MMM&nbsp;''''yy")}}
+                                    false, "d-MMM-yyyy")}}
                              </span>
                         </div>
                         <ng-container *ngFor="let segments of trips?.FlightSegments; let isFirst= first; let segmentIndex = index"> 

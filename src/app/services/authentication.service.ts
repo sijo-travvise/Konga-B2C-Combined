@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, map } from "rxjs";
+import { BehaviorSubject, Observable, map, Subject, catchError, switchMap, tap, throwError } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { User } from '../Models/User';
@@ -23,6 +23,8 @@ export class AuthenticationService {
     private currentTokenSubject: BehaviorSubject<AuthTokens> = new BehaviorSubject<AuthTokens>(this._sharedService.getLocalStore('__token') || {});
     public currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(this._sharedService.getLocalStore('currentUser') || {});
     public currentToken:Observable<AuthTokens>;
+    public authenticationLoadingSubject = new BehaviorSubject<boolean>(false);
+    // toggleState$ = this.authenticationLoading.asObservable();
     public user:any= {
       id: 0,
       username: '',
@@ -45,6 +47,7 @@ export class AuthenticationService {
       longitude: undefined,
       _2FAEnabled: false,
     };
+  ipAddress: any;
 
     constructor(private http: HttpClient,
                 private _sharedService: SharedService,
@@ -113,5 +116,67 @@ export class AuthenticationService {
         this.router.navigate(['/']);
           
       }
+      checkAuthentication(): Observable<any> {
+        this.ipAddress = this._sharedService.getIP();
+    
+        if (Object.keys(this.affliateUser).length < 1) {
+            this.authenticationLoadingSubject.next(true);
+            const req = {
+                username: environment.guestMail,
+                password: environment.guestPassword,
+                grant_Type: 'client_credentials',
+                type: 'Login'
+            };
+    
+            return this.getAcessToken(req).pipe(
+                switchMap(response => {
+                    if (response && response.success !== false) {
+                        this._sharedService.setLocalStore('__token', response);
+                        this.setToken(response);
+    
+                        const req2 = {
+                            email: environment.guestMail,
+                            password: environment.guestPassword
+                        };
+    
+                        return this.Generate2FA_otp(req2).pipe(
+                            switchMap(res2 => {
+                                if (res2) {
+                                    return this.login(environment.guestMail, environment.guestPassword, null, this.ipAddress).pipe(
+                                        tap(data => {
+                                            if (data && data.success) {
+                                                this._sharedService.setLocalStore('currentUser', data.data);
+                                                this.authenticateUser(data.data);
+                                                this.router.navigate(['/']);
+                                            }
+                                        })
+                                    );
+                                } else {
+                                    throw new Error("2FA OTP generation failed");
+                                }
+                            })
+                        );
+                    } else {
+                        throw new Error("Token generation failed");
+                    }
+                }),
+                catchError(error => {
+                    console.error("Authentication failed", error);
+                    this.authenticationLoadingSubject.next(false);
+                    return throwError(() => error);
+                }),
+                tap(() => {
+                    this.authenticationLoadingSubject.next(false);
+                })
+            );
+        }
+    
+        return new Observable(observer => {
+            observer.next();
+            observer.complete();
+        });
+    }
+    
+    
 }
 

@@ -1338,7 +1338,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
   }
 
   installmentAppliedChanged(event: any) {
-    debugger;
+    ;
     // this.priceReConfirmation
 
 

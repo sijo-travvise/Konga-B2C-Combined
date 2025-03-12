@@ -38,7 +38,7 @@ export class SelectPassengerComponent implements OnInit{
   @Output() passengerChange = new EventEmitter<any>();
   ngOnInit() {
     // console.log(this.searchFlightPassengerValue, this.totalLimit);   
-    // debugger; 
+    // ; 
     this._flightService.editPassengerCount(this.passengerList);
     if(this.searchFlightPassengerValue?.length > 0){
       this.totalLimit =0

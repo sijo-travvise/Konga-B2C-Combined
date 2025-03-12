@@ -229,4 +229,19 @@ export class SharedService {
     this.db.list(this.basePath).push(fileUpload);
   }
 
+
+  getIP() {
+    this.getMyIP()
+    .subscribe({
+      complete: () => {}, // completeHandler
+      error: (error: any) => {
+      }, // errorHandler
+      next: (data: any) => {
+        if (data != null) {
+          return data?.ip;
+        } 
+      },
+    });
+  }
+
 }

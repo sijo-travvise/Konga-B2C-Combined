@@ -34,7 +34,6 @@ export class CustomerProfileComponent {
       this.user = this.currentUser;
       this.getUserFlightBookings(this.user.customerUser_ID);
     }
-    //console.log('current user', this.user);
   }
   getUserFlightBookings(userid: any) {
     let obj = {
@@ -48,7 +47,6 @@ export class CustomerProfileComponent {
       },
       error: (error: any) => {
         this.isLoading = false;
-        //console.log('error',error);
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -59,7 +57,6 @@ export class CustomerProfileComponent {
         if (data.success) {
           this.flightHistoryData = data.data;
           this.isLoading = false;
-          console.log('flightHistoryData', this.flightHistoryData);
         }
       },
     });

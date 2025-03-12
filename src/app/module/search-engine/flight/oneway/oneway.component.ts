@@ -118,7 +118,6 @@ export class OnewayComponent implements OnInit {
               private _microService: MicroService) { 
 
                 if(this._authenticationService.affliateUser != null && Object.keys(this._authenticationService.affliateUser).length !== 0)  {
-                  console.log(this._authenticationService.affliateUser,'line 117');
                   this.currentUser = this._authenticationService.affliateUser;
                   this.getSupplierDetails();
 
@@ -168,7 +167,7 @@ export class OnewayComponent implements OnInit {
   airLineCity(event: { query: any; }) {
     // console.log(event);
 
-    // // debugger;
+    // // ;
     // //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
     //     let filtered: any[] = [];
     //     let query = event.query;
@@ -215,7 +214,7 @@ export class OnewayComponent implements OnInit {
 
 
   addTravellingData(travvelType: string = 'oneWay', id: number = 0, travelDetails: any) {
-    // debugger
+    // 
     const datepipe: DatePipe = new DatePipe('en-US');
     let travellingData = {
       id: id.toString(),
@@ -280,9 +279,6 @@ export class OnewayComponent implements OnInit {
   }
 
   resultPageRouter() {
-
-    console.log(this.searchResultObj,'line 283');
-    
     this.sharedService?.setLocalStore("flightData", this.searchResultObj);
     if (this.searchResultObj.amedeusData !== null || this.searchResultObj.data !== null) {
       this.router.navigateByUrl('/result-page');
@@ -449,11 +445,6 @@ export class OnewayComponent implements OnInit {
           flightSearch.SearchSegments = [];
           flightSearch.ApplicationConfig.fareType = 0;
           flightSearch.ApplicationConfig.CustomerProfileId = this.currentUser?.customerProfile_ID;
-
-
-
-
-          console.log(this.searchType,'line 450');
           if (this.searchType.toLocaleLowerCase() === 'oneway' || this.searchType.toLocaleLowerCase() === 'roundtrip') {
             
             // let onwordcls = MicroServiceCabinClass.find(item => item.value === this.am_selectedclass_ow)?.microvalue;
@@ -468,15 +459,9 @@ export class OnewayComponent implements OnInit {
             };
             flightSearch.SearchSegments.push(searchSegment);
             flightSearch.TypeOfTrip = 1;
-
-
-            console.log(this.triptype,'line 472', this.searchType);
-            
           }
 
           if (this.searchType.toLocaleLowerCase() === 'roundtrip') {
-
-            console.log(this.triptype,'line 478', this.searchType);
             // let returncls = MicroServiceCabinClass.find(item => item.value === this.am_selectedclass_re)?.microvalue;
       
             let searchSegment: SearchSegment =
@@ -514,7 +499,7 @@ export class OnewayComponent implements OnInit {
         // this.submitTravelAmeadiusData(parameters, true);
 
         if(this.currentUser) {
-          this.microServiceSearch(flightSearch);
+          this.microServiceSearch(flightSearch);  
         }
         else{
           this.isLoading = false;
@@ -528,7 +513,11 @@ export class OnewayComponent implements OnInit {
             reverseButtons: true
           }).then((result) => {
             if (result.isConfirmed) {
-              //console.log('Continuing as Guest');
+              this._authenticationService.checkAuthentication().subscribe((data) => {
+                    this.microServiceSearch(flightSearch);
+                       
+              }, () => {
+              });
               this.microServiceSearch(flightSearch);
             } else if (result.dismiss === Swal.DismissReason.cancel) {
               //console.log('Navigating to Login');
@@ -536,7 +525,6 @@ export class OnewayComponent implements OnInit {
             }
           });
         }
-
 
 
       }
@@ -550,11 +538,12 @@ export class OnewayComponent implements OnInit {
 
     }
     else {
-
+      this.isLoading = true;
       this.selectedFromCity.markAsUntouched();
       this.selectedToCity.markAsUntouched();
       this.DepartedDate.markAsUntouched();
       this.multiCityArrayControl.markAllAsTouched();
+      flightSearch.SearchSegments = [];
 
       if (this.multiCityArrayControl.invalid) {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill all required fields' });
@@ -565,17 +554,59 @@ export class OnewayComponent implements OnInit {
           this.amedeusReqModel.searchCriteria.flightFilters.cabinRestrictions[0].originDestinationIds.push((index + 1).toString());
           // this.requestModel?.searchAirLeg.push(this.travelingMultiData(cityData));
 
-          let travelDetails = {
-            origin: cityData.selectedMultiFromCity?.CityCode,
-            destination: cityData.selectedMultiToCity?.CityCode,
-            date: cityData.DepartedMultiDate
-          }
-
-          this.amedeusReqModel.originDestinations.push(this.addTravellingData('oneWay', (index + 1), travelDetails));
-
+          let searchSegment: SearchSegment =
+          {
+            Origin: cityData.selectedMultiFromCity?.CityCode,
+            Destination: cityData.selectedMultiToCity?.CityCode,
+            DepartureDate: datepipe.transform(cityData.DepartedMultiDate, 'yyyy-MM-dd'),
+            FlightClass: 0,
+            BoundType: 0,
+            AirlinePreference: []
+          };
+          flightSearch.SearchSegments.push(searchSegment);
         });
-        this.isLoading = true;
-        this.submitTravelAmeadiusData(parameters, true);
+        flightSearch.TypeOfTrip = 3;
+
+
+        flightSearch.CustomerUser_ID = 1;
+          // flightSearch.CustomerUser_ID = this.currentUser?.customerUser_ID;
+          flightSearch.NumberOfAdults = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'adult')?.count;
+          flightSearch.NumberOfChildren = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'child')?.count;
+          flightSearch.NumberOfInfants = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'infant')?.count;
+          flightSearch.SelectedCurrency = "NGN";
+          // flightSearch.Suppliers = '28';
+          flightSearch.Suppliers = this.selectedSuppiers;
+          flightSearch.ApplicationConfig.fareType = 0;
+          flightSearch.ApplicationConfig.CustomerProfileId = this.currentUser?.customerProfile_ID;
+
+
+          if(this.currentUser) {
+            this.microServiceSearch(flightSearch);  
+          }
+          else{
+            this.isLoading = false;
+            Swal.fire({
+              title: 'Continue as Guest?',
+              text: 'If you already have an account, log in for a better experience.',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Continue as guest',
+              cancelButtonText: 'Login',
+              reverseButtons: true
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this._authenticationService.checkAuthentication().subscribe((data) => {
+                      this.microServiceSearch(flightSearch);
+                         
+                }, () => {
+                });
+                this.microServiceSearch(flightSearch);
+              } else if (result.dismiss === Swal.DismissReason.cancel) {
+                //console.log('Navigating to Login');
+                this.router.navigate(['/affiliate']);
+              }
+            });
+          }
       }
     }
 
@@ -585,7 +616,6 @@ export class OnewayComponent implements OnInit {
   microServiceSearch(flightSearch) {
 
     this._flightService.microServiceFlightSearch(flightSearch).subscribe(data=> {
-      console.log(data,'line 550');
       this.isLoading = false;
 
       if (data && data?.CombinedBound !== null) {
@@ -605,8 +635,6 @@ export class OnewayComponent implements OnInit {
 
 
   getSupplierDetails() {
-    console.log('line 496');
-    
     this.isLoading = true;
     this.sharedService.GetAllSuppliers(1).subscribe({
       complete: () => { }, // completeHandler

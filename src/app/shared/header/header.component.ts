@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
     const browserlang = this.translateService.getBrowserLang();
     this.translateService.use(browserlang);
     this.currentUser = _authenticationService.affliateUser;
-    if(Object.keys(this.currentUser).length> 0 ||( this.currentUserUpdated != null) )
+    if(Object.keys(this.currentUser).length> 0 && ( this.currentUserUpdated != null &&  this.currentUserUpdated != undefined) )
     {
       
       this.user= this.currentUser;
@@ -89,11 +89,18 @@ export class HeaderComponent implements OnInit {
 
   logOut()
   {
-    localStorage.removeItem('__token');
-    localStorage.removeItem('currentUser');
-    this.router.navigate([''])
-    window.location.reload();
+    this.isLoading =true;
+    setTimeout(()=>{
+      this._authenticationService.currentUserSubject.next({})
+      localStorage.removeItem('__token');
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('flightData');
+      this.router.navigate(['/']);
+      this.isLoading = false;
+    }, 1000)
+   
   }
+
   closePanel() {
     
     if (this.overlayPanel) {
@@ -104,7 +111,12 @@ export class HeaderComponent implements OnInit {
   }
   ngOnChanges(changes: SimpleChanges) {
     // let change = changes['currentLink'];
-    this.user = this.currentUserUpdated;
+    ;
+    if(Object.keys(this.currentUserUpdated).length> 0 && this.currentUserUpdated != null &&  this.currentUserUpdated != undefined) {
+      this.user = this.currentUserUpdated;
+    }else {
+      this.user = null;
+    }
     if (this.currentLink == 'home' || this.currentLink == '') {
       this.breadCrumps = false;
       // alert(this.breadCrumps);

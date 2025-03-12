@@ -8,3 +8,5 @@
     styleClass="custom-scrolltop" 
     icon="pi pi-arrow-up">
 </p-scrollTop>
+<app-pre-loader *ngIf="authenticationLoading" [isLoadingComplete]=authenticationLoading
+    [loderTitle]="'Log in....'"></app-pre-loader>

@@ -34,14 +34,22 @@ export class MicroService {
   //   const minutes = time.substring(2, 4);
   //   return isHour ? `${hours} Hr :${minutes} Min` : `${hours}:${minutes}`;
   // }
-
+  getFormatedFlightDate(dateString: string, isDay: boolean = false, formats: string = 'yyyy-MMM-dd') {
+    const fullYear = '20' + dateString.slice(4, 6); // Extract year correctly as 2025
+    const formattedDate = `${fullYear}-${dateString.slice(2, 4)}-${dateString.slice(0, 2)}`; // Rearrange to YYYY-MM-DD
   
-  getFormatedFlightDate(dateString: string, isDay: boolean = false, formats = 'yy-MMM-dd') {
-    const currentYear = new Date().getFullYear().toString().slice(0, 2); // Get the current year's first two digits
-    const year = currentYear + dateString.slice(0, 2); // Combine the current year's first two digits with the first two digits from the input
-    return (this.datePipe.transform(new Date(year + '-' + dateString.slice(2, 4) + '-' + dateString.slice(4, 6)), isDay ? 'EE yy-MMM-dd' : formats));
-
+    return this.datePipe.transform(new Date(formattedDate), isDay ? 'EE yyyy-MMM-dd' : formats);
   }
+  
+  
+  
+  // getFormatedFlightDate(dateString: string, isDay: boolean = false, formats = 'yy-MMM-dd') {
+  //   debugger;
+  //   const currentYear = new Date().getFullYear().toString().slice(0, 2); // Get the current year's first two digits
+  //   const year = currentYear + dateString.slice(0, 2); // Combine the current year's first two digits with the first two digits from the input
+  //   return (this.datePipe.transform(new Date(year + '-' + dateString.slice(2, 4) + '-' + dateString.slice(4, 6)), isDay ? 'EE yy-MMM-dd' : formats));
+
+  // }
 
 
   calculateLayover(layOverIndex: number,flightSegments: any){
