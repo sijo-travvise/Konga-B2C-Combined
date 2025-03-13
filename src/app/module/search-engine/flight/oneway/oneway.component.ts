@@ -578,7 +578,8 @@ export class OnewayComponent implements OnInit {
   }
   showLoginPage() {
     this.loginPage = true;
-}
+  }
+  
 isGuestCheck(event: boolean) {
   this.isGuest = event;
   if( this.isGuest){
