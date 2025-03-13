@@ -439,8 +439,8 @@ export class OnewayComponent implements OnInit {
           //   Suppliers: '2'
           // };
           this.isLoading = true;
-          flightSearch.CustomerUser_ID = 1;
-          // flightSearch.CustomerUser_ID = this.currentUser?.customerUser_ID;
+          // flightSearch.CustomerUser_ID = 1;
+          flightSearch.CustomerUser_ID = this.currentUser?.customerUser_ID;
           flightSearch.NumberOfAdults = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'adult')?.count;
           flightSearch.NumberOfChildren = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'child')?.count;
           flightSearch.NumberOfInfants = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'infant')?.count;
@@ -579,7 +579,7 @@ export class OnewayComponent implements OnInit {
   showLoginPage() {
     this.loginPage = true;
   }
-  
+
 isGuestCheck(event: boolean) {
   this.isGuest = event;
   if( this.isGuest){
