@@ -13,7 +13,7 @@ export const environment = {
 
   flightsearchurl: 'http://localhost:51797/',
   flightBookurl: 'http://localhost:56518/',
-  webUrl: 'http://localhost:57420/',
+  webUrl: 'http://localhost:65189/',
   // merchantId: 'konga224',
   // mode: 'test',
   // publicKey: 'test_pu_b822553f28b5eaab3b7ed0d092adf74d'
