@@ -118,20 +118,20 @@ export class OnewayComponent implements OnInit {
               private primengConfig: PrimeNGConfig, 
               private _authenticationService: AuthenticationService,
               private _microService: MicroService) { 
-                
                 if(this._authenticationService.affliateUser != null && Object.keys(this._authenticationService.affliateUser).length !== 0)  {
                   this.currentUser = this._authenticationService.affliateUser;
                 }
-
                 this.getSupplierDetails();
               }
 
   ngOnInit() {
     // this.getSupplierDetails(); for getting suppliers information (TODO in later versions)
+   
     if (this.sharedService.getLocalStore('affiliate_user') != '' && this.sharedService.getLocalStore('affiliate_user') != undefined) {
       this.affiliated_user = JSON.parse(this.sharedService.getLocalStore('affiliate_user'));;
       this.affiliate_user_permission = this.affiliated_user?.permissions.filter((item: { moduleName: string; }) => item.moduleName == "AIR SERVICES")[0];
     }
+    this.getSupplierDetails();
     this.primengConfig.ripple = true;
 
     this.buildForm();
@@ -498,7 +498,7 @@ export class OnewayComponent implements OnInit {
 
         // this.submitTravelAmeadiusData(parameters, true);
         
-        if(this.currentUser) {
+        if(this._authenticationService.affliateUser != null && Object.keys(this._authenticationService.affliateUser).length> 0) {
           this.microServiceSearch(flightSearch);  
         }
         else{
@@ -583,8 +583,8 @@ export class OnewayComponent implements OnInit {
           flightSearch.ApplicationConfig.fareType = 0;
           flightSearch.ApplicationConfig.CustomerProfileId = this.currentUser?.customerProfile_ID;
 
-
-          if(this.currentUser) {
+        debugger;
+          if(this._authenticationService.affliateUser != null && Object.keys(this._authenticationService.affliateUser).length> 0) {
             this.microServiceSearch(flightSearch);  
           }
           else{
@@ -641,6 +641,7 @@ export class OnewayComponent implements OnInit {
 
 
   getSupplierDetails() {
+    debugger;
     this.isLoading = true;
     this.sharedService.GetAllSuppliers(1).subscribe({
       complete: () => { }, // completeHandler
@@ -661,7 +662,7 @@ export class OnewayComponent implements OnInit {
 
 
   findMatchingSupplierFromCurrentUser() {
-
+    debugger;
     
     const flightPrivilages = this.currentUser.privilages.flightService;
 

@@ -1477,7 +1477,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
           FlightTransactions_ID: '0',
           FlightTransactionCode: '',
           Carrier: segments?.MarketingAirline ?? '',
-          CabinClass: segments?.CabinClass,
+          CabinClass: segments?.FlightClass,
           FlightNumber: segments?.FlightNumber,
           ProviderCode: segments?.MarketingAirline,
           Origin: segments?.Origin,
@@ -1503,9 +1503,9 @@ export class PassengerDetailsComponent implements AfterViewInit {
           SegmentStatus: segments?.Status ?? '',
           OriginTerminal: segments?.TerminalInfo?.FromTerminal ?? '',
           DestinationTerminal: segments?.TerminalInfo?.ToTerminal ?? '',
-          AdultBaggage: (segments?.BaggageInfo?.find((item: any)=> item?.paxType== 1)?.QuantityAllowed|| '') + segments?.BaggageInfo?.find((item: any)=> item?.paxType== 1)?.UnitQualifier,
-          ChildBaggage: (segments?.BaggageInfo?.find((item: any)=> item?.paxType== 2)?.QuantityAllowed|| '') + segments?.BaggageInfo?.find((item: any)=> item?.paxType== 2)?.UnitQualifier,
-          InfantBaggage: (segments?.BaggageInfo?.find((item: any)=> item?.paxType== 3)?.QuantityAllowed|| '') + segments?.BaggageInfo?.find((item: any)=> item?.paxType== 3)?.UnitQualifier,
+          AdultBaggage: (segments?.BaggageInfo?.find((item: any)=> item?.paxType== 1)?.QuantityAllowed|| '') +' '+ (segments?.BaggageInfo?.find((item: any)=> item?.paxType== 1)?.UnitQualifier|| ''),
+          ChildBaggage: (segments?.BaggageInfo?.find((item: any)=> item?.paxType== 2)?.QuantityAllowed|| '') +' '+ (segments?.BaggageInfo?.find((item: any)=> item?.paxType== 2)?.UnitQualifier|| ''),
+          InfantBaggage: (segments?.BaggageInfo?.find((item: any)=> item?.paxType== 3)?.QuantityAllowed|| '') +' '+ (segments?.BaggageInfo?.find((item: any)=> item?.paxType== 3)?.UnitQualifier|| ''),
           AirlinePNR: segments?.AirlinePNR
         };
         this.airArabiaRequestObj.flightTransactionSegmentDetails.push(
