@@ -36,6 +36,7 @@ export class LoginComponent {
   // isGuest: boolean = false;
   @Output() isloadingAffiliate: EventEmitter<boolean> = new EventEmitter(true);
   @Output() isGuest: EventEmitter<boolean> = new EventEmitter(true);
+  @Output() isLoggedIn: EventEmitter<boolean> = new EventEmitter(true);
   constructor(
     private cdr: ChangeDetectorRef,
     private router: Router,
@@ -59,18 +60,21 @@ export class LoginComponent {
     }
   loginAffiliate() {
     if (this.loginForm.valid) {
-      this.isLoading = true;
+      // this.isLoading = true;
+      this.authenticationService.authenticationLoadingSubject.next(true);
       let reqmodel = {
         username: this.user_email.value,
         password: this.password.value,
         grant_Type: 'client_credentials',
         type: 'Login',
       };
-      this.isLoading = true;
+      //this.isLoading = true;
+      this.authenticationService.authenticationLoadingSubject.next(true);
       this.affiliateService.getAcessToken(reqmodel).subscribe({
         complete: () => {}, // completeHandler
         error: (error: any) => {
-          this.isLoading = false;
+         // this.isLoading = false;
+         this.authenticationService.authenticationLoadingSubject.next(false);
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
@@ -87,7 +91,8 @@ export class LoginComponent {
             this.Generate2FA_otp();
           } else {
             setTimeout(() => {
-              this.isLoading = false;
+              //this.isLoading = false;
+              this.authenticationService.authenticationLoadingSubject.next(false);
               // this.isloadingAffiliate.emit(false);
             }, 300);
             this.messageService.add({
@@ -116,9 +121,9 @@ export class LoginComponent {
             this.login_clicked = false;
             
             if (data?.data) {
-              this.isLoading = false;
               this._2FAEnabled = true;
-              this.isLoading = false;
+              //this.isLoading = false;
+              this.authenticationService.authenticationLoadingSubject.next(false);
             }
             else {
               this._2FAEnabled = false;
@@ -129,7 +134,8 @@ export class LoginComponent {
           },
           error => {
             this.login_clicked = false;
-            this.isLoading = false;
+            //this.isLoading = false;
+            this.authenticationService.authenticationLoadingSubject.next(false);
             // this.error = error;
             //     this.login_clicked = false
             //     this.show_error_msg = true;
@@ -151,17 +157,22 @@ export class LoginComponent {
             // this.show_error_msg = false;
             // this.show_error_msgBranch = false;
             // this.LoginUserData = data.data;
-            this.isLoading = false;
+            // this.isLoading = false;
+            this.authenticationService.authenticationLoadingSubject.next(false);
             this.sharedService.setLocalStore('currentUser',data.data);
             this.authenticationService?.authenticateUser(data.data);
-            this.isLoading = false;
-            this.router.navigate(['/'])
+            //this.isLoading = false;
+            this.authenticationService.authenticationLoadingSubject.next(false);
+            //this.router.navigate(['/']);
+            this.isLoggedIn.emit(true);
           }else {
-            this.isLoading = false;
+            //this.isLoading = false;
+            this.authenticationService.authenticationLoadingSubject.next(false);
           }
         },
         error: (error: any) => {
-          this.isLoading = false;
+          //this.isLoading = false;
+          this.authenticationService.authenticationLoadingSubject.next(false);
           // this.handleLoginError(error.error.errorMessage);
         },
         complete: () => {

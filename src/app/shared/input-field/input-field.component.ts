@@ -26,5 +26,8 @@ export class InputFieldComponent {
   changeField(event:any){
     this.onChangeEvent.emit(event);
   }
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;  // Toggle visibility
+  }
 
 }

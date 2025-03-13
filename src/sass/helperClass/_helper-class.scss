@@ -143,6 +143,10 @@
     opacity: 0.8;
   }
 }
+.password-icon{
+  top: rem(-45);
+  margin-left: -2.5rem;
+}
 @media (max-width: #{$desktop-width - 1px}) {
   .mob_pe_0 {
     padding-right: rem(0) !important;
