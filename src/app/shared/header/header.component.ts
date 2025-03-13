@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
   public forgotWindow:boolean = false;
   user:any = null;
   currentUser:any = null;
+  public isChekkedIn: boolean = false;
   @ViewChild('op') overlayPanel!: OverlayPanel;
   public isLoading: boolean = false;
 
@@ -167,6 +168,12 @@ showLoginPage() {
 closeLogin(event:boolean){
   this.loginPage = event;
   this.forgotWindow = true;
+}
+isLoginCheck(event: boolean){
+  this.isChekkedIn =event;
+  if(this.isChekkedIn){
+    this.loginPage = false;
+  }
 }
 
 

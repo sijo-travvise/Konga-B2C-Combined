@@ -24,6 +24,10 @@
       }
    }
 }
+.home{
+   font-size: rem(18);
+   cursor: pointer;
+}
 .topbar__menu{
    .btn-user{
       background: transparent;
@@ -80,7 +84,7 @@
    }
 }
 .card__profile{
-   width: rem(300);
+   max-width: rem(350);
    display: flex;
    flex-wrap: wrap;
    margin-right: rem(-20);

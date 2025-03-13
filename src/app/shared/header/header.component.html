@@ -5,16 +5,20 @@
             <img src="assets/img/logo.svg" alt="Logo" />
         </a>
         <div class="section_right d-flex align-items-center gap-4">
-            <button class="link__Affiliates p-button py-2 px-4 p-button-outlined h-100"  routerLink="/register" *ngIf="user==(undefined || null)">Register</button>
+            <div  class="login_signup d-flex align-items-center gap-2 ">
+                <i class="pi pi-home"></i>
+                <p class="home" routerLinkActive="list-item-active" routerLink="/"> <a>Home</a></p>
+            </div>
+          
+            <button class="link__Affiliates p-button py-2 px-4 p-button-outlined h-100"  routerLink="/register" *ngIf="user==(undefined || null)">Affiliate Register</button>
             <!-- (click)="showDialog()" -->
             
-            <!-- <div class="login_signup d-flex align-items-center gap-2 " (click)="showLoginPage()" *ngIf="user==undefined">
+            <div class="login_signup d-flex align-items-center gap-2 " (click)="showLoginPage()" *ngIf="user==undefined">
                 <i class="pi pi-user"></i>
                 <a>Login</a>
-                <span class="mx-1">/</span>
-                <a>Signup</a>
-            </div> -->
-
+                <!-- <span class="mx-1">/</span>
+                <a>Signup</a> -->
+            </div>
             <div class="topbar__menu" *ngIf="user!=undefined">
                 <span class="d-flex align-items-center gap-2 btn-user p-0" (click)="op.toggle($event)" >
                     <img src="../../../assets/img/dummy-user.jpg" alt="user" />
@@ -51,9 +55,9 @@
 <!-- <p-dialog  [(visible)]="visible" [modal]="true" class="affliatePageModal" [draggable]="false" [resizable]="true">
     <app-affliate (isloadingAffiliate)="affiliateLoading($event)"></app-affliate>
 </p-dialog> -->
-<!-- <p-dialog  [(visible)]="loginPage" [modal]="true" class="loginPageModal" [draggable]="false" [resizable]="true">
-    <app-login (isCloseLogin)="closeLogin($event)"></app-login>
-</p-dialog> -->
+<p-dialog  [(visible)]="loginPage" [modal]="true" class="loginPageModal" [draggable]="false" [resizable]="true">
+    <app-login  (isLoggedIn)="isLoginCheck($event)"></app-login>
+</p-dialog>
 
 
 <app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading [loderTitle]="'Loading'"></app-pre-loader>
