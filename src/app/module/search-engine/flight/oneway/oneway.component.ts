@@ -42,6 +42,7 @@ export class OnewayComponent implements OnInit {
   public selectedPassengerListData: any;
   public selectedCabinDataData: any;
   public isGuest: boolean = false;
+  public isChekkedIn: boolean = false;
   minimumDate = new Date();
   public isLoading = false;
   @Output() changedFlightData: EventEmitter<boolean> = new EventEmitter<any>(false);
@@ -598,6 +599,16 @@ isGuestCheck(event: boolean) {
 
 //console.log("guest status",this.isGuest);
 
+}
+isLoginCheck(event: boolean){
+  this.isChekkedIn =event;
+  if(this.isChekkedIn){
+    this.currentUser = this._authenticationService.affliateUser;
+    this.loginPage = false;
+    this.findMatchingSupplierFromCurrentUser()
+    this.searchResult();
+    
+  }
 }
 
   microServiceSearch(flightSearch) {

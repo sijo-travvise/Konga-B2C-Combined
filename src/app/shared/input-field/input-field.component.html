@@ -2,6 +2,8 @@
     <label for="float-input">{{title}} &nbsp; <span class="label__optional" *ngIf="isOptional">( Optional )</span></label>
     <ng-container  *ngIf="!isSuffix; else suffix">
     <input id="float-input" type="text" pInputText [type]="showPassword ? 'text' : type" [formControl] ="formControls" [required]="isRequired" [placeholder]="placeholder"> 
+    <button  pButton  type="button" icon="{{ showPassword ? 'pi pi-eye-slash' : 'pi pi-eye' }}" (click)="togglePasswordVisibility()" class="p-button-text password-icon" *ngIf="type === 'password'">
+    </button>
 </ng-container>
     <ng-template #suffix>
         <p-inputNumber [formControl]="formControls" inputId="mile" suffix="{{suffixValue}}"  (onInput)="changeField($event)"> </p-inputNumber>
