@@ -42,7 +42,16 @@
     background: var(--primary-color);
     border: 1px solid var(--primary-color);
     padding: rem(6) rem(9);
-    font-size: rem(16);
+    font-size: rem(16) !important;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+  }
+  .p-button-success{
+    color: var(--text-white-color);
+    background: var(--bg-success-color);
+    border: 1px solid var(--primary-color);
+    padding: rem(6) rem(9);
+    font-size: rem(16) !important;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 6px;
   }

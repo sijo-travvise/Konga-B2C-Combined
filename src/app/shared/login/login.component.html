@@ -1,10 +1,51 @@
-<ul>
+<div class="affliateCard container">
+    <div  class="mb-4">
+        <h2> Continue as <b> Guest? </b></h2>
+        <p class="line"><span>If you already have an account, log in here for a better experience.</span></p>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="loginAffiliate()">
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <app-input-field [title]="'Email'" [isRequired]=true [formControls]="user_email"></app-input-field>
+            </div>
+            <div class="col-md-12 mb-4">
+                <app-input-field [title]="'Password'" type="password" [isRequired]=true
+                    [formControls]="password"></app-input-field>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-md-6  align-self-end">
+                <button class="p-button-success p-button w-100 py-3 text-center d-flex justify-content-center mb-4" (click)="loginAsGuest()"
+                    type="button">Continue as guest</button>
+            </div>
+            <div class="col-md-6  align-self-end">
+                <button
+                    class="p-button-primary p-button w-100 py-3 text-center d-flex justify-content-center mb-4">Login</button>
+
+                <!-- <p class="p__forgot">Forgot Password ? <a href="#">Click here to reset</a></p> -->
+            </div>
+        </div>
+        <!-- <div class="row py-5 mx-0">
+            <p class="line"><span>Or</span></p>
+        </div> -->
+
+        <!-- <h2 class="mb-4">BE A PART OF <b>US</b></h2>
+        <div class="d-flex justify-content-center ">
+            <button class="p-button-primary p-button px-5 py-3 text-center d-flex justify-content-center mb-4  "
+                (click)="this.isLogin = !this.isLogin;">Register</button>
+        </div> -->
+
+
+    </form>
+</div>
+
+<!-- <ul>
     <li [class.currentTab]="activeIndex === 0" (click)="activeIndex = 0" >LOGIN</li>
     <li [class.currentTab]="activeIndex === 1" (click)="activeIndex = 1" >SIGN UP</li>
 </ul>
-<hr/>
+<hr/> -->
 
-<div class="loginPage"  [class.loginPageActive]="activeIndex === 0">
+<!-- <div class="loginPage"  [class.loginPageActive]="activeIndex === 0">
    
         <form> 
             <div class="row">
@@ -23,8 +64,8 @@
             </div>
         </form>
        
-</div>
-<div class="signUpPage"  [class.loginPageActive]="activeIndex === 1">
+</div> -->
+<!-- <div class="signUpPage"  [class.loginPageActive]="activeIndex === 1">
    
         <form> 
             <div class="row">
@@ -45,8 +86,8 @@
             </div>
         </form>
        
-</div>
+</div> -->
 
-<p-dialog  appendTo="body" [(visible)]="forgotWindow" [modal]="true" styleClass="forgotPageModal"  [draggable]="false" [resizable]="true">
+<!-- <p-dialog  appendTo="body" [(visible)]="forgotWindow" [modal]="true" styleClass="forgotPageModal"  [draggable]="false" [resizable]="true">
     <app-forgot-password (isForgotClose)="backToLogin($event)"></app-forgot-password>
-</p-dialog>
+</p-dialog> -->

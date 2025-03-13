@@ -9,7 +9,7 @@ import { TermsAndConditionsComponent } from './affliate/terms-and-conditions/ter
 const routes: Routes = [
   // {path:'preloader', component:PreLoaderComponent},
   {path:'404', component:ForNotForComponent},
-  {path:'affiliate', component:AffliateComponent},
+  {path:'register', component:AffliateComponent},
   { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
 ];
 

@@ -25,6 +25,9 @@ export class AuthenticationService {
     public currentToken:Observable<AuthTokens>;
     public authenticationLoadingSubject = new BehaviorSubject<boolean>(false);
     // toggleState$ = this.authenticationLoading.asObservable();
+    private isGuestSubject = new BehaviorSubject<boolean>(false); // Default as guest (true)
+    // Observable to expose the value
+    isGuest$: Observable<boolean> = this.isGuestSubject.asObservable();
     public user:any= {
       id: 0,
       username: '',
@@ -176,7 +179,14 @@ export class AuthenticationService {
             observer.complete();
         });
     }
+    setGuestStatus(status: boolean): void {
+        this.isGuestSubject.next(status);
+    }
     
+    // Get current value
+    isGuest(): boolean {
+        return this.isGuestSubject.value;
+    }
     
 }
 
