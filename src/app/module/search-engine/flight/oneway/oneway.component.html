@@ -184,7 +184,7 @@
 <app-pre-loader *ngIf="isLoading" [isLoadingComplete]=isLoading
     [loderTitle]="'we are finding the best flights for you'"></app-pre-loader>
 
-    <!-- <p-dialog  [(visible)]="loginPage" [modal]="true" class="loginPageModal" [draggable]="false" [resizable]="true">
-        <app-login ></app-login>
+    <p-dialog  [(visible)]="loginPage" [modal]="true" class="loginPageModal" [draggable]="false" [resizable]="true">
+        <app-login (isGuest)="isGuestCheck($event)"></app-login>
     </p-dialog>
-     -->
+    

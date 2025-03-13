@@ -41,6 +41,7 @@ export class OnewayComponent implements OnInit {
   @Input() cities: Array<any> = [];
   public selectedPassengerListData: any;
   public selectedCabinDataData: any;
+  public isGuest: boolean = false;
   minimumDate = new Date();
   public isLoading = false;
   @Output() changedFlightData: EventEmitter<boolean> = new EventEmitter<any>(false);
@@ -52,6 +53,7 @@ export class OnewayComponent implements OnInit {
   public current_date: Date = new Date();
   public max_date: Date = new Date();
   rotate: boolean = false;
+  loginPage: boolean = false;
   roundTripDateArry: any[] = [];
   // @ViewChild('calendar') private calendar: any;
   rangeDates: Date[] | undefined;
@@ -124,6 +126,9 @@ export class OnewayComponent implements OnInit {
                 }
 
                 this.getSupplierDetails();
+                // this._authenticationService.isGuest$.subscribe(status => {
+                //   this.isGuest = status;
+                // });
               }
 
   ngOnInit() {
@@ -503,31 +508,7 @@ export class OnewayComponent implements OnInit {
         }
         else{
           this.isLoading = false;
-          Swal.fire({
-            title: 'Continue as Guest?',
-            text: 'If you already have an account, log in for a better experience.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Continue as guest',
-            cancelButtonText: 'Login',
-            reverseButtons: true
-          }).then((result) => {
-            if (result.isConfirmed) {
-              this._authenticationService.checkAuthentication().subscribe((data) => {
-                console.log(data,'line 517');
-                if(data) {
-                  this.currentUser = data.data;
-                 this.findMatchingSupplierFromCurrentUser()
-                  this.searchResult();
-                }
-                       
-              }, () => {
-              });
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-              //console.log('Navigating to Login');
-              this.router.navigate(['/affiliate']);
-            }
-          });
+          this.showLoginPage();
         }
 
 
@@ -589,35 +570,34 @@ export class OnewayComponent implements OnInit {
           }
           else{
             this.isLoading = false;
-            Swal.fire({
-              title: 'Continue as Guest?',
-              text: 'If you already have an account, log in for a better experience.',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonText: 'Continue as guest',
-              cancelButtonText: 'Login',
-              reverseButtons: true
-            }).then((result) => {
-              if (result.isConfirmed) {
-                this._authenticationService.checkAuthentication().subscribe((data) => {
-                  if(data) {
-                    this.currentUser = data.data;
-                    this.findMatchingSupplierFromCurrentUser();
-                    this.searchResult();
-                  }
-                         
-                }, () => {
-                });
-              } else if (result.dismiss === Swal.DismissReason.cancel) {
-                this.router.navigate(['/affiliate']);
-              }
-            });
+            this.showLoginPage();
           }
       }
     }
 
   }
+  showLoginPage() {
+    this.loginPage = true;
+}
+isGuestCheck(event: boolean) {
+  this.isGuest = event;
+  if( this.isGuest){
+    this.loginPage = false;
+    this._authenticationService.checkAuthentication().subscribe((data) => {
+      console.log(data,'line 517');
+      if(data) {
+        this.currentUser = data.data;
+       this.findMatchingSupplierFromCurrentUser()
+        this.searchResult();
+      }
+             
+    }, () => {
+    });
+  }
 
+//console.log("guest status",this.isGuest);
+
+}
 
   microServiceSearch(flightSearch) {
 

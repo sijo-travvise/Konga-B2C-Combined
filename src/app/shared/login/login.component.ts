@@ -33,7 +33,9 @@ export class LoginComponent {
   _2FAEnabled: boolean = false;
   otp: any;
   ipAddress: any;
+  // isGuest: boolean = false;
   @Output() isloadingAffiliate: EventEmitter<boolean> = new EventEmitter(true);
+  @Output() isGuest: EventEmitter<boolean> = new EventEmitter(true);
   constructor(
     private cdr: ChangeDetectorRef,
     private router: Router,
@@ -52,7 +54,7 @@ export class LoginComponent {
    get password() {
       return this.loginForm?.get('password') as FormControl<any>;
     }
-    get user_email() {
+    get user_email() {  
       return this.loginForm?.get('user_email') as FormControl<any>;
     }
   loginAffiliate() {
@@ -166,5 +168,10 @@ export class LoginComponent {
           // Add any logic needed on completion here if necessary
         }
       });
+  }
+  loginAsGuest() {
+   // this.authenticationService.setGuestStatus(!this.isGuest);
+   this.isGuest.emit(true);
+  console.log('guest');
   }
 }
