@@ -74,6 +74,8 @@ export class OnewayComponent implements OnInit {
 
   supplierList: any[] = [];
   currentUser: any;
+  guestLogin: boolean = false;
+  suppliers: any = [];
 
 
 
@@ -116,14 +118,12 @@ export class OnewayComponent implements OnInit {
               private primengConfig: PrimeNGConfig, 
               private _authenticationService: AuthenticationService,
               private _microService: MicroService) { 
-
+                
                 if(this._authenticationService.affliateUser != null && Object.keys(this._authenticationService.affliateUser).length !== 0)  {
                   this.currentUser = this._authenticationService.affliateUser;
-                  this.getSupplierDetails();
-
-                  
-                  
                 }
+
+                this.getSupplierDetails();
               }
 
   ngOnInit() {
@@ -336,7 +336,7 @@ export class OnewayComponent implements OnInit {
   }
 
   searchResult(searchType: string = 'oneway') {
-
+    
     //For Amadeus search
 
     this.amedeusReqModel.originDestinations.length = 0;
@@ -497,7 +497,7 @@ export class OnewayComponent implements OnInit {
         }
 
         // this.submitTravelAmeadiusData(parameters, true);
-
+        
         if(this.currentUser) {
           this.microServiceSearch(flightSearch);  
         }
@@ -514,11 +514,15 @@ export class OnewayComponent implements OnInit {
           }).then((result) => {
             if (result.isConfirmed) {
               this._authenticationService.checkAuthentication().subscribe((data) => {
-                    this.microServiceSearch(flightSearch);
+                console.log(data,'line 517');
+                if(data) {
+                  this.currentUser = data.data;
+                 this.findMatchingSupplierFromCurrentUser()
+                  this.searchResult();
+                }
                        
               }, () => {
               });
-              this.microServiceSearch(flightSearch);
             } else if (result.dismiss === Swal.DismissReason.cancel) {
               //console.log('Navigating to Login');
               this.router.navigate(['/affiliate']);
@@ -568,7 +572,7 @@ export class OnewayComponent implements OnInit {
         flightSearch.TypeOfTrip = 3;
 
 
-        flightSearch.CustomerUser_ID = 1;
+          flightSearch.CustomerUser_ID = this.currentUser?.customerUser_ID;
           // flightSearch.CustomerUser_ID = this.currentUser?.customerUser_ID;
           flightSearch.NumberOfAdults = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'adult')?.count;
           flightSearch.NumberOfChildren = this.selectedPassengerListData.find((passenger: any) => passenger?.passengerType?.toLowerCase() === 'child')?.count;
@@ -596,11 +600,14 @@ export class OnewayComponent implements OnInit {
             }).then((result) => {
               if (result.isConfirmed) {
                 this._authenticationService.checkAuthentication().subscribe((data) => {
-                      this.microServiceSearch(flightSearch);
+                  if(data) {
+                    this.currentUser = data.data;
+                    this.findMatchingSupplierFromCurrentUser();
+                    this.searchResult();
+                  }
                          
                 }, () => {
                 });
-                this.microServiceSearch(flightSearch);
               } else if (result.dismiss === Swal.DismissReason.cancel) {
                 this.router.navigate(['/affiliate']);
               }
@@ -641,9 +648,9 @@ export class OnewayComponent implements OnInit {
       next: (data: any) => {
         if (data?.length) {
           this.isLoading = false;
-          
 
-          this.findMatchingSupplierFromCurrentUser(data);
+          this.suppliers = data
+          this.findMatchingSupplierFromCurrentUser();
         }else {
           this.isLoading = false;
         }
@@ -653,27 +660,30 @@ export class OnewayComponent implements OnInit {
 
 
 
-  findMatchingSupplierFromCurrentUser(suppliers) {
+  findMatchingSupplierFromCurrentUser() {
 
     
-    const flightPrivilages = this._authenticationService.affliateUser.privilages.flightService;
+    const flightPrivilages = this.currentUser.privilages.flightService;
 
 
     flightPrivilages.forEach((flights: any)=> {
       
       const allowedSuplierCode = flights.supplierCode;
 
-      suppliers.forEach((item: any)=> {
+      this.suppliers.forEach((item: any)=> {
         if (allowedSuplierCode === item?.supplierCode) {
           if(this.selectedSuppiers) {
             this.selectedSuppiers += ',';
           }
           this.selectedSuppiers += item.pccList[0].supplier_DTID;
+
+         
         }
       });
 
     });
-    
+
+   
   }
 
   buildForm() {
