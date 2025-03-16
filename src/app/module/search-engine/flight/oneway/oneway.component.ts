@@ -655,26 +655,29 @@ isLoginCheck(event: boolean){
 
   findMatchingSupplierFromCurrentUser() {
     debugger;
-    
-    const flightPrivilages = this.currentUser.privilages.flightService;
+    if(this.currentUser && this.currentUser.privilages.flightService) {
+      const flightPrivilages = this.currentUser.privilages.flightService;
 
-
-    flightPrivilages.forEach((flights: any)=> {
+      flightPrivilages.forEach((flights: any)=> {
       
-      const allowedSuplierCode = flights.supplierCode;
-
-      this.suppliers.forEach((item: any)=> {
-        if (allowedSuplierCode === item?.supplierCode) {
-          if(this.selectedSuppiers) {
-            this.selectedSuppiers += ',';
+        const allowedSuplierCode = flights.supplierCode;
+  
+        this.suppliers.forEach((item: any)=> {
+          if (allowedSuplierCode === item?.supplierCode) {
+            if(this.selectedSuppiers) {
+              this.selectedSuppiers += ',';
+            }
+            this.selectedSuppiers += item.pccList[0].supplier_DTID;
+  
+           
           }
-          this.selectedSuppiers += item.pccList[0].supplier_DTID;
-
-         
-        }
+        });
+  
       });
+    }
 
-    });
+
+   
 
    
   }
