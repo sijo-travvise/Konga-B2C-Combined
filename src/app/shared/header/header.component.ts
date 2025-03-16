@@ -34,9 +34,10 @@ export class HeaderComponent implements OnInit {
   public forgotWindow:boolean = false;
   user:any = null;
   currentUser:any = null;
+  public isChekkedIn: boolean = false;
   @ViewChild('op') overlayPanel!: OverlayPanel;
   public isLoading: boolean = false;
-
+  public isGuest: boolean = false;
   constructor(private translateService: TranslateService, 
               private _sharedService: SharedService, 
               private router: Router,
@@ -168,10 +169,33 @@ closeLogin(event:boolean){
   this.loginPage = event;
   this.forgotWindow = true;
 }
+isLoginCheck(event: boolean){
+  this.isChekkedIn =event;
+  if(this.isChekkedIn){
+    this.loginPage = false;
+  }
+}
 
 
 affiliateLoading(event:boolean= false){
   this.isLoading = event;
 }
+isGuestCheck(event: boolean) {
+  console.log(event,'line 516');
+  this.isGuest = event;
+  if( this.isGuest){
+    this.loginPage = false;
+    this._authenticationService.checkAuthentication().subscribe((data) => {
+      console.log(data,'line 517');
+      if(data) {
+        this.currentUser = data.data;
+      }
+             
+    }, () => {
+    });
+  }
 
+//console.log("guest status",this.isGuest);
+
+}
 }

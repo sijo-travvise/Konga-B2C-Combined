@@ -101,6 +101,14 @@
     background-color: transparent;
     color: var(--primary-color);
     border-color: transparent;
+    &.eye-icon-button{
+      width: 10%;
+      &:active {
+        background:unset !important;
+        color: var(--primary-color);
+        border-color: transparent;
+      }
+    }
   }
   .p-button.p-button-text:enabled:hover {
     background: rgba(59, 130, 246, 0.04);
@@ -126,7 +134,7 @@
   .p-button:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem rgb(254 191 191 / 28%);
+    box-shadow: 0 0 0 0rem rgb(254 191 191 / 28%);
   }
 
   .p-button-success{
