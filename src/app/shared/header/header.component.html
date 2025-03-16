@@ -56,7 +56,7 @@
     <app-affliate (isloadingAffiliate)="affiliateLoading($event)"></app-affliate>
 </p-dialog> -->
 <p-dialog  [(visible)]="loginPage" [modal]="true" class="loginPageModal" [draggable]="false" [resizable]="true">
-    <app-login  (isLoggedIn)="isLoginCheck($event)"></app-login>
+    <app-login  (isGuest)="isGuestCheck($event)" (isLoggedIn)="isLoginCheck($event)"></app-login>
 </p-dialog>
 
 
