@@ -250,39 +250,7 @@ export class OnewayComponent implements OnInit {
 
 
 
-  submitTravelData(searchRequestModel: FlightSearchRequest) {
-    this.isLoading = true;
-    this.searchResultObj.requestModel = searchRequestModel;
-    this._flightService.flightSearchRequest(searchRequestModel).subscribe({
-      complete: () => { }, // completeHandler
-      error: (error: any) => { this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error Fetching Flight Data. Please Try Again' }); this.isLoading = false;
-      
-      if(this.searchResultObj.amedeusData !== null && this.searchResultObj.amedeusData !== undefined){
-        this.resultPageRouter();
-      }
-    
-    },    // errorHandler 
-      next: (data: any) => {
-        if (data !== undefined && data !== null) {
-
-          if (data?.CombinedBound !== null) {
-            this.isLoading = false;
-            var SupplierName = "";
-            data.CombinedBound = (Object.keys(data?.CombinedBound).map(key => ({ amount: key, flights: data.CombinedBound[key], additionalMarkupAmount: 0 }))?.sort((a: any, b: any) => a.amount - b.amount));
-            data['totalFlights'] = 0;
-          }
-          this.searchResultObj.data = data;
-          this.resultPageRouter();
-        }
-
-        else {
-          this.isLoading = false;
-          this.resultPageRouter();
-        }
-      }
-    });
-
-  }
+  
 
   resultPageRouter() {
     this.sharedService?.setLocalStore("flightData", this.searchResultObj);
@@ -294,52 +262,7 @@ export class OnewayComponent implements OnInit {
     this.isLoading = false;
   }
 
-  submitTravelAmeadiusData(searchRequst: any = null, isSearch: boolean = false) {
-    this.isLoading = true;
-    if (this.affiliated_user != undefined) {
-      this.amedeusReqModel.userid = String(this.affiliated_user.id);
-      this.amedeusReqModel.b2BCustomer_ID = this.affiliated_user.b2BCustomer_ID == undefined ? '0' : this.affiliated_user.b2BCustomer_ID;
-      this.amedeusReqModel.userType = this.affiliated_user.userType == undefined ? '' : this.affiliated_user.userType;
-    }
-    this.searchResultObj.amedeusRequestModel = this.amedeusReqModel;
-    this._flightService.FlightOfferlist(this.amedeusReqModel).subscribe({
-      complete: () => { }, // completeHandler
-      error: (error: any) => { this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error Fetching Flight Data. Please Try Again' }); this.isLoading = false; this.submitTravelData(searchRequst); },    // errorHandler 
-      next: (data: any) => {
-        if (data !== null && data !== undefined) {
-          this.searchResultObj.amedeusData = data;
-          // console.log(data);
-          // let states = {
-          //   data: data,
-          //   formData: this.flightSearchForm?.value,
-          //   requestModel: this.amedeusReqModel,
-          //   tripType: this.searchType
-          // }
-          // this.sharedService.setLocalStore("selectedCurrencyFromResult", data.selectedCurrency);
-
-          if (isSearch) {
-            this.submitTravelData(searchRequst);
-
-          }
-
-
-          // this.sharedService?.setLocalStore("flightData", states);
-          // this.isLoading = false;
-          // this.router.navigateByUrl('/result-page');
-          // this.changedFlightData.emit(true)
-          // this.isLoading = false;
-        }
-        else {
-          this.isLoading = false;
-          if (isSearch) {
-
-            this.submitTravelData(searchRequst);
-          }
-
-        }
-      }
-    });
-  }
+  
 
   searchResult(searchType: string = 'oneway') {
     
@@ -632,18 +555,18 @@ isLoginCheck(event: boolean){
 
 
   getSupplierDetails() {
-    this.isLoading = true;
+    // this.isLoading = true;
     this.sharedService.GetAllSuppliers(1).subscribe({
       complete: () => { }, // completeHandler
       error: (error: any) => { this.isLoading = false; },    // errorHandler 
       next: (data: any) => {
         if (data?.length) {
-          this.isLoading = false;
+          // this.isLoading = false;
 
           this.suppliers = data
           this.findMatchingSupplierFromCurrentUser();
         }else {
-          this.isLoading = false;
+          // this.isLoading = false;
         }
       },
     });
