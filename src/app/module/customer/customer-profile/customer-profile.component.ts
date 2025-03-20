@@ -56,6 +56,7 @@ export class CustomerProfileComponent {
       next: (data: any) => {
         if (data.success) {
           this.flightHistoryData = data.data;
+          console.log("flight history",this.flightHistoryData);
           this.isLoading = false;
         }
       },

@@ -36,7 +36,8 @@
                         </div>
                         <div class="usr__nav  col-12 px-3">
                             <ul (click)="closePanel()">
-                                <li routerLink="/customer-profile"><a><i class="pi pi-user"></i> View Profile </a></li>
+                                <li routerLink="/customer-profile" ><a><i class="pi pi-user"></i> View Profile </a></li>
+                                <!--  *ngIf="user!=undefined && user?.email != 'junaid.kp@travvise.com'" -->
                                 <li (click)="logOut()"><a><i class="pi pi-sign-out"></i> Log Out</a></li>
                             </ul>
                         </div>

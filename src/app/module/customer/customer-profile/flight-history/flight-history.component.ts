@@ -94,6 +94,9 @@ export class FlightHistoryComponent {
     // this.prevUrpnr = this.parseJSONHeader(Transaction?.flightTransactions_JSON).flightTransactions_ID;
     this.AllFlightDetails = {
       segments: this.parseJSON(Transaction.flightTransactionsSegmentDetails_JSON),
+      installments: this.parseJSON(Transaction.flightFareEMICalculatorDetails_JSON).sort(
+        (a, b) => a.InstallmentNo - b.InstallmentNo 
+      ),
       header: this.parseJSONHeader(Transaction.flightTransactions_JSON),
       passenger: this.parseJSON(Transaction.flightTransactionsDetails_JSON),
       payment:this.parseJSON(Transaction.flightTransactionsPaymentGateway_JSON)

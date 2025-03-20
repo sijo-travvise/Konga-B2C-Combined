@@ -187,8 +187,12 @@
         font-size: rem(14);
         font-weight: 800;
     }
+    tr{
+        border-bottom: 1px solid var(--bg-gray-color-100);
+    }
     td{
         padding: rem(13);
+        border-right: 1px solid var(--bg-gray-color-100);
         h6{
             font-size: rem(14);
             font-weight: 600;

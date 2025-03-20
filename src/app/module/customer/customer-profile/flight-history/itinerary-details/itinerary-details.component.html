@@ -246,6 +246,24 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="flight__Itinerary__tableOuter mb-3 p-0" *ngIf="AllFlightDetails?.installments.length > 0 || AllFlightDetails?.installments.length !== undefined">
+                        <table class="table">
+                            <thead>
+                                <th>Installment Number</th>
+                                <th>Installment Amount</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let installments of AllFlightDetails?.installments">
+                                   <!-- {{installments|json}} -->
+                                    <td> {{installments.InstallmentNo}} </td>
+                                    <td>
+                                        {{installments.Currency}} {{installments.InstallmentAmount}}
+                                    </td>
+                                </tr>
+            
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
             </ng-container>
