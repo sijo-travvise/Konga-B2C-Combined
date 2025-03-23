@@ -579,6 +579,7 @@ isLoginCheck(event: boolean){
   findMatchingSupplierFromCurrentUser() {
     debugger;
     if(this.currentUser && this.currentUser.privilages.flightService) {
+      this.selectedSuppiers = '';
       const flightPrivilages = this.currentUser.privilages.flightService;
 
       flightPrivilages.forEach((flights: any)=> {
