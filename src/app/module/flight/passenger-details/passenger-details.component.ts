@@ -1350,7 +1350,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
     
     installmentArray.forEach((amount, index)=> {
       FlightFareEMICalculatorDetails.push({
-        InstallmentNo: index+ 1, InstallmentAmount: amount,CreatedUser_ID: this.currentUser?.customerUser_ID})
+        InstallmentNo: index+ 1, InstallmentAmount: amount.toFixed(2),CreatedUser_ID: this.currentUser?.customerUser_ID})
     });
 
     this.flightFareInstallementDetails = {
@@ -1358,8 +1358,8 @@ export class PassengerDetailsComponent implements AfterViewInit {
         DateOfDeparture : date,
         TotalFare: event.totalFare,
         Currency:"NGN",
-        MinimumDownPayment: event.minimumDownPayment,
-        InitialDownPayment: event.initialDownPayment,
+        MinimumDownPayment: event.minimumDownPayment.toFixed(2),
+        InitialDownPayment: event.initialDownPayment.toFixed(2),
         SplitInstallmentCount: event.splitInstallmentCount,
         CreatedUser_ID: this.currentUser?.customerUser_ID
       },

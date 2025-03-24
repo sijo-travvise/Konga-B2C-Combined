@@ -14,7 +14,7 @@ import { MicroService } from 'src/app/services/micro.service';
   providers: [SharedService, MessageService, FlightService],
 })
 export class FlightItineraryDetailsComponent implements OnInit {
-
+  environment = environment; 
   universalLocatorCode: any = null;
   merchant_reference: any = null;
   isLoading: boolean = false;
@@ -231,7 +231,6 @@ export class FlightItineraryDetailsComponent implements OnInit {
     this._flightService.GetHash(this.amount, this.public_key, this.reference)
       .subscribe(
         (res2: any) => {
-          debugger
           if (res2.statusCode == 200 && res2.result != null && res2.result != undefined) {
 
             this.hash = res2.result.hashKey;
@@ -261,16 +260,18 @@ export class FlightItineraryDetailsComponent implements OnInit {
       this.hash = "";
   
       var priceArr = [];
+
+
+    debugger;
   
-      if (this.bookingDetailsData?.fareInstallmentDetails?.isInstallmentApplied){
-        priceArr = this.bookingDetailsData?.fareInstallmentDetails?.initialDownPayment.toString()?.split('.');
-      }
-      else if (this.bookingDetailsData?.FlightTransactions[0]?.sellingPrice != null){
-        priceArr = this.bookingDetailsData?.FlightTransactions[0]?.sellingPrice?.toString()?.split('.');
+      if (this.bookingDetailsData?.Table5[0]?.FlightFareEMICalculatorDetails != null){
+        const emiDetailsString = this.bookingDetailsData.Table5[0].FlightFareEMICalculatorDetails;
+        const formattedString = `[${emiDetailsString}]`;
+        const emiDetails = JSON.parse(formattedString);
+        priceArr = emiDetails[0].InitialDownPayment.toString()?.split('.');
       }
       else{
-        
-        priceArr = this.bookingDetailsData?.FlightTransactions[0]?.TotalFare?.toString()?.split('.');;
+        priceArr = this.bookingDetailsData.FlightTransactionDetails[0].TotalPrice?.toString()?.split('.');
       }
         
       
@@ -300,6 +301,7 @@ export class FlightItineraryDetailsComponent implements OnInit {
       let weburl = environment.webUrl;
       this.callback = weburl + "flight-itinerary/" + this.flightTransactions_ID;
       this.customerId = this.bookingDetailsData?.FlightTransactions[0]?.CustomerProfile_ID?? "";
+      // this.reference = "VY6GOM";
       this.reference = this.bookingDetailsData?.FlightTransactions[0]?.AirlinePNR ?? "";
       // debugger
     }
