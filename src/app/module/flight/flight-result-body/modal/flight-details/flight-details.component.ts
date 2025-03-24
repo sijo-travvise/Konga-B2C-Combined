@@ -46,6 +46,7 @@ export class FlightDetailsComponent implements AfterViewInit {
   currrentUser: any;
   flexiPrice: number = 0;
   matchingFlexiFareDetails: any[] = [];
+  FlightFlexiResult: any;
   constructor(private router: Router,
               public sharedService: SharedService,
               public _flightService: FlightService,
@@ -137,12 +138,11 @@ export class FlightDetailsComponent implements AfterViewInit {
       this.affiliated_user =  JSON.parse(this.sharedService.getLocalStore('affiliate_user'));;
       this.affiliate_user_permission = this.affiliated_user?.permissions.filter((item: { moduleName: string; })=>item.moduleName=="AIR SERVICES")[0];
     }
-    
-    this.getFareUpsellData(this.BookedFlightData);
     this.selectedFare = this.BookedFlightData;
   }
 
   ngAfterViewInit() {
+    debugger;
     this.cdr.detectChanges();
     this.isLoading = true;
     
@@ -157,6 +157,7 @@ export class FlightDetailsComponent implements AfterViewInit {
       this.getAirArabiaFlex()
 
     }else {
+      this.FlightFlexiResult = this.BookedFlightData
       this.isBookingFooterConsole = true;
       this.isLoading = false;
     }
@@ -164,77 +165,6 @@ export class FlightDetailsComponent implements AfterViewInit {
 
   fareActiveFunction(itineraries: any, activeIndex: number = 0) {
   //  itineraries['activeId'] = activeIndex;
-  }
-
-  getUpsellPriceData() {
-    // this.isLoading = true;
-    // if(this.affiliated_user!=undefined)
-    // {
-    //   this.flightUpsellReqData.userid=String(this.affiliated_user.id);
-    //   this.flightUpsellReqData.b2BCustomer_ID=this.affiliated_user.b2BCustomer_ID==undefined?'0':this.affiliated_user.b2BCustomer_ID;
-    //   this.flightUpsellReqData.userType=this.affiliated_user.userType==undefined?'':this.affiliated_user.userType;
-    // }
-    // this._flightService.FlightUpsellData(this.flightUpsellReqData).subscribe({
-    //   complete: () => { }, // completeHandler
-    //   error: (error: any) => { this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error Fetching Flight Data. Please Try Again' }); this.isLoading = false },    // errorHandler 
-    //   next: (data: any) => {
-    //     if (data !== null && data !== undefined) {
-    //       // console.log(data);
-    //       this.fare_PriceUpsell_Res = data;
-    //       this.isLoading = false;
-    //       this.fare_PriceUpsell_Res?.data.forEach((itinerariesList: any, index: number) => {
-    //         // [0]?.travelerPricings[0]?.fareDetailsBySegment
-    //       // this.fareActiveFunction(itineraries, 0);
-    //         // console.log(itineraries);
-
-    //         itinerariesList['installmentAmount'] = this.sharedService.getInstallmentAmount(itinerariesList?.price?.grandTotal ?? 0, 20);
-    //         itinerariesList['isInstallmentApplicable'] = this.sharedService.getInstallationDateDuration(itinerariesList?.itineraries[0].segments[0]?.departure.at) ?? false;
-    //         console.log(itinerariesList);
-            
-    //         if(index === 0){
-    //           this.selectedFare = itinerariesList;
-    //         }
-    //         itinerariesList['activeId'] = itinerariesList?.itineraries[0]?.segments[0]?.id;
-    //       });
-    //       console.log( this.fare_PriceUpsell_Res);
-          
-    //     }
-    //     else {
-    //       this.isLoading = false;
-    //     }
-    //   }
-    // });
-  }
-
-
-
-  getFareUpsellData(fareData: any) {
-    // if (fareData !== undefined && fareData !== null) {
-    //   let flightDetailsObj = this.flightUpsellReqData.data.flightOffers[0];
-    //   this.flightUpsellReqData.data.flightOffers.length = 0;
-    //   this.flightUpsellReqData.data.payments = [
-    //     {
-    //       brand: "VISA_IXARIS",
-    //       binNumber: 123456,
-    //       flightOfferIds: [this.BookedFlightData?.id]
-    //     }
-    //   ];
-    //   let upsellPrice = JSON.parse(JSON.stringify(this.BookedFlightData));
-    //   upsellPrice?.itineraries?.map((itinerary: any) => {
-    //     itinerary.duration = this.sharedService.convertTimeDuration(itinerary.duration)
-    //     itinerary?.segments.map((segment: any) => {
-    //       segment.duration =  this.sharedService.convertTimeDuration(segment.duration, true)
-    //     });
-    //   });
-    //   this.flightUpsellReqData.data.flightOffers.push(upsellPrice);
-      // if (upsellPrice?.travelerPricings[0]?.fareDetailsBySegment[0]?.brandedFare !== undefined && upsellPrice?.travelerPricings[0]?.fareDetailsBySegment[0]?.brandedFare !== null) {
-      //   this.getUpsellPriceData();
-      // }
-      // else {
-      //    this.isBookingFooterConsole = true; 
-      // }
-
-    // }
   }
 
   OnClickBookNow(fare:any){
@@ -248,10 +178,10 @@ export class FlightDetailsComponent implements AfterViewInit {
       this.router.navigateByUrl('/passenger-details');
     }else {
       let selectedFareDetails= {
-        supplier: this.BookedFlightData.Trips[0].SupplierName,
+        supplier: this.FlightFlexiResult.Trips[0].SupplierName,
         selectedFare: fare,
-        boundType: this.BookedFlightData.Trips[0].BoundType,
-        FSC: this.BookedFlightData.FSC
+        boundType: this.FlightFlexiResult.Trips[0].BoundType,
+        FSC: this.FlightFlexiResult.FSC
       }
       localStorage.removeItem('airPricePointSelected');
       this.sharedService.setLocalStore("fareFamily", selectedFareDetails );
@@ -283,7 +213,7 @@ export class FlightDetailsComponent implements AfterViewInit {
   }
 
   showCalculateDialog(fareList: any){
-    let selectedFare = this.BookedFlightData
+    let selectedFare = this.FlightFlexiResult;
     selectedFare.PriceSummary.SubTotal = fareList.Details[0].Amount;
     selectedFare.PriceSummary.PriceTotal = fareList.Details[0].Amount;
     selectedFare.flexi = fareList;
@@ -302,21 +232,14 @@ export class FlightDetailsComponent implements AfterViewInit {
     
     this._flightService.getFlexifareDeatils(this.revalidateObj).subscribe(data=> {
       if(data&& data.CombinedBound != null) {
-        this.BookedFlightData.Trips = data.Flights[0].Trips;
-        this.BookedFlightData.FSC = data.Flights[0].FSC;
-        this.BookedFlightData?.Trips.forEach((trip: any)=> {
+        this.FlightFlexiResult = data.Flights[0];
+        // this.BookedFlightData.Trips = data.Flights[0].Trips;
+        // this.BookedFlightData.FSC = data.Flights[0].FSC;
+        this.FlightFlexiResult?.Trips.forEach((trip: any)=> {
           if(trip.FlexiFareDetails != null && trip.FlexiFareDetails.length> 0) {
             trip.FlexiFareDetails[0].select = true;
           }
         })
-
-        this.cdr.detectChanges();
-        
-
-
-        // this.SelectedFare =data.Flights[0];
-        // this.SelectedFare.PriceSummary.additionalMarkupAmount = this.SelectedFlightArray.fareDetails?.flights.find((air:any) => air.isSelected)?.PriceSummary.additionalMarkupAmount;
-        // this.SelectedFare.PriceSummary.additionalMarkupType = this.SelectedFlightArray.fareDetails?.flights.find((air:any) => air.isSelected)?.PriceSummary.additionalMarkupType;
         this.loadFlexiFare();
         this.isLoading = false;
       }else {
@@ -339,7 +262,7 @@ export class FlightDetailsComponent implements AfterViewInit {
 
 
   loadFlexiFare() {
-    if (this.BookedFlightData?.Trips && this.BookedFlightData?.Trips.length > 0 ) {
+    if (this.FlightFlexiResult?.Trips && this.FlightFlexiResult?.Trips.length > 0 ) {
       this.isLoading = true;
       const createMatchingService = (data: any[]) => {
         const matchingServicesArray: any[] = [];
@@ -367,7 +290,7 @@ export class FlightDetailsComponent implements AfterViewInit {
 
               matchingServices[ServiceId].push({
                 ...flexiFare,
-                Amount: flexiFare.Amount + this.BookedFlightData.PriceSummary.SubTotal,
+                Amount: flexiFare.Amount,
                 Origin: origin,
                 Destination: destination,
                 selected: false ,
@@ -385,7 +308,7 @@ export class FlightDetailsComponent implements AfterViewInit {
             ServiceId,
             activeIndex: 0,
             Details: detailsArray,
-            FSC: this.BookedFlightData.FSC
+            FSC: this.FlightFlexiResult.FSC
           });
         });
       
@@ -393,8 +316,7 @@ export class FlightDetailsComponent implements AfterViewInit {
       };
         
         
-      const result = createMatchingService(this.BookedFlightData?.Trips);
-      ;
+      const result = createMatchingService(this.FlightFlexiResult?.Trips);
       this.matchingFlexiFareDetails = result;
       if(this.matchingFlexiFareDetails.length < 1) {
         this.isBookingFooterConsole = true;
