@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  
+  paymentLiveUrl: "https://kongapay-pg.kongapay.com/kpaydirect",
+  paymentTestUrl: "https://staging-kongapay-pg.kongapay.com/kpaydirect",
+
   apiUrl: 'https://localhost:44396/',
   flightsearchurl: 'http://localhost:51797/',
   flightBookurl: 'http://localhost:56518/',
@@ -38,7 +42,7 @@ export const environment = {
     UseStartTls: true,
   },
 
-  guestMail: 'junaid.kp@travvise.com',
+  guestMail: 'guest@travel.konga.com',
   guestPassword: 'Ugl8q'
 
 };

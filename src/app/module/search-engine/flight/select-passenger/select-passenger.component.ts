@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FlightService } from 'src/app/services/flight.service';
 import { IPassengerList, PassengerList } from '../../search-engine.util';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'app-select-passenger',
@@ -20,7 +21,7 @@ export class SelectPassengerComponent implements OnInit{
   changeText = "Passenger";
   public passengerList = PassengerList;
   @Input() searchFlightPassengerValue:any;
-  
+  @ViewChild('op1') overlayPanel!: OverlayPanel;
 
   passenger:any={
     adult:1,
@@ -122,9 +123,21 @@ export class SelectPassengerComponent implements OnInit{
       // this.totalPassengerCount= this.passenger.total;//this.adult_count+this.child_count+this.infant_count;
       // this.passengerChange.emit(this.passengerList);
       this._flightService.editPassengerCount(this.passengerList);
+      if (this.overlayPanel) {
+        this.overlayPanel.hide();  // ✅ Hides the overlay panel
+      } else {
+        console.error('OverlayPanel is undefined!');
+      }
 
     }
 
   }
-
+  closePanel() {
+    
+    if (this.overlayPanel) {
+      this.overlayPanel.hide();  // ✅ Hides the overlay panel
+    } else {
+      console.error('OverlayPanel is undefined!');
+    }
+  }
 }

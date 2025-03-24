@@ -581,7 +581,7 @@ isLoginCheck(event: boolean){
     if(this.currentUser && this.currentUser.privilages.flightService) {
       this.selectedSuppiers = '';
       const flightPrivilages = this.currentUser.privilages.flightService;
-
+      this.selectedSuppiers = null;
       flightPrivilages.forEach((flights: any)=> {
       
         const allowedSuplierCode = flights.supplierCode;
