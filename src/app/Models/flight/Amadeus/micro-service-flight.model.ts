@@ -67,7 +67,7 @@ export interface FlightSearchRequest {
     TypeOfTrip: 0,
     SearchSegments: [],
     ApplicationConfig: {
-        fareType: 0,
+        fareType: 4,
         CustomerProfileId: 0
     }
 }

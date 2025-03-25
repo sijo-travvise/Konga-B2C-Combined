@@ -372,7 +372,7 @@ export class OnewayComponent implements OnInit {
           // flightSearch.Suppliers = '28';
           flightSearch.Suppliers = this.selectedSuppiers;
           flightSearch.SearchSegments = [];
-          flightSearch.ApplicationConfig.fareType = 0;
+          flightSearch.ApplicationConfig.fareType = 4;
           flightSearch.ApplicationConfig.CustomerProfileId = this.currentUser?.customerProfile_ID;
           if (this.searchType.toLocaleLowerCase() === 'oneway' || this.searchType.toLocaleLowerCase() === 'roundtrip') {
             
@@ -485,7 +485,7 @@ export class OnewayComponent implements OnInit {
           flightSearch.SelectedCurrency = "NGN";
           // flightSearch.Suppliers = '28';
           flightSearch.Suppliers = this.selectedSuppiers;
-          flightSearch.ApplicationConfig.fareType = 0;
+          flightSearch.ApplicationConfig.fareType = 4;
           flightSearch.ApplicationConfig.CustomerProfileId = this.currentUser?.customerProfile_ID;
 
         debugger;
