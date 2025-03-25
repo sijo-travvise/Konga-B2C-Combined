@@ -5,20 +5,19 @@
 export const environment = {
   production: false,
   
-  paymentLiveUrl: "https://kongapay-pg.kongapay.com/kpaydirect",
-  paymentTestUrl: "https://staging-kongapay-pg.kongapay.com/kpaydirect",
+  paymentUrl: "https://staging-kongapay-pg.kongapay.com/kpaydirect",
 
   apiUrl: 'https://localhost:44396/',
   flightsearchurl: 'http://localhost:51797/',
   flightBookurl: 'http://localhost:56518/',
-  webUrl: 'http://localhost:65189/',
+  webUrl: 'http://localhost:62155/',
   
-  // merchantId: 'konga224',
-  // mode: 'test',
-  // publicKey: 'test_pu_b822553f28b5eaab3b7ed0d092adf74d'
-  merchantId: 'ktt',
-  mode: 'live',
-  publicKey: 'live_pu_12d87995517a6b982d1babc58955eaaa',
+  merchantId: 'konga224',
+  mode: 'test',
+  publicKey: 'test_pu_19577bfdd503eded912d84d3d203d2f9',
+  // merchantId: 'ktt',
+  // mode: 'live',
+  // publicKey: 'live_pu_12d87995517a6b982d1babc58955eaaa',
 
 
   firebase: {

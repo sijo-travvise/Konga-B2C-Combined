@@ -42,7 +42,7 @@
                                  
                             </div>
                            
-                            <form ngNoForm action="{{environment.paymentTestUrl}}" method="POST">
+                            <form ngNoForm action="{{environment.paymentUrl}}" method="POST">
                                 <input hidden name='public_key' id='public_key' type="text" value="this.public_key"
                                 [(ngModel)]="this.public_key">
                                 <input hidden name='mode' id='mode' type="text" value="this.mode" [(ngModel)]="this.mode">

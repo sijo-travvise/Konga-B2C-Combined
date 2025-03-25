@@ -7,9 +7,11 @@ export const environment = {
   // flightBookurl: 'https://FlightBook.konga.com/',
 
   apiUrl: 'https://kongaapi.travvise.com/',
-  webUrl: 'https://konga-admin.travvise.com/',
+  webUrl: 'https://b2c-konga.travvise.com/',
   flightsearchurl: 'https://kongaflightapi.travvise.com/',
   flightBookurl: 'https://kongaflightbookingapi.travvise.com/',
+
+  paymentUrl: "https://kongapay-pg.kongapay.com/kpaydirect",
 
   merchantId: 'ktt',
   mode: 'live',
@@ -26,7 +28,7 @@ export const environment = {
     UseStartTls: true,
   },
 
-  guestMail: 'junaid.kp@travvise.com',
+  guestMail: 'guest@travel.konga.com',
   guestPassword: 'Ugl8q',
 
   firebase: {
