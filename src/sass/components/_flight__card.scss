@@ -4,13 +4,13 @@
     // border-radius: 10px;
 }
 .w-300{
-    width: rem(300);
+    width: rem(250);
     .flight__card{
         border-left: 0;
     }
 }
 .flight__data-row{
-    width: calc(100% - rem(300));
+    width: calc(100% - rem(250));
 }
 .flight__data-row{
     .flight__card{
@@ -43,7 +43,7 @@
                 padding:2px;         
                 h3 {
                   color: var(--text-primary-color);
-                  font-size: rem(13);
+                  font-size: rem(10);
                   font-family: "Mont-Bold";
                 }
                 .flight_price {
@@ -151,7 +151,7 @@
     }
 
     .flight-card__stop-info {
-        width: calc(100% - rem(300));
+        width: calc(100% - rem(200));
         .layoverTime{
             font-size: rem(12);
             font-weight: 600;
@@ -182,6 +182,9 @@
             left: 0;
             width: rem(30);
             border-bottom: rem(5) solid var(--primary-color);
+            img{
+                width: rem(15);
+            }
            }
            .icon__flight_right{
             position: absolute;
@@ -189,6 +192,9 @@
             right: 0;
             width: rem(30);
             border-bottom: rem(5) solid var(--primary-color);
+            img{
+                width: rem(15);
+            }
            }
         }
         .stop{
@@ -384,3 +390,197 @@
        
     }
 }
+/* Default styles (for large screens) */
+
+@media (max-width: 1440px) {
+    html {
+      font-size: 0.9vw;
+    }
+  }
+  
+  @media (max-width: 1280px) {
+    html {
+      font-size: 1vw;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    html {
+      font-size: 1.2vw;
+    }
+  
+    .flight__card {
+      .flight-card__journey-details {
+        .at-flight-card-depart-time,
+        .at-flight-card-origin-code {
+          font-size: rem(18);
+        }
+        
+        .at-flight-departure {
+          font-size: rem(14);
+        }
+        
+        .flight__date__time {
+          font-size: rem(14);
+        }
+        
+        .layoverTime span {
+          font-size: rem(14);
+        }
+      }
+  
+      .flight__duration {
+        h6 {
+          font-size: rem(16);
+        }
+  
+        p {
+          font-size: rem(14);
+        }
+      }
+  
+      .flight__data-row {
+        width: calc(100% - rem(120));
+      }
+  
+      .w-300 {
+        width: rem(120);
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    html {
+      font-size: 1.5vw;
+    }
+  
+    .flight__card {
+      .flight-card__journey-details {
+        .at-flight-card-depart-time,
+        .at-flight-card-origin-code {
+          font-size: rem(16);
+        }
+        
+        .at-flight-departure {
+          font-size: rem(13);
+        }
+        
+        .flight__date__time {
+          font-size: rem(13);
+        }
+        
+        .layoverTime span {
+          font-size: rem(13);
+        }
+      }
+  
+      .flight__duration {
+        h6 {
+          font-size: rem(14);
+        }
+  
+        p {
+          font-size: rem(12);
+        }
+      }
+  
+      .flight__data-row {
+        width: calc(100% - rem(100));
+      }
+  
+      .w-300 {
+        width: rem(100);
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    html {
+      font-size: 1.8vw;
+    }
+  
+    .flight__card {
+      .flight-card__journey-details {
+        .at-flight-card-depart-time,
+        .at-flight-card-origin-code {
+          font-size: rem(14);
+        }
+        
+        .at-flight-departure {
+          font-size: rem(12);
+        }
+        
+        .flight__date__time {
+          font-size: rem(12);
+        }
+        
+        .layoverTime span {
+          font-size: rem(12);
+        }
+      }
+  
+      .flight__duration {
+        h6 {
+          font-size: rem(13);
+        }
+  
+        p {
+          font-size: rem(11);
+        }
+      }
+  
+      .flight__data-row {
+        width: calc(100% - rem(90));
+      }
+  
+      .w-300 {
+        width: rem(90);
+      }
+    }
+  }
+  
+  @media (max-width: 420px) {
+    html {
+      font-size: 2.3vw;
+    }
+  
+    .flight__card {
+      .flight-card__journey-details {
+        .at-flight-card-depart-time,
+        .at-flight-card-origin-code {
+          font-size: rem(20);
+        }
+  
+        .at-flight-departure {
+          font-size: rem(16);
+        }
+  
+        .flight__date__time {
+          font-size: rem(16);
+        }
+  
+        .layoverTime span {
+          font-size: rem(16);
+        }
+      }
+  
+      .flight__duration {
+        h6 {
+          font-size: rem(18);
+        }
+  
+        p {
+          font-size: rem(16);
+        }
+      }
+  
+      .flight__data-row {
+        width: calc(100% - rem(80));
+      }
+  
+      .w-300 {
+        width: rem(80);
+      }
+    }
+  }
+  

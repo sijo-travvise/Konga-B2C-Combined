@@ -1,6 +1,6 @@
 .modal__widget .p-dialog {
   background: var(--bg-white);
-  border-radius: 0px !important;
+  border-radius: rem(0) !important;
   min-height: 100vh;
 }
 .p-dialog-right .p-dialog {
@@ -193,7 +193,7 @@
 .loginPageModal,
 .forgotPageModal {
   .p-dialog {
-    max-width: 450px !important;
+    max-width: rem(450) !important;
     width: 100% !important;
     .p-dialog-header {
       background: var(--bg-white);
@@ -250,8 +250,6 @@
   }
 }
 .p-overlaypanel-content {
-
-
   .custom-list-group {
     list-style: none;
     padding-left: 0;
@@ -269,7 +267,7 @@
         background-image: url("/assets/img/icons/tick.svg");
         background-size: contain;
         background-repeat: no-repeat;
-        width: 20px; 
+        width: 20px;
         height: 20px;
         position: absolute;
         left: 0;

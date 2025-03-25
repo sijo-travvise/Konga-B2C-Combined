@@ -33,13 +33,16 @@
                     border-bottom: 1px solid var(--text-gray-100);
                     text-align: center;
                     width: rem(200);
+                    span{
+                        font-size: rem(10);
+                    }
                 }
                 td{
                     font-weight: 700;
                     color: var(--text-primary-color);
                     padding: rem(15) rem(15);
                     p{
-                        font-size: rem(18);
+                        font-size: rem(14);
                     }
                     &.selected{
                         p{
