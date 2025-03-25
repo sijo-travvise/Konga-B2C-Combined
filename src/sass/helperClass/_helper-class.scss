@@ -144,9 +144,10 @@
   }
 }
 .password-icon{
-  top: rem(-45);
+  top: rem(-4);
   margin-left: -2.5rem;
   cursor: pointer;
+  position: relative;
 }
 .list-item-active{
   color: var(--primary-color);

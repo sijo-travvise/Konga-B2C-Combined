@@ -157,9 +157,9 @@
                 (click)="togglePaymentOption(recomm, false)" [ngClass]="{'active-primary': !recomm.payAsYouEarnActive}">
                 <h3>Pay full Price</h3>
               </div>
-              <div class="box  d-flex align-items-strat  gap-2 px-2" (click)="togglePaymentOption(recomm, true)"
+              <div class="box  d-flex align-items-strat  gap-1 px-2" (click)="togglePaymentOption(recomm, true)"
                 [ngClass]="{'active': recomm.payAsYouEarnActive}">
-                <img src="assets/img/icons/mdi_auto-pay.svg" alt="">
+                <img src="assets/img/icons/mdi_auto-pay.svg" alt="" class="img-fluid">
                 <div>
                   <h3>Pay as you earn</h3>
                   <!-- <p class="flight_price mb-2">₦ {{  recomm.installmentAmount  | number: '.2'}}</p> -->
