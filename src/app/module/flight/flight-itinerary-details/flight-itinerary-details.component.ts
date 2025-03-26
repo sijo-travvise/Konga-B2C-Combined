@@ -67,6 +67,9 @@ export class FlightItineraryDetailsComponent implements OnInit {
       // this.universalLocatorCode = params.get('locatorCode');
       // this.merchant_reference = this.route?.snapshot?.queryParamMap?.get("merchant_reference");
       var paymentStatus = this.route.snapshot.queryParamMap.get("status");
+      this.merchant_reference = this.route.snapshot.queryParamMap.get("merchant_reference");
+
+    
       if (paymentStatus == "success") {
         this.paymentSuccess = true;
       }
@@ -107,6 +110,14 @@ export class FlightItineraryDetailsComponent implements OnInit {
       next: (data: any) => {
         if (data !== null && data !== undefined) {
           this.bookingDetailsData = data;
+
+          if(this.merchant_reference != null) {
+            this._flightService.paymentUpdate(this.bookingDetailsData.FlightTransactions[0].AirlinePNR).subscribe(data=> {
+              
+            }, error=>{
+    
+            })
+          }
           this.retrievePNR(data)
           // this.getCustomerProfileData(data?.FlightTransactions[0]?.CustomerProfile_ID)
           // this.isLoading = false;
@@ -232,7 +243,7 @@ export class FlightItineraryDetailsComponent implements OnInit {
       .subscribe(
         (res2: any) => {
           if (res2.statusCode == 200 && res2.result != null && res2.result != undefined) {
-
+            console.log(res2.result.uniqueReference)
             this.hash = res2.result.hashKey;
             this.reference = res2.result.uniqueReference;
             (<HTMLInputElement>document.getElementById('hash')).value = this.hash;
@@ -260,10 +271,6 @@ export class FlightItineraryDetailsComponent implements OnInit {
       this.hash = "";
   
       var priceArr = [];
-
-
-    debugger;
-  
       if (this.bookingDetailsData?.Table5[0]?.FlightFareEMICalculatorDetails != null){
         const emiDetailsString = this.bookingDetailsData.Table5[0].FlightFareEMICalculatorDetails;
         const formattedString = `[${emiDetailsString}]`;
@@ -303,7 +310,6 @@ export class FlightItineraryDetailsComponent implements OnInit {
       this.customerId = this.bookingDetailsData?.FlightTransactions[0]?.CustomerProfile_ID?? "";
       // this.reference = "VY6GOM";
       this.reference = this.bookingDetailsData?.FlightTransactions[0]?.AirlinePNR ?? "";
-      // debugger
     }
 
     issueTicket() {
