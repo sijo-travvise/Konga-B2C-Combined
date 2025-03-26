@@ -1663,9 +1663,9 @@ export class PassengerDetailsComponent implements AfterViewInit {
     this.airArabiaRequestObj.flightTransactions.BookedOfficeCred = '';
     this.airArabiaRequestObj.flightTransactions.HOMDPromoCode = '';
     this.airArabiaRequestObj.flightTransactions.EarningPoints = 0;
-    this.airArabiaRequestObj.flightTransactions.FOP = 'CASH';
+    this.airArabiaRequestObj.flightTransactions.FOP = 'PENDING';
     this.airArabiaRequestObj.flightTransactions.BackOfficeINVNo = '';
-    this.airArabiaRequestObj.flightTransactions.BookingPlatform = 'FOS';
+    this.airArabiaRequestObj.flightTransactions.BookingPlatform = 'B2C';
     this.airArabiaRequestObj.flightTransactions.BACKOFFICEREFUNDSTATUS = 0;
     this.airArabiaRequestObj.flightTransactions.BACKOFFICEREFUNDREMARKS = '';
     this.airArabiaRequestObj.flightTransactions.BACKOFFICEREFUNDINVNO = '';
