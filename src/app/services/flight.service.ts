@@ -74,6 +74,10 @@ export class FlightService {
     return this.http.get(this.flightSearch + 'api/Common/GetKongaPayHashKey?amount=' + amount + '&public_key=' + public_key + '&reference=' + reference); //, {responseType: 'text'}
   }
 
+  paymentUpdate(refereceKey) {
+    return this.http.get(this.flightSearch + 'api/kongapay/UpadatePaymentStatus?reference=' + refereceKey)
+  }
+
   flightItenararyDetails(locatorCode: string, paymentStatus: any) {
     return this.http.get<any>(this.flightSearch + "api/AmadeusAPI/RetrivePNR?reference=" + locatorCode + "&paymentStatus=" + paymentStatus);
   }
@@ -98,6 +102,9 @@ export class FlightService {
   createFlightPNR(pnrData: any): Observable<any> {
     return this.http.post<any>(this.flightBookurl + "api/PNR/createpnr", pnrData);
   }
+
+
+
 
 
   savePnrData(pnrSaveData: any): Observable<any> {

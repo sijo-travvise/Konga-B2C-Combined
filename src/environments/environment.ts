@@ -8,7 +8,7 @@ export const environment = {
   apiUrl: 'https://localhost:44396/',
   flightsearchurl: 'http://localhost:51797/',
   flightBookurl: 'http://localhost:56518/',
-  webUrl: 'http://localhost:62155/',
+  webUrl: 'http://localhost:4200/',
   
   paymentUrl: "https://staging-kongapay-pg.kongapay.com/kpaydirect",
   merchantId: 'konga224',
