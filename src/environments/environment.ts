@@ -5,13 +5,12 @@
 export const environment = {
   production: false,
   
-  paymentUrl: "https://staging-kongapay-pg.kongapay.com/kpaydirect",
-
   apiUrl: 'https://localhost:44396/',
   flightsearchurl: 'http://localhost:51797/',
   flightBookurl: 'http://localhost:56518/',
   webUrl: 'http://localhost:62155/',
   
+  paymentUrl: "https://staging-kongapay-pg.kongapay.com/kpaydirect",
   merchantId: 'konga224',
   mode: 'test',
   publicKey: 'test_pu_19577bfdd503eded912d84d3d203d2f9',

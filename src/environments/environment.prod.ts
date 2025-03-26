@@ -11,12 +11,16 @@ export const environment = {
   flightsearchurl: 'https://kongaflightapi.travvise.com/',
   flightBookurl: 'https://kongaflightbookingapi.travvise.com/',
 
-  paymentUrl: "https://kongapay-pg.kongapay.com/kpaydirect",
+  // paymentUrl: "https://kongapay-pg.kongapay.com/kpaydirect",
+  // merchantId: 'ktt',
+  // mode: 'live',
+  // publicKey: 'live_pu_12d87995517a6b982d1babc58955eaaa',
 
-  merchantId: 'ktt',
-  mode: 'live',
-  publicKey: 'live_pu_12d87995517a6b982d1babc58955eaaa',
-
+  paymentUrl: "https://staging-kongapay-pg.kongapay.com/kpaydirect",
+  merchantId: 'konga224',
+  mode: 'test',
+  publicKey: 'test_pu_19577bfdd503eded912d84d3d203d2f9',
+  
   emailConfiguration: {
     DisplayName: 'Konga',
     From: 'travel@konga.com',
