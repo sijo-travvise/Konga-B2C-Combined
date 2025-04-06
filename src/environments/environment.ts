@@ -8,7 +8,7 @@ export const environment = {
   apiUrl: 'https://localhost:44396/',
   flightsearchurl: 'http://localhost:51797/',
   flightBookurl: 'http://localhost:56518/',
-  webUrl: 'http://localhost:4200/',
+  webUrl: 'http://localhost:51683/',
   aff_reg_toaddress: ['junaidkp703@gmail.com'],
   booking_confirmation_toaddress: ['junaidkp703@gmail.com'],
 
