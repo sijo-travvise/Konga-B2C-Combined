@@ -9,9 +9,8 @@
     <hr class="mb-5" /> -->
 
 
-<ng-container *ngIf="_2FAEnabled==true;">
+<!-- <ng-container *ngIf="_2FAEnabled==true;">
     <div class="affliateCard container">
-        <!-- {{affiliateRegForm.value | json}} -->
         <form [formGroup]="affiliateRegForm" (ngSubmit)="registerAffiliate()">
             <div class="row">
                 <div class="col-md-6 mb-4">
@@ -34,7 +33,6 @@
                         [formControls]="country" [optionList]="countryOptionList"></app-country-with-state>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <!-- <app-select-field [title]="'Select Your State'"></app-select-field> -->
                     <app-state-selection [title]="'Select Your State'" [isRequired]="false" [formControls]="state"
                         [optionList]="stateOptionList"></app-state-selection>
                 </div>
@@ -49,7 +47,6 @@
 
             </div>
             <div class="row justify-content-end mb-4">
-                <!-- (click)="this.isRegisterd = !this.isRegisterd;" -->
                 <div class="col-md-5  align-self-end">
                     <button type="submit"
                         class="p-button-primary p-button w-100 py-3 text-center d-flex justify-content-center mb-4">Submit</button>
@@ -62,7 +59,7 @@
 
         </form>
     </div>
-</ng-container>
+</ng-container> -->
 <!-- JOIN OUR AFFILATE PROGRAM -->
 <ng-container *ngIf="isRegisterd==false; else registrationSuccess">
     <div class="affliateCard container">
@@ -116,7 +113,14 @@
                             <p-checkbox value="true" formControlName="termsAccepted" inputId="I agree to the"></p-checkbox>
                             <a href="/terms-and-conditions" class="terms-text"><label for="direct">Terms and conditions </label></a>
                         </div>
+                        <div>
+                            <span *ngIf="affiliateRegForm.get('termsAccepted')?.errors && isSubmitted" class="text-danger mt-4" style="font-size: 12px;">
+                                Please Tick Terms And Conditions Checkbox
+                              </span>
+                        </div>
                     </div>
+
+                    
             </div>
             <div class="row justify-content-end mb-4">
                 <!-- (click)="this.isRegisterd = !this.isRegisterd;" -->
