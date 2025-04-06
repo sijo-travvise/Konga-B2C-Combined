@@ -111,6 +111,8 @@ export class PassengerDetailsComponent implements AfterViewInit {
 
   htmlView: any;
 
+  
+
   constructor(
     private router: Router,
     public sharedService: SharedService,
@@ -173,7 +175,9 @@ export class PassengerDetailsComponent implements AfterViewInit {
     // this.pricedetails +
     // this.footer;
 
-    // this.htmlView = this.sanitizer.bypassSecurityTrustHtml(emailTemplate)
+    // this.htmlView = this.sanitizer.bypassSecurityTrustHtml(emailTemplate);
+    // console.log(this.htmlView,'line 532');
+    
     this.flightResultData = this.sharedService?.getLocalStore('flightData');
     this.flightFareData = this.sharedService?.getLocalStore('airPricePointSelected');
     this.flightFareFamily = this.sharedService?.getLocalStore('fareFamily');
@@ -823,7 +827,8 @@ export class PassengerDetailsComponent implements AfterViewInit {
   LoadFlightBookingSuccessTemplate(pnrData: any) {
     var bookingdate = this.datepipe.transform(new Date(), 'dd/MM/yyyy HH:mm');
     var crspnr = pnrData?.AirlinePNR;
-
+    console.log('line 1183');
+    
     this.htmlHead =
       '<html><head><style>.page-break { clear: both; margin-bottom: 20px; } .print_btn_area { text-align: center; margin-bottom: 20px; } td { color: #555; } p { margin: 0 0 8px;} ol { padding-left: 15px; } /* button:not (.btn-checked ) .select { display: none; } */  .page-break { page-break-after: always; } header, .main-footer, .main-header, .navbar, .main-sidebar, .print_btn_area, .not_print_area, footer, .sinupsec, .comonfooter, .footercopy { display: none !important; } .skin-black-light .content-wrapper, .skin-black-light .main-footer {border-left:0px !important;} table { width: 100% !important; white-space: normal !important; } p { margin-bottom: 5px; } .irctc { background-color: #da1e26 !important; -webkit-print-color-adjust: exact; } .colr {color: #fff !important;} .mntbl { border: none !important;} </style> </head>';
     this.htmlBody =
@@ -958,12 +963,14 @@ export class PassengerDetailsComponent implements AfterViewInit {
       pnrData?.Passengers?.forEach((passenger: any, index: number) => {
         let baggage = '---';
         if(trips.FlightSegments[0]?.BaggageInfo != null && trips.FlightSegments[0]?.BaggageInfo.length> 0) {
-
-          trips.FlightSegments[0]?.BaggageInfo.forEach(baggage=> {
-            if(baggage.paxType == passenger?.PaxType) {
-              baggage = baggage.QuantityAllowed + " "+ baggage.UnitQualifier;
-            }
-          });
+          
+          if (Array.isArray(trips.FlightSegments[0]?.BaggageInfo)) {
+            trips.FlightSegments[0].BaggageInfo.forEach(item => {
+              if (item.paxType === passenger?.PaxType) {
+                baggage = item.QuantityAllowed + " " + item.UnitQualifier;
+              }
+            });
+          }
         }
 
             var trav_type =
@@ -1099,12 +1106,12 @@ export class PassengerDetailsComponent implements AfterViewInit {
     this.emailDetails.EmailSubject = 'Flight Booking Details';
     this.emailDetails.IsPaymentSuccess = true;
     this.emailDetails.EmailContent = this.htmlHead +
-                                     this.htmlBody +
-                                     this.flightdetails_header +
-                                     this.segmentdetails +
-                                     this.passengerdetails +
-                                     this.pricedetails +
-                                     this.footer;
+                                    this.htmlBody +
+                                    this.flightdetails_header +
+                                    this.segmentdetails +
+                                    this.pricedetails +
+                                    this.footer;
+
 
 
       let fileName = 'TICKET ITINERARY/' + pnrData?.SupplierConfirmationNumber + ".pdf";

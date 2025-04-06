@@ -488,7 +488,7 @@ export class OnewayComponent implements OnInit {
           flightSearch.ApplicationConfig.fareType = 4;
           flightSearch.ApplicationConfig.CustomerProfileId = this.currentUser?.customerProfile_ID;
 
-        debugger;
+        
           if(this._authenticationService.affliateUser != null && Object.keys(this._authenticationService.affliateUser).length> 0) {
             this.microServiceSearch(flightSearch);  
           }
@@ -556,7 +556,7 @@ isLoginCheck(event: boolean){
 
 
   getSupplierDetails() {
-    debugger;
+    
     // this.isLoading = true;
     this.sharedService.GetAllSuppliers(1).subscribe({
       complete: () => { }, // completeHandler
@@ -577,7 +577,7 @@ isLoginCheck(event: boolean){
 
 
   findMatchingSupplierFromCurrentUser() {
-    debugger;
+    
     if(this.currentUser && this.currentUser.privilages.flightService) {
       this.selectedSuppiers = '';
       const flightPrivilages = this.currentUser.privilages.flightService;

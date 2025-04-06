@@ -181,12 +181,10 @@ affiliateLoading(event:boolean= false){
   this.isLoading = event;
 }
 isGuestCheck(event: boolean) {
-  console.log(event,'line 516');
   this.isGuest = event;
   if( this.isGuest){
     this.loginPage = false;
     this._authenticationService.checkAuthentication().subscribe((data) => {
-      console.log(data,'line 517');
       if(data) {
         this.currentUser = data.data;
       }

@@ -39,7 +39,7 @@ export class CustomerProfileComponent {
     let obj = {
       UserID: userid.toString(),
     };
-    debugger
+    
     this.isLoading = true;
     this.flightService.GetUserFlightBookings(obj).subscribe({
       complete: () => {
