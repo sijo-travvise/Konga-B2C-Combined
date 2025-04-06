@@ -8,9 +8,9 @@ export const environment = {
   apiUrl: 'https://localhost:44396/',
   flightsearchurl: 'http://localhost:51797/',
   flightBookurl: 'http://localhost:56518/',
-  webUrl: 'http://localhost:4200/',
-    aff_reg_toaddress: ['junaidkp703@gmail.com'],
-  booking_confirmation_toaddress: ['azeezmc414@gmail.com'],
+  webUrl: 'http://localhost:51683/',
+  aff_reg_toaddress: ['junaidkp703@gmail.com'],
+  booking_confirmation_toaddress: ['junaidkp703@gmail.com'],
 
   paymentUrl: "https://staging-kongapay-pg.kongapay.com/kpaydirect",
   merchantId: 'konga224',
@@ -47,8 +47,8 @@ export const environment = {
     UseStartTls: true,
   },
 
-  guestMail: 'guest@travel.konga.com',
-  guestPassword: 'Ugl8q'
+  guestMail: 'guest@konga.com',
+  guestPassword: 'Guest!@#123',
 
 };
 
