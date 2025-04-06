@@ -183,6 +183,5 @@ export class LoginComponent {
   loginAsGuest() {
    // this.authenticationService.setGuestStatus(!this.isGuest);
    this.isGuest.emit(true);
-  console.log('guest');
   }
 }

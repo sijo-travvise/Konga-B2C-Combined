@@ -48,7 +48,7 @@ export class FlightListFliterComponent {
             PriceTotal: flightDetail.PriceSummary.PriceTotal,
             isSelected: false,
           };
-          debugger
+          
           let existingAirline = airlineTopFilterCopy.find(item => item.airlineCode === airlineCode);
 
           if (existingAirline) {

@@ -1041,7 +1041,6 @@ export class AmadeusPassengerDetailsComponent {
       }, // errorHandler
       next: (response: any) => {
         if (response !== null && response !== undefined) {
-          console.log(response);
           // this.fare_PriceUpsell_Res = data;
           this.isLoading = false;
           const flightFareInstallementDetails =  this.flightFareData?.flightFareInstallementDetails ?? null;

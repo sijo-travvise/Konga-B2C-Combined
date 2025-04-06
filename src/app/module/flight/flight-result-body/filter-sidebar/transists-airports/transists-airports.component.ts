@@ -50,7 +50,7 @@ export class TransistsAirportsComponent {
     verdorFilter: [],
     type:'airline'
   };
-  debugger;
+  
   const selectedOrderIds = data.map((v, i) => v ?  Object.keys(this.list)[i]  : null)
   .filter(v => v !== null);
   vendor.verdorFilter = selectedOrderIds;
