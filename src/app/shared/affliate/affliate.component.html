@@ -9,9 +9,8 @@
     <hr class="mb-5" /> -->
 
 
-<ng-container *ngIf="_2FAEnabled==true;">
+<!-- <ng-container *ngIf="_2FAEnabled==true;">
     <div class="affliateCard container">
-        <!-- {{affiliateRegForm.value | json}} -->
         <form [formGroup]="affiliateRegForm" (ngSubmit)="registerAffiliate()">
             <div class="row">
                 <div class="col-md-6 mb-4">
@@ -34,7 +33,6 @@
                         [formControls]="country" [optionList]="countryOptionList"></app-country-with-state>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <!-- <app-select-field [title]="'Select Your State'"></app-select-field> -->
                     <app-state-selection [title]="'Select Your State'" [isRequired]="false" [formControls]="state"
                         [optionList]="stateOptionList"></app-state-selection>
                 </div>
@@ -49,7 +47,6 @@
 
             </div>
             <div class="row justify-content-end mb-4">
-                <!-- (click)="this.isRegisterd = !this.isRegisterd;" -->
                 <div class="col-md-5  align-self-end">
                     <button type="submit"
                         class="p-button-primary p-button w-100 py-3 text-center d-flex justify-content-center mb-4">Submit</button>
@@ -62,7 +59,7 @@
 
         </form>
     </div>
-</ng-container>
+</ng-container> -->
 <!-- JOIN OUR AFFILATE PROGRAM -->
 <ng-container *ngIf="isRegisterd==false; else registrationSuccess">
     <div class="affliateCard container">
@@ -116,7 +113,14 @@
                             <p-checkbox value="true" formControlName="termsAccepted" inputId="I agree to the"></p-checkbox>
                             <a href="/terms-and-conditions" class="terms-text"><label for="direct">Terms and conditions </label></a>
                         </div>
+                        <div>
+                            <span *ngIf="affiliateRegForm.get('termsAccepted')?.errors && isSubmitted" class="text-danger mt-4" style="font-size: 12px;">
+                                Please Tick Terms And Conditions Checkbox
+                              </span>
+                        </div>
                     </div>
+
+                    
             </div>
             <div class="row justify-content-end mb-4">
                 <!-- (click)="this.isRegisterd = !this.isRegisterd;" -->
@@ -163,3 +167,75 @@
 <app-pre-loader *ngIf="isUploading" [isLoadingComplete]=isUploading [loderTitle]="'Upload in progress... '"></app-pre-loader>
 
 
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="display: none;" id="register-template">
+    <table width="670px" align="center"   style="background-color: #ffffff;margin: auto;padding: 15px;">
+        <thead>
+            <tr>
+                <td align="center" colspan="3" style="text-align: center; border-bottom: 1px solid #ddd;" >
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <img style="display:block; line-height:0px; font-size:0px; border:0px; margin: auto;"
+                                src="assets/img/logo.svg"
+                                width="109"  alt="logo" />
+                                <h4 style="font-size: 20px;margin: 0px; text-align: center;">Dear Konga Team</h4>
+                                <p style="font-weight:400;margin: 10px;text-align: center;">Please verify the registration request from B2B portal</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;" colspan="3"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="3" style="padding-top: 20px;">
+                    <p style="margin: 0;font-size: 14px;font-weight: 500;">REGISTRATION REQUESTED BY</p>
+                    <table style="width: 100%;">
+                        <thead align="left" style="font-size: 14px;"  >
+                            <th style="border: 1px solid #ddd;padding: 10px;text-align: left; align-items: start;">Business Name</th>
+                            <th style="border: 1px solid #ddd;padding: 10px;text-align: left; align-items: start;">User Name</th>
+                            <th style="border: 1px solid #ddd;padding: 10px;text-align: left; align-items: start;">Phone</th>
+                            <th style="border: 1px solid #ddd;padding: 10px;text-align: left; align-items: start;">Email</th>
+                            <th style="border: 1px solid #ddd;padding: 10px;text-align: left; align-items: start;">Country</th>
+                            <th style="border: 1px solid #ddd;padding: 10px;text-align: left; align-items: start;">State</th>
+                            <th style="border: 1px solid #ddd;padding: 10px;text-align: left; align-items: start;">Office Address</th>
+                        </thead>
+                        <tbody style="font-size: 16px;">
+                            <tr>
+                                <td style="border: 1px solid #ddd;padding: 10px;">{{affiliateRegForm.value?.businessname}}</td>
+                                <td style="border: 1px solid #ddd;padding: 10px;">{{affiliateRegForm.value?.userfname}} {{affiliateRegForm.value?.userlname}}</td>
+                                <td *ngIf="affiliateRegForm.value?.phonenumber" style="border: 1px solid #ddd;padding: 10px;">{{affiliateRegForm.value?.phonenumber.dialCode}} {{affiliateRegForm.value?.phonenumber.number}}</td>
+                                <td style="border: 1px solid #ddd;padding: 10px;">{{affiliateRegForm.value?.email}}</td>
+                                <td style="border: 1px solid #ddd;padding: 10px;">{{affiliateRegForm.value?.state.value}}</td>
+                                <td style="border: 1px solid #ddd;padding: 10px;">{{affiliateRegForm.value?.country.country}}</td>
+                                <td style="border: 1px solid #ddd;padding: 10px;">{{affiliateRegForm.value?.office_addr}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top: 20px;" colspan="3">
+                    <p style="margin: 0;font-size: 14px;font-weight: 500;"> OTHER DETAILS</p>                       
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <table style="width: 100%; font-size: 16px;margin-bottom: 30px;" >
+                        <tr>
+                            <td style="border: 1px solid #ddd;padding: 10px;font-size: 14px;"><b>Company Logo</b></td>
+                            <td style="border: 1px solid #ddd;padding: 10px;"><a [href]="affiliateRegForm.value?.companyLogo"  download>Download Logo</a></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd;padding: 10px;font-size: 14px;"><b>Terms & conditions</b></td>
+                            <td style="border: 1px solid #ddd;padding: 10px;"><b>{{ affiliateRegForm.value?.termsAccepted[0] == 'true' ? 'Accepted' : 'Disagreed' }}</b></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</table>
