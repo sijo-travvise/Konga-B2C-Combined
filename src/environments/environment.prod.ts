@@ -1,11 +1,13 @@
 export const environment = {
   production: true,
 
+  //PRODUCTION URLS
   // apiUrl: 'https://kongaapi.konga.com:553/',
   // webUrl: 'https://travel.konga.com/',
   // flightsearchurl: 'https://FlightSearch.konga.com/',
   // flightBookurl: 'https://FlightBook.konga.com/',
 
+  //DEMO URLS
   apiUrl: 'https://kongaapi.travvise.com/',
   webUrl: 'https://b2c-konga.travvise.com/',
   flightsearchurl: 'https://kongaflightapi.travvise.com/',
@@ -16,10 +18,6 @@ export const environment = {
   // mode: 'live',
   // publicKey: 'live_pu_12d87995517a6b982d1babc58955eaaa',
 
-  paymentUrl: "https://staging-kongapay-pg.kongapay.com/kpaydirect",
-  merchantId: 'konga224',
-  mode: 'test',
-  publicKey: 'test_pu_19577bfdd503eded912d84d3d203d2f9',
   
   emailConfiguration: {
     DisplayName: 'Konga',

@@ -339,7 +339,7 @@ export class AffliateComponent {
       {
         receiverID:0,
         orderID: 'KONGA' + "_Request_" + new Date().toISOString(),
-        displayName:"this.companyListDataSource?.secondaryName",
+        displayName:"Konga Travel & Tours",
         to:['azeezmc414@gmail.com'],
         cc:[],
         from: environment?.emailConfiguration?.From,
