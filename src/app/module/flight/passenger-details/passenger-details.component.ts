@@ -111,6 +111,361 @@ export class PassengerDetailsComponent implements AfterViewInit {
 
   htmlView: any;
 
+  pnrRs = {
+    "Status": 15,
+    "IsAirPaymentRequired": false,
+    "SupplierConfirmationNumber": "T5RBM5",
+    "PNRNumber": "T5RBM5",
+    "SupplierID": 0,
+    "AirlinePNR": "T5RBM5",
+    "TicketTimeLimit": "2025-05-23",
+    "Passengers": [
+        {
+            "PassangerId": null,
+            "Title": 0,
+            "PaxTitle": null,
+            "Gender": null,
+            "PaxType": 1,
+            "PaxTypeID": 1,
+            "FirstName": "azeez mc Mr",
+            "MiddleName": null,
+            "LastName": "fff",
+            "Fqtv": null,
+            "Clid": null,
+            "AssociationID": 0,
+            "PaxOrder": 0,
+            "IsPrimaryPax": false,
+            "DOB": "YYYY-DD-05",
+            "Nationality": null,
+            "TicketNumber": null,
+            "DateOfIssue": null,
+            "TicketStatusID": null,
+            "CountryOfResidenceCode": null,
+            "ServiceReference": null,
+            "PassportInfo": null,
+            "SelectedBaggageInfo": null,
+            "SelectedOtherServiceInfo": null,
+            "SelectedSeat": null,
+            "SelectedMealInfo": null,
+            "AncillaryInfo": null,
+            "CouponInfo": null
+        }
+    ],
+    "Trips": [
+        {
+            "BoundType": 20,
+            "ResultIndex": 1,
+            "FlightIndex": 1,
+            "OutFlightIndex": 0,
+            "InFlightIndex": 0,
+            "Id": 1,
+            "SupplierId": 1,
+            "SupplierName": "Amadeus",
+            "PCC": null,
+            "SupplierCode": "1A",
+            "Duration": null,
+            "FareType": 0,
+            "FareTypeCode": null,
+            "IsRefundable": false,
+            "FareSourceCode": null,
+            "ValidatingAirline": "QR",
+            "FlightSegments": [
+                {
+                    "SegmentNumber": 0,
+                    "Origin": "DOH",
+                    "Status": null,
+                    "Destination": "LOS",
+                    "DepartureDate": "230525",
+                    "ArrivalDate": "230525",
+                    "DepartureDt": "0001-01-01T00:00:00",
+                    "ArrivalDt": "0001-01-01T00:00:00",
+                    "Equipment": "788",
+                    "MarketingAirline": "QR",
+                    "OperatingAirline": null,
+                    "SeatsRemaining": "0",
+                    "CabinClass": "S",
+                    "FlightClass": "ECONOMY",
+                    "IsEticket": true,
+                    "FareBasis": "SJQAR1SI",
+                    "FlightRefKey": null,
+                    "Duration": "0750",
+                    "FlightNumber": "QR 1405",
+                    "DepartureTime": "0745",
+                    "ArrivalTime": "1335",
+                    "StopQuantity": 0,
+                    "TerminalInfo": {
+                        "FromTerminal": null,
+                        "ToTerminal": "2I"
+                    },
+                    "BaggageInfo": [
+                        {
+                            "QuantityAllowed": "2",
+                            "QuantityCode": "PC",
+                            "UnitQualifier": "PC",
+                            "paxType": 1
+                        }
+                    ],
+                    "Stops": null,
+                    "FlightIndicator": null,
+                    "SupplierId": 1,
+                    "SegmentKey": "DOHLOSQR 140523052507452305251335",
+                    "CompleteSegmentKey": "DOHLOSQR 140523052507452305251335ECONOMYSSJQAR1SI",
+                    "SegmentAirlineKey": "QR,",
+                    "cabin": null,
+                    "operatingAirlineName": null,
+                    "marketingAirlineName": null,
+                    "AffiliateV1FlightNumber": null,
+                    "SupplierMiscAttribute": null,
+                    "AirlinePNR": null,
+                    "SegmentKeyForSearch": "DOHLOSQRQR 140523052507452305251335"
+                }
+            ],
+            "TripKey": "DOHLOSQR 140523052507452305251335",
+            "ATripKey": "DOHLOSQR 140523052507452305251335ECONOMYSSJQAR1SI",
+            "TripAirlineKey": "QR,",
+            "SearchKey": "DOHLOS2025-05-230&1&0&0&NGN&",
+            "FlightClass": 0,
+            "FirstSegment": {
+                "SegmentNumber": 0,
+                "Origin": "DOH",
+                "Status": null,
+                "Destination": "LOS",
+                "DepartureDate": "230525",
+                "ArrivalDate": "230525",
+                "DepartureDt": "0001-01-01T00:00:00",
+                "ArrivalDt": "0001-01-01T00:00:00",
+                "Equipment": "788",
+                "MarketingAirline": "QR",
+                "OperatingAirline": null,
+                "SeatsRemaining": "0",
+                "CabinClass": "S",
+                "FlightClass": "ECONOMY",
+                "IsEticket": true,
+                "FareBasis": "SJQAR1SI",
+                "FlightRefKey": null,
+                "Duration": "0750",
+                "FlightNumber": "QR 1405",
+                "DepartureTime": "0745",
+                "ArrivalTime": "1335",
+                "StopQuantity": 0,
+                "TerminalInfo": {
+                    "FromTerminal": null,
+                    "ToTerminal": "2I"
+                },
+                "BaggageInfo": [
+                    {
+                        "QuantityAllowed": "2",
+                        "QuantityCode": "PC",
+                        "UnitQualifier": "PC",
+                        "paxType": 1
+                    }
+                ],
+                "Stops": null,
+                "FlightIndicator": null,
+                "SupplierId": 1,
+                "SegmentKey": "DOHLOSQR 140523052507452305251335",
+                "CompleteSegmentKey": "DOHLOSQR 140523052507452305251335ECONOMYSSJQAR1SI",
+                "SegmentAirlineKey": "QR,",
+                "cabin": null,
+                "operatingAirlineName": null,
+                "marketingAirlineName": null,
+                "AffiliateV1FlightNumber": null,
+                "SupplierMiscAttribute": null,
+                "AirlinePNR": null,
+                "SegmentKeyForSearch": "DOHLOSQRQR 140523052507452305251335"
+            },
+            "LastSegment": {
+                "SegmentNumber": 0,
+                "Origin": "DOH",
+                "Status": null,
+                "Destination": "LOS",
+                "DepartureDate": "230525",
+                "ArrivalDate": "230525",
+                "DepartureDt": "0001-01-01T00:00:00",
+                "ArrivalDt": "0001-01-01T00:00:00",
+                "Equipment": "788",
+                "MarketingAirline": "QR",
+                "OperatingAirline": null,
+                "SeatsRemaining": "0",
+                "CabinClass": "S",
+                "FlightClass": "ECONOMY",
+                "IsEticket": true,
+                "FareBasis": "SJQAR1SI",
+                "FlightRefKey": null,
+                "Duration": "0750",
+                "FlightNumber": "QR 1405",
+                "DepartureTime": "0745",
+                "ArrivalTime": "1335",
+                "StopQuantity": 0,
+                "TerminalInfo": {
+                    "FromTerminal": null,
+                    "ToTerminal": "2I"
+                },
+                "BaggageInfo": [
+                    {
+                        "QuantityAllowed": "2",
+                        "QuantityCode": "PC",
+                        "UnitQualifier": "PC",
+                        "paxType": 1
+                    }
+                ],
+                "Stops": null,
+                "FlightIndicator": null,
+                "SupplierId": 1,
+                "SegmentKey": "DOHLOSQR 140523052507452305251335",
+                "CompleteSegmentKey": "DOHLOSQR 140523052507452305251335ECONOMYSSJQAR1SI",
+                "SegmentAirlineKey": "QR,",
+                "cabin": null,
+                "operatingAirlineName": null,
+                "marketingAirlineName": null,
+                "AffiliateV1FlightNumber": null,
+                "SupplierMiscAttribute": null,
+                "AirlinePNR": null,
+                "SegmentKeyForSearch": "DOHLOSQRQR 140523052507452305251335"
+            },
+            "SupplierMiscAttribute": null,
+            "TripKeyForSearch": "DOHLOSQRQR 140523052507452305251335",
+            "FlexiFareDetails": null
+        }
+    ],
+    "priceSummary": {
+        "AdultBaseFare": 883867,
+        "AdultTaxes": 204462,
+        "AdultYQTax": 0,
+        "AdultTotal": 1088329,
+        "ChildBaseFare": 0,
+        "ChildTaxes": 0,
+        "ChildYQTax": 0,
+        "ChildTotal": 0,
+        "InfantBaseFare": 0,
+        "InfantTaxes": 0,
+        "InfantYQTax": 0,
+        "InfantTotal": 0,
+        "SubTotal": 1088329,
+        "PriceTotal": 1088329,
+        "TaxTotal": 0,
+        "TaxYQTotal": 0,
+        "CurrencyExchangeRate": 1,
+        "HandlingFee": 0,
+        "AdultMarkup": 5,
+        "ChildMarkup": 0,
+        "InfantMarkup": 0,
+        "AdultDiscount": 5,
+        "ChildDiscount": 0,
+        "InfantDiscount": 0,
+        "IsRefundable": false,
+        "BaseCurrency": null,
+        "SelectedCurrency": "NGN",
+        "SupplierCurrency": "NGN",
+        "Adults": 1,
+        "Children": 0,
+        "Infants": 0,
+        "DropnetDiscount": 0,
+        "Commission": 0,
+        "SegmentDiscount": 0,
+        "SupplierBookingFee": 0,
+        "penalty": null
+    },
+    "Response": null,
+    "Error": null,
+    "DialCode": "234",
+    "MobileNumber": "7169854322",
+    "EmailAddress": "azeezmc414@gmail.com",
+    "flightSearchRequest": {
+        "SearchSegments": [
+            {
+                "Origin": "DOH",
+                "Destination": "LOS",
+                "DepartureDate": "2025-05-23",
+                "BoundType": 20,
+                "FlightClass": 0,
+                "AirlinePreference": []
+            }
+        ],
+        "SearchId": null,
+        "CustomerUser_ID": 2,
+        "AffiliateName": null,
+        "Language": null,
+        "TypeOfTrip": 1,
+        "Source": "API",
+        "Suppliers": null,
+        "FirstSegment": {
+            "Origin": "DOH",
+            "Destination": "LOS",
+            "DepartureDate": "2025-05-23",
+            "BoundType": 20,
+            "FlightClass": 0,
+            "AirlinePreference": []
+        },
+        "LastSegment": {
+            "Origin": "DOH",
+            "Destination": "LOS",
+            "DepartureDate": "2025-05-23",
+            "BoundType": 20,
+            "FlightClass": 0,
+            "AirlinePreference": []
+        },
+        "IsDirectFlight": false,
+        "IsDateFlexible": false,
+        "ApplicationConfig": {
+            "FareType": 4,
+            "CustomerProfileId": 1
+        },
+        "ActiveAirlines": [],
+        "NumberOfInfants": 0,
+        "NumberOfChildren": 0,
+        "NumberOfAdults": 1,
+        "SearchKey": "Corporate-DOHLOS2025-05-2301ADT0CHD0INF~2",
+        "SearchKeyInbound": "DOHDOHLOS2025-05-231ADT0CHD0INF",
+        "SearchKeyOutbound": "DOHLOS2025-05-231ADT0CHD0INF",
+        "SearchKeyOutboundPlusOne": "DOHLOS2025-05-241ADT0CHD0INF",
+        "AffiliateSelectedFlight": null,
+        "BlockedAirlines": [],
+        "CountryCode": null,
+        "SelectedCurrency": "NGN",
+        "SupplierId": 1,
+        "SupplierName": "Amadeus",
+        "OriginCountry": null,
+        "DestinationCountry": null,
+        "RequestType": null,
+        "Cred": "",
+        "SearchPassengerType": null,
+        "PromoCodes": null,
+        "CorporateCodes": [
+            {
+                "Name": "CODE 1",
+                "Code": "494907"
+            }
+        ],
+        "SearchSource": null,
+        "IsDealFare": false,
+        "PNRnumber": null,
+        "BookingId": null
+    },
+    "CorporateCode": null,
+    "RawPrices": [
+        {
+            "TripId": 0,
+            "SegmentId": 0,
+            "Quantity": 1,
+            "BaseFare": 883867,
+            "tempEquiv": 0,
+            "Taxes": 204462,
+            "SupplierCurrency": "NGN",
+            "SupplierExchangeRate": 1,
+            "BaseExchangeRate": 1,
+            "CommissionType": 1,
+            "Commission": 0,
+            "PaxType": 1,
+            "YQTax": 0,
+            "TaxInfo": null
+        }
+    ],
+    "Code": 0,
+    "Message": null,
+    "IMessage": null
+}
+
   constructor(
     private router: Router,
     public sharedService: SharedService,
@@ -173,7 +528,9 @@ export class PassengerDetailsComponent implements AfterViewInit {
     // this.pricedetails +
     // this.footer;
 
-    // this.htmlView = this.sanitizer.bypassSecurityTrustHtml(emailTemplate)
+    // this.htmlView = this.sanitizer.bypassSecurityTrustHtml(emailTemplate);
+    console.log(this.htmlView,'line 532');
+    
     this.flightResultData = this.sharedService?.getLocalStore('flightData');
     this.flightFareData = this.sharedService?.getLocalStore('airPricePointSelected');
     this.flightFareFamily = this.sharedService?.getLocalStore('fareFamily');
@@ -823,7 +1180,8 @@ export class PassengerDetailsComponent implements AfterViewInit {
   LoadFlightBookingSuccessTemplate(pnrData: any) {
     var bookingdate = this.datepipe.transform(new Date(), 'dd/MM/yyyy HH:mm');
     var crspnr = pnrData?.AirlinePNR;
-
+    console.log('line 1183');
+    
     this.htmlHead =
       '<html><head><style>.page-break { clear: both; margin-bottom: 20px; } .print_btn_area { text-align: center; margin-bottom: 20px; } td { color: #555; } p { margin: 0 0 8px;} ol { padding-left: 15px; } /* button:not (.btn-checked ) .select { display: none; } */  .page-break { page-break-after: always; } header, .main-footer, .main-header, .navbar, .main-sidebar, .print_btn_area, .not_print_area, footer, .sinupsec, .comonfooter, .footercopy { display: none !important; } .skin-black-light .content-wrapper, .skin-black-light .main-footer {border-left:0px !important;} table { width: 100% !important; white-space: normal !important; } p { margin-bottom: 5px; } .irctc { background-color: #da1e26 !important; -webkit-print-color-adjust: exact; } .colr {color: #fff !important;} .mntbl { border: none !important;} </style> </head>';
     this.htmlBody =
@@ -1099,12 +1457,12 @@ export class PassengerDetailsComponent implements AfterViewInit {
     this.emailDetails.EmailSubject = 'Flight Booking Details';
     this.emailDetails.IsPaymentSuccess = true;
     this.emailDetails.EmailContent = this.htmlHead +
-                                     this.htmlBody +
-                                     this.flightdetails_header +
-                                     this.segmentdetails +
-                                     this.passengerdetails +
-                                     this.pricedetails +
-                                     this.footer;
+                                    this.htmlBody +
+                                    this.flightdetails_header +
+                                    this.segmentdetails +
+                                    this.pricedetails +
+                                    this.footer;
+
 
 
       let fileName = 'TICKET ITINERARY/' + pnrData?.SupplierConfirmationNumber + ".pdf";
