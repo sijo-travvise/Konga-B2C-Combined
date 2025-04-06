@@ -6,6 +6,7 @@ export const environment = {
   webUrl: 'https://travel.konga.com/',
   flightsearchurl: 'https://FlightSearch.konga.com/',
   flightBookurl: 'https://FlightBook.konga.com/',
+  
   aff_reg_toaddress: ['corporatetravel@konga.com','abiola.bakare@konga.com','yusuf.babatunde@konga.com','joy.okorie@konga.com','akeem.adeyemi@konga.com','junaidkp703@gmail.com'],
   booking_confirmation_toaddress: ['abiola.bakare@konga.com','yusuf.babatunde@konga.com','joy.okorie@konga.com','akeem.adeyemi@konga.com','junaidkp703@gmail.com'],
 
@@ -15,8 +16,8 @@ export const environment = {
   publicKey: 'live_pu_12d87995517a6b982d1babc58955eaaa',
 
   
-  guestMail: 'guest@travel.konga.com',
-  guestPassword: 'Ugl8q',
+  guestMail: 'guest@konga.com',
+  guestPassword: 'Guest!@#123',
 
   //#endregion
 
