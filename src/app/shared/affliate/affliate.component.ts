@@ -332,27 +332,20 @@ export class AffliateComponent {
 
 
     sendMail(){
-      // const companyName= this.companyListDataSource.name;
     let body = (<HTMLElement>document.getElementById('register-template'))?.innerHTML;
-    let fileName='TICKET ITINERARY/'+ 'KONGA' +"_Request" +".pdf";
       let reqmodel=
       {
         receiverID:0,
         orderID: 'KONGA' + "_Request_" + new Date().toISOString(),
         displayName:"Konga Travel & Tours",
-        to:['azeezmc414@gmail.com'],
+        to:environment.aff_reg_toaddress,
         cc:[],
         from: environment?.emailConfiguration?.From,
         body:body,
-        fileName: fileName,
-        subject: `Konga Customer Registration`,
+        fileName: null,
+        subject: `Customer Registration`,
         emailConfig:environment?.emailConfiguration
       }
-
-      
-      
-     
-
       this.sharedService.SendConfirmationEmail(reqmodel).subscribe({
         complete: () => {
           

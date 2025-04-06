@@ -32,6 +32,7 @@ import { EmailDetailsModel } from 'src/app/Models/Mail/EmailDetailsModel';
 import { MicroService } from 'src/app/services/micro.service';
 import moment from 'moment';
 import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-passenger-details',
@@ -81,16 +82,16 @@ export class PassengerDetailsComponent implements AfterViewInit {
   totalFareTotalPrice: number = 0;
   flightFareInstallementDetails: any = null;
   currentUser: any;
-  emailConfiguration:any = {
-    DisplayName: 'Konga',
-    From: 'travel@konga.com',
-    Host: 'smtp.sendgrid.net',
-    Password: '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',
-    Port: 25,
-    UserName: 'apikey',
-    UseSSL: false,
-    UseStartTls: true,
-  }
+  // emailConfiguration:any = {
+  //   DisplayName: 'Konga',
+  //   From: 'travel@konga.com',
+  //   Host: 'smtp.sendgrid.net',
+  //   Password: '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',
+  //   Port: 25,
+  //   UserName: 'apikey',
+  //   UseSSL: false,
+  //   UseStartTls: true,
+  // }
 
   //micro service data}
   public priceReConfirmation: any = null;
@@ -723,7 +724,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
     }
    
   }
-
+ 
 
   getPassportData(passDetails: any) {
     if (passDetails.passportNumber !== (null || '') && passDetails.countryOfIssue !== (null || '') && this.datepipe.transform(passDetails?.dateOfExpiry, 'YYYY-DD-MM')?.toString() !== (null || '')) {
@@ -1105,24 +1106,20 @@ export class PassengerDetailsComponent implements AfterViewInit {
                                      this.pricedetails +
                                      this.footer;
 
-      this.emailDetails.ToMailList = [{Name :'Abiola Bakare', MailId: 'abiola.bakare@konga.com'}, 
-                                      {Name :'Yusuf Babatunde', MailId: 'yusuf.babatunde@konga.com'}, 
-                                      {Name:'Joy Okorie', MailId:'joy.okorie@konga.com'}, 
-                                      { Name: 'Akeem Adeyemi', MailId: 'akeem.adeyemi@konga.com' }];
 
       let fileName = 'TICKET ITINERARY/' + pnrData?.SupplierConfirmationNumber + ".pdf";
       let subject = 'E - TICKET ITINERARY - ' + pnrData?.SupplierConfirmationNumber;
 
       let reqmodel = {
         receiverID: saveRq?.flightTransactions.BookedByUser_ID,
-        displayName: 'KONGA',
-        to: ['abdul.azeez@travvise.com'],
+        displayName: 'Konga Travel & Tours',
+        to: environment.booking_confirmation_toaddress,
         cc: [],
-        from: this.emailConfiguration.From,
+        from: environment?.emailConfiguration?.From,
         body: this.emailDetails.EmailContent,
         fileName: fileName,
         subject: subject,
-        emailConfig: this.emailConfiguration,
+        emailConfig: environment?.emailConfiguration,
         orderID: pnrData?.SupplierConfirmationNumber,
       };
       this._flightService.SendConfirmationEmail(reqmodel).subscribe(data=> {
