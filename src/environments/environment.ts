@@ -10,7 +10,7 @@ export const environment = {
   flightBookurl: 'http://localhost:56518/',
   webUrl: 'http://localhost:4200/',
     aff_reg_toaddress: ['junaidkp703@gmail.com'],
-  booking_confirmation_toaddress: ['junaidkp703@gmail.com'],
+  booking_confirmation_toaddress: ['azeezmc414@gmail.com'],
 
   paymentUrl: "https://staging-kongapay-pg.kongapay.com/kpaydirect",
   merchantId: 'konga224',

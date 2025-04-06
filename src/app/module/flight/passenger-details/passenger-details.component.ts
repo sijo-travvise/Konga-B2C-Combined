@@ -43,13 +43,13 @@ import { environment } from 'src/environments/environment';
 export class PassengerDetailsComponent implements AfterViewInit {
 
   public emailDetails: EmailDetailsModel = new EmailDetailsModel();
-  private footer = '';
-  private htmlHead = '';
-  private htmlBody = '';
-  private flightdetails_header = '';
-  private segmentdetails = '';
-  private passengerdetails = '';
-  private pricedetails = '';
+  private footer = null;
+  private htmlHead = null;
+  private htmlBody = null;
+  private flightdetails_header = null;
+  private segmentdetails = null;
+  private passengerdetails = null;
+  private pricedetails = null;
   displayPositionCalc: boolean;
   affiliated_user: any;
   affiliate_user_permission: any;
@@ -824,7 +824,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
     return passengerDetailsArray;
   }
 
-  LoadFlightBookingSuccessTemplate(pnrData: any) {
+  LoadFlightBookingSuccessTemplate(pnrData: any, saveRq: any) {
     var bookingdate = this.datepipe.transform(new Date(), 'dd/MM/yyyy HH:mm');
     var crspnr = pnrData?.AirlinePNR;
     console.log('line 1183');
@@ -1100,127 +1100,56 @@ export class PassengerDetailsComponent implements AfterViewInit {
       "<h4 style='margin: 0px; font-size: 13px;'>Konga Travel & Tours</h4>" +
       "<small style='font-size: 12px;'>3B Cocoa Road, Off Akilo Road, Ogba Lagos. Nigeria</small>" +
       '</td></tr></table></td></tr></table></td></tr></tbody></table></body></html>';
+
+
+
+
+      this.emailDetails.EmailSubject = 'Flight Booking Details';
+      this.emailDetails.IsPaymentSuccess = true;
+      this.emailDetails.EmailContent = this.htmlHead +
+                                      this.htmlBody +
+                                      this.flightdetails_header +
+                                      this.segmentdetails +
+                                      this.pricedetails +
+                                      this.footer;
+  
+  
+  
+        let fileName = null;
+        let subject = 'E - TICKET ITINERARY - ' + pnrData?.SupplierConfirmationNumber;
+  
+        let reqmodel = {
+          receiverID: saveRq?.flightTransactions.BookedByUser_ID,
+          displayName: 'Konga Travel & Tours',
+          to: environment.booking_confirmation_toaddress,
+          cc: [],
+          from: environment?.emailConfiguration?.From,
+          body: this.emailDetails.EmailContent,
+          fileName: fileName,
+          subject: subject,
+          emailConfig: environment?.emailConfiguration,
+          orderID: pnrData?.SupplierConfirmationNumber,
+        };
+        this._flightService.SendConfirmationEmail(reqmodel).subscribe(data=> {
+          if (data?.successMSG != null) {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Mail Sent Successfully' });
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to Send Mail',
+            });
+          }
+        }, error=> {
+          console.log(error);
+          
+        })
+  
+  
   }
 
-  sendOrderCreationMail(pnrData:  any, saveRq) {
-    this.emailDetails.EmailSubject = 'Flight Booking Details';
-    this.emailDetails.IsPaymentSuccess = true;
-    this.emailDetails.EmailContent = this.htmlHead +
-                                    this.htmlBody +
-                                    this.flightdetails_header +
-                                    this.segmentdetails +
-                                    this.pricedetails +
-                                    this.footer;
-
-
-
-      let fileName = 'TICKET ITINERARY/' + pnrData?.SupplierConfirmationNumber + ".pdf";
-      let subject = 'E - TICKET ITINERARY - ' + pnrData?.SupplierConfirmationNumber;
-
-      let reqmodel = {
-        receiverID: saveRq?.flightTransactions.BookedByUser_ID,
-        displayName: 'Konga Travel & Tours',
-        to: environment.booking_confirmation_toaddress,
-        cc: [],
-        from: environment?.emailConfiguration?.From,
-        body: this.emailDetails.EmailContent,
-        fileName: fileName,
-        subject: subject,
-        emailConfig: environment?.emailConfiguration,
-        orderID: pnrData?.SupplierConfirmationNumber,
-      };
-      this._flightService.SendConfirmationEmail(reqmodel).subscribe(data=> {
-        if (data?.successMSG != null) {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Mail Sent Successfully' });
-        } else {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to Send Mail',
-          });
-        }
-      }, error=> {
-        console.log(error);
-        
-      })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // for (var i = 0; i < this.flightorderResponse.data.travelers.length; i++) {
-    //   if (i != 0) {
-    //     var toAdd = true;
-    //     for (var j = 0; j < i; j++) {
-    //       if (
-    //         this.flightorderResponse?.data?.travelers[i]?.contact
-    //           ?.emailAddress ==
-    //         this.flightorderResponse?.data?.travelers[j].contact?.emailAddress
-    //       ) {
-    //         toAdd = false;
-    //       }
-    //     }
-    //     if (toAdd == true) {
-    //       this.emailDetails.ToMailList.push({
-    //         Name:
-    //           this.flightorderResponse.data.travelers[i].name.firstName +
-    //           ' ' +
-    //           this.flightorderResponse.data.travelers[i].name.lastName,
-    //         MailId:
-    //           this.flightorderResponse.data.travelers[i]?.contact?.emailAddress,
-    //       });
-    //     }
-    //   } else {
-    //     this.emailDetails.ToMailList.push({
-    //       Name:
-    //         this.flightorderResponse.data.travelers[i].name.firstName +
-    //         ' ' +
-    //         this.flightorderResponse.data.travelers[i].name.lastName,
-    //       MailId:
-    //         this.flightorderResponse.data.travelers[i]?.contact?.emailAddress,
-    //     });
-    //   }
-    // }
-    
-
-    const uniqueEmails = new Set();
-    // bookingData?.AirTransaction?.forEach((traveler: any) => {
-    //   const email = traveler?.Emailid;
-    
-    //   if (email && !uniqueEmails.has(email)) {
-    //     uniqueEmails.add(email);
-    //     this.emailDetails.ToMailList.push({
-    //       Name: `${traveler.LeadPaxName}`,
-    //       MailId: email,
-    //     });
-    //   }
-    // });
-    
-
-
-    // if (this.emailDetails != null && this.emailDetails != undefined) {
-    //   this._flightService
-    //     .SendConfirmationEmail(this.emailDetails)
-    //     .pipe()
-    //     .subscribe(
-    //       (data: any) => {
-    //         console.log('Mail Success');
-    //       },
-    //       (error: any) => {
-    //         console.log('Mail Error');
-    //       }
-    //     );
-    // }
-  }
+  // sendOrderCreationMail(pnrData:  any, saveRq) {
+  // }
 
   getPricePassengerData() {
     // const counts = {};
@@ -1728,8 +1657,8 @@ export class PassengerDetailsComponent implements AfterViewInit {
         next: (data: any) => {
           this.isLoading = false;
           if (data?.length && data[0]?.Status === 'SUCCESS') {
-            this.LoadFlightBookingSuccessTemplate(createPnrRes);
-            this.sendOrderCreationMail(createPnrRes, this.airArabiaRequestObj);
+            this.LoadFlightBookingSuccessTemplate(createPnrRes, this.airArabiaRequestObj);
+            // this.sendOrderCreationMail(createPnrRes, this.airArabiaRequestObj);
             this.router.navigate(['/flight-itinerary', data[0]?.FlightTransactions_ID]);
             
           }
