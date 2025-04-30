@@ -105,11 +105,20 @@ export class LoginComponent {
         error: (error: any) => {
          // this.isLoading = false;
          this.authenticationService.authenticationLoadingSubject.next(false);
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Something went wrong. Please Try Again',
-          });
+         if (error?.error?.errorMessage === "Password expired.") {
+            Swal.fire({
+              icon: 'error',
+              title: 'Password expired.',
+              showConfirmButton: false,
+              timer: 2000
+            });
+            this.forgotPassword(false);
+          }
+          // this.messageService.add({
+          //   severity: 'error',
+          //   summary: 'Error',
+          //   detail: 'Something went wrong. Please Try Again',
+          // });
           this.isloadingAffiliate.emit(false);
         }, // errorHandler
         next: (response: any) => {
