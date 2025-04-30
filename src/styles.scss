@@ -21,3 +21,10 @@ p-autocomplete.p-element.p-inputwrapper.ng-invalid.ng-touched input {
   outline: none;
  
 }
+
+
+//swal model style overriting
+
+.swal2-container.swal2-center.swal2-backdrop-show {
+ z-index: 9999 !important;
+}

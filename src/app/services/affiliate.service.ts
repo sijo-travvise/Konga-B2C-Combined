@@ -55,4 +55,12 @@ export class AffiliateService {
     this.user.companyName="KONGA";
     return this.http.post<any>(`${environment.apiUrl}api/User/Authenticate`, this.user);
   }
+
+  generateOTP(Data:any){
+    return this.http.post<any>(this.flightsearchurl + "api/Common/ForgetPassword",Data);
+  }
+
+  userConfirmation(Data:any){
+    return this.http.post<any>(this.flightsearchurl + "api/Common/ResetPassword",Data);
+  }
 }

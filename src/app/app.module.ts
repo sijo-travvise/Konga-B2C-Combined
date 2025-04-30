@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DropdownModule } from 'primeng/dropdown';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SearchEngineComponent } from './module/search-engine/search-engine.component';
@@ -75,6 +75,7 @@ export function httpTranlateLoaderFactory(http:HttpClient){
         CalendarModule,
         CheckboxModule,
         TabViewModule,
+        ProgressSpinnerModule,
         InputTextModule,
         SliderModule,
         DialogModule,

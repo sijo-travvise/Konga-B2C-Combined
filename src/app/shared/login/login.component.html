@@ -1,42 +1,76 @@
 <div class="affliateCard container">
-    <div  class="mb-4">
-        <h2> Continue as <b> Affiliate? </b></h2>
-        <p class="line"><span>If you already have an account, log in here for a better experience.</span></p>
+    <div *ngIf="showLogin">
+        <div  class="mb-4">
+            <h2> Continue as <b> Affiliate? </b></h2>
+            <p class="line"><span>If you already have an account, log in here for a better experience.</span></p>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="loginAffiliate()">
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <app-input-field [title]="'Email'" [isRequired]=true [formControls]="user_email"></app-input-field>
+                </div>
+                <div class="col-md-12 mb-4">
+
+                    <app-input-field [title]="'Password'" type="password" [isRequired]=true
+                        [formControls]="password"></app-input-field>
+                        <h6 class="password_style" (click)="forgotPassword(false)">Forgot Password</h6>
+                </div>
+                
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-md-6  align-self-end">
+                    <button class="p-button-success p-button w-100 py-3 text-center d-flex justify-content-center mb-4" (click)="loginAsGuest()"
+                        type="button">Continue as guest</button>
+                </div>
+                <div class="col-md-6  align-self-end">
+                    <button
+                        class="p-button-primary p-button w-100 py-3 text-center d-flex justify-content-center mb-4">Login</button>
+    
+                    <!-- <p class="p__forgot">Forgot Password ? <a href="#">Click here to reset</a></p> -->
+                </div>
+            </div>
+            <!-- <div class="row py-5 mx-0">
+                <p class="line"><span>Or</span></p>
+            </div> -->
+    
+            <!-- <h2 class="mb-4">BE A PART OF <b>US</b></h2>
+            <div class="d-flex justify-content-center ">
+                <button class="p-button-primary p-button px-5 py-3 text-center d-flex justify-content-center mb-4  "
+                    (click)="this.isLogin = !this.isLogin;">Register</button>
+            </div> -->
+    
+    
+        </form>
     </div>
-    <form [formGroup]="loginForm" (ngSubmit)="loginAffiliate()">
-        <div class="row">
-            <div class="col-md-12 mb-4">
-                <app-input-field [title]="'Email'" [isRequired]=true [formControls]="user_email"></app-input-field>
-            </div>
-            <div class="col-md-12 mb-4">
-                <app-input-field [title]="'Password'" type="password" [isRequired]=true
-                    [formControls]="password"></app-input-field>
-            </div>
+
+    <div *ngIf="!showLogin">
+        <div  class="mb-4 d-flex justify-content-between align-item-center">
+            <h2><b> Forgot Password </b></h2>
+            <h3 class="password_style" (click)="backToLogin()">Log in</h3>
         </div>
+        <div class="col-md-12 mb-4">
+            <app-input-field [title]="'Email'" type="email" [isRequired]=true [formControls]="email"></app-input-field>
+        </div>
+        <ng-container *ngIf="otp_show">
+            <div class="col-md-12 mb-4">
+                <app-input-field [title]="'Otp'" type="number" [isRequired]=true [formControls]="otp_input"></app-input-field>
+            </div>
+            <div class="col-md-12 mb-4">
+                <app-input-field [title]="'Password'"  [isRequired]=true [formControls]="new_password"></app-input-field>
+            </div>
+            <div class="col-md-12 mb-4">
+                <app-input-field [title]="'Re-Enter Password'" [isRequired]=true (blur)="checkPasswordsMatch()" [formControls]="re_password"></app-input-field>
+            </div>
+        </ng-container>
+
         <div class="row justify-content-end">
-            <div class="col-md-6  align-self-end">
-                <button class="p-button-success p-button w-100 py-3 text-center d-flex justify-content-center mb-4" (click)="loginAsGuest()"
-                    type="button">Continue as guest</button>
-            </div>
-            <div class="col-md-6  align-self-end">
-                <button
-                    class="p-button-primary p-button w-100 py-3 text-center d-flex justify-content-center mb-4">Login</button>
-
-                <!-- <p class="p__forgot">Forgot Password ? <a href="#">Click here to reset</a></p> -->
+            <div class="col-md-12  align-self-end">
+                <button class="p-button-success p-button w-100 py-3 text-center d-flex justify-content-center mb-4 gap 2 align-item-center" (click)="generateOtp()"
+                    type="button"><span class="button__text me-2">{{otp_show? 'Reset': 'Generate OTP'}} </span> <i *ngIf="forgetLoading" class="pi pi-spin pi-spinner" style="font-size: 1.5rem"></i>
+                    </button>
             </div>
         </div>
-        <!-- <div class="row py-5 mx-0">
-            <p class="line"><span>Or</span></p>
-        </div> -->
-
-        <!-- <h2 class="mb-4">BE A PART OF <b>US</b></h2>
-        <div class="d-flex justify-content-center ">
-            <button class="p-button-primary p-button px-5 py-3 text-center d-flex justify-content-center mb-4  "
-                (click)="this.isLogin = !this.isLogin;">Register</button>
-        </div> -->
-
-
-    </form>
+    </div>
 </div>
 
 
