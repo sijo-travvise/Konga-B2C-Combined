@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { environment } from 'src/environments/environment';
 import { first } from 'rxjs';
 import { error, log } from 'console';
+import Swal from 'sweetalert2';
 
 export class FileUpload {
   key: string;
@@ -363,12 +364,23 @@ export class AffliateComponent {
           if (data?.successMSG != null) {
             this.affiliateRegForm.reset();
             // this.closeDialog();
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Request sent Successfully.' });
+
+             Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Request sent Successfully',
+              showConfirmButton: false,
+              timer: 2000
+            });
             
           } else {
             this.affiliateRegForm.reset();
             // this.closeDialog();
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong!' });
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'SOMETHING WENT WRONG!'
+            });
            
           }
         }

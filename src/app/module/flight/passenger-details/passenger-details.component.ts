@@ -33,7 +33,7 @@ import { MicroService } from 'src/app/services/micro.service';
 import moment from 'moment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-passenger-details',
   templateUrl: './passenger-details.component.html',
@@ -1116,6 +1116,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
   
   
         let fileName = null;
+        // let fileName = 'TICKET ITINERARY/' + pnrData?.SupplierConfirmationNumber + ".pdf";
         let subject = 'E - TICKET ITINERARY - ' + pnrData?.SupplierConfirmationNumber;
   
         let reqmodel = {
@@ -1132,16 +1133,26 @@ export class PassengerDetailsComponent implements AfterViewInit {
         };
         this._flightService.SendConfirmationEmail(reqmodel).subscribe(data=> {
           if (data?.successMSG != null) {
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Mail Sent Successfully' });
+             Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Mail sent Successfully',
+                showConfirmButton: false,
+                timer: 2000
+              });
           } else {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to Send Mail',
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'SOMETHING WENT WRONG!'
             });
           }
         }, error=> {
-          console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'SOMETHING WENT WRONG!'
+          })
           
         })
   
