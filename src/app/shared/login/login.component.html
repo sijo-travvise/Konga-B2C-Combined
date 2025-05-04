@@ -57,9 +57,17 @@
             </div>
             <div class="col-md-12 mb-4">
                 <app-input-field [title]="'Password'"  [isRequired]=true [formControls]="new_password"></app-input-field>
+                <div *ngIf="new_password.touched || new_password.dirty">
+                    <small class="text-danger error" *ngIf="new_password.hasError('pattern')">
+                        The password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character. No spaces allowed
+                    </small>
+                </div>
             </div>
             <div class="col-md-12 mb-4">
                 <app-input-field [title]="'Re-Enter Password'" [isRequired]=true (blur)="checkPasswordsMatch()" [formControls]="re_password"></app-input-field>
+                <div *ngIf="re_password.touched || re_password.dirty">
+                    <small class="text-danger error" *ngIf="re_password.hasError('passwordMismatch')">Passwords do not match.</small>
+                </div>
             </div>
         </ng-container>
 

@@ -79,3 +79,9 @@ mat-spinner {
     width: 50px;
     height: 50px;
   }
+  .error{
+    font-size: 11px;
+    color: var(--bg-danger) !important;
+    background: transparent;
+    padding: 0;
+  }
