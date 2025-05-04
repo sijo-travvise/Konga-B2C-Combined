@@ -186,6 +186,6 @@
     [loderTitle]="'we are finding the best flights for you'"></app-pre-loader>
 
     <p-dialog  [(visible)]="loginPage" [modal]="true" class="loginPageModal" [draggable]="false" [resizable]="true">
-        <app-login (isGuest)="isGuestCheck($event)"  (isLoggedIn)="isLoginCheck($event)"></app-login>
+        <app-login (isGuest)="isGuestCheck($event)" [loginActive]="loginPage" (isLoggedIn)="isLoginCheck($event)"></app-login>
     </p-dialog>
     

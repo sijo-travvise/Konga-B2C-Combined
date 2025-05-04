@@ -142,7 +142,7 @@ export class FlightDetailsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    debugger;
+    
     this.cdr.detectChanges();
     this.isLoading = true;
     

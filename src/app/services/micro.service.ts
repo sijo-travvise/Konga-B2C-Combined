@@ -44,7 +44,7 @@ export class MicroService {
   
   
   // getFormatedFlightDate(dateString: string, isDay: boolean = false, formats = 'yy-MMM-dd') {
-  //   debugger;
+  //   
   //   const currentYear = new Date().getFullYear().toString().slice(0, 2); // Get the current year's first two digits
   //   const year = currentYear + dateString.slice(0, 2); // Combine the current year's first two digits with the first two digits from the input
   //   return (this.datePipe.transform(new Date(year + '-' + dateString.slice(2, 4) + '-' + dateString.slice(4, 6)), isDay ? 'EE yy-MMM-dd' : formats));

@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { environment } from 'src/environments/environment';
 import { first } from 'rxjs';
 import { error, log } from 'console';
+import Swal from 'sweetalert2';
 
 export class FileUpload {
   key: string;
@@ -332,27 +333,20 @@ export class AffliateComponent {
 
 
     sendMail(){
-      // const companyName= this.companyListDataSource.name;
     let body = (<HTMLElement>document.getElementById('register-template'))?.innerHTML;
-    let fileName='TICKET ITINERARY/'+ 'KONGA' +"_Request" +".pdf";
       let reqmodel=
       {
         receiverID:0,
         orderID: 'KONGA' + "_Request_" + new Date().toISOString(),
-        displayName:"this.companyListDataSource?.secondaryName",
-        to:['azeezmc414@gmail.com'],
+        displayName:"Konga Travel & Tours",
+        to:environment.aff_reg_toaddress,
         cc:[],
         from: environment?.emailConfiguration?.From,
         body:body,
-        fileName: fileName,
-        subject: `Konga Customer Registration`,
+        fileName: null,
+        subject: `Customer Registration`,
         emailConfig:environment?.emailConfiguration
       }
-
-      
-      
-     
-
       this.sharedService.SendConfirmationEmail(reqmodel).subscribe({
         complete: () => {
           
@@ -370,12 +364,23 @@ export class AffliateComponent {
           if (data?.successMSG != null) {
             this.affiliateRegForm.reset();
             // this.closeDialog();
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Request sent Successfully.' });
+
+             Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Request sent Successfully',
+              showConfirmButton: false,
+              timer: 2000
+            });
             
           } else {
             this.affiliateRegForm.reset();
             // this.closeDialog();
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong!' });
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'SOMETHING WENT WRONG!'
+            });
            
           }
         }

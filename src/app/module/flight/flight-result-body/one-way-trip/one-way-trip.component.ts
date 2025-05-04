@@ -96,12 +96,8 @@ export class OneWayTripComponent {
     this.bookedFlightData = selectedFare;
   }
   showCalculateDialog(FlightDetails: any) {
-    console.log(FlightDetails,'line 102');
-    
     this.calcPosition = 'center';
     this.displayPositionCalc = true;
-    console.log(this.bookedFlightData,'line 106');
-    
     // this.bookedFlightData = FlightDetails.flights.find((flights: any) => flights.isSelected);
   }
   filterWithPrice(flightRecomondation: any) {
