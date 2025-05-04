@@ -109,6 +109,7 @@ export class LoginComponent {
             Swal.fire({
               icon: 'error',
               title: 'Password expired.',
+              text: 'Please continue to reset the password.',
               showConfirmButton: false,
               timer: 2000
             });
