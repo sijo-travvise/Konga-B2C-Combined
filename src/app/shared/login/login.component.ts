@@ -40,7 +40,7 @@ export class LoginComponent {
   ]);
   new_password = new FormControl('', [
     Validators.required,
-    Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+    Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d\S]{8,}$/)
   ]);
   re_password = new FormControl('', [Validators.required, this.matchPasswordValidator(this.new_password)
   ])
