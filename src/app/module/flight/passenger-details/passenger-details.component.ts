@@ -1118,7 +1118,7 @@ export class PassengerDetailsComponent implements AfterViewInit {
         let fileName = null;
         // let fileName = 'TICKET ITINERARY/' + pnrData?.SupplierConfirmationNumber + ".pdf";
         let subject = 'E - TICKET ITINERARY - ' + pnrData?.SupplierConfirmationNumber;
-        let cc = this.currentUser?.email != 'junaid.kp@travvise.com'? [this.currentUser?.email]: []
+        let cc = this.currentUser?.email != environment.guestMail? [this.currentUser?.email]: []
         let reqmodel = {
           receiverID: saveRq?.flightTransactions.BookedByUser_ID,
           displayName: 'Konga Travel & Tours',

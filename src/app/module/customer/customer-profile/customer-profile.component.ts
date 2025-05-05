@@ -6,6 +6,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FlightService } from 'src/app/services/flight.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { MessageService } from 'primeng/api';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-customer-profile',
   templateUrl: './customer-profile.component.html',
@@ -20,6 +21,7 @@ export class CustomerProfileComponent {
   public currentUser: User | undefined;
   user: any = null;
   public userProfileData: any;
+  environment= environment;
   constructor(
     private sharedService: SharedService,
     private flightService: FlightService,
