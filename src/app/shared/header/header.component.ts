@@ -6,6 +6,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
 import { OverlayPanel } from 'primeng/overlaypanel';
+import { environment } from 'src/environments/environment';
 
 interface Language {
   name: String;
@@ -21,6 +22,7 @@ interface Language {
 export class HeaderComponent implements OnInit {
   public bredcrumbValues = [];
   selectedCountry!: string;
+  guestMail=environment.guestMail;
   availableLanguages: Language[] = [];
   selectLanguage: Language = this.availableLanguages[0];
   @Input() currentLink: string = '';
@@ -77,7 +79,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngAfterViewInit () {
-  
     const preffCurrency =  this._sharedService.getLocalStore('currency');
     if (preffCurrency?.length || preffCurrency !== null) {
       // this.currency.setValue({ "currency": preffCurrency})
