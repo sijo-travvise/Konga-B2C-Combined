@@ -7,8 +7,8 @@ export const environment = {
   flightsearchurl: 'https://FlightSearch.konga.com/',
   flightBookurl: 'https://FlightBook.konga.com/',
   
-  aff_reg_toaddress: ['corporatetravel@konga.com','abiola.bakare@konga.com','yusuf.babatunde@konga.com','joy.okorie@konga.com','akeem.adeyemi@konga.com','junaidkp703@gmail.com'],
-  booking_confirmation_toaddress: ['abiola.bakare@konga.com','yusuf.babatunde@konga.com','joy.okorie@konga.com','akeem.adeyemi@konga.com','junaidkp703@gmail.com'],
+  aff_reg_toaddress: ['travel@konga.com','yusuf.babatunde@konga.com','junaidkp703@gmail.com'],
+  booking_confirmation_toaddress: ['travel@konga.com','yusuf.babatunde@konga.com','junaidkp703@gmail.com'],
 
   paymentUrl: "https://kongapay-pg.kongapay.com/kpaydirect",
   merchantId: 'ktt',

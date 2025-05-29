@@ -581,21 +581,23 @@ isLoginCheck(event: boolean){
     if(this.currentUser && this.currentUser.privilages.flightService) {
       this.selectedSuppiers = '';
       const flightPrivilages = this.currentUser.privilages.flightService;
-      this.selectedSuppiers = null;
+      // this.selectedSuppiers = 'null';
       flightPrivilages.forEach((flights: any)=> {
-      
-        const allowedSuplierCode = flights.supplierCode;
-  
-        this.suppliers.forEach((item: any)=> {
-          if (allowedSuplierCode === item?.supplierCode) {
-            if(this.selectedSuppiers) {
-              this.selectedSuppiers += ',';
+        if (flights?.search === 1) {
+          const allowedSuplierCode = flights.supplierCode;
+
+          this.suppliers.forEach((item: any) => {
+            if (allowedSuplierCode === item?.supplierCode) {
+              if (this.selectedSuppiers) {
+                this.selectedSuppiers += ',';
+              }
+              this.selectedSuppiers += item.pccList[0].supplier_DTID?.toString();
+
+
             }
-            this.selectedSuppiers += item.pccList[0].supplier_DTID;
-  
-           
-          }
-        });
+          });
+        }
+        
   
       });
     }

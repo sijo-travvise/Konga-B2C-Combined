@@ -146,7 +146,7 @@ export class FlightDetailsComponent implements AfterViewInit {
     this.cdr.detectChanges();
     this.isLoading = true;
     
-    if(this.BookedFlightData && this.BookedFlightData.Trips[0].SupplierName == "Amadeus") {
+    if(this.BookedFlightData && (this.BookedFlightData.Trips[0].SupplierName == "Amadeus" || this.BookedFlightData.Trips[0].SupplierName == "1A-R")) {
       this._authenticationService.affliateUser
       this.revalidateObj = {
         SelectedTripFareKeys: [

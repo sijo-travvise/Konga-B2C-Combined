@@ -491,6 +491,7 @@ export const airArabiaSaveReqModel = {
     Gross: 0,
     DefaultMarkup: 0,
     AdditionalMarkup: 0,
+    SpecialDiscount: 0,
     CancelPenalty: 0,
     ChangePenalty: 0,
     TotalFare: 0,

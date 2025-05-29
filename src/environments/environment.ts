@@ -47,8 +47,8 @@ export const environment = {
     UseStartTls: true,
   },
 
-  guestMail: 'guest@konga.com',
-  guestPassword: 'Guest!@#123',
+  guestMail: 'adminb2c@travvise.com',
+  guestPassword: '&xhQD',
 
 };
 

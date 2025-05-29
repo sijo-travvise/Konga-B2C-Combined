@@ -1382,7 +1382,8 @@ export class PassengerDetailsComponent implements AfterViewInit {
         Tax: taxTotal,
         // Tax:  createPnrRes?.priceSummary?.AdultBaseFare +  createPnrRes?.priceSummary?.ChildBaseFare + createPnrRes?.priceSummary?.InfantBaseFare,
         DefaultMarkup: (passenger?.PaxTypeID === 1 ? createPnrRes.priceSummary?.AdultMarkup : passenger?.PaxTypeID === 2 ? createPnrRes.priceSummary?.ChildMarkup : createPnrRes.priceSummary?.InfantMarkup),
-        DiscountAmount: (passenger?.PaxTypeID === 1 ? createPnrRes.priceSummary?.AdultDiscount : passenger?.PaxTypeID === 2 ? createPnrRes.priceSummary?.ChildDiscount : createPnrRes.priceSummary?.InfantDiscount),
+        SpecialDiscount: (passenger?.PaxTypeID === 1 ? createPnrRes.priceSummary?.AdultDiscount : passenger?.PaxTypeID === 2 ? createPnrRes.priceSummary?.ChildDiscount : createPnrRes.priceSummary?.InfantDiscount),
+        DiscountAmount: 0,
         AdditionalMarkup:  0,
         Gross: totalPrice,
         DiscountType: '',
@@ -1634,7 +1635,8 @@ export class PassengerDetailsComponent implements AfterViewInit {
       createPnrRes?.priceSummary?.SelectedCurrency;
     this.airArabiaRequestObj.flightTransactions.CustomerSellRateTotal = Math.ceil(createPnrRes?.priceSummary?.PriceTotal);
     this.airArabiaRequestObj.flightTransactions.ExchangeRateApplied = 1;
-    this.airArabiaRequestObj.flightTransactions.DiscountAmount =discountTotal;
+    this.airArabiaRequestObj.flightTransactions.SpecialDiscount =discountTotal;
+    this.airArabiaRequestObj.flightTransactions.DiscountAmount =0;
     this.airArabiaRequestObj.flightTransactions.DiscountApproverUser_ID = 0;
     this.airArabiaRequestObj.flightTransactions.DiscountApprovalStatus = 1;
     this.airArabiaRequestObj.flightTransactions.TicketingApprovalStatus = 1;
